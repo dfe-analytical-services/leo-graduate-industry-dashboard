@@ -111,12 +111,12 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey1$SECTIONNAME.x <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'OTHER'
   
@@ -130,12 +130,12 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey2$SECTIONNAME.x <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey2$SECTIONNAME.y <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'OTHER'
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'OTHER'
