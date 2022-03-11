@@ -6,7 +6,6 @@ library(RColorBrewer)
 library(pander)
 library(dplyr)
 library(tidyr)
-library(readr)
 library(shinycssloaders)
 library(plotly)
 library(DT)
@@ -37,8 +36,8 @@ cohort3 <- subset(cohort3, select = -X)
 
 # earnings_data <- read.csv("earnings_data_with_PG.csv")
 
-tables_data <- read_csv("data/pg_sic_crosstabs_underlying_data_cf_with_threshold_dummy.csv")
-tables_earnings_data <- read_csv("data/pg_sic_crosstabs_earnings_data_cf_with_threshold_dummy.csv")
+tables_data <- fread("data/pg_sic_crosstabs_underlying_data_cf_with_threshold_dummy.csv") %>% select(-V1)
+tables_earnings_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_with_threshold_dummy.csv") %>% select(-V1)
 names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count","threshold", "qualification_TR")
 names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR")
 
