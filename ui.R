@@ -1,8 +1,8 @@
-navbarPage("", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
+navbarPage("", id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
   
   # Homepage ----------------------------------------------------------------------------------------
 
-  tabPanel("Homepage", id = "homepage",
+  tabPanel(value = "homepage", title = "Homepage",
     
     ## Style sheet ------------------------------------------------------------------------------
     
@@ -40,7 +40,7 @@ navbarPage("", # No title so there's no fake clickable link that isn't actually 
             status = "primary", width = NULL, solidHeader = TRUE,
             h2("Contents"),
 
-            actionLink("link_to_industryFlow_tab", h4("Industry flow analysis")),
+            h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
             
             #a(h4("Industry flow analysis"), onclick = "fakeClick('Industry flow analysis')"),
             paste(" - This tab looks at the industries one longitudinal cohort (2012/13 acadmeic year of
@@ -95,7 +95,7 @@ navbarPage("", # No title so there's no fake clickable link that isn't actually 
   ), # End of homepage tabPanel()
 
   # Sankey tab ---------------------------------------------------------------
-  tabPanel("Industry flow analysis", id = "industryFlow",
+  tabPanel(value = "industryFlow", title = "Industry flow analysis", 
            
     strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
     box(
