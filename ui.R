@@ -29,7 +29,7 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
         column(
           12,
           h2("Welcome"),
-          paste(intro_text), # stored in www/text
+          paste(welcome_text), # stored in www/text
         ),
         
         ## Left panel ------------------------------------------------------------------------------
@@ -39,25 +39,14 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
           box(
             status = "primary", width = NULL, solidHeader = TRUE,
             h2("Contents"),
-
+            
             h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
-            
-            paste(" - This tab looks at the industries one longitudinal cohort (2012/13 acadmeic year of
-                                                  graduation cohort) worked in and flowed between at one, three and five years after
-                                                  graduation. You can filter this analysis to look at graduates of
-                                                  a specific subject area, or filter by graduate sex."), 
-            
+            paste(industryFlow_text), 
             br(),
             
             h4(actionLink("link_to_regional_tab", "Regional analysis")),
-            
-            
-            paste(" - This tab compares where graduates studied to where they lived
-                                                  at one, three and five years after graduation, for each industry, and uses the latest tax year data,
-                                                  so does not follow the same cohort as the longitudinal tab. It can be filtered
-                                                  to look at graduates of a specific subject and provides context on the number of providers in each
-                                                  region that have graduates working in the selected industry, and the median earnings of graduates working
-                                                  in the selected industry in each region."), br(),
+            paste(regional_text),
+            br(),
             
             h3("Tables"),
             h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
@@ -94,7 +83,8 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
               href = "https://siccode.com/sic-code-lookup-directory",
               "SIC Code Lookup | SIC Code Search Tool"
             ),
-            h4("SIC Groups and sections")
+            h4("SIC Groups and sections"),
+            paste(sicGroups_text)
           )
         )
       )
