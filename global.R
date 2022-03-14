@@ -25,6 +25,7 @@ library(matrixStats)
 library(sourcetools)
 library(shinyBS)
 library(readr)
+library(metathis)
 
 cohort1 <- read.csv("data/pg_sankey_data_1_3_yag_dummy.csv")
 cohort2 <- read.csv("data/pg_sankey_data_3_5_yag_dummy.csv")

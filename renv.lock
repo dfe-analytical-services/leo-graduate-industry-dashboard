@@ -856,6 +856,19 @@
       "Hash": "b8e6221fc11247b12ab1b055a6f66c27",
       "Requirements": []
     },
+    "metathis": {
+      "Package": "metathis",
+      "Version": "1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4298036cc76c4164741fdd2ab5b6f57b",
+      "Requirements": [
+        "htmltools",
+        "knitr",
+        "magrittr",
+        "purrr"
+      ]
+    },
     "mgcv": {
       "Package": "mgcv",
       "Version": "1.8-39",
