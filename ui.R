@@ -168,13 +168,15 @@ navbarPage("",
           ),
           selected = "F+M"
         ),
-        h4("Summary"),
-        strong("Most popular industry"),
-        htmlOutput("sankeytext1"),
-        br(),
-        strong("Movement between industries"),
-        htmlOutput("sankeytext2"),
-        br(),
+        div(style="color:#ffffff",
+          h4("Summary"),
+          strong("Most popular industry"),
+          htmlOutput("sankeytext1"),
+          br(),
+          strong("Movement between industries"),
+          htmlOutput("sankeytext2"),
+          br()
+        )
       ),
 
       ## Main panel -------------------------------------------

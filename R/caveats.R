@@ -1,6 +1,6 @@
 caveats_box <- function() {
   box(
-    status = "primary", width = NULL, solidHeader = TRUE,
+    status = "warning", width = NULL, solidHeader = TRUE,
     strong("Caveats"),
     br(),
     "\U2022 Data only includes graduates who were in sustained employment in the associated tax year, and a graduate's industry is recorded as the industry in which they earnt the most in the associated tax year.",
