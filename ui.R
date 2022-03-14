@@ -42,20 +42,27 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
 
             h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
             
-            #a(h4("Industry flow analysis"), onclick = "fakeClick('Industry flow analysis')"),
             paste(" - This tab looks at the industries one longitudinal cohort (2012/13 acadmeic year of
                                                   graduation cohort) worked in and flowed between at one, three and five years after
                                                   graduation. You can filter this analysis to look at graduates of
-                                                  a specific subject area, or filter by graduate sex."), br(),
-            a(h4("Regional analysis"), onclick = "fakeClick('Regional analysis')"),
+                                                  a specific subject area, or filter by graduate sex."), 
+            
+            br(),
+            
+            h4(actionLink("link_to_regional_tab", "Regional analysis")),
+            
+            
             paste(" - This tab compares where graduates studied to where they lived
                                                   at one, three and five years after graduation, for each industry, and uses the latest tax year data,
                                                   so does not follow the same cohort as the longitudinal tab. It can be filtered
                                                   to look at graduates of a specific subject and provides context on the number of providers in each
                                                   region that have graduates working in the selected industry, and the median earnings of graduates working
                                                   in the selected industry in each region."), br(),
-            h4("Tables - "), a(h4("(1) Subject by industry"), onclick = "fakeClick('Subject by industry tables')"),
-            a(h4("(2) Industry by subject"), onclick = "fakeClick('Industry by subject tables')"),
+            
+            h3("Tables"),
+            h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
+            h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
+            
             paste(" - These tabs provides tables for multiple breakdowns. The tables use the latest tax year data,
                                                   so do not follow the same cohort as the longitudinal tab. Instead the table looks at the one, three,
                                                   five and ten year after graduation cohorts from the 2018/19 tax year. The tables show breakdowns of
@@ -94,7 +101,7 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
     )
   ), # End of homepage tabPanel()
 
-  # Sankey tab ---------------------------------------------------------------
+  # Industry flow tab ---------------------------------------------------------------
   tabPanel(value = "industryFlow", title = "Industry flow analysis", 
            
     strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
@@ -202,10 +209,8 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
     )
   ),
 
-  # Map tab
-  tabPanel(
-    "Regional analysis",
-    strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
+  # Regional analysis tab ---------------------
+  tabPanel("Regional analysis", value = "regional",
     box(
       status = "primary", width = NULL, solidHeader = TRUE,
       strong("Caveats"), br(),
@@ -316,10 +321,9 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
       )
     )
   ),
-  # Tables panel
-  tabPanel(
-    "Subject by industry tables",
-    strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
+  
+  # Subject by industry tab ---------------------------------------------
+  tabPanel(title = "Subject by industry tables", value = "subjectByIndustry",
     box(
       status = "primary", width = NULL, solidHeader = TRUE,
       strong("Caveats"), br(),
@@ -397,8 +401,9 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
       )
     )
   ),
-  tabPanel(
-    "Industry by subject tables",
+  
+  # Industry by subject tab -------------------------------------
+  tabPanel(title = "Industry by subject tables", value = "industryBySubject",
     strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
     box(
       status = "primary", width = NULL, solidHeader = TRUE,
