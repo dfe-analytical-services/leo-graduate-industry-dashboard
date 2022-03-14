@@ -1,78 +1,81 @@
-navbarPage("", id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
-  
-  # Homepage ----------------------------------------------------------------------------------------
+navbarPage("",
+  id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
 
-  tabPanel(value = "homepage", title = "Homepage",
-    
+  # Homepage tab ------------------------------------------------------------------------------------
+
+  tabPanel(
+    value = "homepage", title = "Homepage",
+
     ## Style sheet ------------------------------------------------------------------------------
-    
+
     includeCSS("www/shiny_gov_style.css"),
-    
+
     ## Set metadata for browser ---------------------------------------------------------------------
-    
+
     tags$html(lang = "en"),
     meta_general(
-      application_name = "School places scorecards",
-      description = "Scorecards for school places by local authority in England",
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
       robots = "index,follow",
       generator = "R-Shiny",
-      subject = "School places in England",
+      subject = "Outcomes for graduates",
       rating = "General",
       referrer = "no-referrer"
     ),
-    
+
     ## Tab content ---------------------------------------------------------------------------------
-    
+
     fluidPage(
-      titlePanel("LEO Graduate Industry Dashboard"),
+      titlePanel("Longitudinal Education Outcomes Graduate Industry Dashboard, Tax year 2018-19"),
       fluidRow(
         column(
           12,
           h2("Welcome"),
-          paste(welcome_text), # stored in www/text
+          paste(welcome_text, " For more detail see our official statistics "), # stored in www/text, read in via R/dashboard_text.R
+          a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo", "publication on Graduate Outcomes."),
         ),
-        
+
         ## Left panel ------------------------------------------------------------------------------
-        
+
         column(
           6,
           box(
             status = "primary", width = NULL, solidHeader = TRUE,
             h2("Contents"),
-            
             h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
-            paste(industryFlow_text), 
+            paste(industryFlow_text), # stored in www/text, read in via R/dashboard_text.R
             br(),
-            
             h4(actionLink("link_to_regional_tab", "Regional analysis")),
-            paste(regional_text),
+            paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
             br(),
-            
             h3("Tables"),
             h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
             h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
-            
-            paste(" - These tabs provides tables for multiple breakdowns. The tables use the latest tax year data,
-                                                  so do not follow the same cohort as the longitudinal tab. Instead the table looks at the one, three,
-                                                  five and ten year after graduation cohorts from the 2018/19 tax year. The tables show breakdowns of
-                                                  graduate industry for the filtered subject area and year after graduation. The following breakdowns are
-                                                  currently available:"), br(),
-            "\U2022 sex", br(), "\U2022 ethnicity", br(), "\U2022 FSM status", br(), "\U2022 current region", br(),
-            "\U2022 prior attainment", br(), "\U2022 subject", br(), "\U2022 qualification level"
+            paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
+            br(),
+            tags$ul(
+              tags$li("sex"),
+              tags$li("ethnicity"),
+              tags$li("FSM status"),
+              tags$li("current region"),
+              tags$li("prior attainment"),
+              tags$li("subject"),
+              tags$li("qualification level")
+            )
           )
         ),
-        
+
         ## Right panel ---------------------------------------------------------------------------
-        
+
         column(
           6,
           box(
             status = "primary", width = NULL, solidHeader = TRUE,
             h2("IDBR and SIC background"),
             h4("IDBR (Inter-Departmental Business Register)"),
-            "IDBR data is a comprehensive list of UK businesses used by gonernment for statistical purposes.",
+            "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
             h4("UK SIC (Standard Industrial Classification) code"),
-            "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.", 
+            "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.",
             h4("Useful links"),
             a(
               href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
@@ -84,7 +87,32 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
               "SIC Code Lookup | SIC Code Search Tool"
             ),
             h4("SIC Groups and sections"),
-            paste(sicGroups_text)
+            paste(sicGroups_text), # stored in www/text, read in via R/dashboard_text.R
+            br(),
+            br(),
+            tags$ol(
+              tags$li("ACCOMMODATION AND FOOD SERVICE ACTIVITIES"),
+              tags$li("ACTIVITITES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES"),
+              tags$li("ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE"),
+              tags$li("ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES"),
+              tags$li("AGRICULTURE, FORESTRY AND FISHING"),
+              tags$li("ARTS, ENTERTAINMENT AND RECREATION"),
+              tags$li("CONSTRUCTION"),
+              tags$li("EDUCATION"),
+              tags$li("ELECTRICITY, GAS, STEAM AND AIR CONDITIONG SUPPLY"),
+              tags$li("FINANCIAL AND INSURANCE ACTIVITIES"),
+              tags$li("HUMAN HEALTH AND SOCIAL WORK ACTIVITIES"),
+              tags$li("INFORMATION AND COMMUNICATION"),
+              tags$li("MANUFACTURING"),
+              tags$li("MINING AND QUARRYING"),
+              tags$li("OTHER SERVICE ACTIVITIES"),
+              tags$li("PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES"),
+              tags$li("PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY"),
+              tags$li("REAL ESTATE ACTIVITIES"),
+              tags$li("TRANSPORTATION AND STORAGE"),
+              tags$li("WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"),
+              tags$li("WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES")
+            )
           )
         )
       )
@@ -92,21 +120,30 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
   ), # End of homepage tabPanel()
 
   # Industry flow tab ---------------------------------------------------------------
-  tabPanel(value = "industryFlow", title = "Industry flow analysis", 
-           
-    strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
-    box(
-      status = "primary", width = NULL, solidHeader = TRUE,
-      strong("Caveats"), br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated
-                                            tax year, and a graduate's industry is recorded as the industry in which they earnt
-                                            the most in the associated tax year.",
-      br(),
-      "\U2022 Counts have been rounded to the nearest 5, however percentages are based on raw values.",
-      br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us
-                                                about the graduates occupation within that company."
-    ), br(),
+
+  tabPanel(
+    value = "industryFlow", title = "Industry flow analysis",
+
+    ## Set metadata for browser ----------------------------------------------------
+
+    tags$html(lang = "en"),
+    meta_general(
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
+      robots = "index,follow",
+      generator = "R-Shiny",
+      subject = "Outcomes for graduates",
+      rating = "General",
+      referrer = "no-referrer"
+    ),
+
+    ## Caveats ---------------------------------------------------------------------
+
+    caveats_box(), # defined in R/caveats.R
+    br(),
+
+    ## Side bar --------------------------------------------------------------------
+
     sidebarLayout(
       sidebarPanel(
         helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
@@ -138,15 +175,16 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
         strong("Movement between industries"),
         htmlOutput("sankeytext2"),
         br(),
-        # strong('Earnings'),
-        # htmlOutput("earningstext"),
       ),
+
+      ## Main panel -------------------------------------------
+
       mainPanel(
         htmlOutput("sankey_title"),
-
-        # absolutePanel(htmlOutput('sankeyhelp'), top = '6%', right = '6%'),
-
         tabsetPanel(
+
+          ### Sankey plot -------------------------------------
+
           tabPanel(
             "Sankey Plot",
             htmlOutput("sankeyhelp"),
@@ -162,64 +200,49 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
             br(),
             sankeyNetworkOutput(outputId = "sankey", height = 800)
           ),
-          tabPanel("Industry proportions table", reactableOutput("sankey_table"), height = 1500)
 
-          # tabPanel("Earnings table",
-          #          selectInput("Earningsinput",
-          #                      label = "Choose 1 YAG industry",
-          #                      choices = list("ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
-          #                                     "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES",
-          #                                     "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
-          #                                     "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES",
-          #                                     "AGRICULTURE, FORESTRY AND FISHING",
-          #                                     "ARTS, ENTERTAINMENT AND RECREATION",
-          #                                     "CONSTRUCTION",
-          #                                     "EDUCATION",
-          #                                     "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
-          #                                     "FINANCIAL AND INSURANCE ACTIVITIES",
-          #                                     "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
-          #                                     "INFORMATION AND COMMUNICATION",
-          #                                     "MANUFACTURING",
-          #                                     "MINING AND QUARRYING",
-          #                                     "OTHER SERVICE ACTIVITIES",
-          #                                     "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
-          #                                     "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
-          #                                     "REAL ESTATE ACTIVITIES",
-          #                                     "TRANSPORTATION AND STORAGE",
-          #                                     "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
-          #                                     "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES"),
-          #                      selected = "EDUCATION"),
-          #          reactableOutput("earnings_table"),
-          #          absolutePanel(strong("Table is initially ordered by number of graduates. Click on
-          #                               a column to reorder the table."), br(),
-          #                        strong("Number of graduates is rounded to the nearest 5, and rows that round to 0 have been removed."),
-          #                        top = "10%", left = "30%"),
+          ### Table ------------------------------------------
+
+          tabPanel(
+            "Industry proportions table",
+            reactableOutput("sankey_table"),
+            height = 1500
+          )
         )
       )
     )
   ),
 
-  # Regional analysis tab ---------------------
-  tabPanel("Regional analysis", value = "regional",
-    box(
-      status = "primary", width = NULL, solidHeader = TRUE,
-      strong("Caveats"), br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated
-                                            tax year, and a graduate's industry is recorded as the industry in which they earnt
-                                            the most in the associated tax year.",
-      br(),
-      "\U2022 Counts have been rounded to the nearest 5, however percentages are based on raw values.",
-      br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us
-                                                about the graduates occupation within that company."
-    ), br(),
+  # Regional analysis tab ------------------------------------------
+
+  tabPanel(
+    value = "regional", title = "Regional analysis",
+
+    ## Set metadata for browser ----------------------------------------------------
+
+    tags$html(lang = "en"),
+    meta_general(
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
+      robots = "index,follow",
+      generator = "R-Shiny",
+      subject = "Outcomes for graduates",
+      rating = "General",
+      referrer = "no-referrer"
+    ),
+
+    ## Caveats ---------------------------------------------------------------------
+
+    caveats_box(), # defined in R/caveats.R
+    br(),
+
+    ## Side bar ----------------------------------------------------
+
     sidebarLayout(
       sidebarPanel(
         width = 3,
-        helpText("Create a heat map to show graduate movement from study region to current region for
-                                       the selected industry."),
-        helpText("Click on a region to see all of the information for that region, including the
-                                       number of providers and the median earnings for the selected industry."),
+        helpText("Create a heat map to show graduate movement from study region to current region for the selected industry."),
+        helpText("Click on a region to see all of the information for that region, including the number of providers and the median earnings for the selected industry."),
         selectInput("qualinput2",
           label = "Choose graduate qualification level",
           choices = list(
@@ -278,6 +301,9 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
         br(),
         textOutput("maptext2"),
       ),
+
+      ## Main panel -------------------------------------------------------------
+
       mainPanel(
         htmlOutput("map_title"),
         width = 9, box(leafletOutput(outputId = "map", height = 800), width = 5),
@@ -311,36 +337,42 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
       )
     )
   ),
-  
+
   # Subject by industry tab ---------------------------------------------
-  tabPanel(title = "Subject by industry tables", value = "subjectByIndustry",
-    box(
-      status = "primary", width = NULL, solidHeader = TRUE,
-      strong("Caveats"), br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated
-                                            tax year, and a graduate's industry is recorded as the industry in which they earnt
-                                            the most in the associated tax year.",
-      br(),
-      "\U2022 Counts have been rounded to the nearest 5, however percentages are based on raw values.",
-      br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us
-                                                about the graduates occupation within that company."
-    ), br(),
+  tabPanel(
+    title = "Subject by industry tables", value = "subjectByIndustry",
+
+    ## Set metadata for browser ----------------------------------------------------
+
+    tags$html(lang = "en"),
+    meta_general(
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
+      robots = "index,follow",
+      generator = "R-Shiny",
+      subject = "Outcomes for graduates",
+      rating = "General",
+      referrer = "no-referrer"
+    ),
+
+    ## Caveats ---------------------------------------------------------------------
+
+    caveats_box(), # defined in R/caveats.R
+    br(),
+
+    ## Side bar ---------------------------------------------------------
+
     sidebarLayout(
       sidebarPanel(
         width = 3,
-        helpText("Using the drop down boxes below, create your own table by selecting
-                                                  the breakdown, year after graduation, qualification level (available for sex and subject
-                                                  breakdowns only) and subject area you would like to view."),
+        helpText("Using the drop down boxes below, create your own table by selecting the breakdown, year after graduation, qualification level (available for sex and subject treakdowns only) and subject area you would like to view."),
         radioGroupButtons("earningsbutton",
-          label = "View the proportion of graduates in each industry, or the median earnings
-                                                           of these graduates",
+          label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
           choices = list("Proportions", "Median earnings"),
           selected = "Proportions"
         ),
         radioGroupButtons("thresholdinput",
-          label = "View for only above or below the student loan
-                                                           repayment threshold (plan 2 in 2018/19: £25,000)",
+          label = "View for only above or below the student loan repayment threshold (plan 2 in 2018/19: £25,000)",
           choices = list("All", "Above", "Below"),
           selected = "All"
         ),
@@ -384,6 +416,9 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
         strong("Summary"),
         htmlOutput("crosstab_text")
       ),
+
+      ## Main panel ------------------------------------------------
+
       mainPanel(
         width = 9,
         htmlOutput("crosstab_title"),
@@ -391,31 +426,37 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
       )
     )
   ),
-  
+
   # Industry by subject tab -------------------------------------
-  tabPanel(title = "Industry by subject tables", value = "industryBySubject",
-    strong("Unpublished analysis - do not forward", style = "color: #FF0000"),
-    box(
-      status = "primary", width = NULL, solidHeader = TRUE,
-      strong("Caveats"), br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated
-                                            tax year, and a graduate's industry is recorded as the industry in which they earnt
-                                            the most in the associated tax year.",
-      br(),
-      "\U2022 Counts have been rounded to the nearest 5, however percentages are based on raw values.",
-      br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us
-                                                about the graduates occupation within that company."
-    ), br(),
+  tabPanel(
+    title = "Industry by subject tables", value = "industryBySubject",
+
+    ## Set metadata for browser ----------------------------------------------------
+
+    tags$html(lang = "en"),
+    meta_general(
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
+      robots = "index,follow",
+      generator = "R-Shiny",
+      subject = "Outcomes for graduates",
+      rating = "General",
+      referrer = "no-referrer"
+    ),
+
+    ## Caveats ---------------------------------------------------------------------
+
+    caveats_box(), # defined in R/caveats.R
+    br(),
+
+    ## Side bar ----------------------------------------------------
+
     sidebarLayout(
       sidebarPanel(
         width = 3,
-        helpText("Using the drop down boxes below, create your own table by selecting
-                                                  the breakdown, year after graduation, qualification level (available for sex and subject
-                                                  breakdowns only) and industry area you would like to view."),
+        helpText("Using the drop down boxes below, create your own table by selecting the breakdown, year after graduation, qualification level (available for sex and subject breakdowns only) and industry area you would like to view."),
         radioGroupButtons("earningsbutton2",
-          label = "View the proportion of graduates that studied each subject, or the median earnings
-                                                           of these graduates",
+          label = "View the proportion of graduates that studied each subject, or the median earnings of these graduates",
           choices = list("Proportions", "Median earnings"),
           selected = "Proportions"
         ),
@@ -479,18 +520,20 @@ navbarPage("", id = "navbar", # No title so there's no fake clickable link that 
             ),
             selected = "EDUCATION"
           )
-        ),
-
-        # helpText('Download the current table as a csv'),
-        # downloadButton("downloadData", label = "Download table"),br(),br(),
-        # strong('Summary'),
-        # htmlOutput("crosstab_text")
+        )
       ),
+
+      ## Main panel -------------------------------------
+
       mainPanel(
         width = 9,
         htmlOutput("backwards_crosstab_title"),
         reactableOutput("crosstab_backwards")
       )
     )
-  )
+  ),
+
+  # Footer ----------------------------------------------
+
+  footer = includeHTML("www/footer.html")
 )
