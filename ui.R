@@ -1,11 +1,11 @@
 # UI ----------------------------------------------------------------------
 
 
-ui <- navbarPage("LEO Graduate Industry Dashboard",
+ui <- navbarPage("LEO Graduate Industry Dashboard",id="tabs",
                  
                  # titlePanel(div("Unpublished analysis - do not forward", style = "color: #FF0000")),
                  
-                 tabPanel("Home/Contents",
+                 tabPanel("Home/Contents",id="tab_contents",
                           tags$head(tags$script(HTML('
                             var fakeClick = function(tabName) {
                               var dropdownList = document.getElementsByTagName("a");

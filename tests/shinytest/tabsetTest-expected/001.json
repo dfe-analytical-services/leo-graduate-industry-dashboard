@@ -1,0 +1,28 @@
+{
+  "input": {
+    "countinput": "trained_in_region",
+    "countinput2": "sex",
+    "countinput3": "sex",
+    "earningsbutton": "Proportions",
+    "earningsbutton2": "Proportions",
+    "qualinput": "First degree",
+    "qualinput2": "First degree",
+    "qualinput3": "First degree",
+    "qualinput4": "First degree",
+    "regioninput": "London",
+    "sectionnameinput": "EDUCATION",
+    "sectionnameinput2": "EDUCATION",
+    "sexinput": "F+M",
+    "tabs": "Home/Contents",
+    "thresholdinput": "All",
+    "YAGinput": "5",
+    "YAGinput2": "5",
+    "YAGinput3": "5"
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}
