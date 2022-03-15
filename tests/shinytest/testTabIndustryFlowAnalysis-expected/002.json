@@ -1,0 +1,71 @@
+{
+  "input": {
+    "countinput": "trained_in_region",
+    "countinput2": "sex",
+    "countinput3": "sex",
+    "earningsbutton": "Proportions",
+    "earningsbutton2": "Proportions",
+    "qualinput": "Level 7 (taught)",
+    "qualinput2": "First degree",
+    "qualinput3": "First degree",
+    "qualinput4": "First degree",
+    "regioninput": "London",
+    "sectionnameinput": "EDUCATION",
+    "sectionnameinput2": "EDUCATION",
+    "sexinput": "F+M",
+    "subjectinput": "",
+    "tabs": "Industry flow analysis",
+    "thresholdinput": "All",
+    "YAGinput": "5",
+    "YAGinput2": "5",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "sankey": {
+      "message": "Assigned data `1:nrow(section_names)` must be compatible with existing data.\n\u001B[31mx\u001B[39m Existing data has 0 rows.\n\u001B[31mx\u001B[39m Assigned data has 2 rows.\n\u001B[34mi\u001B[39m Only vectors of size 1 are recycled.",
+      "call": "NULL",
+      "type": [
+        "tibble_error_assign_incompatible_size",
+        "tibble_error",
+        "rlang_error"
+      ]
+    },
+    "sankey_title": "<h4> Industry of graduate employment for 2012/13 academic year graduates of  one, three and five years after \n                          graduation (YAG),  male and female Level 7 (taught) graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "sankeyhelp": "<a>\n  <h4>How to read this sankey?<\/h4>\n<\/a>",
+    "sankeysubjectlist": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput-label\" for=\"subjectinput\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput\"><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.12.4",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "sankeytext1": "For  both female and male ,  Level 7 (taught)  graduates who studied  , the industry with the highest \n                      proportion of graduates one year after graduation is  NA  ( NA %), and at five years after graduation it is  NA  ( NA %).",
+    "sankeytext2": {
+      "message": "Assigned data `1:nrow(section_names)` must be compatible with existing data.\n\u001B[31mx\u001B[39m Existing data has 0 rows.\n\u001B[31mx\u001B[39m Assigned data has 2 rows.\n\u001B[34mi\u001B[39m Only vectors of size 1 are recycled.",
+      "call": "NULL",
+      "type": [
+        "tibble_error_assign_incompatible_size",
+        "tibble_error",
+        "rlang_error"
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
