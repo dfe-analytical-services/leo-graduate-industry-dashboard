@@ -34,10 +34,10 @@ ui <- navbarPage("LEO Graduate Industry Dashboard",
 
                     ")),
                     
-                          tags$style(type="text/css",
-                                     ".shiny-output-error { visibility: hidden; }",
-                                     ".shiny-output-error:before { visibility: visible; content: 'Loading...'; }"
-                          ),
+                          # tags$style(type="text/css",
+                          #            ".shiny-output-error { visibility: hidden; }",
+                          #            ".shiny-output-error:before { visibility: visible; content: 'Loading...'; }"
+                          # ),
                           
                           
                           titlePanel('LEO Graduate Industry Dashboard'),
