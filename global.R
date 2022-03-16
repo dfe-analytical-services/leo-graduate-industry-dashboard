@@ -1178,7 +1178,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
   
   if(countinput == 'ethnicity'){
     
-    crosstabs_data <- tables_data %>%
+    crosstabs_data_table <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, FSM == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
       group_by(ethnicity, SECTIONNAME, group_name) %>%
@@ -1214,7 +1214,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
     
     if(buttoninput == 'Proportions'){
       colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data
+      crosstabs_data <- crosstabs_data_table
     } else if(buttoninput == 'Median earnings'){
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
@@ -1231,15 +1231,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       mutate_all(funs(ifelse( . <= 2, 0, .))) %>%
       select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
     
-    coldefs <- list(
-      SECTIONNAME = colDef(name = 'Industry', width = 600, footer = 'TOTAL (N)'),
-      White = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$White),5),big.mark = ",", scientific = FALSE)),
-      Black = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Black),5),big.mark = ",", scientific = FALSE)),
-      Asian = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Asian),5),big.mark = ",", scientific = FALSE)),
-      Mixed = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Mixed),5),big.mark = ",", scientific = FALSE)),
-      Other = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Other),5),big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Not known`),5),big.mark = ",", scientific = FALSE)))
-      
+   
   }
 
   if(countinput == 'current_region'){
@@ -1389,7 +1381,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
   }
   
   if(countinput == 'sex'){
-    crosstabs_data <- tables_data %>%
+    crosstabs_data_table <- tables_data %>%
       filter(subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', FSM == 'All', 
              prior_attainment == 'All', qualification_TR == qualinput, threshold == thresholdinput, group_name == 'All') %>%
       group_by(sex, SECTIONNAME, group_name) %>%
@@ -1404,7 +1396,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       mutate_at(c('F', 'M', 'F+M'),
                 funs(as.numeric(.))) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
-    names(crosstabs_data) <- c('SECTIONNAME', 'group_name', 'Female', 'Male', 'Female & Male')
+    names(crosstabs_data_table) <- c('SECTIONNAME', 'group_name', 'Female', 'Male', 'Female & Male')
     
     crosstabs_earnings_data <- tables_data %>%
       filter(subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', FSM == 'All', 
@@ -1447,6 +1439,57 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(footer_data) <- c('SECTIONNAME', 'group_name', 'Female', 'Male', 'Female & Male')
     
+    max <- crosstabs_data %>%
+      ungroup() %>%
+      select(-c(group_name, SECTIONNAME))
+    
+    numeric_cols <- names(max)
+    
+    numeric_cols_def <- list()
+    numeric_cols_def_nested <- list()
+    
+    for (column in numeric_cols){
+      script = paste("
+          // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1
+          function(rowInfo) {
+            // source: https://stackoverflow.com/a/44134328/4856719
+            function hslToHex(h, s, l) {
+              l /= 100;
+              const a = s * Math.min(l, 1 - l) / 100;
+              const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+              };
+              return `#${f(0)}${f(8)}${f(4)}`;
+            }
+            var value = rowInfo.row['", column, "']
+            var max = ", max(max, na.rm = TRUE), "
+            var min = ", min(max, na.rm = TRUE), "
+            // pct_value = (value - min) * 100 / (max - min)
+            pct_value = (Math.min(value, max) - min) * 100 / (max - min)
+            // If value equals 0, set font color grey.
+            if (value == 0) {
+              var color = '#F7FBFF'
+              var bg = '#F7FBFF'
+            } else {
+              var color = '#000000'
+              var bg = hslToHex(209, 59, 100 - pct_value / 2)
+            }
+            return { color: color, backgroundColor: bg}
+        }", sep="")
+      
+      numeric_cols_def_nested[column] <- list(colDef(
+        na = 'x', style = JS(script), format = colformat,
+      ))
+      
+      numeric_cols_def[column] <- list(colDef(
+        na = 'x', style = JS(script), format = colformat,
+        footer = format(round_any(sum(footer_data[column]),5),big.mark = ",", scientific = FALSE, na.m = T)
+      ))
+      
+    }
+    
     nested <- function(index){
       
       nested_table <- tables_data[tables_data$SECTIONNAME == crosstabs_data$SECTIONNAME[index], ] %>%
@@ -1486,9 +1529,9 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
         left_join(nested_table_earnings)
       
       if(buttoninput == 'Proportions'){
-      nested <- nested_table
+        nested <- nested_table
       } else if(buttoninput == 'Median earnings'){
-      nested <- nested_table_earnings2
+        nested <- nested_table_earnings2
       }
       
       htmltools::div(style = "padding: 16px",
@@ -1497,6 +1540,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
                                defaultPageSize = 300))
       
     }
+    
   }
   
   if(countinput == 'prior_attainment'){
@@ -1698,56 +1742,6 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
  
   }
   
-  max <- crosstabs_data %>%
-    ungroup() %>%
-    select(-c(group_name, SECTIONNAME))
-  
-  numeric_cols <- names(max)
-  
-  numeric_cols_def <- list()
-  numeric_cols_def_nested <- list()
-  
-  for (column in numeric_cols){
-    script = paste("
-          // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1
-          function(rowInfo) {
-            // source: https://stackoverflow.com/a/44134328/4856719
-            function hslToHex(h, s, l) {
-              l /= 100;
-              const a = s * Math.min(l, 1 - l) / 100;
-              const f = n => {
-                const k = (n + h / 30) % 12;
-                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-                return Math.round(255 * color).toString(16).padStart(2, '0');
-              };
-              return `#${f(0)}${f(8)}${f(4)}`;
-            }
-            var value = rowInfo.row['", column, "']
-            var max = ", max(max, na.rm = TRUE), "
-            var min = ", min(max, na.rm = TRUE), "
-            // pct_value = (value - min) * 100 / (max - min)
-            pct_value = (Math.min(value, max) - min) * 100 / (max - min)
-            // If value equals 0, set font color grey.
-            if (value == 0) {
-              var color = '#F7FBFF'
-              var bg = '#F7FBFF'
-            } else {
-              var color = '#000000'
-              var bg = hslToHex(209, 59, 100 - pct_value / 2)
-            }
-            return { color: color, backgroundColor: bg}
-        }", sep="")
-    
-    numeric_cols_def_nested[column] <- list(colDef(
-      na = 'x', style = JS(script), format = colformat,
-    ))
-    
-    numeric_cols_def[column] <- list(colDef(
-      na = 'x', style = JS(script), format = colformat,
-      footer = format(round_any(sum(footer_data[column]),5),big.mark = ",", scientific = FALSE, na.m = T)
-    ))
-    
-  }
   
   coldefs <- list(
     SECTIONNAME = colDef(na = 'x', name = 'Industry', width = 500, footer = 'TOTAL (N)'),
