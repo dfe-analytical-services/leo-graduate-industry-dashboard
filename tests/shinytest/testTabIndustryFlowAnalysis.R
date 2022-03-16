@@ -1,8 +1,7 @@
 app <- ShinyDriver$new("../../", loadTimeout = 1e+05)
 app$snapshotInit("testTabIndustryFlowAnalysis")
 
-app$setInputs(tabs = "IDBR and SIC background")
-app$setInputs(tabs = "Industry flow analysis")
+app$setInputs(navbar = "Industry flow analysis")
 app$snapshot()
 app$setInputs(qualinput = "Level 7 (taught)")
 app$snapshot()
