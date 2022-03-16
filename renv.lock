@@ -1678,32 +1678,6 @@
       "Hash": "55e157e2aa88161bdb0754218470d204",
       "Requirements": []
     },
-<<<<<<< HEAD
-=======
-    "vroom": {
-      "Package": "vroom",
-      "Version": "1.5.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "976507b5a105bc3bdf6a5a5f29e0684f",
-      "Requirements": [
-        "bit64",
-        "cli",
-        "cpp11",
-        "crayon",
-        "glue",
-        "hms",
-        "lifecycle",
-        "progress",
-        "rlang",
-        "tibble",
-        "tidyselect",
-        "tzdb",
-        "vctrs",
-        "withr"
-      ]
-    },
->>>>>>> main
     "waldo": {
       "Package": "waldo",
       "Version": "0.3.1",
