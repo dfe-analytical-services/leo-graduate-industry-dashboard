@@ -1,0 +1,774 @@
+{
+  "input": {
+    "countinput": "trained_in_region",
+    "countinput2": "ethnicity",
+    "countinput3": "sex",
+    "crosstab__reactable__page": 1,
+    "crosstab__reactable__pages": 1,
+    "crosstab__reactable__pageSize": 22,
+    "crosstab__reactable__selected": null,
+    "earningsbutton": "Proportions",
+    "earningsbutton2": "Proportions",
+    "link_to_industryBySubject_tab": 0,
+    "link_to_industryFlow_tab": 0,
+    "link_to_regional_tab": 0,
+    "link_to_subjectByIndustry_tab": 0,
+    "navbar": "subjectByIndustry",
+    "qualinput": "First degree",
+    "qualinput2": "First degree",
+    "qualinput3": "First degree",
+    "qualinput4": "First degree",
+    "regioninput": "London",
+    "sectionnameinput": "EDUCATION",
+    "sectionnameinput2": "EDUCATION",
+    "sexinput": "F+M",
+    "subjectinput3": "Sport and exercise sciences",
+    "thresholdinput": "All",
+    "YAGinput": "5",
+    "YAGinput2": "1",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "crosstab": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "SECTIONNAME": [
+                "CONSTRUCTION",
+                "OTHER SERVICE ACTIVITIES",
+                "REAL ESTATE ACTIVITIES",
+                "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES",
+                "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
+                "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
+                "ARTS, ENTERTAINMENT AND RECREATION",
+                "MINING AND QUARRYING",
+                "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
+                "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
+                "TRANSPORTATION AND STORAGE",
+                "FINANCIAL AND INSURANCE ACTIVITIES",
+                "MANUFACTURING",
+                "NOT KNOWN",
+                "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
+                "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
+                "EDUCATION",
+                "AGRICULTURE, FORESTRY AND FISHING",
+                "ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
+                "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES",
+                "INFORMATION AND COMMUNICATION"
+              ],
+              "White": [
+                0.0612275674860504,
+                0.0127808776956718,
+                0.0466747096968783,
+                0.000716332378223496,
+                0.000452420449404313,
+                0.0067863067410647,
+                0.0651862464183381,
+                0.0625471271301463,
+                0.0567410646961243,
+                0.0659025787965616,
+                0.0770999849193184,
+                0.0199819031820238,
+                0.070803800331775,
+                0.0118383350927462,
+                0.114952495852813,
+                0.0562509425426029,
+                0.0992308852360127,
+                0.0436208716633992,
+                0.0185492384255768,
+                0.0715578344141155,
+                0.0370984768511537
+              ],
+              "Black": [
+                "NA",
+                0.0313537251697901,
+                0.0601542153909003,
+                0.0807843537762345,
+                "NA",
+                0.134861869989276,
+                0.00199152325997038,
+                "NA",
+                "NA",
+                "NA",
+                0.0608691211765307,
+                0.0845631415002809,
+                0.10156768625849,
+                0.0810396772711025,
+                0.0224174028494102,
+                0.049992340295154,
+                0.00878312822345912,
+                0.0885461880202216,
+                0.0808864831741817,
+                0.0247663790021958,
+                0.0874227646428024
+              ],
+              "Asian": [
+                "NA",
+                0.0267690743773649,
+                0.0878183769130852,
+                0.104591404529282,
+                "NA",
+                0.028745693793415,
+                0.0356356243293613,
+                "NA",
+                "NA",
+                0.0308352628903823,
+                0.0647201671655278,
+                0.0593550573219631,
+                0.0328118823064325,
+                0.115095724854577,
+                0.139097532049472,
+                0.0422996555034732,
+                0.0454622465691534,
+                "NA",
+                0.0220251877788445,
+                0.0710453492968882,
+                0.0936917603207771
+              ],
+              "Mixed": [
+                0.07063183385925,
+                0.0730901885961694,
+                0.0517722169222866,
+                0.0636603801276877,
+                "NA",
+                0.0394804432376899,
+                0.0332795186027739,
+                "NA",
+                "NA",
+                0.0178322448081016,
+                0.0650913627357452,
+                0.142217656123872,
+                0.0208042856094518,
+                0.057055845013576,
+                0.0292801056725618,
+                0.0683936302928011,
+                0.0755118514713436,
+                "NA",
+                0.0952520730901886,
+                0.0279591986497395,
+                0.0686871651867616
+              ],
+              "Other": [
+                0.00804932351430039,
+                0.060284295256037,
+                "NA",
+                0.1437746189416,
+                "NA",
+                0.0931666381229663,
+                0.00188388422675116,
+                "NA",
+                "NA",
+                "NA",
+                "NA",
+                "NA",
+                0.181024147970543,
+                0.0331392361705772,
+                "NA",
+                0.0125877718787464,
+                0.164240452132214,
+                "NA",
+                0.0845178969001541,
+                0.124507621168008,
+                0.0928241137181024
+              ],
+              "Not known": [
+                0.00652922728908539,
+                "NA",
+                0.00354737545627474,
+                0.0933628091100715,
+                "NA",
+                0.0609223176186314,
+                0.0733638373348414,
+                "NA",
+                "NA",
+                0.037684437818107,
+                0.0304868644285641,
+                0.0598426816102,
+                0.0348568197007866,
+                0.0543416790910493,
+                0.00776309701300704,
+                0.00570664747313763,
+                0.118914194642949,
+                "NA",
+                0.0431854403372577,
+                0.20914091820472,
+                0.160351652871318
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "SECTIONNAME",
+                "name": "Industry",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "width": 600
+              },
+              {
+                "accessor": "White",
+                "name": "White",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "26,525",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#BCD3E9"
+                  },
+                  {
+                    "background": "#EBF3FA"
+                  },
+                  {
+                    "background": "#CADDEE"
+                  },
+                  {
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "background": "#B8D1E8"
+                  },
+                  {
+                    "background": "#BBD3E8"
+                  },
+                  {
+                    "background": "#C1D6EB"
+                  },
+                  {
+                    "background": "#B8D0E7"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#E4EEF8"
+                  },
+                  {
+                    "background": "#B3CDE6"
+                  },
+                  {
+                    "background": "#ECF3FA"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#C1D7EB"
+                  },
+                  {
+                    "background": "#98BBDB"
+                  },
+                  {
+                    "background": "#CDDFEF"
+                  },
+                  {
+                    "background": "#E5EFF8"
+                  },
+                  {
+                    "background": "#B2CDE5"
+                  },
+                  {
+                    "background": "#D3E3F2"
+                  }
+                ]
+              },
+              {
+                "accessor": "Black",
+                "name": "Black",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "19,585",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#D9E7F4"
+                  },
+                  {
+                    "background": "#BDD4E9"
+                  },
+                  {
+                    "background": "#AAC7E2"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#76A4CF"
+                  },
+                  {
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#BDD4E9"
+                  },
+                  {
+                    "background": "#A6C4E1"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#A9C7E2"
+                  },
+                  {
+                    "background": "#E1ECF7"
+                  },
+                  {
+                    "background": "#C7DBED"
+                  },
+                  {
+                    "background": "#EFF5FC"
+                  },
+                  {
+                    "background": "#A2C2DF"
+                  },
+                  {
+                    "background": "#A9C7E2"
+                  },
+                  {
+                    "background": "#DFEBF6"
+                  },
+                  {
+                    "background": "#A3C3E0"
+                  }
+                ]
+              },
+              {
+                "accessor": "Asian",
+                "name": "Asian",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "17,705",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#DDEAF5"
+                  },
+                  {
+                    "background": "#A3C2E0"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#DBE8F4"
+                  },
+                  {
+                    "background": "#D5E4F2"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#D9E7F4"
+                  },
+                  {
+                    "background": "#B9D1E8"
+                  },
+                  {
+                    "background": "#BED5EA"
+                  },
+                  {
+                    "background": "#D7E6F3"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#72A1CD"
+                  },
+                  {
+                    "background": "#CEE0F0"
+                  },
+                  {
+                    "background": "#CBDEEF"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#E2EDF7"
+                  },
+                  {
+                    "background": "#B3CDE5"
+                  },
+                  {
+                    "background": "#9DBFDD"
+                  }
+                ]
+              },
+              {
+                "accessor": "Mixed",
+                "name": "Mixed",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "27,255",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#B3CDE6"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#C5DAEC"
+                  },
+                  {
+                    "background": "#BAD2E8"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#D1E1F1"
+                  },
+                  {
+                    "background": "#D7E5F3"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#E6EFF8"
+                  },
+                  {
+                    "background": "#B9D1E8"
+                  },
+                  {
+                    "background": "#6F9FCC"
+                  },
+                  {
+                    "background": "#E3EDF7"
+                  },
+                  {
+                    "background": "#C0D6EA"
+                  },
+                  {
+                    "background": "#DBE8F4"
+                  },
+                  {
+                    "background": "#B5CFE6"
+                  },
+                  {
+                    "background": "#AFCAE4"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#9CBEDD"
+                  },
+                  {
+                    "background": "#DCE9F5"
+                  },
+                  {
+                    "background": "#B5CFE6"
+                  }
+                ]
+              },
+              {
+                "accessor": "Other",
+                "name": "Other",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "11,680",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "background": "#BDD4E9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#6D9ECC"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#4987BE"
+                  },
+                  {
+                    "background": "#D7E6F3"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#EBF3FA"
+                  },
+                  {
+                    "background": "#5A91C4"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#A6C5E1"
+                  },
+                  {
+                    "background": "#80ABD3"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  }
+                ]
+              },
+              {
+                "accessor": "Not known",
+                "name": "Not known",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "19,450",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#F1F7FC"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#F4F9FD"
+                  },
+                  {
+                    "background": "#9DBFDE"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#BDD4E9"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#D3E3F1"
+                  },
+                  {
+                    "background": "#DAE7F4"
+                  },
+                  {
+                    "background": "#BED4E9"
+                  },
+                  {
+                    "background": "#D6E4F2"
+                  },
+                  {
+                    "background": "#C3D8EB"
+                  },
+                  {
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "background": "#85AED4"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#CEDFEF"
+                  },
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#5D94C6"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 22,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "dataKey": "85d31c8a6c080b7796f5d74f26dc9cc1",
+            "key": "85d31c8a6c080b7796f5d74f26dc9cc1"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "crosstab_text": "For first degree graduates of Sport and exercise sciences, 1 years after graduation, PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY  was the most common industry for  White  and Asian  ethnicity graduates, \n                       HUMAN HEALTH AND SOCIAL WORK ACTIVITIES  was the most common industry for    and Black  ethnicity graduates,  FINANCIAL AND INSURANCE ACTIVITIES  was the most common industry for    and Mixed  ethnicity graduates,  MANUFACTURING  was the most common industry for    and Other  ethnicity graduates, and  ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES  was the most common industry for    and Not known  ethnicity graduates.<br/><br/>The industry with the largest range in proportions was ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES \n                           where Not known ethnicity graduates had the highest proportion and Black \n                           ethnicity graduates had the lowest proportion.<br/><br/>The industry with the largest range in median earnings was INFORMATION AND COMMUNICATION\n                           where Not known ethnicity graduates the highest median earnings (£26,900) and Mixed ethnicity graduates had the lowest median earnings (£22,300).<br/><br/>The group with the highest median earnings was Asian ethnicity graduates in\n                           the HUMAN HEALTH AND SOCIAL WORK ACTIVITIES industry (median earnings of £28,100).",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of Sport and exercise sciences by ethnicity , 1 years after \n                          graduation, male and female first degree graduates from English HEIs, APs and FECs, \n                            2018/19 tax year.<\/h4>",
+    "subjectlist3": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput3-label\" for=\"subjectinput3\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput3\"><option value=\"Agriculture, food and related studies\">Agriculture, food and related studies<\/option>\n<option value=\"Allied health\">Allied health<\/option>\n<option value=\"Architecture, building and planning\">Architecture, building and planning<\/option>\n<option value=\"Biosciences\">Biosciences<\/option>\n<option value=\"Business and management\">Business and management<\/option>\n<option value=\"Celtic studies\">Celtic studies<\/option>\n<option value=\"Chemistry\">Chemistry<\/option>\n<option value=\"Combined and general studies\">Combined and general studies<\/option>\n<option value=\"Computing\">Computing<\/option>\n<option value=\"Creative arts and design\">Creative arts and design<\/option>\n<option value=\"Economics\">Economics<\/option>\n<option value=\"Education and teaching\">Education and teaching<\/option>\n<option value=\"Engineering\">Engineering<\/option>\n<option value=\"English studies\">English studies<\/option>\n<option value=\"General, applied and forensic sciences\">General, applied and forensic sciences<\/option>\n<option value=\"Geography, earth and environmental studies\">Geography, earth and environmental studies<\/option>\n<option value=\"Health and social care\">Health and social care<\/option>\n<option value=\"History and archaeology\">History and archaeology<\/option>\n<option value=\"Languages and area studies\">Languages and area studies<\/option>\n<option value=\"Law\">Law<\/option>\n<option value=\"Materials and technology\">Materials and technology<\/option>\n<option value=\"Mathematical sciences\">Mathematical sciences<\/option>\n<option value=\"Media, journalism and communications\">Media, journalism and communications<\/option>\n<option value=\"Medical sciences\">Medical sciences<\/option>\n<option value=\"Medicine and dentistry\">Medicine and dentistry<\/option>\n<option value=\"Nursing and midwifery\">Nursing and midwifery<\/option>\n<option value=\"Performing arts\">Performing arts<\/option>\n<option value=\"Pharmacology, toxicology and pharmacy\">Pharmacology, toxicology and pharmacy<\/option>\n<option value=\"Philosophy and religious studies\">Philosophy and religious studies<\/option>\n<option value=\"Physics and astronomy\">Physics and astronomy<\/option>\n<option value=\"Politics\">Politics<\/option>\n<option value=\"Psychology\">Psychology<\/option>\n<option value=\"Sociology, social policy and anthropology\">Sociology, social policy and anthropology<\/option>\n<option value=\"Sport and exercise sciences\">Sport and exercise sciences<\/option>\n<option value=\"Veterinary sciences\">Veterinary sciences<\/option>\n<option value=\"All\" selected>All<\/option><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput3\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.12.4",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

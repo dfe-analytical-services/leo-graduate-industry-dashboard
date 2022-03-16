@@ -1,0 +1,470 @@
+{
+  "input": {
+    "countinput": "trained_in_region",
+    "countinput2": "sex",
+    "countinput3": "sex",
+    "crosstab__reactable__page": 1,
+    "crosstab__reactable__pages": 1,
+    "crosstab__reactable__pageSize": 22,
+    "crosstab__reactable__selected": null,
+    "earningsbutton": "Median earnings",
+    "earningsbutton2": "Proportions",
+    "link_to_industryBySubject_tab": 0,
+    "link_to_industryFlow_tab": 0,
+    "link_to_regional_tab": 0,
+    "link_to_subjectByIndustry_tab": 0,
+    "navbar": "subjectByIndustry",
+    "qualinput": "First degree",
+    "qualinput2": "First degree",
+    "qualinput3": "First degree",
+    "qualinput4": "First degree",
+    "regioninput": "London",
+    "sectionnameinput": "EDUCATION",
+    "sectionnameinput2": "EDUCATION",
+    "sexinput": "F+M",
+    "subjectinput3": "All",
+    "thresholdinput": "Above",
+    "YAGinput": "5",
+    "YAGinput2": "5",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "crosstab": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "SECTIONNAME": [
+                "MANUFACTURING",
+                "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
+                "OTHER SERVICE ACTIVITIES",
+                "CONSTRUCTION",
+                "ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
+                "INFORMATION AND COMMUNICATION",
+                "EDUCATION",
+                "MINING AND QUARRYING",
+                "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
+                "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
+                "TRANSPORTATION AND STORAGE",
+                "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
+                "AGRICULTURE, FORESTRY AND FISHING",
+                "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES",
+                "ARTS, ENTERTAINMENT AND RECREATION",
+                "FINANCIAL AND INSURANCE ACTIVITIES",
+                "REAL ESTATE ACTIVITIES",
+                "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
+                "NOT KNOWN",
+                "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
+                "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES",
+                "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES"
+              ],
+              "Female": [
+                25300,
+                24000,
+                26700,
+                25200,
+                25800,
+                25200,
+                24100,
+                25700,
+                24600,
+                23700,
+                25800,
+                24900,
+                24600,
+                26300,
+                25800,
+                23100,
+                24300,
+                24500,
+                23600,
+                23400,
+                24400,
+                25400
+              ],
+              "Male": [
+                25600,
+                24500,
+                25000,
+                24500,
+                24400,
+                24400,
+                23800,
+                24200,
+                24800,
+                22500,
+                24000,
+                25100,
+                25700,
+                24600,
+                25600,
+                25300,
+                24200,
+                24400,
+                25100,
+                23700,
+                25700,
+                23700
+              ],
+              "Female & Male": [
+                26500,
+                24600,
+                25200,
+                22900,
+                24600,
+                26200,
+                23700,
+                25100,
+                26000,
+                23700,
+                24000,
+                25100,
+                25300,
+                23700,
+                24900,
+                24200,
+                25600,
+                26800,
+                24500,
+                23400,
+                25800,
+                25400
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "SECTIONNAME",
+                "name": "Industry",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "c",
+                "width": 600
+              },
+              {
+                "accessor": "Female",
+                "name": "Female",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "24,155",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#74A3CE"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#3378B6"
+                  },
+                  {
+                    "background": "#79A6D0"
+                  },
+                  {
+                    "background": "#5D94C6"
+                  },
+                  {
+                    "background": "#79A6D0"
+                  },
+                  {
+                    "background": "#ACC9E3"
+                  },
+                  {
+                    "background": "#6297C7"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#5D94C6"
+                  },
+                  {
+                    "background": "#87B0D5"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  },
+                  {
+                    "background": "#4684BD"
+                  },
+                  {
+                    "background": "#5D94C6"
+                  },
+                  {
+                    "background": "#DBE8F4"
+                  },
+                  {
+                    "background": "#A3C2E0"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#C3D8EC"
+                  },
+                  {
+                    "background": "#CDDEEF"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#70A0CD"
+                  }
+                ]
+              },
+              {
+                "accessor": "Male",
+                "name": "Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "24,365",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#669AC9"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#82ADD3"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#BAD2E8"
+                  },
+                  {
+                    "background": "#A7C6E1"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#7EA9D2"
+                  },
+                  {
+                    "background": "#6297C7"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  },
+                  {
+                    "background": "#669AC9"
+                  },
+                  {
+                    "background": "#74A3CE"
+                  },
+                  {
+                    "background": "#A7C6E1"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#7EA9D2"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#6297C7"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  }
+                ]
+              },
+              {
+                "accessor": "Female & Male",
+                "name": "Female & Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "30,025",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#3C7EBA"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  },
+                  {
+                    "background": "#79A6D0"
+                  },
+                  {
+                    "background": "#E4EEF8"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  },
+                  {
+                    "background": "#4A87BF"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#7EA9D2"
+                  },
+                  {
+                    "background": "#548DC2"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#7EA9D2"
+                  },
+                  {
+                    "background": "#74A3CE"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#87B0D5"
+                  },
+                  {
+                    "background": "#A7C6E1"
+                  },
+                  {
+                    "background": "#669AC9"
+                  },
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#CDDEEF"
+                  },
+                  {
+                    "background": "#5D94C6"
+                  },
+                  {
+                    "background": "#70A0CD"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 22,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "dataKey": "815933d5f2a8fb0ea0d113bbcea2649f",
+            "key": "815933d5f2a8fb0ea0d113bbcea2649f"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES, and the\n                                median earnings of females in this industry were £26,300. The industry \n                                with the highest proportion of male graduates was ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY and the median earnings of males\n                                in this industry were £24,800<br/><br/>The biggest difference in proportions is seen in ARTS, ENTERTAINMENT AND RECREATION where the proportion of female graduates is  6.2  percentage points higher than the proportion of male graduates.<br/><br/>The biggest difference in median earnings is seen in FINANCIAL AND INSURANCE ACTIVITIES where the median earnings of male graduates were £2,200  higher than the medain earnings of female graduates.<br/><br/>The group with the highest earnings was female graduates in the OTHER SERVICE ACTIVITIESindustry (median earnings of £26,700).<br/><br/>10% of female graduates are concentrated in the top 2 \n                           industries (either MANUFACTURING or HUMAN HEALTH AND SOCIAL WORK ACTIVITIES),\n                           whereas for male graduates this is 3.8%.",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex , 5 years after \n                          graduation, male and female  First degree  graduates from English HEIs, APs and FECs, \n                            2018/19 tax year.<\/h4>",
+    "subjectlist3": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput3-label\" for=\"subjectinput3\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput3\"><option value=\"Agriculture, food and related studies\">Agriculture, food and related studies<\/option>\n<option value=\"Allied health\">Allied health<\/option>\n<option value=\"Architecture, building and planning\">Architecture, building and planning<\/option>\n<option value=\"Biosciences\">Biosciences<\/option>\n<option value=\"Business and management\">Business and management<\/option>\n<option value=\"Celtic studies\">Celtic studies<\/option>\n<option value=\"Chemistry\">Chemistry<\/option>\n<option value=\"Combined and general studies\">Combined and general studies<\/option>\n<option value=\"Computing\">Computing<\/option>\n<option value=\"Creative arts and design\">Creative arts and design<\/option>\n<option value=\"Economics\">Economics<\/option>\n<option value=\"Education and teaching\">Education and teaching<\/option>\n<option value=\"Engineering\">Engineering<\/option>\n<option value=\"English studies\">English studies<\/option>\n<option value=\"General, applied and forensic sciences\">General, applied and forensic sciences<\/option>\n<option value=\"Geography, earth and environmental studies\">Geography, earth and environmental studies<\/option>\n<option value=\"Health and social care\">Health and social care<\/option>\n<option value=\"History and archaeology\">History and archaeology<\/option>\n<option value=\"Languages and area studies\">Languages and area studies<\/option>\n<option value=\"Law\">Law<\/option>\n<option value=\"Materials and technology\">Materials and technology<\/option>\n<option value=\"Mathematical sciences\">Mathematical sciences<\/option>\n<option value=\"Media, journalism and communications\">Media, journalism and communications<\/option>\n<option value=\"Medical sciences\">Medical sciences<\/option>\n<option value=\"Medicine and dentistry\">Medicine and dentistry<\/option>\n<option value=\"Nursing and midwifery\">Nursing and midwifery<\/option>\n<option value=\"Performing arts\">Performing arts<\/option>\n<option value=\"Pharmacology, toxicology and pharmacy\">Pharmacology, toxicology and pharmacy<\/option>\n<option value=\"Philosophy and religious studies\">Philosophy and religious studies<\/option>\n<option value=\"Physics and astronomy\">Physics and astronomy<\/option>\n<option value=\"Politics\">Politics<\/option>\n<option value=\"Psychology\">Psychology<\/option>\n<option value=\"Sociology, social policy and anthropology\">Sociology, social policy and anthropology<\/option>\n<option value=\"Sport and exercise sciences\">Sport and exercise sciences<\/option>\n<option value=\"Veterinary sciences\">Veterinary sciences<\/option>\n<option value=\"All\" selected>All<\/option><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput3\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.12.4",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

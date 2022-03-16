@@ -2,7 +2,7 @@
   "input": {
     "countinput": "trained_in_region",
     "countinput2": "sex",
-    "countinput3": "SECTIONNAME",
+    "countinput3": "ethnicity",
     "crosstab_backwards__reactable__page": 1,
     "crosstab_backwards__reactable__pages": 1,
     "crosstab_backwards__reactable__pageSize": 37,
@@ -25,14 +25,10 @@
     "thresholdinput": "All",
     "YAGinput": "5",
     "YAGinput2": "5",
-    "YAGinput3": "5"
+    "YAGinput3": "10"
   },
   "output": {
-    "backwards_crosstab_title": {
-      "message": "argument 1 (type 'closure') cannot be handled by 'cat'",
-      "call": "cat(value, sep = sep)",
-      "type": null
-    },
+    "backwards_crosstab_title": "<h4> Industry of graduate employment for graduates of EDUCATION by ethnicity , 10 years after \n                          graduation, male and female first degree graduates from English HEIs, APs and FECs, \n                            2018/19 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -40,878 +36,263 @@
           "attribs": {
             "data": {
               "subject_name": [
-                "Agriculture, food and related studies",
-                "All",
-                "Allied health",
-                "Architecture, building and planning",
-                "Biosciences",
-                "Business and management",
-                "Celtic studies",
-                "Chemistry",
-                "Combined and general studies",
-                "Computing",
-                "Creative arts and design",
-                "Economics",
-                "Education and teaching",
+                "Nursing and midwifery",
+                "Psychology",
                 "Engineering",
+                "Medicine and dentistry",
+                "Physics and astronomy",
+                "Philosophy and religious studies",
+                "Veterinary sciences",
+                "Celtic studies",
+                "History and archaeology",
+                "Creative arts and design",
+                "Sport and exercise sciences",
+                "Biosciences",
+                "Agriculture, food and related studies",
+                "Geography, earth and environmental studies",
+                "Pharmacology, toxicology and pharmacy",
+                "Health and social care",
+                "Education and teaching",
+                "Architecture, building and planning",
+                "Sociology, social policy and anthropology",
+                "Business and management",
+                "Economics",
+                "Languages and area studies",
+                "Mathematical sciences",
+                "Materials and technology",
+                "Computing",
+                "Combined and general studies",
+                "Law",
+                "Medical sciences",
+                "Media, journalism and communications",
                 "English studies",
                 "General, applied and forensic sciences",
-                "Geography, earth and environmental studies",
-                "Health and social care",
-                "History and archaeology",
-                "Languages and area studies",
-                "Law",
-                "Materials and technology",
-                "Mathematical sciences",
-                "Media, journalism and communications",
-                "Medical sciences",
-                "Medicine and dentistry",
-                "Nursing and midwifery",
-                "Performing arts",
-                "Pharmacology, toxicology and pharmacy",
-                "Philosophy and religious studies",
-                "Physics and astronomy",
+                "Allied health",
                 "Politics",
-                "Psychology",
-                "Sociology, social policy and anthropology",
-                "Sport and exercise sciences",
-                "Veterinary sciences"
+                "Performing arts",
+                "Chemistry"
               ],
-              "ACCOMMODATION AND FOOD SERVICE ACTIVITIES": [
-                23900,
-                24300,
-                25900,
-                23900,
-                25600,
-                23100,
-                24200,
-                25100,
-                26500,
-                25700,
-                25100,
+              "White": [
+                27100,
+                25400,
                 24100,
-                23800,
-                24900,
-                25700,
-                24800,
-                23800,
-                24300,
-                23800,
-                25600,
-                26200,
-                24800,
-                22800,
-                22900,
-                24800,
-                26600,
+                25300,
+                24600,
+                25200,
                 25800,
+                24900,
+                25300,
+                27400,
+                25000,
+                25600,
+                25500,
+                24500,
+                24700,
+                26100,
+                26200,
+                24100,
+                24300,
+                26300,
+                24400,
+                24900,
+                25600,
+                25100,
+                24600,
+                24800,
+                25200,
                 26300,
                 23500,
-                25500,
                 25700,
+                21400,
                 24800,
-                26200,
-                24900,
-                25300,
-                24100
-              ],
-              "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES": [
-                "NA",
-                25400,
-                "NA",
-                "NA",
-                "NA",
-                26200,
-                "NA",
-                "NA",
-                25800,
-                26000,
-                "NA",
-                24400,
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                23300,
-                26300,
-                27300,
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                25000,
-                "NA",
-                25300,
-                "NA",
-                25200,
-                "NA",
-                "NA"
-              ],
-              "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE": [
-                24500,
-                23700,
-                24300,
-                23100,
-                26500,
-                24800,
-                "NA",
-                "NA",
-                26200,
-                26400,
-                25500,
-                24200,
-                26000,
-                26200,
-                26400,
-                "NA",
-                25600,
+                24000,
                 24600,
-                25800,
-                24900,
-                24200,
-                26300,
-                25700,
-                26200,
-                25800,
-                "NA",
-                25700,
-                25000,
-                24300,
-                24400,
-                "NA",
-                25900,
-                25100,
-                25100,
-                24800,
                 26000
               ],
-              "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES": [
-                24600,
-                24900,
-                25800,
-                26200,
-                25500,
-                25200,
-                25600,
-                23000,
-                25100,
+              "Black": [
                 24500,
-                24300,
-                25800,
-                25200,
-                24300,
-                27100,
-                25800,
-                25400,
-                25400,
-                26000,
-                24900,
-                24900,
-                23600,
-                26200,
-                24100,
-                23900,
-                23700,
-                26500,
-                25500,
-                24500,
-                25100,
-                25100,
-                24500,
-                27000,
-                25600,
-                23700,
-                25000
-              ],
-              "AGRICULTURE, FORESTRY AND FISHING": [
-                24600,
-                24600,
                 24000,
-                26600,
-                25900,
-                26200,
-                "NA",
-                25400,
-                25000,
-                25200,
-                27100,
-                22800,
-                25900,
-                25000,
-                26000,
-                24200,
-                25600,
-                24600,
-                25200,
-                25000,
-                24800,
-                24900,
-                23800,
-                25500,
-                24200,
-                "NA",
-                24900,
-                24100,
-                "NA",
-                25100,
-                "NA",
-                25300,
-                26800,
-                26300,
-                26300,
-                24900
-              ],
-              "ARTS, ENTERTAINMENT AND RECREATION": [
-                24600,
-                24500,
-                25700,
-                24800,
-                26600,
-                24500,
-                "NA",
-                26300,
-                25500,
-                25800,
-                24000,
-                27000,
-                24900,
-                26200,
-                26500,
-                24300,
-                26100,
                 24700,
-                24800,
-                25000,
-                25800,
-                24800,
-                25300,
                 25400,
-                26100,
-                25500,
-                27900,
-                26200,
-                25200,
                 24400,
-                24300,
-                25600,
-                24300,
-                25500,
-                25000,
-                22900
-              ],
-              "CONSTRUCTION": [
-                26100,
-                23500,
-                25700,
-                25900,
-                23600,
-                25900,
-                "NA",
-                25800,
-                24800,
-                24900,
-                23700,
                 25200,
+                "NA",
+                "NA",
+                24900,
                 26400,
-                24600,
-                24300,
+                24100,
+                25300,
                 26500,
                 24900,
-                25500,
-                26100,
-                25300,
-                25500,
-                27100,
-                24700,
-                25100,
-                24400,
-                "NA",
-                24300,
-                25100,
-                24900,
-                24100,
                 25000,
                 24900,
-                26300,
-                24300,
-                25200,
-                25300
-              ],
-              "EDUCATION": [
-                26800,
-                24500,
-                25300,
-                27200,
-                24400,
-                24600,
-                23700,
-                25200,
-                25700,
-                24800,
-                26000,
-                23900,
-                25300,
-                25800,
-                26100,
-                25700,
-                24700,
-                25600,
-                25600,
-                23200,
-                25000,
-                26200,
-                27000,
-                27000,
-                26200,
-                26100,
-                25300,
-                24000,
-                25000,
-                24500,
-                25300,
-                25400,
-                23500,
-                24700,
-                22800,
-                23000
-              ],
-              "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY": [
-                24500,
-                25100,
-                24000,
-                26900,
-                24500,
-                24100,
-                "NA",
-                25200,
-                25000,
-                23900,
-                25500,
-                25500,
-                25700,
-                25000,
-                24800,
-                24600,
-                24800,
-                25700,
-                25300,
-                26400,
-                24300,
-                24800,
-                23600,
-                25900,
-                25000,
-                "NA",
-                24100,
-                24500,
-                25300,
-                26900,
-                26200,
-                25400,
-                24600,
-                26500,
-                24600,
-                25700
-              ],
-              "FINANCIAL AND INSURANCE ACTIVITIES": [
-                24100,
-                26500,
-                25500,
-                27500,
-                24800,
-                25300,
-                "NA",
-                25100,
-                25300,
-                25900,
-                25900,
-                26200,
-                24200,
-                25300,
-                26200,
-                23400,
-                24500,
-                24100,
-                23500,
-                25200,
-                23300,
-                25100,
-                24000,
-                26500,
-                24800,
-                23500,
-                24100,
-                26400,
-                24200,
-                24500,
-                24700,
-                24900,
-                24700,
-                25500,
-                23500,
-                23600
-              ],
-              "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES": [
-                25400,
-                26400,
-                25100,
-                24100,
-                24400,
-                25100,
-                24900,
-                24000,
-                24000,
-                25900,
-                25500,
-                24800,
-                25600,
-                24300,
-                25500,
-                26400,
-                24200,
-                25300,
-                26400,
-                23500,
-                25400,
-                24900,
-                23500,
-                25100,
-                24200,
-                23700,
-                25600,
-                24100,
-                24900,
-                24200,
-                25100,
-                25400,
-                24000,
-                24400,
-                25900,
-                25600
-              ],
-              "INFORMATION AND COMMUNICATION": [
-                27200,
-                25000,
-                24200,
-                24400,
-                25100,
-                24900,
-                26300,
-                25400,
-                24500,
-                25800,
-                25400,
-                23800,
-                23900,
-                25300,
-                25400,
-                23800,
-                24400,
-                25500,
-                23500,
-                24500,
-                25600,
-                25700,
-                22700,
-                23400,
+                22200,
                 26700,
-                25600,
-                24800,
-                24900,
                 25000,
-                25300,
-                25200,
-                24600,
-                24300,
+                27000,
+                26500,
+                26600,
+                24100,
                 23900,
-                25800,
-                "NA"
-              ],
-              "MANUFACTURING": [
-                24000,
-                25900,
-                25500,
-                24200,
-                26200,
-                25700,
-                24800,
-                23600,
-                26000,
-                24900,
-                24500,
-                25100,
-                25900,
-                24200,
-                24700,
-                24600,
-                23300,
-                24800,
-                24600,
-                26300,
-                24600,
-                23500,
-                26200,
+                25200,
+                23900,
+                25600,
+                23900,
+                24400,
                 25200,
                 24100,
-                25200,
                 25300,
-                26400,
+                24900,
+                25000,
+                23700
+              ],
+              "Asian": [
+                27200,
+                26000,
+                25600,
+                26800,
+                25000,
+                25600,
+                "NA",
+                "NA",
+                26200,
                 24800,
-                24700,
-                28100,
-                23900,
-                23500,
+                24300,
+                24600,
+                24300,
+                25200,
+                24100,
+                25400,
+                25800,
+                26700,
+                26300,
+                25800,
+                25000,
                 26100,
-                25200,
-                24400
-              ],
-              "MINING AND QUARRYING": [
-                25200,
-                23100,
-                23200,
-                "NA",
-                25300,
-                24400,
-                "NA",
-                24700,
-                24200,
-                23600,
-                "NA",
-                24100,
-                "NA",
-                25800,
-                "NA",
-                23800,
-                22800,
-                "NA",
-                27700,
-                24900,
-                24400,
-                24200,
-                25200,
-                25500,
-                "NA",
-                "NA",
-                "NA",
-                25900,
-                "NA",
-                "NA",
-                24100,
-                26200,
-                25900,
-                24900,
                 25100,
-                "NA"
-              ],
-              "OTHER SERVICE ACTIVITIES": [
-                26400,
-                25800,
-                25000,
-                24900,
-                26200,
-                24700,
-                23500,
-                24400,
-                24300,
-                25900,
-                25900,
-                24300,
-                25800,
-                24800,
-                26900,
-                25400,
-                25200,
-                25400,
-                24900,
-                26000,
-                23900,
-                25200,
-                25300,
-                24300,
-                23300,
-                23900,
-                24600,
-                24600,
-                25600,
-                24800,
-                26000,
                 24500,
-                25200,
-                23500,
-                25000,
-                22600
-              ],
-              "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES": [
-                25500,
-                25700,
-                24800,
-                25300,
-                26500,
-                25900,
                 24600,
-                23900,
-                23600,
-                26300,
                 25900,
-                27700,
                 24900,
+                23600,
+                23600,
+                24700,
+                23100,
                 25100,
-                25100,
-                26500,
+                24900,
+                24400,
+                23200
+              ],
+              "Mixed": [
+                26400,
+                24500,
                 24000,
+                25700,
                 25400,
-                25900,
+                24900,
+                "NA",
+                "NA",
+                25100,
+                25500,
+                23300,
+                25600,
+                25200,
                 27300,
-                24600,
-                25600,
-                24800,
-                26100,
-                24200,
-                24100,
-                26900,
-                23800,
-                26900,
-                24700,
-                25000,
-                24300,
-                25000,
-                23600,
-                22900,
-                26600
-              ],
-              "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY": [
-                24600,
-                24400,
                 25700,
-                25300,
-                27500,
-                26100,
-                "NA",
-                25300,
-                23500,
-                26100,
-                23600,
-                23600,
-                24300,
-                24800,
-                24100,
-                25300,
-                23600,
-                26700,
-                24900,
-                24700,
-                24400,
-                25900,
-                26500,
-                25500,
-                25000,
-                26000,
-                25300,
-                25600,
-                24800,
-                27000,
-                24700,
-                24900,
-                26000,
-                24700,
-                25900,
-                24400
-              ],
-              "REAL ESTATE ACTIVITIES": [
-                24600,
                 25400,
-                24700,
-                26300,
-                24200,
-                25500,
-                "NA",
-                24300,
-                24500,
-                24100,
-                24400,
-                23700,
-                25500,
-                24200,
-                26600,
-                26000,
-                25500,
-                25700,
+                25600,
+                25100,
                 25500,
                 25000,
-                24900,
-                24600,
                 24500,
-                25800,
                 24500,
-                24900,
-                25900,
-                23500,
-                26400,
-                24900,
-                24900,
-                26300,
-                25200,
-                25100,
-                23500,
-                25300
-              ],
-              "TRANSPORTATION AND STORAGE": [
-                24900,
-                24900,
-                24700,
-                25100,
-                24700,
-                25900,
-                "NA",
-                24800,
-                27000,
-                23900,
-                24600,
-                25700,
-                23700,
-                25700,
-                24700,
-                24800,
-                25500,
-                25400,
-                26600,
-                23400,
-                24800,
-                24600,
-                24500,
-                24700,
-                23800,
-                24300,
-                26400,
-                22400,
-                24500,
-                25900,
-                23800,
-                24700,
-                23800,
-                23600,
-                25300,
-                "NA"
-              ],
-              "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES": [
-                25000,
-                23800,
-                23700,
                 26200,
-                24400,
-                24600,
-                "NA",
-                23900,
-                25900,
-                23600,
-                23800,
-                24700,
-                24000,
-                24700,
-                24100,
-                25300,
                 24300,
-                25300,
-                25000,
-                23400,
-                25700,
-                27600,
-                26100,
-                24800,
-                26600,
-                "NA",
-                24100,
-                24900,
-                23900,
-                25400,
-                24100,
-                23600,
-                26000,
-                25400,
-                25800,
-                "NA"
-              ],
-              "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES": [
-                27000,
-                25300,
-                24700,
-                25700,
-                24900,
-                24700,
-                26000,
-                24300,
-                25400,
                 24200,
-                24700,
-                26500,
-                22400,
-                25300,
-                24800,
-                24000,
                 26800,
-                24400,
+                24900,
+                26300,
+                27000,
+                25700,
+                23600,
+                23300,
+                24300,
+                26300,
+                26000
+              ],
+              "Other": [
+                "NA",
+                24500,
+                25800,
+                24300,
+                25400,
+                26200,
+                "NA",
+                "NA",
+                26000,
+                23400,
+                24900,
+                25300,
+                "NA",
+                23600,
+                "NA",
+                24900,
+                24200,
+                "NA",
                 25500,
-                24600,
-                23900,
-                23100,
+                24500,
                 24100,
+                25600,
+                26400,
+                25400,
+                23700,
+                26800,
+                23500,
+                24300,
                 25200,
-                26700,
+                24500,
+                24600,
+                24900,
+                25500,
+                25100,
+                26000
+              ],
+              "Not known": [
+                25700,
+                25200,
+                24300,
+                23900,
+                25300,
+                24400,
+                24100,
+                24800,
+                25500,
+                25500,
+                25800,
+                24600,
+                24500,
+                26200,
                 26500,
+                24000,
+                25500,
+                25400,
+                25600,
+                27600,
+                24400,
+                24200,
                 24400,
                 24500,
-                23400,
-                24800,
-                24600,
-                24400,
-                25900,
-                24600,
-                26000,
-                25500
-              ],
-              "<NA>": [
-                25700,
-                24100,
                 25000,
-                25100,
-                25400,
-                24200,
-                26200,
-                25200,
-                25500,
-                23300,
-                23900,
-                24300,
-                23500,
-                25900,
-                24000,
-                23100,
+                24800,
+                25600,
+                26600,
                 26300,
-                24300,
-                24200,
-                25800,
-                24800,
-                25300,
-                24900,
+                23600,
                 25700,
-                22800,
-                25400,
-                24600,
-                26000,
-                25400,
-                24800,
-                25200,
-                25100,
-                25000,
-                24700,
-                23400,
-                26100
+                27100,
+                23800,
+                25500,
+                24500
               ]
             },
             "columns": [
@@ -920,30 +301,14 @@
                 "name": "Subject area",
                 "type": "character",
                 "footerStyle": {
-                  "position": "sticky",
-                  "left": 0,
-                  "background": "#fff",
-                  "zIndex": 1,
                   "fontWeight": "bold"
                 },
                 "footer": "TOTAL (N)",
-                "width": 600,
-                "style": {
-                  "position": "sticky",
-                  "left": 0,
-                  "background": "#fff",
-                  "zIndex": 1
-                },
-                "headerStyle": {
-                  "position": "sticky",
-                  "left": 0,
-                  "background": "#fff",
-                  "zIndex": 1
-                }
+                "width": 600
               },
               {
-                "accessor": "ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
-                "name": "ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
+                "accessor": "White",
+                "name": "White",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
@@ -960,645 +325,119 @@
                     "separators": true
                   }
                 },
+                "footer": "39,675",
                 "na": "c",
                 "style": [
                   {
-                    "background": "#C2D7EB"
+                    "background": "#3F7FBA"
                   },
                   {
-                    "background": "#B4CEE6"
+                    "background": "#75A4CF"
+                  },
+                  {
+                    "background": "#9FC0DE"
+                  },
+                  {
+                    "background": "#79A6D0"
+                  },
+                  {
+                    "background": "#8FB5D8"
                   },
                   {
                     "background": "#7CA8D1"
                   },
                   {
-                    "background": "#C2D7EB"
+                    "background": "#699BCA"
                   },
                   {
                     "background": "#86AFD5"
                   },
                   {
-                    "background": "#DEEAF5"
+                    "background": "#79A6D0"
                   },
                   {
-                    "background": "#B7D0E7"
+                    "background": "#3579B7"
                   },
                   {
-                    "background": "#98BBDB"
+                    "background": "#82ADD4"
                   },
                   {
-                    "background": "#679AC9"
+                    "background": "#6FA0CC"
                   },
                   {
-                    "background": "#83ADD4"
+                    "background": "#72A2CE"
                   },
                   {
-                    "background": "#98BBDB"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#BBD3E8"
+                    "background": "#8CB3D7"
                   },
                   {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#E8F1F9"
-                  },
-                  {
-                    "background": "#E5EFF8"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#6398C8"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  }
-                ]
-              },
-              {
-                "accessor": "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES",
-                "name": "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#D7E5F3"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#4B87BF"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  }
-                ]
-              },
-              {
-                "accessor": "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
-                "name": "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#DEEAF5"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  }
-                ]
-              },
-              {
-                "accessor": "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES",
-                "name": "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#E1ECF7"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#528CC1"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#558EC3"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  }
-                ]
-              },
-              {
-                "accessor": "AGRICULTURE, FORESTRY AND FISHING",
-                "name": "AGRICULTURE, FORESTRY AND FISHING",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#6398C8"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#528CC1"
-                  },
-                  {
-                    "background": "#E8F1F9"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#91B6D9"
+                    "background": "#5F95C6"
                   },
                   {
                     "background": "#5C93C5"
                   },
                   {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
                     "background": "#9FC0DE"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#5891C4"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#7FABD2"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#7CA8D1"
+                  },
+                  {
+                    "background": "#5891C4"
+                  },
+                  {
+                    "background": "#B3CDE5"
+                  },
+                  {
+                    "background": "#6C9ECB"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#A3C2DF"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#6297C8"
                   }
                 ]
               },
               {
-                "accessor": "ARTS, ENTERTAINMENT AND RECREATION",
-                "name": "ARTS, ENTERTAINMENT AND RECREATION",
+                "accessor": "Black",
+                "name": "Black",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
@@ -1615,40 +454,35 @@
                     "separators": true
                   }
                 },
+                "footer": "35,040",
                 "na": "c",
                 "style": [
                   {
-                    "background": "#A9C7E2"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#ADC9E3"
+                    "background": "#A3C2DF"
                   },
                   {
-                    "background": "#83ADD4"
+                    "background": "#8CB3D7"
                   },
                   {
-                    "background": "#A2C2DF"
+                    "background": "#75A4CF"
                   },
                   {
-                    "background": "#6398C8"
+                    "background": "#96BADB"
                   },
                   {
-                    "background": "#ADC9E3"
+                    "background": "#7CA8D1"
                   },
                   {
                     "background": "#e9e9e9"
                   },
                   {
-                    "background": "#6E9FCC"
+                    "background": "#e9e9e9"
                   },
                   {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#BED5EA"
+                    "background": "#86AFD5"
                   },
                   {
                     "background": "#558EC3"
@@ -1657,210 +491,82 @@
                     "background": "#9FC0DE"
                   },
                   {
-                    "background": "#71A1CD"
+                    "background": "#79A6D0"
                   },
                   {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#3679B7"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#B4CEE6"
+                    "background": "#528CC2"
                   },
                   {
                     "background": "#86AFD5"
                   },
                   {
-                    "background": "#B4CEE6"
+                    "background": "#82ADD4"
                   },
                   {
-                    "background": "#8AB2D6"
+                    "background": "#86AFD5"
                   },
                   {
-                    "background": "#9BBDDD"
+                    "background": "#DDE9F5"
                   },
                   {
-                    "background": "#E5EFF8"
-                  }
-                ]
-              },
-              {
-                "accessor": "CONSTRUCTION",
-                "name": "CONSTRUCTION",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#75A4CE"
+                    "background": "#4C88BF"
                   },
                   {
-                    "background": "#D0E1F0"
+                    "background": "#82ADD4"
                   },
                   {
-                    "background": "#83ADD4"
+                    "background": "#4281BC"
                   },
                   {
-                    "background": "#7CA8D1"
+                    "background": "#528CC2"
                   },
                   {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#A2C2DF"
+                    "background": "#4F8AC0"
                   },
                   {
                     "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#528CC1"
                   },
                   {
                     "background": "#A6C4E1"
                   },
                   {
-                    "background": "#98BBDB"
+                    "background": "#7CA8D1"
                   },
                   {
-                    "background": "#B0CBE5"
+                    "background": "#A6C4E1"
                   },
                   {
-                    "background": "#e9e9e9"
+                    "background": "#6FA0CC"
                   },
                   {
-                    "background": "#B4CEE6"
+                    "background": "#A6C4E1"
                   },
                   {
-                    "background": "#98BBDB"
+                    "background": "#96BADB"
                   },
                   {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#9BBDDD"
+                    "background": "#7CA8D1"
                   },
                   {
                     "background": "#9FC0DE"
                   },
                   {
-                    "background": "#6E9FCC"
+                    "background": "#79A6D0"
                   },
                   {
-                    "background": "#B4CEE6"
+                    "background": "#86AFD5"
                   },
                   {
-                    "background": "#94B9DA"
+                    "background": "#82ADD4"
                   },
                   {
-                    "background": "#91B6D9"
+                    "background": "#ACC9E3"
                   }
                 ]
               },
               {
-                "accessor": "EDUCATION",
-                "name": "EDUCATION",
+                "accessor": "Asian",
+                "name": "Asian",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
@@ -1877,645 +583,377 @@
                     "separators": true
                   }
                 },
+                "footer": "39,325",
                 "na": "c",
                 "style": [
+                  {
+                    "background": "#3B7DB9"
+                  },
+                  {
+                    "background": "#6297C8"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#4886BE"
+                  },
+                  {
+                    "background": "#82ADD4"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
                   {
                     "background": "#5C93C5"
                   },
                   {
-                    "background": "#ADC9E3"
+                    "background": "#89B1D6"
                   },
                   {
-                    "background": "#91B6D9"
+                    "background": "#99BCDC"
                   },
                   {
-                    "background": "#4E8AC0"
+                    "background": "#8FB5D8"
                   },
                   {
-                    "background": "#B0CBE5"
+                    "background": "#99BCDC"
                   },
                   {
-                    "background": "#A9C7E2"
+                    "background": "#7CA8D1"
                   },
                   {
-                    "background": "#C9DCEE"
+                    "background": "#9FC0DE"
                   },
                   {
-                    "background": "#94B9DA"
+                    "background": "#75A4CF"
                   },
                   {
-                    "background": "#83ADD4"
+                    "background": "#699BCA"
                   },
                   {
-                    "background": "#A2C2DF"
+                    "background": "#4C88BF"
                   },
                   {
-                    "background": "#78A6D0"
+                    "background": "#5891C4"
                   },
                   {
-                    "background": "#C2D7EB"
+                    "background": "#699BCA"
                   },
                   {
-                    "background": "#91B6D9"
+                    "background": "#82ADD4"
+                  },
+                  {
+                    "background": "#5F95C6"
                   },
                   {
                     "background": "#7FABD2"
                   },
                   {
-                    "background": "#75A4CE"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#83ADD4"
+                    "background": "#8FB5D8"
                   },
                   {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#86AFD5"
+                    "background": "#6599C9"
                   },
                   {
                     "background": "#86AFD5"
                   },
                   {
-                    "background": "#DAE8F4"
+                    "background": "#B0CBE4"
                   },
                   {
-                    "background": "#9BBDDD"
+                    "background": "#B0CBE4"
                   },
                   {
-                    "background": "#71A1CD"
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#C0D6EA"
+                  },
+                  {
+                    "background": "#7FABD2"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#BCD4E9"
+                  }
+                ]
+              },
+              {
+                "accessor": "Mixed",
+                "name": "Mixed",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "39,975",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#558EC3"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#A3C2DF"
+                  },
+                  {
+                    "background": "#6C9ECB"
+                  },
+                  {
+                    "background": "#75A4CF"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#7FABD2"
+                  },
+                  {
+                    "background": "#72A2CE"
+                  },
+                  {
+                    "background": "#B9D1E8"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#7CA8D1"
+                  },
+                  {
+                    "background": "#387BB8"
+                  },
+                  {
+                    "background": "#6C9ECB"
+                  },
+                  {
+                    "background": "#75A4CF"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#7FABD2"
+                  },
+                  {
+                    "background": "#72A2CE"
+                  },
+                  {
+                    "background": "#82ADD4"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#5C93C5"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#9CBEDD"
+                  },
+                  {
+                    "background": "#4886BE"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#5891C4"
+                  },
+                  {
+                    "background": "#4281BC"
+                  },
+                  {
+                    "background": "#6C9ECB"
+                  },
+                  {
+                    "background": "#B0CBE4"
+                  },
+                  {
+                    "background": "#B9D1E8"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#5891C4"
+                  },
+                  {
+                    "background": "#6297C8"
+                  }
+                ]
+              },
+              {
+                "accessor": "Other",
+                "name": "Other",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "33,235",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#699BCA"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#75A4CF"
+                  },
+                  {
+                    "background": "#5C93C5"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#6297C8"
+                  },
+                  {
+                    "background": "#B6CFE7"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#79A6D0"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#B0CBE4"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#86AFD5"
+                  },
+                  {
+                    "background": "#9CBEDD"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#72A2CE"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#9FC0DE"
+                  },
+                  {
+                    "background": "#6FA0CC"
                   },
                   {
                     "background": "#558EC3"
                   },
                   {
-                    "background": "#558EC3"
+                    "background": "#75A4CF"
                   },
                   {
-                    "background": "#71A1CD"
+                    "background": "#ACC9E3"
                   },
                   {
-                    "background": "#75A4CE"
+                    "background": "#4886BE"
                   },
                   {
-                    "background": "#91B6D9"
+                    "background": "#B3CDE5"
                   },
                   {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#E8F1F9"
-                  },
-                  {
-                    "background": "#E1ECF7"
-                  }
-                ]
-              },
-              {
-                "accessor": "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
-                "name": "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#5991C4"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#CCDEEF"
+                    "background": "#99BCDC"
                   },
                   {
                     "background": "#7CA8D1"
                   },
                   {
-                    "background": "#9BBDDD"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#5991C4"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  }
-                ]
-              },
-              {
-                "accessor": "FINANCIAL AND INSURANCE ACTIVITIES",
-                "name": "FINANCIAL AND INSURANCE ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#4483BC"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#D7E5F3"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  }
-                ]
-              },
-              {
-                "accessor": "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
-                "name": "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#A2C2DF"
+                    "background": "#8FB5D8"
                   },
                   {
                     "background": "#86AFD5"
                   },
                   {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  }
-                ]
-              },
-              {
-                "accessor": "INFORMATION AND COMMUNICATION",
-                "name": "INFORMATION AND COMMUNICATION",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#4E8AC0"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#ADC9E3"
+                    "background": "#72A2CE"
                   },
                   {
                     "background": "#7FABD2"
                   },
                   {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#ECF3FB"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#6095C7"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#e9e9e9"
+                    "background": "#6297C8"
                   }
                 ]
               },
               {
-                "accessor": "MANUFACTURING",
-                "name": "MANUFACTURING",
+                "accessor": "Not known",
+                "name": "Not known",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
@@ -2532,1294 +970,113 @@
                     "separators": true
                   }
                 },
+                "footer": "33,410",
                 "na": "c",
                 "style": [
                   {
-                    "background": "#BED5EA"
+                    "background": "#6C9ECB"
                   },
                   {
                     "background": "#7CA8D1"
                   },
                   {
-                    "background": "#8AB2D6"
+                    "background": "#99BCDC"
                   },
                   {
-                    "background": "#B7D0E7"
+                    "background": "#A6C4E1"
                   },
                   {
-                    "background": "#71A1CD"
+                    "background": "#79A6D0"
                   },
                   {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#78A6D0"
+                    "background": "#96BADB"
                   },
                   {
                     "background": "#9FC0DE"
                   },
                   {
-                    "background": "#ADC9E3"
+                    "background": "#89B1D6"
                   },
                   {
-                    "background": "#98BBDB"
+                    "background": "#72A2CE"
                   },
                   {
-                    "background": "#7CA8D1"
+                    "background": "#72A2CE"
                   },
                   {
-                    "background": "#B7D0E7"
+                    "background": "#699BCA"
                   },
                   {
-                    "background": "#A6C4E1"
+                    "background": "#8FB5D8"
                   },
                   {
-                    "background": "#A9C7E2"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#D7E5F3"
+                    "background": "#5C93C5"
                   },
                   {
-                    "background": "#A2C2DF"
+                    "background": "#528CC2"
                   },
                   {
-                    "background": "#A9C7E2"
+                    "background": "#A3C2DF"
                   },
                   {
-                    "background": "#6E9FCC"
+                    "background": "#72A2CE"
                   },
                   {
-                    "background": "#A9C7E2"
+                    "background": "#75A4CF"
                   },
                   {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#A6C4E1"
+                    "background": "#6FA0CC"
                   },
                   {
                     "background": "#2F75B5"
                   },
                   {
-                    "background": "#C2D7EB"
+                    "background": "#96BADB"
                   },
                   {
-                    "background": "#D0E1F0"
+                    "background": "#9CBEDD"
                   },
                   {
-                    "background": "#75A4CE"
+                    "background": "#96BADB"
                   },
                   {
-                    "background": "#94B9DA"
+                    "background": "#93B8DA"
                   },
                   {
-                    "background": "#B0CBE5"
-                  }
-                ]
-              },
-              {
-                "accessor": "MINING AND QUARRYING",
-                "name": "MINING AND QUARRYING",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
+                    "background": "#82ADD4"
                   },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
                   {
-                    "background": "#94B9DA"
+                    "background": "#89B1D6"
                   },
                   {
-                    "background": "#DEEAF5"
+                    "background": "#6FA0CC"
                   },
                   {
-                    "background": "#DAE8F4"
+                    "background": "#4F8AC0"
                   },
                   {
-                    "background": "#e9e9e9"
+                    "background": "#5891C4"
                   },
                   {
-                    "background": "#91B6D9"
+                    "background": "#B0CBE4"
                   },
                   {
-                    "background": "#B0CBE5"
+                    "background": "#6C9ECB"
                   },
                   {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#E8F1F9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#3D7EBA"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  }
-                ]
-              },
-              {
-                "accessor": "OTHER SERVICE ACTIVITIES",
-                "name": "OTHER SERVICE ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#5991C4"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#D7E5F3"
-                  },
-                  {
-                    "background": "#C2D7EB"
+                    "background": "#3F7FBA"
                   },
                   {
                     "background": "#A9C7E2"
                   },
                   {
-                    "background": "#A9C7E2"
+                    "background": "#72A2CE"
                   },
                   {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#EFF6FC"
-                  }
-                ]
-              },
-              {
-                "accessor": "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
-                "name": "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#3D7EBA"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#4B87BF"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#5991C4"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#5991C4"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#E5EFF8"
-                  },
-                  {
-                    "background": "#6398C8"
-                  }
-                ]
-              },
-              {
-                "accessor": "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
-                "name": "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#4483BC"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#6095C7"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#86AFD5"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#558EC3"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  }
-                ]
-              },
-              {
-                "accessor": "REAL ESTATE ACTIVITIES",
-                "name": "REAL ESTATE ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#6398C8"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  }
-                ]
-              },
-              {
-                "accessor": "TRANSPORTATION AND STORAGE",
-                "name": "TRANSPORTATION AND STORAGE",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#558EC3"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#6398C8"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#6A9CCB"
-                  },
-                  {
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  }
-                ]
-              },
-              {
-                "accessor": "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
-                "name": "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#C9DCEE"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#C5DAEC"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#4080BB"
-                  },
-                  {
-                    "background": "#75A4CE"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#6398C8"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#CCDEEF"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  }
-                ]
-              },
-              {
-                "accessor": "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES",
-                "name": "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#558EC3"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#5C93C5"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#DEEAF5"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#6095C7"
-                  },
-                  {
-                    "background": "#679AC9"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#ADC9E3"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#B0CBE5"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  }
-                ]
-              },
-              {
-                "accessor": "<NA>",
-                "name": "<NA>",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
-                "na": "c",
-                "style": [
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#BBD3E8"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#71A1CD"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#8AB2D6"
-                  },
-                  {
-                    "background": "#D7E5F3"
-                  },
-                  {
-                    "background": "#C2D7EB"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#D0E1F0"
-                  },
-                  {
-                    "background": "#7CA8D1"
-                  },
-                  {
-                    "background": "#BED5EA"
-                  },
-                  {
-                    "background": "#DEEAF5"
-                  },
-                  {
-                    "background": "#6E9FCC"
-                  },
-                  {
-                    "background": "#B4CEE6"
-                  },
-                  {
-                    "background": "#B7D0E7"
-                  },
-                  {
-                    "background": "#7FABD2"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#91B6D9"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#83ADD4"
-                  },
-                  {
-                    "background": "#E8F1F9"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#A9C7E2"
-                  },
-                  {
-                    "background": "#78A6D0"
-                  },
-                  {
-                    "background": "#8DB4D8"
-                  },
-                  {
-                    "background": "#A2C2DF"
-                  },
-                  {
-                    "background": "#94B9DA"
-                  },
-                  {
-                    "background": "#98BBDB"
-                  },
-                  {
-                    "background": "#9BBDDD"
-                  },
-                  {
-                    "background": "#A6C4E1"
-                  },
-                  {
-                    "background": "#D3E3F2"
-                  },
-                  {
-                    "background": "#75A4CE"
+                    "background": "#93B8DA"
                   }
                 ]
               }
@@ -3829,8 +1086,8 @@
             "showPageInfo": true,
             "minRows": 1,
             "showSortable": true,
-            "dataKey": "40965706e2dd5890bd4c5d31edb567af",
-            "key": "40965706e2dd5890bd4c5d31edb567af"
+            "dataKey": "bc0765ad24fd3ebb1d0c67e95435032c",
+            "key": "bc0765ad24fd3ebb1d0c67e95435032c"
           },
           "children": [
 

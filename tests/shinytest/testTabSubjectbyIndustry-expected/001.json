@@ -1,0 +1,464 @@
+{
+  "input": {
+    "countinput": "trained_in_region",
+    "countinput2": "sex",
+    "countinput3": "sex",
+    "crosstab__reactable__page": 1,
+    "crosstab__reactable__pages": 1,
+    "crosstab__reactable__pageSize": 22,
+    "crosstab__reactable__selected": null,
+    "earningsbutton": "Proportions",
+    "earningsbutton2": "Proportions",
+    "link_to_industryBySubject_tab": 0,
+    "link_to_industryFlow_tab": 0,
+    "link_to_regional_tab": 0,
+    "link_to_subjectByIndustry_tab": 0,
+    "navbar": "subjectByIndustry",
+    "qualinput": "First degree",
+    "qualinput2": "First degree",
+    "qualinput3": "First degree",
+    "qualinput4": "First degree",
+    "regioninput": "London",
+    "sectionnameinput": "EDUCATION",
+    "sectionnameinput2": "EDUCATION",
+    "sexinput": "F+M",
+    "subjectinput3": "All",
+    "thresholdinput": "All",
+    "YAGinput": "5",
+    "YAGinput2": "5",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "crosstab": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "SECTIONNAME": [
+                "ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES",
+                "INFORMATION AND COMMUNICATION",
+                "ARTS, ENTERTAINMENT AND RECREATION",
+                "WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES",
+                "NOT KNOWN",
+                "OTHER SERVICE ACTIVITIES",
+                "PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES",
+                "FINANCIAL AND INSURANCE ACTIVITIES",
+                "MANUFACTURING",
+                "HUMAN HEALTH AND SOCIAL WORK ACTIVITIES",
+                "WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES",
+                "ELECTRICITY, GAS, STEAM AND AIR CONDITIONING SUPPLY",
+                "EDUCATION",
+                "CONSTRUCTION",
+                "REAL ESTATE ACTIVITIES",
+                "TRANSPORTATION AND STORAGE",
+                "MINING AND QUARRYING",
+                "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
+                "ACCOMMODATION AND FOOD SERVICE ACTIVITIES",
+                "ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE",
+                "ACTIVITIES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES",
+                "AGRICULTURE, FORESTRY AND FISHING"
+              ],
+              "Female": [
+                0.0363330652825499,
+                0.033884055852036,
+                0.00339937129907157,
+                0.0344688939249945,
+                0.0417062650778566,
+                0.0381241318809854,
+                0.0966810439359602,
+                0.0341033701293954,
+                0.0659404927260765,
+                0.0589955406096937,
+                0.0011696761459171,
+                0.0331164558812779,
+                0.0357482272095913,
+                0.010490532933694,
+                0.0940858249872067,
+                0.0994590247825133,
+                0.0565099787996199,
+                0.0690839973682287,
+                0.0895898823013378,
+                0.0301557131369252,
+                0.0199575992397105,
+                0.0169968564953578
+              ],
+              "Male": [
+                0.00924223602484472,
+                0.0565962732919255,
+                0.024944099378882,
+                0.026832298136646,
+                0.0228571428571429,
+                0.0913291925465839,
+                0.0448695652173913,
+                0.00780124223602484,
+                0.0476024844720497,
+                0.0693664596273292,
+                0.0225093167701863,
+                0.0044223602484472,
+                0.0784099378881988,
+                0.0702608695652174,
+                0.0842732919254658,
+                0.085416149068323,
+                0.040944099378882,
+                0.0589813664596273,
+                0.0659875776397515,
+                0.0651428571428571,
+                0.0097888198757764,
+                0.0124223602484472
+              ],
+              "Female & Male": [
+                0.117528660190776,
+                0.102330737143024,
+                0.0779148799626615,
+                0.0754353723637,
+                0.0736851317056095,
+                0.0679968495668154,
+                0.0639712960532073,
+                0.0527405851637934,
+                0.051340392637321,
+                0.0466730842157463,
+                0.044339430004959,
+                0.0406055832676993,
+                0.0402263644584464,
+                0.0315918438785333,
+                0.0276538023978297,
+                0.0201277675680406,
+                0.0163355794755112,
+                0.0141769493305329,
+                0.013243487646218,
+                0.0109973454683352,
+                0.00656340246783933,
+                0.00452145503340043
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "SECTIONNAME",
+                "name": "Industry",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "c",
+                "width": 600
+              },
+              {
+                "accessor": "Female",
+                "name": "Female",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "27,360",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#BAD2E8"
+                  },
+                  {
+                    "background": "#BED5EA"
+                  },
+                  {
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "background": "#BDD4E9"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#B7D0E7"
+                  },
+                  {
+                    "background": "#528DC2"
+                  },
+                  {
+                    "background": "#BED5EA"
+                  },
+                  {
+                    "background": "#87B0D5"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#C0D6EA"
+                  },
+                  {
+                    "background": "#BBD3E9"
+                  },
+                  {
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "background": "#578FC3"
+                  },
+                  {
+                    "background": "#4E89C0"
+                  },
+                  {
+                    "background": "#97BBDB"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#5F95C6"
+                  },
+                  {
+                    "background": "#C5D9EC"
+                  },
+                  {
+                    "background": "#D6E5F3"
+                  },
+                  {
+                    "background": "#DBE8F4"
+                  }
+                ]
+              },
+              {
+                "accessor": "Male",
+                "name": "Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "20,125",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#E9F1F9"
+                  },
+                  {
+                    "background": "#97BBDB"
+                  },
+                  {
+                    "background": "#CEDFEF"
+                  },
+                  {
+                    "background": "#CADDEE"
+                  },
+                  {
+                    "background": "#D1E2F1"
+                  },
+                  {
+                    "background": "#5C93C5"
+                  },
+                  {
+                    "background": "#ABC8E3"
+                  },
+                  {
+                    "background": "#EBF3FA"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#81ACD3"
+                  },
+                  {
+                    "background": "#D2E2F1"
+                  },
+                  {
+                    "background": "#F1F7FC"
+                  },
+                  {
+                    "background": "#72A2CD"
+                  },
+                  {
+                    "background": "#80ABD3"
+                  },
+                  {
+                    "background": "#689BCA"
+                  },
+                  {
+                    "background": "#6699C9"
+                  },
+                  {
+                    "background": "#B2CDE5"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#87B0D5"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#E8F1F9"
+                  },
+                  {
+                    "background": "#E3EEF7"
+                  }
+                ]
+              },
+              {
+                "accessor": "Female & Male",
+                "name": "Female & Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "34,280",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#4986BE"
+                  },
+                  {
+                    "background": "#73A2CE"
+                  },
+                  {
+                    "background": "#77A5CF"
+                  },
+                  {
+                    "background": "#7AA7D0"
+                  },
+                  {
+                    "background": "#84AED4"
+                  },
+                  {
+                    "background": "#8BB2D7"
+                  },
+                  {
+                    "background": "#9EBFDE"
+                  },
+                  {
+                    "background": "#A0C1DF"
+                  },
+                  {
+                    "background": "#A8C6E2"
+                  },
+                  {
+                    "background": "#ACC9E3"
+                  },
+                  {
+                    "background": "#B3CDE5"
+                  },
+                  {
+                    "background": "#B3CEE6"
+                  },
+                  {
+                    "background": "#C2D7EB"
+                  },
+                  {
+                    "background": "#C9DCEE"
+                  },
+                  {
+                    "background": "#D6E5F2"
+                  },
+                  {
+                    "background": "#DCE9F5"
+                  },
+                  {
+                    "background": "#E0ECF6"
+                  },
+                  {
+                    "background": "#E2EDF7"
+                  },
+                  {
+                    "background": "#E6EFF8"
+                  },
+                  {
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "background": "#F1F7FC"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 22,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "dataKey": "77f3e370c6f13d0a2eec0f3c52fa984e",
+            "key": "77f3e370c6f13d0a2eec0f3c52fa984e"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    },
+    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is TRANSPORTATION AND STORAGE, and the\n                                median earnings of females in this industry were £24,900. The industry \n                                with the highest proportion of male graduates was OTHER SERVICE ACTIVITIES and the median earnings of males\n                                in this industry were £25,200<br/><br/>The biggest difference in proportions is seen in CONSTRUCTION where the proportion of male graduates is  6  percentage points higher than the proportion of female graduates.<br/><br/>The biggest difference in median earnings is seen in FINANCIAL AND INSURANCE ACTIVITIES where the median earnings of male graduates were £2,700  higher than the medain earnings of female graduates.<br/><br/>The group with the highest earnings was male graduates in the FINANCIAL AND INSURANCE ACTIVITIES industry \n           (median earnings of £26,700).<br/><br/>",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex , 5 years after \n                          graduation, male and female  First degree  graduates from English HEIs, APs and FECs, \n                            2018/19 tax year.<\/h4>",
+    "subjectlist3": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput3-label\" for=\"subjectinput3\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput3\"><option value=\"Agriculture, food and related studies\">Agriculture, food and related studies<\/option>\n<option value=\"Allied health\">Allied health<\/option>\n<option value=\"Architecture, building and planning\">Architecture, building and planning<\/option>\n<option value=\"Biosciences\">Biosciences<\/option>\n<option value=\"Business and management\">Business and management<\/option>\n<option value=\"Celtic studies\">Celtic studies<\/option>\n<option value=\"Chemistry\">Chemistry<\/option>\n<option value=\"Combined and general studies\">Combined and general studies<\/option>\n<option value=\"Computing\">Computing<\/option>\n<option value=\"Creative arts and design\">Creative arts and design<\/option>\n<option value=\"Economics\">Economics<\/option>\n<option value=\"Education and teaching\">Education and teaching<\/option>\n<option value=\"Engineering\">Engineering<\/option>\n<option value=\"English studies\">English studies<\/option>\n<option value=\"General, applied and forensic sciences\">General, applied and forensic sciences<\/option>\n<option value=\"Geography, earth and environmental studies\">Geography, earth and environmental studies<\/option>\n<option value=\"Health and social care\">Health and social care<\/option>\n<option value=\"History and archaeology\">History and archaeology<\/option>\n<option value=\"Languages and area studies\">Languages and area studies<\/option>\n<option value=\"Law\">Law<\/option>\n<option value=\"Materials and technology\">Materials and technology<\/option>\n<option value=\"Mathematical sciences\">Mathematical sciences<\/option>\n<option value=\"Media, journalism and communications\">Media, journalism and communications<\/option>\n<option value=\"Medical sciences\">Medical sciences<\/option>\n<option value=\"Medicine and dentistry\">Medicine and dentistry<\/option>\n<option value=\"Nursing and midwifery\">Nursing and midwifery<\/option>\n<option value=\"Performing arts\">Performing arts<\/option>\n<option value=\"Pharmacology, toxicology and pharmacy\">Pharmacology, toxicology and pharmacy<\/option>\n<option value=\"Philosophy and religious studies\">Philosophy and religious studies<\/option>\n<option value=\"Physics and astronomy\">Physics and astronomy<\/option>\n<option value=\"Politics\">Politics<\/option>\n<option value=\"Psychology\">Psychology<\/option>\n<option value=\"Sociology, social policy and anthropology\">Sociology, social policy and anthropology<\/option>\n<option value=\"Sport and exercise sciences\">Sport and exercise sciences<\/option>\n<option value=\"Veterinary sciences\">Veterinary sciences<\/option>\n<option value=\"All\" selected>All<\/option><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput3\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.12.4",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}
