@@ -1,0 +1,35 @@
+{
+  "input": {
+    "navbar": "regional",
+    "qualinput2": "Level 7 (research)",
+    "sectionnameinput": "TRANSPORTATION AND STORAGE",
+    "YAGinput": "5"
+  },
+  "output": {
+    "map_title": "<h4> Map to show the  number of graduates of all subjects now working in TRANSPORTATION AND STORAGE  who\n                       studied in each region 5 years after\n                          graduation, male and female Level 7 (research) graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "mapsubjectlist": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput2-label\" for=\"subjectinput2\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput2\"><option value=\"All\" selected>All<\/option>\n<option value=\"Geography, earth and environmental studies\">Geography, earth and environmental studies<\/option>\n<option value=\"Medicine and dentistry\">Medicine and dentistry<\/option>\n<option value=\"History and archaeology\">History and archaeology<\/option><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput2\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
+      "deps": [
+        {
+          "name": "selectize",
+          "version": "0.12.4",
+          "src": {
+            "href": "shared/selectize"
+          },
+          "meta": null,
+          "script": [
+            "js/selectize.min.js",
+            "accessibility/js/selectize-plugin-a11y.min.js"
+          ],
+          "stylesheet": "css/selectize.bootstrap3.css",
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": true
+        }
+      ]
+    },
+    "maptext": "For Level 7 (research) graduates of all subjects in the TRANSPORTATION AND STORAGE industry 5 years after graduation, the region that saw the highest number of students \n                    studying there was East of England . The region with the lowest number of students studying \n                    there was West Midlands . The region with the highest number of graduates living\n                    there 5 years after graduation was London  and the region with the\n                    least graduates living there was East of England .",
+    "maptext2": "For Level 7 (research) graduates of all subjects in the TRANSPORTATION AND STORAGE industry, the region with the highest proportionate increase in graduates who studied there compared to living \n                    there 5 years after graduation is London , where the number of\n                    graduates increased by 155 %. The region with the largest\n                    decrease is East of England where the number of graduates decreased by NA %."
+  }
+}
