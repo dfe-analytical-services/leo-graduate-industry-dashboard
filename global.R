@@ -1355,28 +1355,29 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
 
   if(countinput == 'current_region'){
     
-    crosstabs_data <- tables_data %>%
+    crosstabs_data_table <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
-             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput) %>%
-      group_by(current_region, SECTIONNAME) %>%
+             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
+      group_by(current_region, SECTIONNAME, group_name) %>%
       summarise(n = sum(count)) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_all(funs(ifelse(is.na(.), 0, .))) %>%
       mutate_all(funs(ifelse( . <= 2, 0, .))) %>%
+      ungroup()%>%
       mutate_if(is.numeric, funs(./sum(.))) %>%
       mutate_all(funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(c('North East', 'North West', 'Yorkshire and the Humber', 'East Midlands', 'West Midlands',
                   'East of England', 'London', 'South East', 'South West'),
                 funs(as.numeric(.))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too. 
-      select(SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+      select(SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
              `East of England`, `London`, `South East`, `South West`)
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
-             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput) %>%
-      group_by(current_region, SECTIONNAME) %>%
+             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
+      group_by(current_region, SECTIONNAME, group_name) %>%
       summarise(n = earnings_median) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
@@ -1387,51 +1388,145 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
                 funs(as.numeric(.))) %>%
       mutate_all(funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too. 
-      select(SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+      select(SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
              `East of England`, `London`, `South East`, `South West`)
     
-    order <- subset(crosstabs_data, select = SECTIONNAME)
+    
+    order <- subset(crosstabs_data_table, select = SECTIONNAME)
     crosstabs_earnings_data2 <- order %>%
       left_join(crosstabs_earnings_data)
     
+    
     if(buttoninput == 'Proportions'){
-      footerdata <- tables_data
       colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data
+      crosstabs_data <- crosstabs_data_table
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
     
-    footer_data <- footerdata %>%
+    footer_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
-             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput) %>%
-      group_by(current_region, SECTIONNAME) %>%
+             prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
+      group_by(current_region, SECTIONNAME, group_name) %>%
       summarise(n = sum(count)) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_all(funs(ifelse(is.na(.), 0, .))) %>%
       mutate_all(funs(ifelse( . <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too. 
-      select(SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+      select(SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
              `East of England`, `London`, `South East`, `South West`)
-
-    coldefs <- list(
-      SECTIONNAME = colDef(na = 'c', name = 'Industry', width = 600, footer = 'TOTAL (N)',
-                           style = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
-                           headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
-                           footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = 'bold')),
-      `North East` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`North East`),5),big.mark = ",", scientific = FALSE)),
-      `North West` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`North West`),5),big.mark = ",", scientific = FALSE)),
-      `Yorkshire and the Humber` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Yorkshire and the Humber`),5),big.mark = ",", scientific = FALSE)),
-      `East Midlands` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`East Midlands`),5),big.mark = ",", scientific = FALSE)),
-      `West Midlands` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`West Midlands`),5),big.mark = ",", scientific = FALSE)),
-      `East of England` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`East of England`),5),big.mark = ",", scientific = FALSE)),
-      `London` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`London`),5),big.mark = ",", scientific = FALSE)), 
-      `South East` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`South East`),5),big.mark = ",", scientific = FALSE)),
-      `South West` = colDef(na = 'c', style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`South West`),5),big.mark = ",", scientific = FALSE)))
-   
+    
+    max <- crosstabs_data %>%
+      ungroup() %>%
+      select(-c(group_name, SECTIONNAME))
+    
+    numeric_cols <- names(max)
+    
+    numeric_cols_def <- list()
+    numeric_cols_def_nested <- list()
+    
+    for (column in numeric_cols){
+      script = paste("
+          // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1
+          function(rowInfo) {
+            // source: https://stackoverflow.com/a/44134328/4856719
+            function hslToHex(h, s, l) {
+              l /= 100;
+              const a = s * Math.min(l, 1 - l) / 100;
+              const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+              };
+              return `#${f(0)}${f(8)}${f(4)}`;
+            }
+            var value = rowInfo.row['", column, "']
+            var max = ", max(max, na.rm = TRUE), "
+            var min = ", min(max, na.rm = TRUE), "
+            // pct_value = (value - min) * 100 / (max - min)
+            pct_value = (Math.min(value, max) - min) * 100 / (max - min)
+            // If value equals 0, set font color grey.
+            if (value == 0) {
+              var color = '#F7FBFF'
+              var bg = '#F7FBFF'
+            } else {
+              var color = '#000000'
+              var bg = hslToHex(209, 59, 100 - pct_value / 2)
+            }
+            return { color: color, backgroundColor: bg}
+        }", sep="")
+      
+      numeric_cols_def_nested[column] <- list(colDef(
+        na = 'x', style = JS(script), format = colformat,
+      ))
+      
+      numeric_cols_def[column] <- list(colDef(
+        na = 'x', style = JS(script), format = colformat,
+        footer = format(round_any(sum(footer_data[column]),5),big.mark = ",", scientific = FALSE, na.m = T)
+      ))
+      
+    }
+    
+    nested <- function(index){
+      
+      tables_data_nested <- tables_data %>%
+        filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
+               prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name != 'All') %>%
+        group_by(current_region) %>%
+        mutate(prop = count/sum(count, na.rm = TRUE))
+      
+      nested_table <- tables_data_nested[tables_data_nested$SECTIONNAME == crosstabs_data$SECTIONNAME[index], ] %>%
+        filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
+               prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name != 'All') %>%
+        group_by(current_region, SECTIONNAME, group_name) %>%
+        summarise(n = prop) %>%
+        spread(current_region, n) %>%
+        mutate_all(funs(ifelse(is.na(.), 0, .))) %>%
+        mutate_all(funs(ifelse(. == 0, NA, .)))
+      
+      if('All' %in% names(nested_table)){
+        nested_table <- nested_table %>%
+          arrange(-All)}
+      
+      nested_table_earnings <- tables_data[tables_data$SECTIONNAME == crosstabs_data$SECTIONNAME[index], ] %>%
+        filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
+               prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name != 'All') %>%
+        group_by(current_region, SECTIONNAME, group_name) %>%
+        summarise(n = earnings_median) %>%
+        spread(current_region, n) %>%
+        mutate_all(funs(ifelse(is.na(.), 0, .))) %>%
+        mutate_all(funs(ifelse(. == 0, NA, .)))
+      
+      nested_order <- subset(nested_table, select = c(SECTIONNAME, group_name))
+      nested_order$SECTIONNAME <- as.character(nested_order$SECTIONNAME)
+      nested_order$group_name <- as.character(nested_order$group_name)
+      nested_table_earnings2 <- nested_order %>%
+        left_join(nested_table_earnings)
+      
+      if(buttoninput == 'Proportions'){
+        nested <- nested_table
+      } else if(buttoninput == 'Median earnings'){
+        nested <- nested_table_earnings2
+      }
+      
+      for (column in numeric_cols){
+        nested[column] <- if(column %in% colnames(nested)){nested[column]} else NA
+      }
+      
+      nested <- nested %>%
+        select(SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+               `East of England`, `London`, `South East`, `South West`)
+      
+      htmltools::div(style = "padding: 16px",
+                     reactable(nested, outlined = TRUE, 
+                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               defaultPageSize = 300))
+      
+      
+      
+    }
   }
 
   if(countinput == 'FSM'){
