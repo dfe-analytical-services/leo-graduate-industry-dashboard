@@ -1344,7 +1344,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
       
@@ -1521,7 +1521,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
       
@@ -1687,7 +1687,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
       
@@ -1855,7 +1855,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
     }
@@ -2024,7 +2024,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
       
@@ -2184,7 +2184,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
                   
                   htmltools::div(style = "padding: 16px",
                                  reactable(nested, outlined = TRUE, 
-                                           style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                                           style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                            defaultPageSize = 300))
                   
                   
@@ -2348,7 +2348,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       
       htmltools::div(style = "padding: 16px",
                      reactable(nested, outlined = TRUE, 
-                               style = JS(script), columns = c(coldefs, numeric_cols_def_nested),
+                               style = JS(script), columns = c(coldefs_nested, numeric_cols_def_nested),
                                defaultPageSize = 300))
       
       
@@ -2360,6 +2360,10 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
   coldefs <- list(
     SECTIONNAME = colDef(na = 'x', name = 'Industry', width = 500, footer = 'TOTAL (N)'),
     group_name = colDef(na = 'x', name = '3 digit SIC code', width = 300, footer = 'TOTAL (N)')
+  )
+  coldefs_nested <- list(
+    SECTIONNAME = colDef(na = 'x', name = 'Industry', width = 500),
+    group_name = colDef(na = 'x', name = '3 digit SIC code', width = 300)
   )
   
   
