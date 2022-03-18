@@ -36,9 +36,10 @@ cohort3 <- subset(cohort3, select = -X)
 # earnings_data <- read.csv("earnings_data_with_PG.csv")
 
 tables_data <- read_csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SIC analysis/SIC Dashboard 1819 with detailed/tables_data_3digit_FD_PG_threshold.csv")
-tables_earnings_data <- read_csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SIC analysis/SIC Dashboard 1819 with detailed/tables_data_3digit_FD_PG_threshold.csv")
 names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR", "group_name")
-names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR", "group_name")
+
+tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
+tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
 
 # Create sankey chart, inputs based on server logic from ui inputs.
 
@@ -1153,10 +1154,7 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
 crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput, thresholdinput){
 
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- 'NOT KNOWN'
-  tables_earnings_data$SECTIONNAME[is.na(tables_earnings_data$SECTIONNAME) == TRUE] <- 'NOT KNOWN'
-  
   tables_data$group_name[is.na(tables_data$group_name) == TRUE] <- 'NOT KNOWN'
-  tables_earnings_data$group_name[is.na(tables_earnings_data$group_name) == TRUE] <- 'NOT KNOWN'
   
   orange_pal <- function(x){
     if (!is.na(x)){
@@ -2208,7 +2206,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              current_region == 'All', prior_attainment == 'All', threshold == thresholdinput, group_name == 'All') %>%
       group_by(qualification_TR, SECTIONNAME, group_name) %>%
@@ -2484,7 +2482,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
              abs = abs(`M` - `F`))
     names(crosstabs_data) <- c('SECTIONNAME', 'Female', 'Male', 'Female & Male', 'diff', 'abs')
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', FSM == 'All', 
              prior_attainment == 'All', qualification_TR == qualinput, threshold == thresholdinput, group_name == 'All') %>%
       group_by(sex, SECTIONNAME) %>%
@@ -2594,7 +2592,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
       mutate(diff = `non-FSM` - FSM,
              abs = abs(`non-FSM` - FSM))
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
       group_by(FSM, SECTIONNAME) %>%
@@ -2690,7 +2688,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
                 funs(as.numeric(.))) %>%
       select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, FSM == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
       group_by(ethnicity, SECTIONNAME) %>%
@@ -2880,7 +2878,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
       select(SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
              `East of England`, `London`, `South East`, `South West`)
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
       group_by(current_region, SECTIONNAME) %>%
@@ -3029,7 +3027,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too. 
       select(SECTIONNAME,'All', `1`, `2`, `3`, `4`, `5`,`6`, `7`, `8`, `9`, 'Not known')
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              current_region == 'All', qualification_TR == 'First degree', threshold == thresholdinput, group_name == 'All') %>%
       group_by(prior_attainment, SECTIONNAME) %>%
@@ -3097,7 +3095,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
   
   if(countinput == 'subject_name'){
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', YAG == YAGinput, ethnicity == 'All', FSM == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == qualinput, threshold == thresholdinput, group_name == 'All') %>%
       group_by(subject_name, SECTIONNAME) %>%
@@ -3137,7 +3135,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput, thresho
       mutate_if(is.numeric, funs(./sum(.))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', subject_name == subjectinput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              current_region == 'All', prior_attainment == 'All', threshold == thresholdinput, group_name == 'All') %>%
       group_by(qualification_TR, SECTIONNAME) %>%
@@ -3526,7 +3524,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
                 funs(as.numeric(.))) %>%
       select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', SECTIONNAME == sectioninput, YAG == YAGinput, FSM == 'All', current_region == 'All',
              prior_attainment == 'All', qualification_TR == 'First degree', subject_name != 'All', threshold == 'All') %>%
       group_by(ethnicity, subject_name) %>%
@@ -3549,7 +3547,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3597,7 +3595,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
              `East of England`, `London`, `South East`, `South West`)
    
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', subject_name != 'All', threshold == 'All') %>%
       group_by(current_region, subject_name) %>%
@@ -3623,7 +3621,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3675,7 +3673,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       select(subject_name, `non-FSM`, FSM, `Not known`)
     
   
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == 'First degree', subject_name != 'All', threshold == 'All') %>%
       group_by(FSM, subject_name) %>%
@@ -3698,7 +3696,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3743,7 +3741,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     
   
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == 'All', current_region == 'All', FSM == 'All', 
              prior_attainment == 'All', qualification_TR == qualinput, subject_name != 'All', threshold == 'All') %>%
       group_by(sex, subject_name) %>%
@@ -3769,7 +3767,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3813,7 +3811,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       select(subject_name,'All', `1`, `2`, `3`, `4`, `5`,`6`, `7`, `8`, `9`, 'Not known')
     
   
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              current_region == 'All', qualification_TR == 'First degree', subject_name != 'All', threshold == 'All') %>%
       group_by(prior_attainment, subject_name) %>%
@@ -3837,7 +3835,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3887,7 +3885,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) 
     
     
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', YAG == YAGinput, ethnicity == 'All', FSM == 'All', current_region == 'All', 
              prior_attainment == 'All', qualification_TR == qualinput, threshold == 'All') %>%
       group_by(SECTIONNAME, subject_name) %>%
@@ -3907,7 +3905,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -3953,7 +3951,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
     
    
-    crosstabs_earnings_data <- tables_earnings_data %>%
+    crosstabs_earnings_data <- tables_data %>%
       filter(sex == 'F+M', SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == 'All', FSM == 'All', 
              current_region == 'All', prior_attainment == 'All', subject_name != 'All', threshold == 'All') %>%
       group_by(qualification_TR, subject_name) %>%
@@ -3974,7 +3972,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data
     } else if(buttoninput == 'Median earnings'){
-      footerdata <- tables_earnings_data
+      footerdata <- tables_data
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       crosstabs_data <- crosstabs_earnings_data2
     }
