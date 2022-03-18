@@ -2,6 +2,8 @@ app <- ShinyDriver$new("../../", loadTimeout = 1e+05)
 
 app$snapshotInit("testUI", screenshot = TRUE)
 
+
+# Testing the industry flow panel
 industryFlow_input <- c("navbar","qualinput","sexinput")
 industryFlow_output <- c("sankey","sankey_title","sankeyhelp","sankeysubjectlist",
                          "sankeytext1","sankeytext2")
@@ -75,8 +77,7 @@ app$snapshot(items=list(input=industryBySubject_input,
 
 
 
-
-
+# Run tests for subject by industry tab
 app$setInputs(navbar = "subjectByIndustry",timeout_=2.e4)
 app$snapshot()
 app$setInputs(earningsbutton = "Median earnings",timeout_=2e+4)
@@ -97,7 +98,8 @@ app$setInputs(earningsbutton = "Proportions",timeout_=2e+4)
 app$snapshot()
 
 
-# Run tests for industry by subject tab
+# Run tests for regional tab - note: excluding the map output as it makes the 
+# json files massive.
 regional_input <- c("navbar","mapsubjectinput","YAGinput","qualinput2",
                              "sectionnameinput")
 regional_output <- c("map_title","mapsubjectlist","maptext","maptext2")
