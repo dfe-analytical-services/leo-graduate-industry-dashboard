@@ -168,7 +168,8 @@ navbarPage("",
           ),
           selected = "F+M"
         ),
-        div(style="color:#ffffff",
+        div(
+          style = "color:#ffffff",
           h4("Summary"),
           strong("Most popular industry"),
           htmlOutput("sankeytext1"),
@@ -298,11 +299,12 @@ navbarPage("",
           choices = list(1, 3, 5, 10),
           selected = 5
         ),
-        div(style="color:#ffffff",
-            strong("Summary"),
-            textOutput("maptext"),
-            br(),
-            textOutput("maptext2")
+        div(
+          style = "color:#ffffff",
+          strong("Summary"),
+          textOutput("maptext"),
+          br(),
+          textOutput("maptext2")
         )
       ),
 
@@ -415,11 +417,10 @@ navbarPage("",
           condition = "input.countinput2 != 'subject_name'",
           uiOutput("subjectlist3")
         ),
-        
         helpText("Download the current table as a csv"),
         downloadButton("downloadData", label = "Download table"), br(), br(),
-        
-        div(style="color:#ffffff",
+        div(
+          style = "color:#ffffff",
           strong("Summary"),
           htmlOutput("crosstab_text")
         )
