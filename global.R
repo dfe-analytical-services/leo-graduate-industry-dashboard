@@ -4,7 +4,8 @@ library(sp)
 library(data.table)
 library(RColorBrewer)
 library(pander)
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(shinycssloaders)
 library(plotly)
 library(DT)
@@ -23,7 +24,8 @@ library(Hmisc)
 library(matrixStats)
 library(sourcetools)
 library(shinyBS)
-
+library(readr)
+library(metathis)
 
 cohort1 <- read.csv("data/pg_sankey_data_1_3_yag_dummy.csv")
 cohort2 <- read.csv("data/pg_sankey_data_3_5_yag_dummy.csv")
@@ -35,11 +37,15 @@ cohort3 <- subset(cohort3, select = -X)
 
 # earnings_data <- read.csv("earnings_data_with_PG.csv")
 
-tables_data <- read_csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SIC analysis/SIC Dashboard 1819 with detailed/tables_data_3digit_FD_PG_threshold.csv")
-names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR", "group_name")
+tables_data <- fread("data/pg_sic_crosstabs_underlying_data_cf_with_threshold_dummy.csv") %>% select(-V1)
+tables_earnings_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_with_threshold_dummy.csv") %>% select(-V1)
+
+names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "threshold", "qualification_TR")
 
 tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
 tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
+
+names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR")
 
 # Create sankey chart, inputs based on server logic from ui inputs.
 
@@ -111,12 +117,12 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey1$SECTIONNAME.x <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'OTHER'
   
@@ -130,12 +136,12 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey2$SECTIONNAME.x <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey2$SECTIONNAME.y <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'OTHER'
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'OTHER'

@@ -4,7 +4,24 @@ server <- function(input, output, session) {
   
   session$onSessionEnded(stopApp)
   
-
+# Links to tabs --------------------------------------------
+  
+  observeEvent(input$link_to_industryFlow_tab, {
+    updateTabsetPanel(session, "navbar", selected = "industryFlow")
+  })
+  
+  observeEvent(input$link_to_regional_tab, {
+    updateTabsetPanel(session, "navbar", selected = "regional")
+  })
+  
+  observeEvent(input$link_to_subjectByIndustry_tab, {
+    updateTabsetPanel(session, "navbar", selected = "subjectByIndustry")
+  })
+  
+  observeEvent(input$link_to_industryBySubject_tab, {
+    updateTabsetPanel(session, "navbar", selected = "industryBySubject")
+  })
+  
 # Sankey functions --------------------------------------------------------
   
   output$sankeysubjectlist <- renderUI({
