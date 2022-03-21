@@ -1,6 +1,6 @@
 app <- ShinyDriver$new("../../", loadTimeout = 1e+05)
 
-app$snapshotInit("testUI", screenshot = TRUE)
+app$snapshotInit("testUI", screenshot = FALSE)
 
 
 # Testing the industry flow panel
