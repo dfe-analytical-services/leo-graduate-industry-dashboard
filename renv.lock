@@ -647,10 +647,10 @@
     },
     "htmlTable": {
       "Package": "htmlTable",
-      "Version": "2.2.1",
+      "Version": "2.4.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "e34c5cd3bb97592f506bad6e807e81a1",
+      "Hash": "1acb74d3f9e0ade3b13282195baab090",
       "Requirements": [
         "checkmate",
         "htmltools",
@@ -735,10 +735,10 @@
     },
     "jpeg": {
       "Package": "jpeg",
-      "Version": "0.1-8.1",
+      "Version": "0.1-9",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "bc316c003aba520fc73d70ad53b5fc36",
+      "Hash": "441ee36360a57b363f4fa3df0c364630",
       "Requirements": []
     },
     "jquerylib": {
