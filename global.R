@@ -37,13 +37,14 @@ cohort3 <- subset(cohort3, select = -X)
 
 # earnings_data <- read.csv("earnings_data_with_PG.csv")
 
-tables_data <- fread("data/pg_sic_crosstabs_underlying_data_cf_with_threshold_dummy.csv") %>% select(-V1)
-tables_earnings_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_dummy.csv") %>% select(-V1)
+tables_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_dummy.csv") %>% select(-V1)
 
-names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "threshold", "qualification_TR")
+names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median", "threshold", "qualification_TR", "group_name")
 
 tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
 tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
+
+tables_earnings_data <- tables_data
 
 names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median","threshold", "qualification_TR", "group_name")
 
