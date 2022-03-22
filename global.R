@@ -65,21 +65,3 @@ tables_earnings_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_with_thres
 names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "threshold", "qualification_TR")
 names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median", "threshold", "qualification_TR")
 
-# Create sankey chart, inputs based on server logic from ui inputs.
-
-
-source('R/sankey.R')
-
-
-# REGIONAL ---------------------------------------------------------------------
-source('R/regional.R')
-
-
-# CROSSTABS ---------------------------------------------------------------
-source('R/crosstabs.R')
-source('R/crosstabs_reverse.R')
-
-
-# Run the application -----------------------------------------------------
-
-# shinyApp(ui = ui, server = server)
