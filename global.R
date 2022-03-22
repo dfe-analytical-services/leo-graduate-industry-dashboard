@@ -80,8 +80,6 @@ source('R/crosstabs.R')
 source('R/crosstabs_reverse.R')
 
 
-
-
 # Run the application -----------------------------------------------------
 
 # shinyApp(ui = ui, server = server)
