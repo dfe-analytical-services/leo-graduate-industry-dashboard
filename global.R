@@ -35,7 +35,12 @@ cohort1 <- subset(cohort1, select = -X)
 cohort2 <- subset(cohort2, select = -X)
 cohort3 <- subset(cohort3, select = -X)
 
-# earnings_data <- read.csv("earnings_data_with_PG.csv")
+cohort1$SECTIONNAME.x <- StrCap(tolower(cohort1$SECTIONNAME.x))
+cohort1$SECTIONNAME.y <- StrCap(tolower(cohort1$SECTIONNAME.y))
+cohort2$SECTIONNAME.x <- StrCap(tolower(cohort2$SECTIONNAME.x))
+cohort2$SECTIONNAME.y <- StrCap(tolower(cohort2$SECTIONNAME.y))
+cohort3$SECTIONNAME.x <- StrCap(tolower(cohort3$SECTIONNAME.x))
+cohort3$SECTIONNAME.y <- StrCap(tolower(cohort3$SECTIONNAME.y))
 
 tables_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_dummy.csv") %>% select(-V1)
 
@@ -43,6 +48,8 @@ names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethni
 
 tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
 tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
+
+tables_data$SECTIONNAME <- StrCap(tolower(tables_data$SECTIONNAME))
 
 tables_earnings_data <- tables_data
 
@@ -109,7 +116,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   
   section_names$ID <- 1:nrow(section_names)
   section_names$SECTIONNAME_NEW <- section_names$SECTIONNAME.x
-  section_names$SECTIONNAME_NEW[section_names$ID>9] <- 'OTHER'
+  section_names$SECTIONNAME_NEW[section_names$ID>9] <- 'Other'
   
   names(section_names) <- c('old', 'count', 'ID', 'new')
   
@@ -125,7 +132,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
   cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
-  cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'OTHER'
+  cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'Other'
   
   cohort_sankey1 <- cohort_sankey1 %>%
     group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
@@ -144,8 +151,8 @@ sankey_chart <- function(subjectinput, sexinput, qualinput){
   cohort_sankey2$SECTIONNAME.y <- cohort_sankey2$new
   cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
-  cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'OTHER'
-  cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'OTHER'
+  cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'Other'
+  cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'Other'
   
   cohort_sankey2 <- cohort_sankey2 %>%
     group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
@@ -498,7 +505,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput){
   
   section_names$ID <- 1:nrow(section_names)
   section_names$SECTIONNAME_NEW <- section_names$SECTIONNAME.x
-  section_names$SECTIONNAME_NEW[section_names$ID>9] <- 'OTHER'
+  section_names$SECTIONNAME_NEW[section_names$ID>9] <- 'Other'
   
   names(section_names) <- c('old', 'count', 'ID', 'new')
   
@@ -514,7 +521,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput){
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
   cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
   
-  cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'OTHER'
+  cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'Other'
   
   cohort_sankey1 <- cohort_sankey1 %>%
     group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
@@ -533,8 +540,8 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput){
   cohort_sankey2$SECTIONNAME.y <- cohort_sankey2$new
   cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
   
-  cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'OTHER'
-  cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'OTHER'
+  cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'Other'
+  cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'Other'
   
   cohort_sankey2 <- cohort_sankey2 %>%
     group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
@@ -773,6 +780,9 @@ ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.
 str(ukRegions)
 ukRegions <- ukRegions[order(ukRegions$rgn19nm),]
 ukRegions$rgn19nm[ukRegions$rgn19nm  == "Yorkshire and The Humber"]  <-  "Yorkshire and the Humber"
+
+data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
+regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))
 
 # Create the map
 
