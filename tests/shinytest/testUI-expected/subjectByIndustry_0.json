@@ -1,0 +1,13 @@
+{
+  "input": {
+    "countinput2": "sex",
+    "earningsbutton": "Proportions",
+    "navbar": "subjectByIndustry",
+    "subjectinput3": "All",
+    "thresholdinput": "All",
+    "YAGinput2": "5"
+  },
+  "output": {
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex , 5 years after\n                          graduation, male and female  First degree  graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+  }
+}

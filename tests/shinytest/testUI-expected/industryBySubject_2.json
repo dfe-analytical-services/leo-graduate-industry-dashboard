@@ -1,0 +1,13 @@
+{
+  "input": {
+    "countinput3": "ethnicity",
+    "earningsbutton2": "Median earnings",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Education",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4> Industry of graduate employment for graduates of Education by ethnicity , 5 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "input": {
+    "countinput2": "ethnicity",
+    "earningsbutton": "Proportions",
+    "navbar": "subjectByIndustry",
+    "subjectinput3": "Sport and exercise sciences",
+    "thresholdinput": "All",
+    "YAGinput2": "1"
+  },
+  "output": {
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of Sport and exercise sciences by ethnicity , 1 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+  }
+}
