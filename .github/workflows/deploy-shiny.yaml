@@ -52,10 +52,13 @@ jobs:
           if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
           
+      - name: Install rsconnect
+        shell: Rscript {0}
+        run: |
+          install.packages("rsconnect")
           
       - name: Push to shiny.io
         run: >
           Rscript
-          -e "install.packages("rsconnect")"
           -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
           -e "rsconnect::deployApp(appVisibility = "private"))"
