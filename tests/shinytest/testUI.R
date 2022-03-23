@@ -66,7 +66,9 @@ industryBySubject_input <- c(
   "navbar", "countinput3", "YAGinput3", "qualinput4",
   "sectionnameinput2"
 )
-industryBySubject_output <- c("crosstab_backwards", "backwards_crosstab_title")
+# Note that I've excluded the crosstab_backwards tabulated output here as it
+# has a datakey that changes across different runs.
+industryBySubject_output <- c("backwards_crosstab_title")
 
 app$setInputs(navbar = "industryBySubject", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -138,24 +140,86 @@ app$snapshot(
 
 
 # Run tests for subject by industry tab
+subjectByIndustry_input <- c(
+  "navbar", "countinput2", "YAGinput2", "subjectinput3",
+  "thresholdinput"
+)
+# Note that I've excluded the crosstab_backwards tabulated output here as it
+# has a datakey that changes across different runs.
+subjectByIndustry_output <- c("crosstab_title")
+
 app$setInputs(navbar = "subjectByIndustry", timeout_ = 2.e4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_0.json"
+)
 app$setInputs(earningsbutton = "Median earnings", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_1.json"
+)
 app$setInputs(thresholdinput = "Above", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_2.json"
+)
 app$setInputs(thresholdinput = "Below", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_3.json"
+)
 app$setInputs(countinput2 = "ethnicity", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_4.json"
+)
 app$setInputs(thresholdinput = "All", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_5.json"
+)
 app$setInputs(YAGinput2 = "1", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_6.json"
+)
 app$setInputs(subjectinput3 = "Sport and exercise sciences", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_7.json"
+)
 app$setInputs(earningsbutton = "Proportions", timeout_ = 2e+4)
-app$snapshot()
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_8.json"
+)
 
 
 # Run tests for regional tab - note: excluding the map output as it makes the
