@@ -111,7 +111,7 @@ app$snapshot(
   ),
   filename = "industryBySubject_4.json"
 )
-app$setInputs(YAGinput3 = "1", timeout_ = 1e+4)
+app$setInputs(YAGinput3 = "1", wait_=FALSE, values_=FALSE)
 app$snapshot(
   items = list(
     input = industryBySubject_input,
@@ -196,7 +196,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_5.json"
 )
-app$setInputs(YAGinput2 = "1", timeout_ = 1.e4)
+app$setInputs(YAGinput2 = "1", wait_=FALSE, values_=FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -204,7 +204,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_6.json"
 )
-app$setInputs(subjectinput3 = "Sport and exercise sciences", timeout_ = 1.e4)
+app$setInputs(subjectinput3 = "Sport and exercise sciences", wait_=FALSE, values_=FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -254,7 +254,7 @@ app$snapshot(
   ),
   filename = "regional_2.json"
 )
-app$setInputs(sectionnameinput = "TRANSPORTATION AND STORAGE", timeout_ = 2e+4)
+app$setInputs(sectionnameinput = "TRANSPORTATION AND STORAGE", wait_=FALSE, values_=FALSE)
 app$snapshot(
   items = list(
     input = regional_input,
@@ -270,8 +270,7 @@ app$snapshot(
   ),
   filename = "regional_4.json"
 )
-app$setInputs(sectionnameinput = "EDUCATION", timeout_ = 2e+4)
-app$setInputs(countinput = "living_in_region", timeout_ = 2e+4)
+app$setInputs(sectionnameinput = "EDUCATION", countinput = "living_in_region", wait_=FALSE, values_=FALSE)
 app$snapshot(
   items = list(
     input = regional_input,
