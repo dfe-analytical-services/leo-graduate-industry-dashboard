@@ -103,7 +103,10 @@ app$snapshot(
   filename = "industryBySubject_3.json"
 )
 
-app$setInputs(sectionnameinput2 = "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY", wait_ = FALSE, values_ = FALSE)
+app$setInputs(
+  sectionnameinput2 = "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
+  wait_ = FALSE, values_ = FALSE
+)
 app$snapshot(
   items = list(
     input = industryBySubject_input,
@@ -119,7 +122,6 @@ app$snapshot(
   ),
   filename = "industryBySubject_5.json"
 )
-app$setInputs(countinput3 = "SECTIONNAME", timeout_ = 1e+4)
 app$setInputs(countinput3 = "FSM", timeout_ = 1e+4)
 app$snapshot(
   items = list(
@@ -225,7 +227,7 @@ app$snapshot(
 # Run tests for regional tab - note: excluding the map output as it makes the
 # json files massive.
 regional_input <- c(
-  "navbar", "mapsubjectinput", "YAGinput", "qualinput2",
+  "navbar", "subjectinput2", "YAGinput", "qualinput2",
   "sectionnameinput"
 )
 regional_output <- c("map_title", "mapsubjectlist", "maptext", "maptext2")
@@ -246,7 +248,7 @@ app$snapshot(
   ),
   filename = "regional_1.json"
 )
-app$setInputs(qualinput2 = "Level 7 (research)", timeout_ = 2e+4)
+app$setInputs(qualinput2 = "Level 7 (research)")
 app$snapshot(
   items = list(
     input = regional_input,
@@ -254,7 +256,7 @@ app$snapshot(
   ),
   filename = "regional_2.json"
 )
-app$setInputs(sectionnameinput = "TRANSPORTATION AND STORAGE", wait_ = FALSE, values_ = FALSE)
+app$setInputs(sectionnameinput = "TRANSPORTATION AND STORAGE")
 app$snapshot(
   items = list(
     input = regional_input,
@@ -262,7 +264,7 @@ app$snapshot(
   ),
   filename = "regional_3.json"
 )
-app$setInputs(subjectinput2 = "Medicine and dentistry", wait_ = FALSE, values_ = FALSE)
+app$setInputs(subjectinput2 = "Medicine and dentistry")
 app$snapshot(
   items = list(
     input = regional_input,
@@ -270,7 +272,7 @@ app$snapshot(
   ),
   filename = "regional_4.json"
 )
-app$setInputs(sectionnameinput = "EDUCATION", countinput = "living_in_region", wait_ = FALSE, values_ = FALSE)
+app$setInputs(sectionnameinput = "EDUCATION", countinput = "living_in_region")
 app$snapshot(
   items = list(
     input = regional_input,
@@ -278,7 +280,13 @@ app$snapshot(
   ),
   filename = "regional_5.json"
 )
-app$setInputs(YAGinput = "3", timeout_ = 2e+4)
+
+# Note: for the following test, when YAG input is changed, subjectinput2
+# automatically reverts to the default. Don't know if this is the required
+# behaviour, but as it stands (on my laptop at least), the map title reverts to
+# "all subjects", rather than keeping "Medicine and dentistry" from the prior
+# tests above. This is both in shinytest and running the App in the browser.
+app$setInputs(YAGinput = "3", timeout_ = 3e+4)
 app$snapshot(
   items = list(
     input = regional_input,
