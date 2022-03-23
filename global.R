@@ -1123,7 +1123,7 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
   nodes2 <- nodes[(length(unique(sankey_data$InstRegion))+1):nrow(nodes),]
   
   links = as.data.frame(
-    sankey_data[,c(3,4,6)],
+    sankey_data[,c(4,5,7)],
     byrow = TRUE, ncol = 3)
   
   names(links) = c("source", "target", "value")
