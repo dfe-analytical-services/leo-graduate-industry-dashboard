@@ -64,7 +64,7 @@ app$snapshot(
 # Run tests for industry by subject tab
 industryBySubject_input <- c(
   "navbar", "countinput3", "YAGinput3", "qualinput4",
-  "sectionnameinput2","earningsbutton2"
+  "sectionnameinput2", "earningsbutton2"
 )
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
@@ -142,7 +142,7 @@ app$snapshot(
 # Run tests for subject by industry tab
 subjectByIndustry_input <- c(
   "navbar", "countinput2", "YAGinput2", "subjectinput3",
-  "thresholdinput",'earningsbutton'
+  "thresholdinput", "earningsbutton"
 )
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
@@ -196,7 +196,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_5.json"
 )
-app$setInputs(YAGinput2 = "1", timeout_=1.e4)
+app$setInputs(YAGinput2 = "1", timeout_ = 1.e4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -204,7 +204,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_6.json"
 )
-app$setInputs(subjectinput3 = "Sport and exercise sciences", timeout_=1.e4)
+app$setInputs(subjectinput3 = "Sport and exercise sciences", timeout_ = 1.e4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
