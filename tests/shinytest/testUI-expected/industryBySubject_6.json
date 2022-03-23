@@ -1,0 +1,13 @@
+{
+  "input": {
+    "countinput3": "FSM",
+    "earningsbutton2": "Median earnings",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Education",
+    "YAGinput3": "1"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4>Industry of graduate employment for graduates of Education  by FSM , 1 years after \n                          graduation, young (under 21 at start of course) male and female first degree \n                          graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>"
+  }
+}
