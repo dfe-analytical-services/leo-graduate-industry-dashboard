@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
       - name: Install Curl
-        run: sudo apt install libcurl4-openssl-dev libssl-dev
+        run: sudo apt install libcurl4-openssl-dev libssl-dev libproj-dev
       - name: Restore renv snapshot
         shell: Rscript {0}
         run: |
