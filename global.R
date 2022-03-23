@@ -26,6 +26,7 @@ library(sourcetools)
 library(shinyBS)
 library(readr)
 library(metathis)
+library(DescTools)
 
 cohort1 <- read.csv("data/pg_sankey_data_1_3_yag_dummy.csv")
 cohort2 <- read.csv("data/pg_sankey_data_3_5_yag_dummy.csv")
@@ -514,12 +515,12 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput){
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey1$SECTIONNAME.x <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1 <- cohort_sankey1 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
-  cohort_sankey1 <- cohort_sankey1[,-c(9,10,11)]
+  cohort_sankey1 <- cohort_sankey1[,-c(10,11,12)]
   
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- 'Other'
   
@@ -533,12 +534,12 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput){
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.x' = 'old'))
   cohort_sankey2$SECTIONNAME.x <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2 <- cohort_sankey2 %>%
     left_join(section_names, by = c('SECTIONNAME.y' = 'old'))
   cohort_sankey2$SECTIONNAME.y <- cohort_sankey2$new
-  cohort_sankey2 <- cohort_sankey2[,-c(9,10,11)]
+  cohort_sankey2 <- cohort_sankey2[,-c(10,11,12)]
   
   cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- 'Other'
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- 'Other'
