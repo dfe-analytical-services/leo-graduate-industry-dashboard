@@ -48,5 +48,3 @@ tidy_code_function <- function() {
   script_changes <- c(app_scripts, r_scripts, test_scripts)
   return(script_changes)
 }
-
-

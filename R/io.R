@@ -1,5 +1,5 @@
 
-read_cohort <- function(cohortfile='data/pg_sankey_data_1_3_yag_dummy.csv'){
+read_cohort <- function(cohortfile = "data/pg_sankey_data_1_3_yag_dummy.csv") {
   cohort <- read.csv(cohortfile)
   cohort <- subset(cohort, select = -X)
   cohort$SECTIONNAME.x <- StrCap(tolower(cohort$SECTIONNAME.x))
@@ -7,12 +7,14 @@ read_cohort <- function(cohortfile='data/pg_sankey_data_1_3_yag_dummy.csv'){
   return(cohort)
 }
 
-read_tables_data <- function(file){
+read_tables_data <- function(file) {
   tables_data <- fread(file) %>% select(-V1)
-  names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", 
-                          "ethnicity", "current_region", "FSM", "prior_attainment",
-                          "count", "earnings_median", "threshold", "qualification_TR", 
-                          "group_name")
+  names(tables_data) <- c(
+    "X", "YAG", "subject_name", "SECTIONNAME", "sex",
+    "ethnicity", "current_region", "FSM", "prior_attainment",
+    "count", "earnings_median", "threshold", "qualification_TR",
+    "group_name"
+  )
   tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
   tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
   tables_data$SECTIONNAME <- StrCap(tolower(tables_data$SECTIONNAME))
@@ -20,8 +22,8 @@ read_tables_data <- function(file){
 }
 
 
-cohort1 <- read_cohort('data/pg_sankey_data_1_3_yag_dummy.csv')
-cohort2 <- read_cohort('data/pg_sankey_data_3_5_yag_dummy.csv')
-cohort3 <- read_cohort('data/pg_sankey_data_1_5_yag_dummy.csv')
+cohort1 <- read_cohort("data/pg_sankey_data_1_3_yag_dummy.csv")
+cohort2 <- read_cohort("data/pg_sankey_data_3_5_yag_dummy.csv")
+cohort3 <- read_cohort("data/pg_sankey_data_1_5_yag_dummy.csv")
 
 table_data <- read_tables_data("data/pg_sic_crosstabs_earnings_data_cf_dummy.csv")
