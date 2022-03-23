@@ -262,7 +262,7 @@ app$snapshot(
   ),
   filename = "regional_3.json"
 )
-app$setInputs(subjectinput2 = "Medicine and dentistry", timeout_ = 2e+4)
+app$setInputs(subjectinput2 = "Medicine and dentistry", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
     input = regional_input,

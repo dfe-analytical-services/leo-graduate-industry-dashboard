@@ -49,7 +49,7 @@ tidy_code_function <- function() {
   return(script_changes)
 }
 
-
+source("R/read_data.R")
 cohort1 <- read_cohort("data/pg_sankey_data_1_3_yag_dummy.csv")
 cohort2 <- read_cohort("data/pg_sankey_data_3_5_yag_dummy.csv")
 cohort3 <- read_cohort("data/pg_sankey_data_1_5_yag_dummy.csv")
