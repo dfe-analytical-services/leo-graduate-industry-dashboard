@@ -1,32 +1,53 @@
-library(plyr)
-library(leaflet)
-library(sp)
-library(data.table)
-library(RColorBrewer)
-library(pander)
-library(dplyr)
-library(tidyr)
-library(shinycssloaders)
-library(plotly)
-library(DT)
-library(ggalt)
-library(magrittr)
-library(scales)
-library(openxlsx)
-library(sf)
-library(shiny)
-library(shinydashboard)
-library(shinyWidgets)
-library(networkD3)
-library(reactable)
-library(knitr)
-library(Hmisc)
-library(matrixStats)
-library(sourcetools)
-library(shinyBS)
-library(readr)
-library(metathis)
-library(DescTools)
+shhh <- suppressPackageStartupMessages # It's a library, so shhh!
+
+shhh(library(plyr))
+shhh(library(leaflet))
+shhh(library(sp))
+shhh(library(data.table))
+shhh(library(RColorBrewer))
+shhh(library(pander))
+shhh(library(dplyr))
+shhh(library(tidyr))
+shhh(library(shinycssloaders))
+shhh(library(plotly))
+shhh(library(DT))
+shhh(library(ggalt))
+shhh(library(magrittr))
+shhh(library(scales))
+shhh(library(openxlsx))
+shhh(library(sf))
+shhh(library(shiny))
+shhh(library(shinydashboard))
+shhh(library(shinyWidgets))
+shhh(library(networkD3))
+shhh(library(reactable))
+shhh(library(knitr))
+shhh(library(Hmisc))
+shhh(library(matrixStats))
+shhh(library(sourcetools))
+shhh(library(shinyBS))
+shhh(library(readr))
+shhh(library(metathis))
+shhh(library(DescTools))
+shhh(library(networkD3))
+
+# tidy_code_function -------------------------------------------------------------------------------
+
+tidy_code_function <- function() {
+  message("----------------------------------------")
+  message("App scripts")
+  message("----------------------------------------")
+  app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
+  message("R scripts")
+  message("----------------------------------------")
+  r_scripts <- eval(styler::style_dir("R/")$changed)
+  message("Test scripts")
+  message("----------------------------------------")
+  test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
+  script_changes <- c(app_scripts, r_scripts, test_scripts)
+  return(script_changes)
+}
+
 
 cohort1 <- read.csv("data/pg_sankey_data_1_3_yag_dummy.csv")
 cohort2 <- read.csv("data/pg_sankey_data_3_5_yag_dummy.csv")
@@ -161,7 +182,6 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
 
   # Now name nodes
 
-  library(networkD3)
   nodes <- data.frame("name" = c(
     unique(cohort_sankey1$SECTIONNAME.x),
     unique(c(cohort_sankey1$SECTIONNAME.y, cohort_sankey2$SECTIONNAME.x)),
@@ -320,8 +340,6 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   names(yag_table_final) <- c("INDUSTRY", "1 YAG", "3 YAG", "5 YAG")
 
-  library(reactable)
-  library(magrittr)
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
@@ -629,7 +647,6 @@ earnings_sankey <- function(subjectinput, sexinput, earningsinput) {
 
   # Now name nodes
 
-  library(networkD3)
   nodes <- data.frame("name" = c(
     unique(cohort_earnings1$SECTIONNAME.x),
     unique(cohort_earnings1$SECTIONNAME.y)
@@ -711,8 +728,6 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
 
   # reactable
 
-  library(reactable)
-  library(magrittr)
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
