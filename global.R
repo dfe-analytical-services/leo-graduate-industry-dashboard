@@ -64,4 +64,3 @@ tables_data <- fread("data/pg_sic_crosstabs_underlying_data_cf_with_threshold_du
 tables_earnings_data <- fread("data/pg_sic_crosstabs_earnings_data_cf_with_threshold_dummy.csv") %>% select(-V1)
 names(tables_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "threshold", "qualification_TR")
 names(tables_earnings_data) <- c("X", "YAG", "subject_name", "SECTIONNAME", "sex", "ethnicity", "current_region", "FSM", "prior_attainment", "count", "earnings_median", "threshold", "qualification_TR")
-
