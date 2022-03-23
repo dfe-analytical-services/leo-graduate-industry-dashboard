@@ -30,6 +30,7 @@ shhh(library(readr))
 shhh(library(metathis))
 shhh(library(DescTools))
 shhh(library(networkD3))
+shhh(library(styler))
 
 # tidy_code_function -------------------------------------------------------------------------------
 
