@@ -24,6 +24,8 @@ server <- function(input, output, session) {
 
   # Sankey functions --------------------------------------------------------
 
+  # Update the select input box in the Industry Flow analysis based on the 
+  # selected qualification.
   observe({
     if (input$qualinput != "All") {
       data_filtered <- qual_subjects %>%
@@ -32,7 +34,6 @@ server <- function(input, output, session) {
     } else {
       data_filtered <- qual_subjects
     }
-
     updateSelectizeInput(session, "indflow.subjectinput",
       choices = unique(data_filtered$subject_name)
     )
