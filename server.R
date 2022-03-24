@@ -39,17 +39,24 @@ server <- function(input, output, session) {
     )
   })
 
-  reactiveSankey <- reactive(sankey_chart(input$indflow.subjectinput, input$sexinput, input$qualinput))
-
+  # Here's the sankey network plot. It's calculated using reactive, which only 
+  # updates if any of the three input variables have changed since the last time
+  # it was called.
+  reactiveSankey <- reactive(
+    sankey_chart(
+      input$indflow.subjectinput, 
+      input$sexinput, 
+      input$qualinput)
+    )
   output$sankey <- renderSankeyNetwork({
     reactiveSankey()
   })
 
-  reactiveSankeyTitle <- reactive(sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput))
   output$sankey_title <- renderText({
-    reactiveSankeyTitle()
+    sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
 
+  # Here's the sankey table render.
   reactiveSankeyTable <- reactive({
     sankey_table(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
@@ -57,14 +64,21 @@ server <- function(input, output, session) {
     reactiveSankeyTable()
   })
 
-
-  output$sankeytext1 <- renderText({
+  # Putting both the text outputs in a reactive container as they've got some
+  # calculations embedded in them.
+  reactiveSankeyText1 <- reactive({
     sankeytext1(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
-
-  output$sankeytext2 <- renderText({
+  output$sankeytext1 <- renderText({
+    reactiveSankeyText1()
+  })
+  reactiveSankeyText2 <- reactive({
     sankeytext2(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
+  output$sankeytext2 <- renderText({
+    reactiveSankeyText2()
+  })
+  
 
   # output$earningstext <- renderText({
   #   earnings_text(input$indflow.subjectinput, input$sexinput)
@@ -95,9 +109,12 @@ server <- function(input, output, session) {
     )
   })
 
-  output$map <- renderLeaflet({
-    map_chart(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
-  })
+  reactiveMapData <- reactive({
+    map_chart(input$sectionnameinput, input$regions.subjectinput, 
+              input$countinput, input$YAGinput, input$qualinput2)
+    }
+  )
+  output$map <- renderLeaflet({reactiveMapData()})
 
   output$map_title <- renderText({
     map_title(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
@@ -115,9 +132,11 @@ server <- function(input, output, session) {
     maptable(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$regioninput, input$qualinput2)
   )
 
-  output$regional_sankey <- renderSankeyNetwork({
+  # Putting the regional sankey in a reactive as well as it's a bit intensive.
+  reactiveRegionalSankey <- reactive({
     regional_sankey(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
+  output$regional_sankey <- renderSankeyNetwork({reactiveRegionalSankey()})
 
   output$regional_sankey_title <- renderText({
     regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
@@ -125,15 +144,15 @@ server <- function(input, output, session) {
 
 
   # Tables functions --------------------------------------------------------
-
-
-  output$crosstab <- renderReactable({
+  reactiveSubjIndTable <- reactive({
     crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
   })
+  output$crosstab <- renderReactable({reactiveSubjIndTable()})
 
-  output$crosstab_backwards <- renderReactable({
+  reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2)
   })
+  output$crosstab_backwards <- renderReactable({reactiveIndSubjTable()})
 
   output$downloadData <- downloadHandler(
     filename = function() {
