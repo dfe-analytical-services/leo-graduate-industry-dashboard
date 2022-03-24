@@ -24,7 +24,7 @@ server <- function(input, output, session) {
 
   # Sankey functions --------------------------------------------------------
 
-  # Update the select input box in the Industry Flow analysis based on the 
+  # Update the select input box in the Industry Flow analysis based on the
   # selected qualification.
   observe({
     if (input$qualinput != "All") {
@@ -40,6 +40,7 @@ server <- function(input, output, session) {
   })
 
   reactiveSankey <- reactive(sankey_chart(input$indflow.subjectinput, input$sexinput, input$qualinput))
+
   output$sankey <- renderSankeyNetwork({
     reactiveSankey()
   })
@@ -82,16 +83,18 @@ server <- function(input, output, session) {
 
   observe({
     data_filtered <- regional_movement_data %>%
-      filter(qualification_TR == input$qualinput2,
-             SECTIONNAME == input$sectionnameinput,
-             count >= 3,
-             YAG == input$YAGinput) %>%
+      filter(
+        qualification_TR == input$qualinput2,
+        SECTIONNAME == input$sectionnameinput,
+        count >= 3,
+        YAG == input$YAGinput
+      ) %>%
       distinct()
     updateSelectizeInput(session, "regions.subjectinput",
-                         choices = unique(data_filtered$subject_name)
+      choices = unique(data_filtered$subject_name)
     )
   })
-  
+
   output$map <- renderLeaflet({
     map_chart(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
@@ -167,7 +170,7 @@ server <- function(input, output, session) {
       data_filtered <- qual_subjects
     }
     updateSelectInput(session, "subjInd.subjectinput",
-                         choices = unique(data_filtered$subject_name)
+      choices = unique(data_filtered$subject_name)
     )
   })
 

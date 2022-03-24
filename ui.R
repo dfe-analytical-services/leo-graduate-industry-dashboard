@@ -288,9 +288,9 @@ navbarPage("",
           selected = "Education"
         ),
         selectInput("regions.subjectinput",
-                    label = "Select a subject area",
-                    choices = unique(qual_subjects$subject_name),
-                    selected = "All"
+          label = "Select a subject area",
+          choices = unique(qual_subjects$subject_name),
+          selected = "All"
         ),
         selectInput("countinput",
           label = "View different statistics",
@@ -424,9 +424,9 @@ navbarPage("",
         conditionalPanel(
           condition = "input.countinput2 != 'subject_name'",
           selectInput("crosstabs.subjectinput",
-                      label = "Select a subject area",
-                      choices = unique(qual_subjects$subject_name),
-                      selected = "All"
+            label = "Select a subject area",
+            choices = unique(qual_subjects$subject_name),
+            selected = "All"
           )
         ),
         helpText("Download the current table as a csv"),

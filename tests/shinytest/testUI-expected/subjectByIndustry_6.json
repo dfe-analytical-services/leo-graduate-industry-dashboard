@@ -1,9 +1,9 @@
 {
   "input": {
     "countinput2": "ethnicity",
+    "crosstabs.subjectinput": "All",
     "earningsbutton": "Median earnings",
     "navbar": "subjectByIndustry",
-    "subjectinput3": "All",
     "thresholdinput": "All",
     "YAGinput2": "1"
   },
