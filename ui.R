@@ -423,7 +423,11 @@ navbarPage("",
         ),
         conditionalPanel(
           condition = "input.countinput2 != 'subject_name'",
-          uiOutput("subjectlist3")
+          selectInput("crosstabs.subjectinput",
+                      label = "Select a subject area",
+                      choices = unique(qual_subjects$subject_name),
+                      selected = "All"
+          )
         ),
         helpText("Download the current table as a csv"),
         downloadButton("downloadData", label = "Download table"), br(), br(),

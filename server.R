@@ -125,7 +125,7 @@ server <- function(input, output, session) {
 
 
   output$crosstab <- renderReactable({
-    crosstabs(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
+    crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
   })
 
   output$crosstab_backwards <- renderReactable({
@@ -134,16 +134,16 @@ server <- function(input, output, session) {
 
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste(input$subjectinput3, input$YAGinput2, "YAG", input$countinput2, "LEO_SIC.csv", sep = "_")
+      paste(input$crosstabs.subjectinput, input$YAGinput2, "YAG", input$countinput2, "LEO_SIC.csv", sep = "_")
     },
     content = function(file) {
-      write.csv(downloadcrosstabs(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput), file)
+      write.csv(downloadcrosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput), file)
     }
   )
 
 
   output$crosstab_title <- renderText({
-    crosstab_title(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3)
+    crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
   output$backwards_crosstab_title <- renderText({
@@ -151,18 +151,23 @@ server <- function(input, output, session) {
   })
 
   output$crosstab_text <- renderText({
-    crosstab_text(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput)
+    crosstab_text(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput)
   })
 
   output$sankeyhelp <- renderText({
     paste(a(h4("How to read this sankey?")))
   })
 
-  output$subjectlist3 <- renderUI({
-    selectInput("subjectinput3",
-      label = "Select a subject area",
-      choices = c(unique(tables_data$subject_name[which(tables_data$qualification_TR == input$qualinput3)])),
-      selected = "All"
+  observe({
+    if (input$qualinput != "All") {
+      data_filtered <- qual_subjects %>%
+        filter(qualification_TR == input$qualinput3) %>%
+        distinct()
+    } else {
+      data_filtered <- qual_subjects
+    }
+    updateSelectInput(session, "subjInd.subjectinput",
+                         choices = unique(data_filtered$subject_name)
     )
   })
 
