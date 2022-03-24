@@ -4,8 +4,6 @@
 # Sankey chart ------------------------------------------------------------
 
 sankey_chart <- function(subjectinput, sexinput, qualinput) {
-  print(paste(subjectinput,sexinput,qualinput))
-  print(colnames(cohort1))
   cohort_sankey1 <- cohort1 %>%
     filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 

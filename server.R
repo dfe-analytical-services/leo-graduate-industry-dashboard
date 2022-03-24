@@ -25,26 +25,35 @@ server <- function(input, output, session) {
   # Sankey functions --------------------------------------------------------
 
   observe({
-    if (input$qualinput != 'All'){
-    data_filtered <- qual_subjects %>%
-      filter(qualification_TR == input$qualinput) %>% 
-      distinct()
+    if (input$qualinput != "All") {
+      data_filtered <- qual_subjects %>%
+        filter(qualification_TR == input$qualinput) %>%
+        distinct()
     } else {
       data_filtered <- qual_subjects
     }
-                    
-  updateSelectizeInput(session,'indflow.subjectinput',
-                    choices=unique(data_filtered$subject_name))
+
+    updateSelectizeInput(session, "indflow.subjectinput",
+      choices = unique(data_filtered$subject_name)
+    )
   })
-  
+
   reactiveSankey <- reactive(sankey_chart(input$indflow.subjectinput, input$sexinput, input$qualinput))
-  output$sankey <- renderSankeyNetwork({reactiveSankey()})
+  output$sankey <- renderSankeyNetwork({
+    reactiveSankey()
+  })
 
   reactiveSankeyTitle <- reactive(sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput))
-  output$sankey_title <- renderText({reactiveSankeyTitle()})
+  output$sankey_title <- renderText({
+    reactiveSankeyTitle()
+  })
 
-  reactiveSankeyTable <- reactive({sankey_table(input$indflow.subjectinput, input$sexinput, input$qualinput)})
-  output$sankey_table <- renderReactable({reactiveSankeyTable()})
+  reactiveSankeyTable <- reactive({
+    sankey_table(input$indflow.subjectinput, input$sexinput, input$qualinput)
+  })
+  output$sankey_table <- renderReactable({
+    reactiveSankeyTable()
+  })
 
 
   output$sankeytext1 <- renderText({
