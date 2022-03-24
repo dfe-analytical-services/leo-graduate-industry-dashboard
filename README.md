@@ -44,9 +44,6 @@ Live version of the dashboard can be accessed at:
 
 ## How to use
 
-You should clearly lay out the steps needed to run your code here - generally, they will be similar to the below for Shiny apps:
-
-
 ### Running the app locally
 
 1. Clone or download the repo. 
