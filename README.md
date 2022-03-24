@@ -1,16 +1,8 @@
 <h1 align="center">
   <br>
-Shiny template app
+Longitudinal Education Outcomes - Graduate Industry Dashboard
   <br>
 </h1>
-
-This template repository is for making accessible apps for published statistics in DfE. It includes a basic accessible shiny app with DfE styling, as well as templates for additional best practice documents like this README script, pull request templates and codes of conduct for contributing.
-
-To use this template, click the green "use this template" button at the top of the repo. This will create a copy for you to work off of. 
-
-Please delete this header section when you are writing up the README file for your own app.
-
-Please contact statistics.DEVELOPMENT@education.gov.uk if you have any questions, or raise an issue on here if you have spotted something specific that we should change.
 
 <p align="center">
   <a href="#introduction">Introduction</a> |
@@ -24,27 +16,21 @@ Please contact statistics.DEVELOPMENT@education.gov.uk if you have any questions
 
 ## Introduction 
 
-Give a brief overview of what your app is for here. 
+Give a brief overview of what your app is for here. [Charlotte to update with a short overview, might be worth linking back to the publication on EES too?]
 
-Add links to where each version of your app is deployed - e.g.
+Live version of the dashboard can be accessed at:
 
-- Production - https://rsconnect/rsc/dfe-published-data-qa
-- Pre-production - https://rsconnect-pp/rsc/dfe-published-data-qa
-- Development - https://rsconnect-pp/rsc/dev-dfe-published-data-qa
-
+- [https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/](https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/)
 
 ---
 
 ## Requirements
 
-You should list out the software and programming skills needed, as well as any access requirements = e.g.
-
-
 ### i. Software requirements (for running locally)
 
 - Installation of R Studio 1.2.5033 or higher
 
-- Installation of R 3.6.2 or higher
+- Installation of R 4.1.3 or higher
 
 - Installation of RTools40 or higher
 
@@ -53,10 +39,6 @@ You should list out the software and programming skills needed, as well as any a
 - R at an intermediate level, [DfE R training guide](https://dfe-analytical-services.github.io/r-training-course/)
 
 - Particularly [R Shiny](https://shiny.rstudio.com/)
-
-### iii. Access requirements
-
-- Access to the Stats Development Team SQL modelling area (MA_SDT_NS_DATA) in T1PRANMSQL\SQLPROD,60125. Request access from Cam Race and forward on your request to the PDR mailbox (PupilData.REPOSITORY@education.gov.uk)
   
 ---
 
@@ -71,7 +53,7 @@ You should clearly lay out the steps needed to run your code here - generally, t
 
 2. Open the R project in R Studio.
 
-3. Run `renv::restore()` to install dependencies.
+3. Run `renv::restore()` to install dependencies. If it gets stuck on the BH package, manually download the zip from CRAN and unzip into your library folder.
 
 4. Run `shiny::runApp()` to run the app locally.
 
@@ -90,7 +72,9 @@ The function run_tests_locally() is created in the Rprofile script and is availa
 
 ### Deployment
 
-- The app is deployed to the department's shinyapps.io subscription using GitHub actions, to [https://department-for-education.shinyapps.io/la-school-places-scorecards](https://department-for-education.shinyapps.io/la-school-places-scorecards). The yaml file for this can be found in the .github/workflows folder.
+- The app is deployed to the department's shinyapps.io subscription using GitHub actions, to [https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/](https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/). The yaml file for this can be found in the .github/workflows folder.
+
+If you have any questions about the shinyapps.io subscription and deployment in DfE please contact the Statistics Development Team at [statistics.development@education.gov.uk](mailto:statistics.development@education.gov.uk).
 
 ### Navigation
 
@@ -105,7 +89,7 @@ The function tidy_code() is created in the Rprofile script and therefore is alwa
 
 ## How to contribute
 
-Details on how to contribute to the app should go here, e.g.
+Our contributing guidelines can be found at [https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard/blob/main/CONTRIBUTING.md](https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard/blob/main/CONTRIBUTING.md).
 
 ### Flagging issues
 
@@ -113,10 +97,10 @@ If you spot any issues with the application, please flag it in the "Issues" tab 
 
 ### Merging pull requests
 
-Only members of the Statistics Development team can merge pull requests. Add lauraselby, cjrace and sarahmwong as requested reviewers, and the team will review before merging.
+Only members of the development team can merge pull requests. Add chfoster, cjrace and rmbielby as requested reviewers, and the team will review before merging.
 
 ---
 
 ## Contact
 
-Add contact details of how to get in touch with your team.
+If you have any questions about the dashboard please contact [HE.LEO@education.gov.uk](mailto:HE.LEO@education.gov.uk).
