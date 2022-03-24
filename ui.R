@@ -158,7 +158,13 @@ navbarPage("",
           ),
           selected = "First degree"
         ),
-        uiOutput("sankeysubjectlist"),
+        
+        selectizeInput("indflow.subjectinput",
+                    label = "Select a subject area",
+                    choices = qual_subjects$subject_name,
+                    selected = "All"
+        ),
+        
         selectInput("sexinput",
           label = "View by graduate sex",
           choices = list(

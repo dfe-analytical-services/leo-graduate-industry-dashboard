@@ -24,46 +24,47 @@ server <- function(input, output, session) {
 
   # Sankey functions --------------------------------------------------------
 
-  output$sankeysubjectlist <- renderUI({
-    selectInput("subjectinput",
-      label = "Select a subject area",
-      choices = c(unique(tables_data$subject_name[which(tables_data$qualification_TR == input$qualinput)])),
-      selected = "All"
-    )
+  observe({
+    if (input$qualinput != 'All'){
+    data_filtered <- qual_subjects %>%
+      filter(qualification_TR == input$qualinput) %>% 
+      distinct()
+    } else {
+      data_filtered <- qual_subjects
+    }
+                    
+  updateSelectizeInput(session,'indflow.subjectinput',
+                    choices=unique(data_filtered$subject_name))
   })
+  
+  reactiveSankey <- reactive(sankey_chart(input$indflow.subjectinput, input$sexinput, input$qualinput))
+  output$sankey <- renderSankeyNetwork({reactiveSankey()})
 
-  output$sankey <- renderSankeyNetwork({
-    sankey_chart(input$subjectinput, input$sexinput, input$qualinput)
-  })
+  reactiveSankeyTitle <- reactive(sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput))
+  output$sankey_title <- renderText({reactiveSankeyTitle()})
 
-
-  output$sankey_title <- renderText({
-    sankey_title(input$subjectinput, input$sexinput, input$qualinput)
-  })
-
-  output$sankey_table <- renderReactable({
-    sankey_table(input$subjectinput, input$sexinput, input$qualinput)
-  })
+  reactiveSankeyTable <- reactive({sankey_table(input$indflow.subjectinput, input$sexinput, input$qualinput)})
+  output$sankey_table <- renderReactable({reactiveSankeyTable()})
 
 
   output$sankeytext1 <- renderText({
-    sankeytext1(input$subjectinput, input$sexinput, input$qualinput)
+    sankeytext1(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
 
   output$sankeytext2 <- renderText({
-    sankeytext2(input$subjectinput, input$sexinput, input$qualinput)
+    sankeytext2(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
 
   # output$earningstext <- renderText({
-  #   earnings_text(input$subjectinput, input$sexinput)
+  #   earnings_text(input$indflow.subjectinput, input$sexinput)
   # })
 
   # output$earnings_sankey <- renderSankeyNetwork({
-  #   earnings_sankey(input$subjectinput, input$sexinput, input$Earningsinput)
+  #   earnings_sankey(input$indflow.subjectinput, input$sexinput, input$Earningsinput)
   # })
   #
   # output$earnings_table <- renderReactable({
-  #   earnings_table(input$subjectinput, input$sexinput, input$Earningsinput)
+  #   earnings_table(input$indflow.subjectinput, input$sexinput, input$Earningsinput)
   # })
 
 

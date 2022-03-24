@@ -4,6 +4,8 @@
 # Sankey chart ------------------------------------------------------------
 
 sankey_chart <- function(subjectinput, sexinput, qualinput) {
+  print(paste(subjectinput,sexinput,qualinput))
+  print(colnames(cohort1))
   cohort_sankey1 <- cohort1 %>%
     filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
@@ -74,7 +76,6 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
   cohort_sankey1 <- cohort_sankey1[, -c(10, 11, 12)]
 
-  cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
   cohort_sankey1 <- cohort_sankey1 %>%
     group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
