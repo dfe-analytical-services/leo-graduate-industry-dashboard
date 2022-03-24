@@ -287,7 +287,11 @@ navbarPage("",
           ),
           selected = "Education"
         ),
-        uiOutput("mapsubjectlist"),
+        selectInput("regions.subjectinput",
+                    label = "Select a subject area",
+                    choices = unique(qual_subjects$subject_name),
+                    selected = "All"
+        ),
         selectInput("countinput",
           label = "View different statistics",
           choices = list(

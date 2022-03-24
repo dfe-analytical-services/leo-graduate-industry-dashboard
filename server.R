@@ -80,40 +80,44 @@ server <- function(input, output, session) {
 
   # Map functions -----------------------------------------------------------
 
-  output$mapsubjectlist <- renderUI({
-    selectInput("subjectinput2",
-      label = "Select a subject area",
-      choices = c(unique(regional_movement_data$subject_name[which(regional_movement_data$qualification_TR == input$qualinput2 & regional_movement_data$SECTIONNAME == input$sectionnameinput & regional_movement_data$count >= 3 & regional_movement_data$YAG == input$YAGinput)])),
-      selected = "All"
+  observe({
+    data_filtered <- regional_movement_data %>%
+      filter(qualification_TR == input$qualinput2,
+             SECTIONNAME == input$sectionnameinput,
+             count >= 3,
+             YAG == input$YAGinput) %>%
+      distinct()
+    updateSelectizeInput(session, "regions.subjectinput",
+                         choices = unique(data_filtered$subject_name)
     )
   })
-
+  
   output$map <- renderLeaflet({
-    map_chart(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_chart(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$map_title <- renderText({
-    map_title(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_title(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptext <- renderText({
-    map_text(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_text(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptext2 <- renderText({
-    map_text2(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_text2(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptable <- renderReactable(
-    maptable(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$regioninput, input$qualinput2)
+    maptable(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$regioninput, input$qualinput2)
   )
 
   output$regional_sankey <- renderSankeyNetwork({
-    regional_sankey(input$sectionnameinput, input$subjectinput2, input$YAGinput, input$qualinput2)
+    regional_sankey(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
 
   output$regional_sankey_title <- renderText({
-    regional_sankey_title(input$sectionnameinput, input$subjectinput2, input$YAGinput, input$qualinput2)
+    regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
 
 
