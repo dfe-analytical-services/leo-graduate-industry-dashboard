@@ -35,19 +35,20 @@ server <- function(input, output, session) {
       data_filtered <- qual_subjects
     }
     updateSelectizeInput(session, "indflow.subjectinput",
-      choices = unique(data_filtered$subject_name)
+      choices = unique(c("All", data_filtered$subject_name))
     )
   })
 
-  # Here's the sankey network plot. It's calculated using reactive, which only 
+  # Here's the sankey network plot. It's calculated using reactive, which only
   # updates if any of the three input variables have changed since the last time
   # it was called.
   reactiveSankey <- reactive(
     sankey_chart(
-      input$indflow.subjectinput, 
-      input$sexinput, 
-      input$qualinput)
+      input$indflow.subjectinput,
+      input$sexinput,
+      input$qualinput
     )
+  )
   output$sankey <- renderSankeyNetwork({
     reactiveSankey()
   })
@@ -78,7 +79,7 @@ server <- function(input, output, session) {
   output$sankeytext2 <- renderText({
     reactiveSankeyText2()
   })
-  
+
 
   # output$earningstext <- renderText({
   #   earnings_text(input$indflow.subjectinput, input$sexinput)
@@ -104,17 +105,21 @@ server <- function(input, output, session) {
         YAG == input$YAGinput
       ) %>%
       distinct()
-    updateSelectizeInput(session, "regions.subjectinput",
-      choices = unique(data_filtered$subject_name)
+    updateSelectizeInput(
+      session, "regions.subjectinput",
+      unique(c("All", data_filtered$subject_name))
     )
   })
 
   reactiveMapData <- reactive({
-    map_chart(input$sectionnameinput, input$regions.subjectinput, 
-              input$countinput, input$YAGinput, input$qualinput2)
-    }
-  )
-  output$map <- renderLeaflet({reactiveMapData()})
+    map_chart(
+      input$sectionnameinput, input$regions.subjectinput,
+      input$countinput, input$YAGinput, input$qualinput2
+    )
+  })
+  output$map <- renderLeaflet({
+    reactiveMapData()
+  })
 
   output$map_title <- renderText({
     map_title(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
@@ -136,7 +141,9 @@ server <- function(input, output, session) {
   reactiveRegionalSankey <- reactive({
     regional_sankey(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
-  output$regional_sankey <- renderSankeyNetwork({reactiveRegionalSankey()})
+  output$regional_sankey <- renderSankeyNetwork({
+    reactiveRegionalSankey()
+  })
 
   output$regional_sankey_title <- renderText({
     regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
@@ -147,12 +154,16 @@ server <- function(input, output, session) {
   reactiveSubjIndTable <- reactive({
     crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
   })
-  output$crosstab <- renderReactable({reactiveSubjIndTable()})
+  output$crosstab <- renderReactable({
+    reactiveSubjIndTable()
+  })
 
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2)
   })
-  output$crosstab_backwards <- renderReactable({reactiveIndSubjTable()})
+  output$crosstab_backwards <- renderReactable({
+    reactiveIndSubjTable()
+  })
 
   output$downloadData <- downloadHandler(
     filename = function() {
@@ -188,8 +199,9 @@ server <- function(input, output, session) {
     } else {
       data_filtered <- qual_subjects
     }
-    updateSelectInput(session, "subjInd.subjectinput",
-      choices = unique(data_filtered$subject_name)
+    updateSelectInput(
+      session, "subjInd.subjectinput",
+      unique(c("All", data_filtered$subject_name))
     )
   })
 

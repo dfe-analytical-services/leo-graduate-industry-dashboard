@@ -4,7 +4,7 @@ app$snapshotInit("testUI", screenshot = FALSE)
 
 
 # Testing the industry flow panel
-industryFlow_input <- c("navbar", "qualinput", "sexinput","indflow.subjectinput")
+industryFlow_input <- c("navbar", "qualinput", "sexinput", "indflow.subjectinput")
 industryFlow_output <- c(
   "sankey", "sankey_title", "sankeyhelp", "sankeysubjectlist",
   "sankeytext1", "sankeytext2"
