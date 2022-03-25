@@ -1,5 +1,6 @@
 {
   "input": {
+    "indflow.subjectinput": "All",
     "navbar": "industryFlow",
     "qualinput": "Level 8",
     "sexinput": "M"
@@ -566,28 +567,6 @@
     },
     "sankey_title": "<h4> Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male Level 8 graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
     "sankeyhelp": "<a>\n  <h4>How to read this sankey?<\/h4>\n<\/a>",
-    "sankeysubjectlist": {
-      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"subjectinput-label\" for=\"subjectinput\">Select a subject area<\/label>\n  <div>\n    <select id=\"subjectinput\"><option value=\"Agriculture, food and related studies\">Agriculture, food and related studies<\/option>\n<option value=\"Allied health\">Allied health<\/option>\n<option value=\"Architecture, building and planning\">Architecture, building and planning<\/option>\n<option value=\"Biosciences\">Biosciences<\/option>\n<option value=\"Business and management\">Business and management<\/option>\n<option value=\"Celtic studies\">Celtic studies<\/option>\n<option value=\"Chemistry\">Chemistry<\/option>\n<option value=\"Combined and general studies\">Combined and general studies<\/option>\n<option value=\"Computing\">Computing<\/option>\n<option value=\"Creative arts and design\">Creative arts and design<\/option>\n<option value=\"Economics\">Economics<\/option>\n<option value=\"Education and teaching\">Education and teaching<\/option>\n<option value=\"Engineering\">Engineering<\/option>\n<option value=\"English studies\">English studies<\/option>\n<option value=\"General, applied and forensic sciences\">General, applied and forensic sciences<\/option>\n<option value=\"Geography, earth and environmental studies\">Geography, earth and environmental studies<\/option>\n<option value=\"Health and social care\">Health and social care<\/option>\n<option value=\"History and archaeology\">History and archaeology<\/option>\n<option value=\"Languages and area studies\">Languages and area studies<\/option>\n<option value=\"Law\">Law<\/option>\n<option value=\"Materials and technology\">Materials and technology<\/option>\n<option value=\"Mathematical sciences\">Mathematical sciences<\/option>\n<option value=\"Media, journalism and communications\">Media, journalism and communications<\/option>\n<option value=\"Medical sciences\">Medical sciences<\/option>\n<option value=\"Medicine and dentistry\">Medicine and dentistry<\/option>\n<option value=\"Nursing and midwifery\">Nursing and midwifery<\/option>\n<option value=\"Performing arts\">Performing arts<\/option>\n<option value=\"Pharmacology, toxicology and pharmacy\">Pharmacology, toxicology and pharmacy<\/option>\n<option value=\"Philosophy and religious studies\">Philosophy and religious studies<\/option>\n<option value=\"Physics and astronomy\">Physics and astronomy<\/option>\n<option value=\"Politics\">Politics<\/option>\n<option value=\"Psychology\">Psychology<\/option>\n<option value=\"Sociology, social policy and anthropology\">Sociology, social policy and anthropology<\/option>\n<option value=\"Sport and exercise sciences\">Sport and exercise sciences<\/option>\n<option value=\"Veterinary sciences\">Veterinary sciences<\/option>\n<option value=\"All\" selected>All<\/option><\/select>\n    <script type=\"application/json\" data-for=\"subjectinput\" data-nonempty=\"\">{\"plugins\":[\"selectize-plugin-a11y\"]}<\/script>\n  <\/div>\n<\/div>",
-      "deps": [
-        {
-          "name": "selectize",
-          "version": "0.12.4",
-          "src": {
-            "href": "shared/selectize"
-          },
-          "meta": null,
-          "script": [
-            "js/selectize.min.js",
-            "accessibility/js/selectize-plugin-a11y.min.js"
-          ],
-          "stylesheet": "css/selectize.bootstrap3.css",
-          "head": null,
-          "attachment": null,
-          "package": null,
-          "all_files": true
-        }
-      ]
-    },
     "sankeytext1": "For male, Level 8 graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is Professional, scientific and technical activities (17.6%), and at five years after graduation it is Information and communication (14.5%).",
     "sankeytext2": "The most movement between one and three years after graduation is seen for Professional, scientific and technical activities, where 11,290 graduates move to Other. Between three and five\n                       years after graduation it's seen for Other where8,580 graduates moved to Information and communication."
   }

@@ -1,9 +1,9 @@
 {
   "input": {
     "countinput2": "sex",
+    "crosstabs.subjectinput": "All",
     "earningsbutton": "Median earnings",
     "navbar": "subjectByIndustry",
-    "subjectinput3": "All",
     "thresholdinput": "Below",
     "YAGinput2": "5"
   },

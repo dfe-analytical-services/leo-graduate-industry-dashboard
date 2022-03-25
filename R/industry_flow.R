@@ -74,6 +74,9 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1$SECTIONNAME.y <- cohort_sankey1$new
   cohort_sankey1 <- cohort_sankey1[, -c(10, 11, 12)]
 
+  # The following line had disappeared from my branch compared to main branch.
+  # I didn't mean to delete it and assuming no-one else has been on the branch,
+  # so assuming it was an accidental deletion.
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
   cohort_sankey1 <- cohort_sankey1 %>%

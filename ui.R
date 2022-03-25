@@ -158,7 +158,11 @@ navbarPage("",
           ),
           selected = "First degree"
         ),
-        uiOutput("sankeysubjectlist"),
+        selectizeInput("indflow.subjectinput",
+          label = "Select a subject area",
+          choices = unique(c("All", sort(qual_subjects$subject_name))),
+          selected = "All"
+        ),
         selectInput("sexinput",
           label = "View by graduate sex",
           choices = list(
@@ -283,7 +287,11 @@ navbarPage("",
           ),
           selected = "Education"
         ),
-        uiOutput("mapsubjectlist"),
+        selectInput("regions.subjectinput",
+          label = "Select a subject area",
+          choices = unique(c("All", sort(qual_subjects$subject_name))),
+          selected = "All"
+        ),
         selectInput("countinput",
           label = "View different statistics",
           choices = list(
@@ -415,7 +423,11 @@ navbarPage("",
         ),
         conditionalPanel(
           condition = "input.countinput2 != 'subject_name'",
-          uiOutput("subjectlist3")
+          selectInput("crosstabs.subjectinput",
+            label = "Select a subject area",
+            choices = unique(c("All", sort(qual_subjects$subject_name))),
+            selected = "All"
+          )
         ),
         helpText("Download the current table as a csv"),
         downloadButton("downloadData", label = "Download table"), br(), br(),

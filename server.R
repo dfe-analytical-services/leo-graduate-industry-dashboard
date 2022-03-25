@@ -24,111 +24,159 @@ server <- function(input, output, session) {
 
   # Sankey functions --------------------------------------------------------
 
-  output$sankeysubjectlist <- renderUI({
-    selectInput("subjectinput",
-      label = "Select a subject area",
-      choices = c(unique(tables_data$subject_name[which(tables_data$qualification_TR == input$qualinput)])),
-      selected = "All"
+  # Update the select input box in the Industry Flow analysis based on the
+  # selected qualification.
+  observe({
+    if (input$qualinput != "All") {
+      data_filtered <- qual_subjects %>%
+        filter(qualification_TR == input$qualinput) %>%
+        distinct()
+    } else {
+      data_filtered <- qual_subjects
+    }
+    updateSelectizeInput(session, "indflow.subjectinput",
+      choices = unique(c("All", data_filtered$subject_name))
     )
   })
 
+  # Here's the sankey network plot. It's calculated using reactive, which only
+  # updates if any of the three input variables have changed since the last time
+  # it was called.
+  reactiveSankey <- reactive(
+    sankey_chart(
+      input$indflow.subjectinput,
+      input$sexinput,
+      input$qualinput
+    )
+  )
   output$sankey <- renderSankeyNetwork({
-    sankey_chart(input$subjectinput, input$sexinput, input$qualinput)
+    reactiveSankey()
   })
-
 
   output$sankey_title <- renderText({
-    sankey_title(input$subjectinput, input$sexinput, input$qualinput)
+    sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput)
   })
 
+  # Here's the sankey table render.
+  reactiveSankeyTable <- reactive({
+    sankey_table(input$indflow.subjectinput, input$sexinput, input$qualinput)
+  })
   output$sankey_table <- renderReactable({
-    sankey_table(input$subjectinput, input$sexinput, input$qualinput)
+    reactiveSankeyTable()
   })
 
-
+  # Putting both the text outputs in a reactive container as they've got some
+  # calculations embedded in them.
+  reactiveSankeyText1 <- reactive({
+    sankeytext1(input$indflow.subjectinput, input$sexinput, input$qualinput)
+  })
   output$sankeytext1 <- renderText({
-    sankeytext1(input$subjectinput, input$sexinput, input$qualinput)
+    reactiveSankeyText1()
+  })
+  reactiveSankeyText2 <- reactive({
+    sankeytext2(input$indflow.subjectinput, input$sexinput, input$qualinput)
+  })
+  output$sankeytext2 <- renderText({
+    reactiveSankeyText2()
   })
 
-  output$sankeytext2 <- renderText({
-    sankeytext2(input$subjectinput, input$sexinput, input$qualinput)
-  })
 
   # output$earningstext <- renderText({
-  #   earnings_text(input$subjectinput, input$sexinput)
+  #   earnings_text(input$indflow.subjectinput, input$sexinput)
   # })
 
   # output$earnings_sankey <- renderSankeyNetwork({
-  #   earnings_sankey(input$subjectinput, input$sexinput, input$Earningsinput)
+  #   earnings_sankey(input$indflow.subjectinput, input$sexinput, input$Earningsinput)
   # })
   #
   # output$earnings_table <- renderReactable({
-  #   earnings_table(input$subjectinput, input$sexinput, input$Earningsinput)
+  #   earnings_table(input$indflow.subjectinput, input$sexinput, input$Earningsinput)
   # })
 
 
   # Map functions -----------------------------------------------------------
 
-  output$mapsubjectlist <- renderUI({
-    selectInput("subjectinput2",
-      label = "Select a subject area",
-      choices = c(unique(regional_movement_data$subject_name[which(regional_movement_data$qualification_TR == input$qualinput2 & regional_movement_data$SECTIONNAME == input$sectionnameinput & regional_movement_data$count >= 3 & regional_movement_data$YAG == input$YAGinput)])),
-      selected = "All"
+  observe({
+    data_filtered <- regional_movement_data %>%
+      filter(
+        qualification_TR == input$qualinput2,
+        SECTIONNAME == input$sectionnameinput,
+        count >= 3,
+        YAG == input$YAGinput
+      ) %>%
+      distinct()
+    updateSelectizeInput(
+      session, "regions.subjectinput",
+      unique(c("All", data_filtered$subject_name))
     )
   })
 
+  reactiveMapData <- reactive({
+    map_chart(
+      input$sectionnameinput, input$regions.subjectinput,
+      input$countinput, input$YAGinput, input$qualinput2
+    )
+  })
   output$map <- renderLeaflet({
-    map_chart(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    reactiveMapData()
   })
 
   output$map_title <- renderText({
-    map_title(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_title(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptext <- renderText({
-    map_text(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_text(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptext2 <- renderText({
-    map_text2(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$qualinput2)
+    map_text2(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$qualinput2)
   })
 
   output$maptable <- renderReactable(
-    maptable(input$sectionnameinput, input$subjectinput2, input$countinput, input$YAGinput, input$regioninput, input$qualinput2)
+    maptable(input$sectionnameinput, input$regions.subjectinput, input$countinput, input$YAGinput, input$regioninput, input$qualinput2)
   )
 
+  # Putting the regional sankey in a reactive as well as it's a bit intensive.
+  reactiveRegionalSankey <- reactive({
+    regional_sankey(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
+  })
   output$regional_sankey <- renderSankeyNetwork({
-    regional_sankey(input$sectionnameinput, input$subjectinput2, input$YAGinput, input$qualinput2)
+    reactiveRegionalSankey()
   })
 
   output$regional_sankey_title <- renderText({
-    regional_sankey_title(input$sectionnameinput, input$subjectinput2, input$YAGinput, input$qualinput2)
+    regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
 
 
   # Tables functions --------------------------------------------------------
-
-
+  reactiveSubjIndTable <- reactive({
+    crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
+  })
   output$crosstab <- renderReactable({
-    crosstabs(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
+    reactiveSubjIndTable()
   })
 
-  output$crosstab_backwards <- renderReactable({
+  reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2)
+  })
+  output$crosstab_backwards <- renderReactable({
+    reactiveIndSubjTable()
   })
 
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste(input$subjectinput3, input$YAGinput2, "YAG", input$countinput2, "LEO_SIC.csv", sep = "_")
+      paste(input$crosstabs.subjectinput, input$YAGinput2, "YAG", input$countinput2, "LEO_SIC.csv", sep = "_")
     },
     content = function(file) {
-      write.csv(downloadcrosstabs(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput), file)
+      write.csv(downloadcrosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput), file)
     }
   )
 
 
   output$crosstab_title <- renderText({
-    crosstab_title(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3)
+    crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
   output$backwards_crosstab_title <- renderText({
@@ -136,18 +184,24 @@ server <- function(input, output, session) {
   })
 
   output$crosstab_text <- renderText({
-    crosstab_text(input$subjectinput3, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput)
+    crosstab_text(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput)
   })
 
   output$sankeyhelp <- renderText({
     paste(a(h4("How to read this sankey?")))
   })
 
-  output$subjectlist3 <- renderUI({
-    selectInput("subjectinput3",
-      label = "Select a subject area",
-      choices = c(unique(tables_data$subject_name[which(tables_data$qualification_TR == input$qualinput3)])),
-      selected = "All"
+  observe({
+    if (input$qualinput != "All") {
+      data_filtered <- qual_subjects %>%
+        filter(qualification_TR == input$qualinput3) %>%
+        distinct()
+    } else {
+      data_filtered <- qual_subjects
+    }
+    updateSelectInput(
+      session, "subjInd.subjectinput",
+      unique(c("All", data_filtered$subject_name))
     )
   })
 
