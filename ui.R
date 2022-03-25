@@ -385,11 +385,6 @@ navbarPage("",
           choices = list("Proportions", "Median earnings"),
           selected = "Proportions"
         ),
-        radioGroupButtons("thresholdinput",
-          label = "View for only above or below the student loan repayment threshold (plan 2 in 2018/19: £25,000)",
-          choices = list("All", "Above", "Below"),
-          selected = "All"
-        ),
         selectInput("countinput2",
           label = "Choose a breakdown",
           choices = list(

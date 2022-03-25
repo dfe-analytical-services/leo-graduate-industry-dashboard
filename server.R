@@ -152,7 +152,7 @@ server <- function(input, output, session) {
 
   # Tables functions --------------------------------------------------------
   reactiveSubjIndTable <- reactive({
-    crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton, input$thresholdinput)
+    crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)
   })
   output$crosstab <- renderReactable({
     reactiveSubjIndTable()
@@ -170,7 +170,7 @@ server <- function(input, output, session) {
       paste(input$crosstabs.subjectinput, input$YAGinput2, "YAG", input$countinput2, "LEO_SIC.csv", sep = "_")
     },
     content = function(file) {
-      write.csv(downloadcrosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput), file)
+      write.csv(downloadcrosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3), file)
     }
   )
 
@@ -184,7 +184,7 @@ server <- function(input, output, session) {
   })
 
   output$crosstab_text <- renderText({
-    crosstab_text(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$thresholdinput)
+    crosstab_text(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
   output$sankeyhelp <- renderText({
