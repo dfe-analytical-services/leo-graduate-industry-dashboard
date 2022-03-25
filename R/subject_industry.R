@@ -615,7 +615,7 @@ crosstabs <- function(subjectinput, YAGinput, countinput, qualinput, buttoninput
     crosstabs_data_table <- tables_data %>%
       filter(
         subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == qualinput , group_name == "All"
+        prior_attainment == "All", qualification_TR == qualinput, group_name == "All"
       ) %>%
       group_by(sex, SECTIONNAME, group_name) %>%
       summarise(n = sum(count)) %>%
