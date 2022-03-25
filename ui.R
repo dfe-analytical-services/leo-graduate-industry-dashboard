@@ -310,9 +310,9 @@ navbarPage("",
         div(
           style = "color:#ffffff",
           strong("Summary"),
-          textOutput("maptext"),
+          htmlOutput("maptext"),
           br(),
-          textOutput("maptext2")
+          htmlOutput("maptext2")
         )
       ),
 
