@@ -48,7 +48,7 @@ navbarPage("",
             h4(actionLink("link_to_regional_tab", "Regional analysis")),
             paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
             br(),
-            h3("Tables"),
+            h4("Tables"),
             h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
             h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
             paste(tables_text), # stored in www/text, read in via R/dashboard_text.R

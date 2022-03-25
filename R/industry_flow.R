@@ -519,7 +519,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   sankeytext2 <- paste("The most movement between one and three years after graduation is seen for ",
     first(cohort_sankey1_text$SECTIONNAME.x), ", where ", first(cohort_sankey1_text$count),
     " graduates move to ", first(cohort_sankey1_text$SECTIONNAME.y), ". Between three and five
-                       years after graduation it's seen for ", first(cohort_sankey2_text$SECTIONNAME.x), " where",
+                       years after graduation it's seen for ", first(cohort_sankey2_text$SECTIONNAME.x), " where ",
     first(cohort_sankey2_text$count), " graduates moved to ", first(cohort_sankey2_text$SECTIONNAME.y),
     ".",
     sep = ""
