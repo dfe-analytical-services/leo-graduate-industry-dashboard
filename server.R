@@ -107,7 +107,7 @@ server <- function(input, output, session) {
       distinct()
     updateSelectizeInput(
       session, "regions.subjectinput",
-      unique(c("All", data_filtered$subject_name))
+      choices = unique(c("All", data_filtered$subject_name))
     )
   })
 
