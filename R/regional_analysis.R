@@ -202,8 +202,9 @@ map_text <- function(sectionnameinput, subjectinput, countinput, YAGinput, quali
                     studying there was <b>", first(mapdata_trained$region), "</b>. The region with the lowest number of students studying
                     there was <b>", last(mapdata_trained$region), "</b>. The region with the highest number of graduates living
                     there ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
-                    least graduates living there was <b>", last(mapdata_current$region), "</b>.", 
-                    sep = "''")
+                    least graduates living there was <b>", last(mapdata_current$region), "</b>.",
+    sep = "''"
+  )
 
   return(map_text)
 }

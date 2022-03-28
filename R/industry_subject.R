@@ -115,7 +115,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
                                 median earnings of females in this industry were <b>£", top_industry_female$Female, "</b>. The industry
                                 with the highest proportion of male graduates was <b>",
         first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male), "</b> and the median earnings of males
-                                in this industry were <b>£", top_industry_male$Male,"</b>.",
+                                in this industry were <b>£", top_industry_male$Male, "</b>.",
         sep = ""
       )
     )
@@ -145,7 +145,7 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
     )
 
     ifelse(abs(round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1) - round(sum(crosstabs_data$Male[1:2] * 100), digits = 1)) > 5,
-      sextext2 <- paste("<b>",round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1), "%</b> of female graduates are concentrated in the top 2
+      sextext2 <- paste("<b>", round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1), "%</b> of female graduates are concentrated in the top 2
                            industries (either <b>", first(crosstabs_data$SECTIONNAME), "</b> or <b>", crosstabs_data$SECTIONNAME[2], "</b>),
                            whereas for male graduates this is ", round(sum(crosstabs_data$Male[1:2] * 100), digits = 1), "%.", sep = ""),
       sextext2 <- paste("")
@@ -363,14 +363,14 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
     }
 
     if (length(uniqueethnicity) == 1) {
-      ethnicitytext <- paste("<b>",uniqueethnicity, "</b> is the most common industry for all ethnicities.")
+      ethnicitytext <- paste("<b>", uniqueethnicity, "</b> is the most common industry for all ethnicities.")
     } else if (length(uniqueethnicity) == 2) {
       data1 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[1])
       data2 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[2])
 
-      ethnicitytext <- paste("<b>",uniqueregions[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+      ethnicitytext <- paste("<b>", uniqueregions[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
                       and <b>", uniqueregions[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
     } else if (length(uniqueethnicity) == 3) {
       data1 <- ethnicityfirstdata %>%
@@ -380,7 +380,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data3 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[3])
 
-      ethnicitytext <- paste("<b>",
+      ethnicitytext <- paste(
+        "<b>",
         uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
                       <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, ,and <b>",
         uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates."
@@ -395,7 +396,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data4 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[4])
 
-      ethnicitytext <- paste("<b>",
+      ethnicitytext <- paste(
+        "<b>",
         uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
                       <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
         uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, and <b>",
@@ -413,7 +415,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data5 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[5])
 
-      ethnicitytext <- paste("<b>",
+      ethnicitytext <- paste(
+        "<b>",
         uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
                       <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
         uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, <b>",
@@ -434,7 +437,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data6 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[6])
 
-      ethnicitytext <- paste("<b>",
+      ethnicitytext <- paste(
+        "<b>",
         uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
                       <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
         uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, <b>",
@@ -596,7 +600,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data3 <- regionfirstdata %>%
         filter(regionfirstdata == uniqueregions[3])
 
-      regiontext <- paste("<b>", 
+      regiontext <- paste(
+        "<b>",
         uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), " and <b>",
         uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), "."
@@ -611,7 +616,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data4 <- regionfirstdata %>%
         filter(regionfirstdata == uniqueregions[4])
 
-      regiontext <- paste("<b>",
+      regiontext <- paste(
+        "<b>",
         uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ", <b>",
         uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), " and <b>",
@@ -629,7 +635,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data5 <- regionfirstdata %>%
         filter(regionfirstdata == uniqueregions[5])
 
-      regiontext <- paste("<b>",
+      regiontext <- paste(
+        "<b>",
         uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ", <b>",
         uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), ", <b>",
@@ -650,7 +657,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data6 <- regionfirstdata %>%
         filter(regionfirstdata == uniqueregions[6])
 
-      regiontext <- paste("<b>",
+      regiontext <- paste(
+        "<b>",
         uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ", <b>",
         uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), ", <b>",
@@ -871,7 +879,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data3 <- qualfirstdata %>%
         filter(qualfirstdata == uniquequal[3])
 
-      qualtext <- paste("<b>", 
+      qualtext <- paste(
+        "<b>",
         uniquequal[1], "</b> was the most common industry for ", textprod(data1), " graduates,
                       <b>", uniquequal[2], "</b> was the most common industry for ", textprod(data2), " graduates, and <b>",
         uniquequal[3], "</b> was the most common industry for ", textprod(data3), " graduates."
@@ -886,7 +895,8 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data4 <- qualfirstdata %>%
         filter(qualfirstdata == uniquequal[4])
 
-      qualtext <- paste("<b>", 
+      qualtext <- paste(
+        "<b>",
         uniquequal[1], "</b> was the most common industry for ", textprod(data1), " graduates,
                       <b>", uniquequal[2], "</b> was the most common industry for ", textprod(data2), " graduates, <b>",
         uniquequal[3], "</b> was the most common industry for ", textprod(data3), " graduates, and <b>",
