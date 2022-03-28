@@ -106,71 +106,71 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
 
     ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male),
-      sectiontext <- paste("graduates is the same for both female and male graduates (", first(crosstabs_data$SECTIONNAME), "). The median
-                                earnings for females in this industry  were £", top_industry$Female, " and for males were £",
-        top_industry$Male, ".",
+      sectiontext <- paste("graduates is the same for both female and male graduates (<b>", first(crosstabs_data$SECTIONNAME), "</b>). The median
+                                earnings for females in this industry  were <b>£", top_industry$Female, "</b> and for males were <b>£",
+        top_industry$Male, "</b>.",
         sep = ""
       ),
-      sectiontext <- paste("female graduates is ", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female), ", and the
-                                median earnings of females in this industry were £", top_industry_female$Female, ". The industry
-                                with the highest proportion of male graduates was ",
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male), " and the median earnings of males
-                                in this industry were £", top_industry_male$Male,
+      sectiontext <- paste("female graduates is <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female), "</b>, and the
+                                median earnings of females in this industry were <b>£", top_industry_female$Female, "</b>. The industry
+                                with the highest proportion of male graduates was <b>",
+        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male), "</b> and the median earnings of males
+                                in this industry were <b>£", top_industry_male$Male,"</b>.",
         sep = ""
       )
     )
 
     ifelse(first(crosstabs_data$diff, order_by = -crosstabs_data$abs) > 0,
       sextext <- paste(
-        "the proportion of male graduates is ", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-        " percentage points higher than the proportion of female graduates."
+        "the proportion of male graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+        " percentage points higher</b> than the proportion of female graduates."
       ),
       sextext <- paste(
-        "the proportion of female graduates is ", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-        " percentage points higher than the proportion of male graduates."
+        "the proportion of female graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+        " percentage points higher</b> than the proportion of male graduates."
       )
     )
 
     ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
-      sextextearnings <- paste("the median earnings of male graduates were £",
+      sextextearnings <- paste("the median earnings of male graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher than the medain earnings of female graduates.",
+        "  higher</b> than the medain earnings of female graduates.",
         sep = ""
       ),
-      sextextearnings <- paste("the median earnings of female graduates were £",
+      sextextearnings <- paste("the median earnings of female graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher than the median earnings of male graduates.",
+        "  higher</b> than the median earnings of male graduates.",
         sep = ""
       )
     )
 
     ifelse(abs(round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1) - round(sum(crosstabs_data$Male[1:2] * 100), digits = 1)) > 5,
-      sextext2 <- paste(round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1), "% of female graduates are concentrated in the top 2
-                           industries (either ", first(crosstabs_data$SECTIONNAME), " or ", crosstabs_data$SECTIONNAME[2], "),
+      sextext2 <- paste("<b>",round(sum(crosstabs_data$Female[1:2]) * 100, digits = 1), "%</b> of female graduates are concentrated in the top 2
+                           industries (either <b>", first(crosstabs_data$SECTIONNAME), "</b> or <b>", crosstabs_data$SECTIONNAME[2], "</b>),
                            whereas for male graduates this is ", round(sum(crosstabs_data$Male[1:2] * 100), digits = 1), "%.", sep = ""),
       sextext2 <- paste("")
     )
 
     ifelse(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male) > first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female),
-      sextextearnings2 <- paste("The group with the highest earnings was male graduates in the ",
-        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Male), " industry
-           (median earnings of £", format(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male), big.mark = ",", scientific = FALSE), ").",
+      sextextearnings2 <- paste("The group with the highest earnings was male graduates in the <b>",
+        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Male), "</b> industry
+           (median earnings of <b>£", format(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male), big.mark = ",", scientific = FALSE), "</b>).",
         sep = ""
       ),
-      sextextearnings2 <- paste("The group with the highest earnings was female graduates in the ",
+      sextextearnings2 <- paste("The group with the highest earnings was female graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Female),
-        "industry (median earnings of £", format(first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female), big.mark = ",", scientific = FALSE),
-        ").",
+        " </b> industry (median earnings of <b>£", format(first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female), big.mark = ",", scientific = FALSE),
+        "</b>).",
         sep = ""
       )
     )
 
     crosstab_text <- paste("For ", qualinput, " graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
-      "The biggest difference in proportions is seen in ", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
-      " where ", sextext, br(), br(),
-      "The biggest difference in median earnings is seen in ", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
-      " where ", sextextearnings, br(), br(),
+      "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+      "</b> where ", sextext, br(), br(),
+      "The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
+      "</b> where ", sextextearnings, br(), br(),
       sextextearnings2, br(), br(),
       sextext2,
       sep = ""
@@ -236,64 +236,64 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
 
     ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM),
-      sectiontext <- paste("graduates was the same for both non-FSM and FSM graduates (", first(crosstabs_data$SECTIONNAME), "), where median
-                                earnings for non-FSM graduates were £", top_industry$`non-FSM`, " and for FSM graduates were £", top_industry$FSM, ".",
+      sectiontext <- paste("graduates was the same for both non-FSM and FSM graduates (<b>", first(crosstabs_data$SECTIONNAME), "</b>), where median
+                                earnings for non-FSM graduates were <b>£", top_industry$`non-FSM`, "</b> and for FSM graduates were <b>£", top_industry$FSM, "</b>.",
         sep = ""
       ),
-      sectiontext <- paste("non-FSM graduates was", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`), " and the median
-                                earnings of non-FSM graduates in this industry were £", top_industry_nonfsm$`non-FSM`, ". The
-                                industry with the highest proportion of FSM graduates was ",
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM), " and the median earnings of FSM
-                                graduates in this industry were £", top_industry_FSM$FSM, ".",
+      sectiontext <- paste("non-FSM graduates was <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`), "</b> and the median
+                                earnings of non-FSM graduates in this industry were <b>£", top_industry_nonfsm$`non-FSM`, "</b>. The
+                                industry with the highest proportion of FSM graduates was <b>",
+        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM), "</b> and the median earnings of FSM
+                                graduates in this industry were <b>£", top_industry_FSM$FSM, "</b>.",
         sep = ""
       )
     )
 
     ifelse(first(crosstabs_data$diff, order_by = -crosstabs_data$abs) > 0,
       FSMtext <- paste(
-        "the proportion of non-FSM graduates is", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-        "percentage points higher than the proportion of FSM graduates."
+        "the proportion of non-FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+        "percentage points higher </b> than the proportion of FSM graduates."
       ),
       FSMtext <- paste(
-        "the proportion of FSM graduates is", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-        "percentage points higher than the proportion of non-FSM graduates."
+        "the proportion of FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+        "percentage points higher </b> than the proportion of non-FSM graduates."
       )
     )
 
     ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
-      FSMearningstext <- paste("the median earnings of non-FSM graduates were £",
+      FSMearningstext <- paste("the median earnings of non-FSM graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher than the medain earnings of FSM graduates.",
+        "  higher </b> than the medain earnings of FSM graduates.",
         sep = ""
       ),
-      FSMearningstext <- paste("the median earnings of FSM graduates were £",
+      FSMearningstext <- paste("the median earnings of FSM graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher than the median earnings of non-FSM graduates.",
+        "  higher</b> than the median earnings of non-FSM graduates.",
         sep = ""
       )
     )
 
     ifelse(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`) > first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM),
-      FSMearningstext2 <- paste("The group with the highest earnings was non-FSM graduates in the ",
-        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$`non-FSM`), "
-                                     industry (median earnings of £",
-        format(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`), big.mark = ",", scientific = FALSE), ").",
+      FSMearningstext2 <- paste("The group with the highest earnings was non-FSM graduates in the <b>",
+        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$`non-FSM`), "</b>
+                                     industry (median earnings of <b>£",
+        format(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`), big.mark = ",", scientific = FALSE), "</b>).",
         sep = ""
       ),
-      FSMearningstext2 <- paste("The group with the highest earnings was FSM graduates in the ",
-        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$FSM), "
-                                     industry (median earnings of £",
-        format(first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM), big.mark = ",", scientific = FALSE), ").",
+      FSMearningstext2 <- paste("The group with the highest earnings was FSM graduates in the <b>",
+        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$FSM), "</b>
+                                     industry (median earnings of <b>£",
+        format(first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM), big.mark = ",", scientific = FALSE), "</b>).",
         sep = ""
       )
     )
 
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
-      "The biggest difference in proportions is seen in ", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
-      " where ", FSMtext, br(), br(),
-      "The biggest difference in median earnings was seen in ", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
-      " where ", FSMearningstext, br(), br(),
+      "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+      "</b> where ", FSMtext, br(), br(),
+      "The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
+      "</b> where ", FSMearningstext, br(), br(),
       FSMearningstext2,
       sep = ""
     )
