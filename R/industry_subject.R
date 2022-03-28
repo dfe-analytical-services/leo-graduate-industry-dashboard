@@ -363,15 +363,15 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
     }
 
     if (length(uniqueethnicity) == 1) {
-      ethnicitytext <- paste(uniqueethnicity, " is the most common industry for all ethnicities.")
+      ethnicitytext <- paste("<b>",uniqueethnicity, "</b> is the most common industry for all ethnicities.")
     } else if (length(uniqueethnicity) == 2) {
       data1 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[1])
       data2 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[2])
 
-      ethnicitytext <- paste(uniqueregions[1], " was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      and ", uniqueregions[2], " was the most common industry for ", textprod(data2), " ethnicity graduates.")
+      ethnicitytext <- paste("<b>",uniqueregions[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      and <b>", uniqueregions[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
     } else if (length(uniqueethnicity) == 3) {
       data1 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[1])
@@ -380,10 +380,10 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data3 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[3])
 
-      ethnicitytext <- paste(
-        uniqueethnicity[1], " was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      ", uniqueethnicity[2], " was the most common industry for ", textprod(data2), " ethnicity graduates, ,and ",
-        uniqueethnicity[3], " was the most common industry for ", textprod(data3), " ethnicity graduates."
+      ethnicitytext <- paste("<b>",
+        uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, ,and <b>",
+        uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates."
       )
     } else if (length(uniqueethnicity) == 4) {
       data1 <- ethnicityfirstdata %>%
@@ -395,11 +395,11 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data4 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[4])
 
-      ethnicitytext <- paste(
-        uniqueethnicity[1], " was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      ", uniqueethnicity[2], " was the most common industry for ", textprod(data2), " ethnicity graduates, ",
-        uniqueethnicity[3], " was the most common industry for ", textprod(data3), " ethnicity graduates, and ",
-        uniqueethnicity[4], " was the most common industry for ", textprod(data4), " ethnicity graduates."
+      ethnicitytext <- paste("<b>",
+        uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
+        uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, and <b>",
+        uniqueethnicity[4], "</b> was the most common industry for ", textprod(data4), " ethnicity graduates."
       )
     } else if (length(uniqueethnicity) == 5) {
       data1 <- ethnicityfirstdata %>%
@@ -413,12 +413,12 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data5 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[5])
 
-      ethnicitytext <- paste(
-        uniqueethnicity[1], " was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      ", uniqueethnicity[2], " was the most common industry for ", textprod(data2), " ethnicity graduates, ",
-        uniqueethnicity[3], " was the most common industry for ", textprod(data3), " ethnicity graduates, ",
-        uniqueethnicity[4], " was the most common industry for ", textprod(data4), " ethnicity graduates, and ",
-        uniqueethnicity[5], " was the most common industry for ", textprod(data5), " ethnicity graduates."
+      ethnicitytext <- paste("<b>",
+        uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
+        uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, <b>",
+        uniqueethnicity[4], "</b> was the most common industry for ", textprod(data4), " ethnicity graduates, and <b>",
+        uniqueethnicity[5], "</b> was the most common industry for ", textprod(data5), " ethnicity graduates."
       )
     } else if (length(uniqueethnicity) == 6) {
       data1 <- ethnicityfirstdata %>%
@@ -434,13 +434,13 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
       data6 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[6])
 
-      ethnicitytext <- paste(
-        uniqueethnicity[1], " was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      ", uniqueethnicity[2], " was the most common industry for ", textprod(data2), " ethnicity graduates, ",
-        uniqueethnicity[3], " was the most common industry for ", textprod(data3), " ethnicity graduates, ",
-        uniqueethnicity[4], " was the most common industry for ", textprod(data4), " ethnicity graduates, ",
-        uniqueethnicity[5], " was the most common industry for ", textprod(data5), " ethnicity graduates, and ",
-        uniqueethnicity[6], " was the most common industry for ", textprod(data6), " ethnicity graduates."
+      ethnicitytext <- paste("<b>",
+        uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, <b>",
+        uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates, <b>",
+        uniqueethnicity[4], "</b> was the most common industry for ", textprod(data4), " ethnicity graduates, <b>",
+        uniqueethnicity[5], "</b> was the most common industry for ", textprod(data5), " ethnicity graduates, and <b>",
+        uniqueethnicity[6], "</b> was the most common industry for ", textprod(data6), " ethnicity graduates."
       )
     }
 
@@ -485,16 +485,16 @@ crosstab_text <- function(subjectinput, YAGinput, countinput, qualinput) {
 
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       ethnicitytext,
-      br(), br(), "The industry with the largest range in proportions was ", first(biggestdiff$SECTIONNAME), "
+      br(), br(), "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ", last(row.names(biggestdiff2)), "
                            ethnicity graduates had the lowest proportion.", br(), br(),
-      "The industry with the largest range in median earnings was ", first(biggestdiffearnings$SECTIONNAME), "
+      "The industry with the largest range in median earnings was <b>", first(biggestdiffearnings$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiffearnings2)), " ethnicity graduates the highest median earnings (£",
       format(first(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), ") and ", last(row.names(biggestdiffearnings2)),
       " ethnicity graduates had the lowest median earnings (£", format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), ").", br(), br(),
-      "The group with the highest median earnings was ", colnames(crosstabs_earnings_data2[, result[2]]), " ethnicity graduates in
-                           the ", crosstabs_earnings_data[result[1], ]$SECTIONNAME, " industry (median earnings of £",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), ").",
+      "The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2[, result[2]]), "</b> ethnicity graduates in
+                           the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
+      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",
       sep = ""
     )
   }
