@@ -205,14 +205,14 @@ navbarPage("",
             absolutePanel(strong("5 YAG"), top = "15%", right = 25),
             absolutePanel(strong("3 YAG"), top = "15%", left = "48%"),
             br(),
-            sankeyNetworkOutput(outputId = "sankey", height = 800)
+            withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
           ),
 
           ### Table ------------------------------------------
 
           tabPanel(
             "Industry proportions table",
-            reactableOutput("sankey_table"),
+            withSpinner(reactableOutput("sankey_table")),
             height = 1500
           )
         )
@@ -320,7 +320,7 @@ navbarPage("",
 
       mainPanel(
         htmlOutput("map_title"),
-        width = 9, box(leafletOutput(outputId = "map", height = 800), width = 5),
+        width = 9, box(withSpinner(leafletOutput(outputId = "map", height = 800)), width = 5),
         box(
           width = 6, selectizeInput("regioninput",
             label = "Select multiple regions from the dropdown below to compare.",
@@ -340,13 +340,13 @@ navbarPage("",
           ),
           strong("Click a column header to sort the table"),
           br(),
-          reactableOutput("maptable"),
+          withSpinner(reactableOutput("maptable")),
           br(),
           strong("Please note that the table only shows results for the selected industry, subject and year after graudation."),
           br(),
           br(),
           htmlOutput("regional_sankey_title"),
-          sankeyNetworkOutput("regional_sankey")
+          withSpinner(sankeyNetworkOutput("regional_sankey"))
         )
       )
     )
@@ -443,7 +443,7 @@ navbarPage("",
       mainPanel(
         width = 9,
         htmlOutput("crosstab_title"),
-        reactableOutput("crosstab")
+        withSpinner(reactableOutput("crosstab"))
       )
     )
   ),
@@ -549,7 +549,7 @@ navbarPage("",
       mainPanel(
         width = 9,
         htmlOutput("backwards_crosstab_title"),
-        reactableOutput("crosstab_backwards")
+        withSpinner(reactableOutput("crosstab_backwards"))
       )
     )
   ),
