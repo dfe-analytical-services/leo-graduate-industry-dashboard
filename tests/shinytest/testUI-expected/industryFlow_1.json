@@ -708,7 +708,7 @@
     },
     "sankey_title": "<h4> Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male and female First degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
     "sankeyhelp": "<a>\n  <h4>How to read this sankey?<\/h4>\n<\/a>",
-    "sankeytext1": "For both female and male, First degree graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is Accommodation and food service activities (7.4%), and at five years after graduation it is Human health and social work activities (7.3%).",
-    "sankeytext2": "The most movement between one and three years after graduation is seen for Other, where 16,425 graduates move to Transportation and storage. Between three and five\n                       years after graduation it's seen for Manufacturing where17,525 graduates moved to Other."
+    "sankeytext1": "For both female and male, First degree graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Accommodation and food service activities (7.4%)<\/b>, and at five years after graduation it is <b>Human health and social work activities (7.3%)<\/b>.",
+    "sankeytext2": "The most movement between one and three years after graduation is seen for <b> Other <\/b>, where <\/b> 16,425  graduates move to <b> Transportation and storage <\/b>. Between three and five\n                       years after graduation it's seen for <b> Manufacturing <\/b> where <b> 17,525 <\/b> graduates moved to <b> Other <\/b>."
   }
 }

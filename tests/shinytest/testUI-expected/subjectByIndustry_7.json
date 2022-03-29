@@ -1,13 +1,12 @@
 {
   "input": {
     "countinput2": "ethnicity",
-    "crosstabs.subjectinput": "Sport and exercise sciences",
+    "crosstabs.subjectinput": "English studies",
     "earningsbutton": "Median earnings",
     "navbar": "subjectByIndustry",
-    "thresholdinput": "All",
     "YAGinput2": "1"
   },
   "output": {
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of Sport and exercise sciences by ethnicity , 1 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of English studies by ethnicity , 1 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
   }
 }
