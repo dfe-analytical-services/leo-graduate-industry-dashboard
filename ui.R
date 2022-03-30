@@ -48,7 +48,7 @@ navbarPage("",
             h4(actionLink("link_to_regional_tab", "Regional analysis")),
             paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
             br(),
-            h3("Tables"),
+            h4("Tables"),
             h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
             h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
             paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
@@ -310,9 +310,9 @@ navbarPage("",
         div(
           style = "color:#ffffff",
           strong("Summary"),
-          textOutput("maptext"),
+          htmlOutput("maptext"),
           br(),
-          textOutput("maptext2")
+          htmlOutput("maptext2")
         )
       ),
 
@@ -384,11 +384,6 @@ navbarPage("",
           label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
           choices = list("Proportions", "Median earnings"),
           selected = "Proportions"
-        ),
-        radioGroupButtons("thresholdinput",
-          label = "View for only above or below the student loan repayment threshold (plan 2 in 2018/19: £25,000)",
-          choices = list("All", "Above", "Below"),
-          selected = "All"
         ),
         selectInput("countinput2",
           label = "Choose a breakdown",

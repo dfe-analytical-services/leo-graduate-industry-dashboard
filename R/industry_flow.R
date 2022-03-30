@@ -378,22 +378,22 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
 
   ifelse(subjectinput == "All",
     sankeytext1 <- paste("For ", sextext, ", ", qualinput, " graduates of all subjects, the industry with the highest
-                      proportion of graduates one year after graduation is ", first(yag_table_final$SECTIONNAME.x),
-      " (", first(yag_table_final$`1 YAG`), "%), and at five years after graduation it is ",
+                      proportion of graduates one year after graduation is <b>", first(yag_table_final$SECTIONNAME.x),
+      " (", first(yag_table_final$`1 YAG`), "%)</b>, and at five years after graduation it is <b>",
       ifelse(first(five_yag_table_subject$SECTIONNAME.x) == first(yag_table_final$SECTIONNAME.x),
         "the same",
         first(five_yag_table_subject$SECTIONNAME.x)
-      ), " (", first(five_yag_table_subject$`5 YAG`), "%).",
+      ), " (", first(five_yag_table_subject$`5 YAG`), "%)</b>.",
       sep = ""
     ),
     sankeytext1 <- paste(
       "For ", sextext, ", ", qualinput, " graduates who studied", subjectinput, ", the industry with the highest
-                      proportion of graduates one year after graduation is ", first(yag_table_final$SECTIONNAME.x),
-      " (", first(yag_table_final$`1 YAG`), "%), and at five years after graduation it is ",
+                      proportion of graduates one year after graduation is <b>", first(yag_table_final$SECTIONNAME.x),
+      "</b> (", first(yag_table_final$`1 YAG`), "%), and at five years after graduation it is <b>",
       ifelse(first(five_yag_table_subject$SECTIONNAME.x) == first(yag_table_final$SECTIONNAME.x),
         "the same",
         first(five_yag_table_subject$SECTIONNAME.x)
-      ), " (", first(five_yag_table_subject$`5 YAG`), "%)."
+      ), " (", first(five_yag_table_subject$`5 YAG`), "%)</b>."
     )
   )
 
@@ -516,13 +516,13 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
-  sankeytext2 <- paste("The most movement between one and three years after graduation is seen for ",
-    first(cohort_sankey1_text$SECTIONNAME.x), ", where ", first(cohort_sankey1_text$count),
-    " graduates move to ", first(cohort_sankey1_text$SECTIONNAME.y), ". Between three and five
-                       years after graduation it's seen for ", first(cohort_sankey2_text$SECTIONNAME.x), " where",
-    first(cohort_sankey2_text$count), " graduates moved to ", first(cohort_sankey2_text$SECTIONNAME.y),
-    ".",
-    sep = ""
+  sankeytext2 <- paste(
+    "The most movement between one and three years after graduation is seen for <b>",
+    first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
+    " graduates move to <b>", first(cohort_sankey1_text$SECTIONNAME.y), "</b>. Between three and five
+                       years after graduation it's seen for <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> where <b>",
+    first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
+    "</b>."
   )
 
   return(sankeytext2)
