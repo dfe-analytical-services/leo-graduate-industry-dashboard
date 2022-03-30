@@ -16,11 +16,19 @@ Longitudinal Education Outcomes - Graduate Industry Dashboard
 
 ## Introduction 
 
-Give a brief overview of what your app is for here. [Charlotte to update with a short overview, might be worth linking back to the publication on EES too?]
+This dashboard provides users an opportunity to investigate the Longitudinal Education Outcomes (LEO) new graduate industry data. 
 
 Live version of the dashboard can be accessed at:
 
 - [https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/](https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/)
+
+The dashboard contains three main products:
+
+- <b>Interactive Sankey charts</b> that shows the longitudinal journey of the 5 year after graduation (YAG) cohort. This shows the number of graduates working in each industry for the selected subject area at one, three and five years after graduation. 
+- <b>Regional analysis</b> that compares the number of graduates who studied in and are currently living in each region. 
+- <b>Tables</b> that show proportions and median earnings for combinations of industry, subject, qualification level, sex, prior attainment, current region, ethnicity and FSM status. 
+The <b>subject by industry</b> tables show for the selected subject, which industries those graduates work in at the selected year after graduation. These tables are also expandable to the 3-digit SIC code level prodiving more granular breakdowns for each of the industry sections. 
+The <b>industry by subject</b> tables show for the selected industry, what subjects the graduates working in that industry studied. 
 
 ---
 
