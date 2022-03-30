@@ -1,12 +1,11 @@
-
 # REGIONAL ---------------------------------------------------------------------
 
 
 data <- read.csv("data/regional_data_with_pg_dummy.csv")
 regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
 
-ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp")
-str(ukRegions)
+ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
+
 ukRegions <- ukRegions[order(ukRegions$rgn19nm), ]
 ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
 
