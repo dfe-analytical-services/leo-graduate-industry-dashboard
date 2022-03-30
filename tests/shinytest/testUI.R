@@ -1,10 +1,10 @@
-app <- ShinyDriver$new("../../", loadTimeout = 1e+05)
+app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
 
 # Testing the industry flow panel
-industryFlow_input <- c("navbar", "qualinput", "sexinput")
+industryFlow_input <- c("navbar", "qualinput", "sexinput", "indflow.subjectinput")
 industryFlow_output <- c(
   "sankey", "sankey_title", "sankeyhelp", "sankeysubjectlist",
   "sankeytext1", "sankeytext2"
@@ -143,8 +143,7 @@ app$snapshot(
 
 # Run tests for subject by industry tab
 subjectByIndustry_input <- c(
-  "navbar", "countinput2", "YAGinput2", "subjectinput3",
-  "thresholdinput", "earningsbutton"
+  "navbar", "countinput2", "YAGinput2", "crosstabs.subjectinput", "earningsbutton", "qualinput3"
 )
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
@@ -166,7 +165,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_1.json"
 )
-app$setInputs(thresholdinput = "Above", wait_ = FALSE, values_ = FALSE)
+app$setInputs(qualinput3 = "Level 8", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -174,7 +173,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_2.json"
 )
-app$setInputs(thresholdinput = "Below", wait_ = FALSE, values_ = FALSE)
+app$setInputs(crosstabs.subjectinput = "Allied health", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -190,7 +189,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_4.json"
 )
-app$setInputs(thresholdinput = "All", wait_ = FALSE, values_ = FALSE)
+app$setInputs(YAGinput2 = "5", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -206,7 +205,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_6.json"
 )
-app$setInputs(subjectinput3 = "Sport and exercise sciences", wait_ = FALSE, values_ = FALSE)
+app$setInputs(crosstabs.subjectinput = "English studies", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -227,7 +226,7 @@ app$snapshot(
 # Run tests for regional tab - note: excluding the map output as it makes the
 # json files massive.
 regional_input <- c(
-  "navbar", "subjectinput2", "YAGinput", "qualinput2",
+  "navbar", "regions.subjectinput", "YAGinput", "qualinput2",
   "sectionnameinput"
 )
 regional_output <- c("map_title", "mapsubjectlist", "maptext", "maptext2")
@@ -264,7 +263,7 @@ app$snapshot(
   ),
   filename = "regional_3.json"
 )
-app$setInputs(subjectinput2 = "Medicine and dentistry")
+app$setInputs(regions.subjectinput = "Medicine and dentistry")
 app$snapshot(
   items = list(
     input = regional_input,

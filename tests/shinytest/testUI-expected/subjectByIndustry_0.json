@@ -1,10 +1,10 @@
 {
   "input": {
     "countinput2": "sex",
+    "crosstabs.subjectinput": "All",
     "earningsbutton": "Proportions",
     "navbar": "subjectByIndustry",
-    "subjectinput3": "All",
-    "thresholdinput": "All",
+    "qualinput3": "First degree",
     "YAGinput2": "5"
   },
   "output": {

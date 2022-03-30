@@ -55,3 +55,7 @@ cohort2 <- read_cohort("data/pg_sankey_data_3_5_yag_dummy.csv")
 cohort3 <- read_cohort("data/pg_sankey_data_1_5_yag_dummy.csv")
 
 tables_data <- read_tables_data("data/pg_sic_crosstabs_earnings_data_cf_dummy.csv")
+
+qual_subjects <- tables_data %>%
+  select(qualification_TR, subject_name) %>%
+  distinct()

@@ -1,4 +1,3 @@
-
 # REGIONAL ---------------------------------------------------------------------
 
 
@@ -6,6 +5,7 @@ data <- read.csv("data/regional_data_with_pg_dummy.csv")
 regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
+
 ukRegions <- ukRegions[order(ukRegions$rgn19nm), ]
 ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
 
@@ -197,11 +197,13 @@ map_text <- function(sectionnameinput, subjectinput, countinput, YAGinput, quali
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
 
-  map_text <- paste(subjecttext, "in the", sectionnameinput, "industry", YAGinput, "years after graduation, the region that saw the highest number of students
-                    studying there was", first(mapdata_trained$region), ". The region with the lowest number of students studying
-                    there was", last(mapdata_trained$region), ". The region with the highest number of graduates living
-                    there", YAGinput, "years after graduation was", first(mapdata_current$region), " and the region with the
-                    least graduates living there was", last(mapdata_current$region), ".")
+  map_text <- paste(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region that saw the highest number of students
+                    studying there was <b>", first(mapdata_trained$region), "</b>. The region with the lowest number of students studying
+                    there was <b>", last(mapdata_trained$region), "</b>. The region with the highest number of graduates living
+                    there ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
+                    least graduates living there was <b>", last(mapdata_current$region), "</b>.",
+    sep = "''"
+  )
 
   return(map_text)
 }

@@ -1,13 +1,13 @@
 {
   "input": {
     "countinput2": "ethnicity",
+    "crosstabs.subjectinput": "Allied health",
     "earningsbutton": "Median earnings",
     "navbar": "subjectByIndustry",
-    "subjectinput3": "All",
-    "thresholdinput": "Below",
+    "qualinput3": "Level 8",
     "YAGinput2": "5"
   },
   "output": {
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by ethnicity , 5 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of Allied health by ethnicity , 5 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
   }
 }

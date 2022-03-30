@@ -48,7 +48,7 @@ navbarPage("",
             h4(actionLink("link_to_regional_tab", "Regional analysis")),
             paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
             br(),
-            h3("Tables"),
+            h4("Tables"),
             h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
             h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
             paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
@@ -158,7 +158,11 @@ navbarPage("",
           ),
           selected = "First degree"
         ),
-        uiOutput("sankeysubjectlist"),
+        selectizeInput("indflow.subjectinput",
+          label = "Select a subject area",
+          choices = unique(c("All", sort(qual_subjects$subject_name))),
+          selected = "All"
+        ),
         selectInput("sexinput",
           label = "View by graduate sex",
           choices = list(
@@ -201,14 +205,14 @@ navbarPage("",
             absolutePanel(strong("5 YAG"), top = "15%", right = 25),
             absolutePanel(strong("3 YAG"), top = "15%", left = "48%"),
             br(),
-            sankeyNetworkOutput(outputId = "sankey", height = 800)
+            withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
           ),
 
           ### Table ------------------------------------------
 
           tabPanel(
             "Industry proportions table",
-            reactableOutput("sankey_table"),
+            withSpinner(reactableOutput("sankey_table")),
             height = 1500
           )
         )
@@ -283,7 +287,11 @@ navbarPage("",
           ),
           selected = "Education"
         ),
-        uiOutput("mapsubjectlist"),
+        selectInput("regions.subjectinput",
+          label = "Select a subject area",
+          choices = unique(c("All", sort(qual_subjects$subject_name))),
+          selected = "All"
+        ),
         selectInput("countinput",
           label = "View different statistics",
           choices = list(
@@ -302,9 +310,9 @@ navbarPage("",
         div(
           style = "color:#ffffff",
           strong("Summary"),
-          textOutput("maptext"),
+          htmlOutput("maptext"),
           br(),
-          textOutput("maptext2")
+          htmlOutput("maptext2")
         )
       ),
 
@@ -312,7 +320,7 @@ navbarPage("",
 
       mainPanel(
         htmlOutput("map_title"),
-        width = 9, box(leafletOutput(outputId = "map", height = 800), width = 5),
+        width = 9, box(withSpinner(leafletOutput(outputId = "map", height = 800)), width = 5),
         box(
           width = 6, selectizeInput("regioninput",
             label = "Select multiple regions from the dropdown below to compare.",
@@ -332,13 +340,13 @@ navbarPage("",
           ),
           strong("Click a column header to sort the table"),
           br(),
-          reactableOutput("maptable"),
+          withSpinner(reactableOutput("maptable")),
           br(),
           strong("Please note that the table only shows results for the selected industry, subject and year after graudation."),
           br(),
           br(),
           htmlOutput("regional_sankey_title"),
-          sankeyNetworkOutput("regional_sankey")
+          withSpinner(sankeyNetworkOutput("regional_sankey"))
         )
       )
     )
@@ -377,11 +385,6 @@ navbarPage("",
           choices = list("Proportions", "Median earnings"),
           selected = "Proportions"
         ),
-        radioGroupButtons("thresholdinput",
-          label = "View for only above or below the student loan repayment threshold (plan 2 in 2018/19: £25,000)",
-          choices = list("All", "Above", "Below"),
-          selected = "All"
-        ),
         selectInput("countinput2",
           label = "Choose a breakdown",
           choices = list(
@@ -415,7 +418,11 @@ navbarPage("",
         ),
         conditionalPanel(
           condition = "input.countinput2 != 'subject_name'",
-          uiOutput("subjectlist3")
+          selectInput("crosstabs.subjectinput",
+            label = "Select a subject area",
+            choices = unique(c("All", sort(qual_subjects$subject_name))),
+            selected = "All"
+          )
         ),
         helpText("Download the current table as a csv"),
         downloadButton("downloadData", label = "Download table"), br(), br(),
@@ -431,7 +438,7 @@ navbarPage("",
       mainPanel(
         width = 9,
         htmlOutput("crosstab_title"),
-        reactableOutput("crosstab")
+        withSpinner(reactableOutput("crosstab"))
       )
     )
   ),
@@ -537,7 +544,7 @@ navbarPage("",
       mainPanel(
         width = 9,
         htmlOutput("backwards_crosstab_title"),
-        reactableOutput("crosstab_backwards")
+        withSpinner(reactableOutput("crosstab_backwards"))
       )
     )
   ),
