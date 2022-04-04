@@ -224,7 +224,11 @@ fluidPage(
         ## Main panel -------------------------------------------
 
         mainPanel(
+          
+          ### Title  -------------------------------------
+          
           htmlOutput("sankey_title"),
+          
           tabsetPanel(
             
             ### Summary text -------------------------------------
