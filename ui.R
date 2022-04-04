@@ -154,11 +154,6 @@ fluidPage(
         referrer = "no-referrer"
       ),
 
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
-
       ## Side bar --------------------------------------------------------------------
 
       sidebarLayout(
@@ -234,7 +229,13 @@ fluidPage(
             )
           )
         )
-      )
+      ),
+      
+      ## Caveats ---------------------------------------------------------------------
+      
+      caveats_box(), # defined in R/caveats.R
+      br()
+      
     ),
 
     # Regional analysis tab ------------------------------------------
@@ -254,11 +255,6 @@ fluidPage(
         rating = "General",
         referrer = "no-referrer"
       ),
-
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
 
       ## Side bar ----------------------------------------------------
 
@@ -366,7 +362,13 @@ fluidPage(
             withSpinner(sankeyNetworkOutput("regional_sankey"))
           )
         )
-      )
+      ),
+      
+      ## Caveats ---------------------------------------------------------------------
+      
+      caveats_box(), # defined in R/caveats.R
+      br()
+      
     ),
 
     # Subject by industry tab ---------------------------------------------
@@ -385,11 +387,6 @@ fluidPage(
         rating = "General",
         referrer = "no-referrer"
       ),
-
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
 
       ## Side bar ---------------------------------------------------------
 
@@ -459,7 +456,13 @@ fluidPage(
           htmlOutput("crosstab_title"),
           withSpinner(reactableOutput("crosstab"))
         )
-      )
+      ),
+      
+      ## Caveats ---------------------------------------------------------------------
+      
+      caveats_box(), # defined in R/caveats.R
+      br(),
+      
     ),
 
     # Industry by subject tab -------------------------------------
@@ -478,11 +481,6 @@ fluidPage(
         rating = "General",
         referrer = "no-referrer"
       ),
-
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
 
       ## Side bar ----------------------------------------------------
 
@@ -565,7 +563,13 @@ fluidPage(
           htmlOutput("backwards_crosstab_title"),
           withSpinner(reactableOutput("crosstab_backwards"))
         )
-      )
+      ),
+      
+      ## Caveats ---------------------------------------------------------------------
+      
+      caveats_box(), # defined in R/caveats.R
+      br(),
+      
     ),
 
     # Support links ----------------------------------------------
