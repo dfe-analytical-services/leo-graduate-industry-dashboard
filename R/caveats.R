@@ -1,5 +1,5 @@
 caveats_box <- function() {
-  insert_text(
+  shinyGovstyle::insert_text(
     inputId = "caveats",
     text = paste0(
       h4("Caveats"),
