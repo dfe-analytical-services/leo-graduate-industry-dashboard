@@ -94,3 +94,8 @@ a {
 .help-block{
   color: #ffffff;
 }
+
+.govuk-inset-text{
+  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-size: 14px;
+}

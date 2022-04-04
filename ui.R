@@ -49,35 +49,58 @@ fluidPage(
             12,
             h2("Welcome"),
             paste(welcome_text, " For more detail see our official statistics "), # stored in www/text, read in via R/dashboard_text.R
-            a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo", "publication on Graduate Outcomes."),
+            a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo", "publication on Graduate Outcomes", .noWS = c("after")),
+            ".",
+            br(),
+            br()
           ),
 
           ## Left panel ------------------------------------------------------------------------------
 
           column(
             6,
-            box(
-              status = "primary", width = NULL, solidHeader = TRUE,
-              h2("Contents"),
-              h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
-              paste(industryFlow_text), # stored in www/text, read in via R/dashboard_text.R
-              br(),
-              h4(actionLink("link_to_regional_tab", "Regional analysis")),
-              paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
-              br(),
-              h4("Tables"),
-              h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
-              h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
-              paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
-              br(),
-              tags$ul(
-                tags$li("sex"),
-                tags$li("ethnicity"),
-                tags$li("FSM status"),
-                tags$li("current region"),
-                tags$li("prior attainment"),
-                tags$li("subject"),
-                tags$li("qualification level")
+            div(
+              div(
+                class = "panel panel-info",
+                div(
+                  class = "panel-heading",
+                  style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
+                  h2("Contents")
+                ),
+                div(
+                  class = "panel-body",
+                  h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
+                  paste(industryFlow_text), # stored in www/text, read in via R/dashboard_text.R
+                  br(),
+                  h4(actionLink("link_to_regional_tab", "Regional analysis")),
+                  paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
+                  br()
+                )
+              )
+            ),
+            div(
+              div(
+                class = "panel panel-info",
+                div(
+                  class = "panel-heading",
+                  style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
+                  h2("Tables")
+                ),
+                div(
+                  class = "panel-body",
+                  h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
+                  h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
+                  paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
+                  br(),
+                  tags$ul(
+                    tags$li("sex"),
+                    tags$li("ethnicity"),
+                    tags$li("FSM status"),
+                    tags$li("current region"),
+                    tags$li("prior attainment"),
+                    tags$li("subject"),
+                    tags$li("qualification level")
+                  )                )
               )
             )
           ),
@@ -86,52 +109,64 @@ fluidPage(
 
           column(
             6,
-            box(
-              status = "primary", width = NULL, solidHeader = TRUE,
-              h2("IDBR and SIC background"),
-              h4("IDBR (Inter-Departmental Business Register)"),
-              "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
-              h4("UK SIC (Standard Industrial Classification) code"),
-              "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.",
-              h4("Useful links"),
-              a(
-                href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
-                "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
-              ),
-              br(),
-              a(
-                href = "https://siccode.com/sic-code-lookup-directory",
-                "SIC Code Lookup | SIC Code Search Tool"
-              ),
-              h4("SIC Groups and sections"),
-              paste(sicGroups_text), # stored in www/text, read in via R/dashboard_text.R
-              br(),
-              br(),
-              tags$ol(
-                tags$li("ACCOMMODATION AND FOOD SERVICE ACTIVITIES"),
-                tags$li("ACTIVITITES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES"),
-                tags$li("ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE"),
-                tags$li("ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES"),
-                tags$li("AGRICULTURE, FORESTRY AND FISHING"),
-                tags$li("ARTS, ENTERTAINMENT AND RECREATION"),
-                tags$li("CONSTRUCTION"),
-                tags$li("EDUCATION"),
-                tags$li("ELECTRICITY, GAS, STEAM AND AIR CONDITIONG SUPPLY"),
-                tags$li("FINANCIAL AND INSURANCE ACTIVITIES"),
-                tags$li("HUMAN HEALTH AND SOCIAL WORK ACTIVITIES"),
-                tags$li("INFORMATION AND COMMUNICATION"),
-                tags$li("MANUFACTURING"),
-                tags$li("MINING AND QUARRYING"),
-                tags$li("OTHER SERVICE ACTIVITIES"),
-                tags$li("PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES"),
-                tags$li("PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY"),
-                tags$li("REAL ESTATE ACTIVITIES"),
-                tags$li("TRANSPORTATION AND STORAGE"),
-                tags$li("WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"),
-                tags$li("WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES")
+            div(
+              div(
+                class = "panel panel-info",
+                div(
+                  class = "panel-heading",
+                  style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
+                  h2("IDBR and SIC background")
+                ),
+                div(
+                  class = "panel-body",
+                  h4("IDBR (Inter-Departmental Business Register)"),
+                  "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
+                  h4("UK SIC (Standard Industrial Classification) code"),
+                  "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.",
+                  h4("Useful links"),
+                  a(
+                    href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
+                    "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
+                  ),
+                  br(),
+                  a(
+                    href = "https://siccode.com/sic-code-lookup-directory",
+                    "SIC Code Lookup | SIC Code Search Tool"
+                  ),
+                  h4("SIC Groups and sections"),
+                  paste(sicGroups_text), # stored in www/text, read in via R/dashboard_text.R
+                  br(),
+                  br(),
+                  tags$ol(
+                    tags$li("ACCOMMODATION AND FOOD SERVICE ACTIVITIES"),
+                    tags$li("ACTIVITITES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES"),
+                    tags$li("ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE"),
+                    tags$li("ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES"),
+                    tags$li("AGRICULTURE, FORESTRY AND FISHING"),
+                    tags$li("ARTS, ENTERTAINMENT AND RECREATION"),
+                    tags$li("CONSTRUCTION"),
+                    tags$li("EDUCATION"),
+                    tags$li("ELECTRICITY, GAS, STEAM AND AIR CONDITIONG SUPPLY"),
+                    tags$li("FINANCIAL AND INSURANCE ACTIVITIES"),
+                    tags$li("HUMAN HEALTH AND SOCIAL WORK ACTIVITIES"),
+                    tags$li("INFORMATION AND COMMUNICATION"),
+                    tags$li("MANUFACTURING"),
+                    tags$li("MINING AND QUARRYING"),
+                    tags$li("OTHER SERVICE ACTIVITIES"),
+                    tags$li("PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES"),
+                    tags$li("PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY"),
+                    tags$li("REAL ESTATE ACTIVITIES"),
+                    tags$li("TRANSPORTATION AND STORAGE"),
+                    tags$li("WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"),
+                    tags$li("WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES")
+                  )
+                )      
+                  )
               )
             )
-          )
+            
+             
+          
         )
       )
     ), # End of homepage tabPanel()
