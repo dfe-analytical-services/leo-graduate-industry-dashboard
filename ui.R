@@ -218,16 +218,6 @@ fluidPage(
               "Male" = "M"
             ),
             selected = "F+M"
-          ),
-          div(
-            style = "color:#ffffff",
-            h4("Summary"),
-            strong("Most popular industry"),
-            htmlOutput("sankeytext1"),
-            br(),
-            strong("Movement between industries"),
-            htmlOutput("sankeytext2"),
-            br()
           )
         ),
 
@@ -236,6 +226,21 @@ fluidPage(
         mainPanel(
           htmlOutput("sankey_title"),
           tabsetPanel(
+            
+            ### Summary text -------------------------------------
+            
+            tabPanel(
+              "Summary",
+              div(
+                h4("Summary"),
+                strong("Most popular industry"),
+                htmlOutput("sankeytext1"),
+                br(),
+                strong("Movement between industries"),
+                htmlOutput("sankeytext2"),
+                br()
+              ), 
+            ),
 
             ### Sankey plot -------------------------------------
 
