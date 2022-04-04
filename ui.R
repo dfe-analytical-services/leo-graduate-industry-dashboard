@@ -100,7 +100,8 @@ fluidPage(
                     tags$li("prior attainment"),
                     tags$li("subject"),
                     tags$li("qualification level")
-                  )                )
+                  )
+                )
               )
             )
           ),
@@ -160,13 +161,10 @@ fluidPage(
                     tags$li("WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"),
                     tags$li("WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES")
                   )
-                )      
-                  )
+                )
               )
             )
-            
-             
-          
+          )
         )
       )
     ), # End of homepage tabPanel()
@@ -225,15 +223,14 @@ fluidPage(
         ## Main panel -------------------------------------------
 
         mainPanel(
-          
+
           ### Title  -------------------------------------
-          
+
           htmlOutput("sankey_title"),
-          
           tabsetPanel(
-            
+
             ### Summary text -------------------------------------
-            
+
             tabPanel(
               "Summary",
               div(
@@ -244,7 +241,7 @@ fluidPage(
                 strong("Movement between industries"),
                 htmlOutput("sankeytext2"),
                 br()
-              ), 
+              ),
             ),
 
             ### Sankey plot -------------------------------------
@@ -369,20 +366,19 @@ fluidPage(
         ## Main panel -------------------------------------------------------------
 
         mainPanel(
-          
           tabsetPanel(
-            
+
             ### Map -------------------------------------------------------------
-            
+
             tabPanel(
               "Map",
               br(),
               htmlOutput("map_title"),
               withSpinner(leafletOutput(outputId = "map", height = 460))
             ),
-            
+
             ### Summary text -------------------------------------------------------------
-            
+
             tabPanel(
               "Summary",
               div(
@@ -394,48 +390,49 @@ fluidPage(
                 htmlOutput("maptext2")
               )
             ),
-            
+
             ### Table -------------------------------------------------------------
-            
+
             tabPanel(
               "Table",
               br(),
               h4("Table title?"),
-              div(class = "well",
-              div(selectizeInput("regioninput",
-                                          label = "Select multiple regions from the dropdown below to compare.",
-                                          choices = list(
-                                            "North East",
-                                            "North West",
-                                            "Yorkshire and the Humber",
-                                            "East Midlands",
-                                            "West Midlands",
-                                            "East of England",
-                                            "London",
-                                            "South East",
-                                            "South West"
-                                          ),
-                                          selected = "London", multiple = FALSE,
-                                          options = list(maxItems = 9, placeholder = "Start typing a region")
-                ))),
-                strong("Click a column header to sort the table"),
-                br(),
-                withSpinner(reactableOutput("maptable")),
-                br(),
-                strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
+              div(
+                class = "well",
+                div(selectizeInput("regioninput",
+                  label = "Select multiple regions from the dropdown below to compare.",
+                  choices = list(
+                    "North East",
+                    "North West",
+                    "Yorkshire and the Humber",
+                    "East Midlands",
+                    "West Midlands",
+                    "East of England",
+                    "London",
+                    "South East",
+                    "South West"
+                  ),
+                  selected = "London", multiple = FALSE,
+                  options = list(maxItems = 9, placeholder = "Start typing a region")
+                ))
+              ),
+              strong("Click a column header to sort the table"),
+              br(),
+              withSpinner(reactableOutput("maptable")),
+              br(),
+              strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
             ),
-            
+
             ### Sankey -------------------------------------------------------------
-            
+
             tabPanel(
               "Sankey",
               br(),
               htmlOutput("regional_sankey_title"),
               withSpinner(sankeyNetworkOutput("regional_sankey"))
             )
-            
           )
-          )
+        )
       ),
 
       ## Caveats ---------------------------------------------------------------------
@@ -685,9 +682,7 @@ fluidPage(
 
     tabPanel(
       "Accessibility",
-      
       warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
-      
       h2("Accessibility statement for LEO Graduate Industry dashboard"),
       br(),
       "This accessibility statement applies to the Longitudinal Education Outcomes (LEO) graduate industry dashboard.",
@@ -710,7 +705,6 @@ fluidPage(
       "We've also made the website text as simple as possible to understand.",
       a(href = "https://mcmw.abilitynet.org.uk/", "AbilityNet", .noWS = c("after")),
       " has advice on making your device easier to use if you have a disability.",
-      
       h3("How accessible this website is"),
       br(),
       "We recognise that there are still potential issues with accessibility in this application, but we will continue
@@ -720,7 +714,7 @@ fluidPage(
         tags$li("Keyboard navigation through the interactive charts is currently limited"),
         tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
       )), # TODO: UPDATE THESE BULLET POINTS
-      
+
       h3("Feedback and contact information"),
       br(),
       "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille or
@@ -729,21 +723,19 @@ fluidPage(
       ".",
       br(),
       br(),
-      
       h2("Technical information about this website’s accessibility"),
       br(),
-      "Department for Education is committed to making its website accessible, in accordance with the Public Sector Bodies 
+      "Department for Education is committed to making its website accessible, in accordance with the Public Sector Bodies
       (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
-      
       h3("Compliance status"),
       br(),
       "This website is partially compliant with the ",
-      a(href="", "Web Content Accessibility Guidelines version 2.1", .noWS = c("after")),
+      a(href = "", "Web Content Accessibility Guidelines version 2.1", .noWS = c("after")),
       " AA standard, due to [insert one of the following: ‘the non-compliances’, ‘the exemptions’ or ‘the non-compliances and exemptions’] listed below.",
       br(),
       br(),
       "List of any non-compliances", # TODO: List the non-compliances using the appropriate template
-      
+
       h2("Preparation of this accessibility statement"),
       br(),
       "This statement was prepared on [date when it was first published].", # TODO: Add date
@@ -754,7 +746,6 @@ fluidPage(
       br(),
       br()
     )
-    
   ), # navbar page
 
   # Footer ----------------------------------------------
