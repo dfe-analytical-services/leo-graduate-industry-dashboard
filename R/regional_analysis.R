@@ -324,7 +324,7 @@ maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regio
 
   map_table <- reactable(maptabledata,
     sortable = TRUE, resizable = TRUE, showSortable = TRUE,
-    highlight = TRUE, fullWidth = FALSE,
+    highlight = TRUE, fullWidth = TRUE,
     columns = list(
       region = colDef(name = "Region"),
       trained_in_region2 = colDef(name = "Studied in region", format = colFormat(separators = TRUE)),

@@ -193,6 +193,7 @@ fluidPage(
 
       sidebarLayout(
         sidebarPanel(
+          width = 3,
           helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
           helpText("Switch between the sankey and the proportions table using the tabs on the right."),
           selectInput("qualinput",
@@ -362,49 +363,79 @@ fluidPage(
             label = "Select year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
-          ),
-          div(
-            style = "color:#ffffff",
-            strong("Summary"),
-            htmlOutput("maptext"),
-            br(),
-            htmlOutput("maptext2")
           )
         ),
 
         ## Main panel -------------------------------------------------------------
 
         mainPanel(
-          htmlOutput("map_title"),
-          width = 9, box(withSpinner(leafletOutput(outputId = "map", height = 800)), width = 5),
-          box(
-            width = 6, selectizeInput("regioninput",
-              label = "Select multiple regions from the dropdown below to compare.",
-              choices = list(
-                "North East",
-                "North West",
-                "Yorkshire and the Humber",
-                "East Midlands",
-                "West Midlands",
-                "East of England",
-                "London",
-                "South East",
-                "South West"
-              ),
-              selected = "London", multiple = FALSE,
-              options = list(maxItems = 9, placeholder = "Start typing a region")
+          
+          tabsetPanel(
+            
+            ### Map -------------------------------------------------------------
+            
+            tabPanel(
+              "Map",
+              br(),
+              htmlOutput("map_title"),
+              withSpinner(leafletOutput(outputId = "map", height = 460))
             ),
-            strong("Click a column header to sort the table"),
-            br(),
-            withSpinner(reactableOutput("maptable")),
-            br(),
-            strong("Please note that the table only shows results for the selected industry, subject and year after graudation."),
-            br(),
-            br(),
-            htmlOutput("regional_sankey_title"),
-            withSpinner(sankeyNetworkOutput("regional_sankey"))
+            
+            ### Summary text -------------------------------------------------------------
+            
+            tabPanel(
+              "Summary",
+              div(
+                br(),
+                h4("Summary"),
+                br(),
+                htmlOutput("maptext"),
+                br(),
+                htmlOutput("maptext2")
+              )
+            ),
+            
+            ### Table -------------------------------------------------------------
+            
+            tabPanel(
+              "Table",
+              br(),
+              h4("Table title?"),
+              div(class = "well",
+              div(selectizeInput("regioninput",
+                                          label = "Select multiple regions from the dropdown below to compare.",
+                                          choices = list(
+                                            "North East",
+                                            "North West",
+                                            "Yorkshire and the Humber",
+                                            "East Midlands",
+                                            "West Midlands",
+                                            "East of England",
+                                            "London",
+                                            "South East",
+                                            "South West"
+                                          ),
+                                          selected = "London", multiple = FALSE,
+                                          options = list(maxItems = 9, placeholder = "Start typing a region")
+                ))),
+                strong("Click a column header to sort the table"),
+                br(),
+                withSpinner(reactableOutput("maptable")),
+                br(),
+                strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
+            ),
+            
+            ### Sankey -------------------------------------------------------------
+            
+            tabPanel(
+              "Sankey",
+              br(),
+              htmlOutput("regional_sankey_title"),
+              withSpinner(sankeyNetworkOutput("regional_sankey"))
+            )
+            
           )
-        )
+          )
       ),
 
       ## Caveats ---------------------------------------------------------------------
