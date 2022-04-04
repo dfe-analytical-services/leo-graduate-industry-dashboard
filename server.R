@@ -1,6 +1,6 @@
 server <- function(input, output, session) {
-
-  # Closes session after closing app (saves time)
+  
+  # Close session after closing app --------------------------
 
   session$onSessionEnded(stopApp)
 

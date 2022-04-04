@@ -1,6 +1,20 @@
 fluidPage(
   shinyjs::useShinyjs(),
 
+  # This CSS sets the 7th item on the navbar to the right
+  tagList(
+    tags$head(tags$style(HTML("
+                           .navbar-nav {
+                           float: none !important;
+                           }
+                           .navbar-nav > li:nth-child(6) {
+                           float: right;
+                           }
+                           .navbar-nav > li:nth-child(7) {
+                           float: right;
+                           }
+                           ")))),
+  
 navbarPage("",
   id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
 
@@ -550,7 +564,77 @@ navbarPage("",
         withSpinner(reactableOutput("crosstab_backwards"))
       )
     )
-  )
+  ),
+  
+  # Support links ----------------------------------------------
+  
+  tabPanel("Support and feedback",
+           
+           h2("Give us feedback"),
+           br(),
+           "This dashboard is a new service that we are developing. If you have any feedback or suggestions for improvements, please submit them using our [feedback survey].",
+           br(),
+           br(),
+           h2("Find more information on the data"),
+           br(),
+           "The data in the dashboard, along with methodological information can be found on [Explore Education Statistics].",
+           br(),
+           br(),
+           h2("Contact us"),
+           br(),
+           "If you have questions about the dashboard, please contact us at [he.leo@education.gov.uk]",
+           br(),
+           br(),
+           h2("See the source code"),
+           br(),
+           "The source code for this dashboard is available in our [GitHub repository]",
+           br(),
+           br(),
+           br(),
+           br(),
+           br(),
+           br()
+           ),
+  
+  # Accessibility ----------------------------------------------
+  
+  tabPanel("Accessibility",
+           
+           warning_text(inputId = "accessWarn", text ="THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
+           
+           h2("Accessibility statement"),
+           "This accessibility statement applies to the Local Authority (LA) scorecards application.",
+           "This application is run by the Department for Education. We want as many people as possible to be able to use this application,
+            and have actively developed this application with accessibilty in mind.",
+           
+           h3("WCAG 2.1 compliance"),
+           "We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements", .noWS = c("after")), 
+           ". This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool", .noWS = c("after")),
+           ", which did not detect accessibility issues.", "This application also fully passes the accessibility audits checked by DfE analysts using the ", 
+           a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool", .noWS = c("after")), 
+           ". This means that this application:",
+           tags$div(tags$ul(
+            tags$li("uses colours that have sufficient contrast"),
+             tags$li("allows you to zoom in up to 300% without the text spilling off the screen"),
+             tags$li("has its performance regularly monitored, with a team working on any feedback to improve accessibility for all users")
+            )),
+           
+           h3("Limitations"),
+           "We recognise that there are still potential issues with accessibility in this application, but we will continue 
+           to review updates to technology available to us to keep improving accessibility for all of our users. For example, these
+           are known issues that we will continue to monitor and improve:",
+           tags$div(tags$ul(
+             tags$li("Keyboard navigation through the interactive charts is currently limited"),
+             tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
+           )),
+           h3("Feedback"),
+           "If you have any feedback on how we could further improve the accessibility of this application, please contact us at",
+           a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")), 
+           ".",
+           br(),
+           br()
+           )
+  
 ), # navbar page
 
 # Footer ----------------------------------------------
