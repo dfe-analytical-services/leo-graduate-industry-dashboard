@@ -442,7 +442,9 @@ fluidPage(
             )
           ),
           helpText("Download the current table as a csv"),
-          downloadButton("downloadData", label = "Download table"), br(), br(),
+          shinyGovstyle::button_Input(inputId = "downloadData", label = "Download table"),
+          br(),
+          br(),
           div(
             style = "color:#ffffff",
             strong("Summary"),
