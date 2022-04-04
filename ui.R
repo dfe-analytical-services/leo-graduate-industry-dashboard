@@ -1,3 +1,6 @@
+fluidPage(
+  shinyjs::useShinyjs(),
+
 navbarPage("",
   id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
 
@@ -8,7 +11,7 @@ navbarPage("",
 
     ## Style sheet ------------------------------------------------------------------------------
 
-    includeCSS("www/shiny_gov_style.css"),
+    includeCSS("www/dfe_shiny_gov_style.css"),
 
     ## Set metadata for browser ---------------------------------------------------------------------
 
@@ -122,7 +125,7 @@ navbarPage("",
   # Industry flow tab ---------------------------------------------------------------
 
   tabPanel(
-    value = "industryFlow", title = "Industry flow analysis",
+    value = "industryFlow", title = "Industry flow",
 
     ## Set metadata for browser ----------------------------------------------------
 
@@ -223,7 +226,7 @@ navbarPage("",
   # Regional analysis tab ------------------------------------------
 
   tabPanel(
-    value = "regional", title = "Regional analysis",
+    value = "regional", title = "Regional",
 
     ## Set metadata for browser ----------------------------------------------------
 
@@ -354,7 +357,7 @@ navbarPage("",
 
   # Subject by industry tab ---------------------------------------------
   tabPanel(
-    title = "Subject by industry tables", value = "subjectByIndustry",
+    title = "Subject by industry", value = "subjectByIndustry",
 
     ## Set metadata for browser ----------------------------------------------------
 
@@ -445,7 +448,7 @@ navbarPage("",
 
   # Industry by subject tab -------------------------------------
   tabPanel(
-    title = "Industry by subject tables", value = "industryBySubject",
+    title = "Industry by subject", value = "industryBySubject",
 
     ## Set metadata for browser ----------------------------------------------------
 
@@ -547,9 +550,11 @@ navbarPage("",
         withSpinner(reactableOutput("crosstab_backwards"))
       )
     )
-  ),
+  )
+), # navbar page
 
-  # Footer ----------------------------------------------
+# Footer ----------------------------------------------
 
-  footer = includeHTML("www/footer.html")
-)
+shinyGovstyle::footer(TRUE)
+
+) # fluid page
