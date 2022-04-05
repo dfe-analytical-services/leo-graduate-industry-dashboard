@@ -1535,6 +1535,21 @@
         "shiny"
       ]
     },
+    "shinya11y": {
+      "Package": "shinya11y",
+      "Version": "0.0.0.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "shinya11y",
+      "RemoteUsername": "ewenme",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "4f17db8f0c06e7332258e6c499e3c4af36fd4a17",
+      "Hash": "47f65be2621e54a257619a1397cf7903",
+      "Requirements": [
+        "shiny"
+      ]
+    },
     "shinycssloaders": {
       "Package": "shinycssloaders",
       "Version": "1.0.0",

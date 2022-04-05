@@ -1,6 +1,8 @@
 fluidPage(
   shinyjs::useShinyjs(),
 
+  use_tota11y(), # accessibility layer for local testing
+  
   # This CSS sets the 7th item on the navbar to the right
   tagList(
     tags$head(tags$style(HTML("

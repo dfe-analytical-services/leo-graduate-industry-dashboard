@@ -33,6 +33,7 @@ shhh(library(networkD3))
 shhh(library(styler))
 shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
+shhh(library(shinya11y))
 
 # tidy_code_function -------------------------------------------------------------------------------
 
