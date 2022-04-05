@@ -45,7 +45,7 @@ fluidPage(
       ## Tab content ---------------------------------------------------------------------------------
 
       fluidPage(
-        titlePanel("Longitudinal Education Outcomes Graduate Industry Dashboard, Tax year 2018-19"),
+        h1("Longitudinal Education Outcomes Graduate Industry Dashboard, Tax year 2018-19"),
         fluidRow(
           column(
             12,
@@ -71,10 +71,10 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h4(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
+                  h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
                   paste(industryFlow_text), # stored in www/text, read in via R/dashboard_text.R
                   br(),
-                  h4(actionLink("link_to_regional_tab", "Regional analysis")),
+                  h3(actionLink("link_to_regional_tab", "Regional analysis")),
                   paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
                   br()
                 )
@@ -90,8 +90,8 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h4(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
-                  h4(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
+                  h3(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
+                  h3(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
                   paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
                   br(),
                   tags$ul(
@@ -122,11 +122,11 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h4("IDBR (Inter-Departmental Business Register)"),
+                  h3("IDBR (Inter-Departmental Business Register)"),
                   "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
-                  h4("UK SIC (Standard Industrial Classification) code"),
+                  h3("UK SIC (Standard Industrial Classification) code"),
                   "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.",
-                  h4("Useful links"),
+                  h3("Useful links"),
                   a(
                     href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
                     "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
@@ -136,7 +136,7 @@ fluidPage(
                     href = "https://siccode.com/sic-code-lookup-directory",
                     "SIC Code Lookup | SIC Code Search Tool"
                   ),
-                  h4("SIC Groups and sections"),
+                  h3("SIC Groups and sections"),
                   paste(sicGroups_text), # stored in www/text, read in via R/dashboard_text.R
                   br(),
                   br(),
@@ -175,7 +175,7 @@ fluidPage(
 
     tabPanel(
       value = "industryFlow", title = "Industry flow",
-
+      
       ## Set metadata for browser ----------------------------------------------------
 
       tags$html(lang = "en"),
@@ -225,10 +225,11 @@ fluidPage(
         ## Main panel -------------------------------------------
 
         mainPanel(
-
+          
           ### Title  -------------------------------------
-
+          
           htmlOutput("sankey_title"),
+
           tabsetPanel(
 
             ### Summary text -------------------------------------
@@ -236,7 +237,7 @@ fluidPage(
             tabPanel(
               "Summary",
               div(
-                h4("Summary"),
+                h2("Industry flow summary"),
                 strong("Most popular industry"),
                 htmlOutput("sankeytext1"),
                 br(),
@@ -249,7 +250,7 @@ fluidPage(
             ### Sankey plot -------------------------------------
 
             tabPanel(
-              "Sankey Plot",
+              "Industry flow sankey Plot",
               htmlOutput("sankeyhelp"),
               bsTooltip("sankeyhelp",
                 "The coloured bars represent graduates in that industry at each year after graduation, and the grey flow lines show the movement of these graduates. Hover your mouse over a bar or flow line to see the number of graduates it represents.",
@@ -374,18 +375,16 @@ fluidPage(
 
             tabPanel(
               "Map",
-              br(),
-              htmlOutput("map_title"),
-              withSpinner(leafletOutput(outputId = "map", height = 460))
+              h3(htmlOutput("map_title")),
+              withSpinner(leafletOutput(outputId = "map", height = 470))
             ),
 
             ### Summary text -------------------------------------------------------------
 
             tabPanel(
-              "Summary",
+              "Regional summary",
               div(
-                br(),
-                h4("Summary"),
+                h3("Regional summary"),
                 br(),
                 htmlOutput("maptext"),
                 br(),
@@ -396,9 +395,8 @@ fluidPage(
             ### Table -------------------------------------------------------------
 
             tabPanel(
-              "Table",
-              br(),
-              h4("Table title?"),
+              "Regional table",
+              h3("Regional table"),
               div(
                 class = "well",
                 div(selectizeInput("regioninput",
@@ -428,9 +426,8 @@ fluidPage(
             ### Sankey -------------------------------------------------------------
 
             tabPanel(
-              "Sankey",
-              br(),
-              htmlOutput("regional_sankey_title"),
+              "Regional flow sankey",
+              h3(htmlOutput("regional_sankey_title")),
               withSpinner(sankeyNetworkOutput("regional_sankey"))
             )
           )

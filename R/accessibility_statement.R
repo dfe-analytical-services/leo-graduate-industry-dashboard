@@ -37,10 +37,10 @@ accessibility_statement <- function() {
     ".",
     br(),
     br(),
-    h2("Technical information about this website’s accessibility"),
+    h3("Technical information about this website’s accessibility"),
     "Department for Education is committed to making its website accessible, in accordance with the Public Sector Bodies
       (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
-    h3("Compliance status"),
+    h4("Compliance status"),
     "This website is partially compliant with the ",
     a(href = "", "Web Content Accessibility Guidelines version 2.1", .noWS = c("after")),
     " AA standard, due to [insert one of the following: ‘the non-compliances’, ‘the exemptions’ or ‘the non-compliances and exemptions’] listed below.",
@@ -48,7 +48,7 @@ accessibility_statement <- function() {
     br(),
     "List of any non-compliances", # TODO: List the non-compliances using the appropriate template
 
-    h2("Preparation of this accessibility statement"),
+    h3("Preparation of this accessibility statement"),
     "This statement was prepared on [date when it was first published].", # TODO: Add date
     br(),
     br(),

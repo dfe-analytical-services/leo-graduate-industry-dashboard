@@ -267,11 +267,11 @@ map_text2 <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
 
   mapdata_diff_prop$difference_prop2 <- readr::parse_number(scales::percent(mapdata_diff_prop$difference_prop2, accuracy = 0.1))
 
-  map_text <- paste(
-    subjecttext, "in the", sectionnameinput, "industry, the region with the highest proportionate increase in graduates who studied there compared to living
-                    there", YAGinput, "years after graduation is", first(mapdata_diff_prop$region), ", where the number of
-                    graduates increased by", first(mapdata_diff_prop$difference_prop2), "%. The region with the largest
-                    decrease is", last(mapdata_diff_prop$region), "where the number of graduates decreased by", last(mapdata_diff_prop$difference_prop2),
+  map_text <- paste0(
+    subjecttext, " in the ", sectionnameinput, " industry, the region with the highest proportionate increase in graduates who studied there compared to living
+                    there ", YAGinput, " years after graduation is ", first(mapdata_diff_prop$region), ", where the number of
+                    graduates increased by ", first(mapdata_diff_prop$difference_prop2), "%. The region with the largest
+                    decrease is ", last(mapdata_diff_prop$region), " where the number of graduates decreased by ", last(mapdata_diff_prop$difference_prop2),
     "%."
   )
 
