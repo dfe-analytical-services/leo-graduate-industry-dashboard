@@ -226,23 +226,15 @@ fluidPage(
           ### Title  -------------------------------------
           
           htmlOutput("sankey_title"),
-
+          br(),
+          strong("Most popular industry"),
+          htmlOutput("sankeytext1"),
+          br(),
+          strong("Movement between industries"),
+          htmlOutput("sankeytext2")
+        )
+      ),
           tabsetPanel(
-
-            ### Summary text -------------------------------------
-
-            tabPanel(
-              "Summary",
-              div(
-                h2("Industry flow summary"),
-                strong("Most popular industry"),
-                htmlOutput("sankeytext1"),
-                br(),
-                strong("Movement between industries"),
-                htmlOutput("sankeytext2"),
-                br()
-              ),
-            ),
 
             ### Sankey plot -------------------------------------
 
@@ -257,9 +249,9 @@ fluidPage(
                 three years of graduation in the middle, to five years after graduation on the right side.
                 Hover your mouse over a bar or flow line to see the number of graduates it represents."
                 ),
-              column(5, "1 year after graduation"),
-              column(5, "3 years after graduation"),
-              column(3, "5 years after graduation"),
+              column(4, "1 year after graduation"),
+              column(4, div("3 years after graduation", style = "text-align: center")),
+              column(4, div("5 years after graduation", style = "text-align: right")),
               withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
             ),
 
@@ -270,10 +262,8 @@ fluidPage(
               withSpinner(reactableOutput("sankey_table")),
               height = 1500
             )
-          )
-        )
-      ),
-
+          ),
+        
       ## Caveats ---------------------------------------------------------------------
 
       caveats_box(), # defined in R/caveats.R
@@ -384,9 +374,9 @@ fluidPage(
               div(
                 h3("Regional summary"),
                 br(),
-                htmlOutput("maptext"),
+                withSpinner(htmlOutput("maptext")),
                 br(),
-                htmlOutput("maptext2")
+                withSpinner(htmlOutput("maptext2"))
               )
             ),
 
