@@ -191,6 +191,7 @@ fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
+          # TODO: put this somewhere else
           #helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
           #helpText("Switch between the sankey and the proportions table using the tabs on the right."),
           selectInput("qualinput",
@@ -305,6 +306,11 @@ fluidPage(
             ),
             selected = "First degree"
           ),
+          selectInput("YAGinput",
+                      label = "Select year after graduation",
+                      choices = list(1, 3, 5, 10),
+                      selected = 5
+          ),
           selectInput("sectionnameinput",
             label = "Choose an industry area",
             choices = list(
@@ -346,11 +352,6 @@ fluidPage(
               "Difference (%)" = "difference_prop"
             ),
             selected = "trained_in_region"
-          ),
-          selectInput("YAGinput",
-            label = "Select year after graduation",
-            choices = list(1, 3, 5, 10),
-            selected = 5
           )
         ),
 
@@ -454,6 +455,32 @@ fluidPage(
             choices = list("Proportions", "Median earnings"),
             selected = "Proportions"
           ),
+          conditionalPanel(
+            condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
+            selectInput("qualinput3",
+                        label = "Select qualification level",
+                        choices = list(
+                          "First degree",
+                          "Level 7 (taught)",
+                          "Level 7 (research)",
+                          "Level 8"
+                        ),
+                        selected = "First degree"
+            )
+          ),
+          selectInput("YAGinput2",
+                      label = "Select a year after graduation",
+                      choices = list(1, 3, 5, 10),
+                      selected = 5
+          ),
+          conditionalPanel(
+            condition = "input.countinput2 != 'subject_name'",
+            selectInput("crosstabs.subjectinput",
+                        label = "Select a subject area",
+                        choices = unique(c("All", sort(qual_subjects$subject_name))),
+                        selected = "All"
+            )
+          ),
           selectInput("countinput2",
             label = "Choose a breakdown",
             choices = list(
@@ -466,32 +493,6 @@ fluidPage(
               "Qualification level" = "qualification_TR"
             ),
             selected = "sex"
-          ),
-          selectInput("YAGinput2",
-            label = "Select a year after graduation",
-            choices = list(1, 3, 5, 10),
-            selected = 5
-          ),
-          conditionalPanel(
-            condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
-            selectInput("qualinput3",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
-          ),
-          conditionalPanel(
-            condition = "input.countinput2 != 'subject_name'",
-            selectInput("crosstabs.subjectinput",
-              label = "Select a subject area",
-              choices = unique(c("All", sort(qual_subjects$subject_name))),
-              selected = "All"
-            )
           ),
           helpText("Download the current table as a csv"),
           shinyGovstyle::button_Input(inputId = "downloadData", label = "Download table"),
@@ -547,36 +548,23 @@ fluidPage(
             choices = list("Proportions", "Median earnings"),
             selected = "Proportions"
           ),
-          selectInput("countinput3",
-            label = "Choose a breakdown",
-            choices = list(
-              "Sex" = "sex",
-              "Ethnicity" = "ethnicity",
-              "Current region" = "current_region",
-              "Free school meals (FSM)" = "FSM",
-              "Prior attainment" = "prior_attainment",
-              "Industry" = "SECTIONNAME",
-              "Qualification level" = "qualification_TR"
-            ),
-            selected = "sex"
-          ),
-          selectInput("YAGinput3",
-            label = "Select a year after graduation",
-            choices = list(1, 3, 5, 10),
-            selected = 5
-          ),
           conditionalPanel(
             condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
             selectInput("qualinput4",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
+                        label = "Select qualification level",
+                        choices = list(
+                          "First degree",
+                          "Level 7 (taught)",
+                          "Level 7 (research)",
+                          "Level 8"
+                        ),
+                        selected = "First degree"
             )
+          ),
+          selectInput("YAGinput3",
+                      label = "Select a year after graduation",
+                      choices = list(1, 3, 5, 10),
+                      selected = 5
           ),
           conditionalPanel(
             condition = "input.countinput3 != 'SECTIONNAME'",
@@ -607,6 +595,19 @@ fluidPage(
               ),
               selected = "Education"
             )
+          ),
+          selectInput("countinput3",
+                      label = "Choose a breakdown",
+                      choices = list(
+                        "Sex" = "sex",
+                        "Ethnicity" = "ethnicity",
+                        "Current region" = "current_region",
+                        "Free school meals (FSM)" = "FSM",
+                        "Prior attainment" = "prior_attainment",
+                        "Industry" = "SECTIONNAME",
+                        "Qualification level" = "qualification_TR"
+                      ),
+                      selected = "sex"
           )
         ),
 
