@@ -9,9 +9,6 @@ fluidPage(
                            .navbar-nav {
                            float: none !important;
                            }
-                           .navbar-nav > li:nth-child(6) {
-                           float: right;
-                           }
                            .navbar-nav > li:nth-child(7) {
                            float: right;
                            }
@@ -250,18 +247,19 @@ fluidPage(
             ### Sankey plot -------------------------------------
 
             tabPanel(
-              "Industry flow sankey Plot",
-              htmlOutput("sankeyhelp"),
-              bsTooltip("sankeyhelp",
-                "The coloured bars represent graduates in that industry at each year after graduation, and the grey flow lines show the movement of these graduates. Hover your mouse over a bar or flow line to see the number of graduates it represents.",
-                placement = "left",
-                trigger = "hover",
-                options = NULL
-              ),
-              absolutePanel(strong("1 YAG"), top = "15%", left = 25),
-              absolutePanel(strong("5 YAG"), top = "15%", right = 25),
-              absolutePanel(strong("3 YAG"), top = "15%", left = "48%"),
+              "Industry flow sankey plot",
               br(),
+              details(
+                inputId = "sankeyhelp",
+                label = "How to read this sankey",
+                help_text = "The coloured bars represent graduates in that industry at each year after graduation, 
+                and the grey flow lines show the movement of these graduates from one year after graduation on the left, to 
+                three years of graduation in the middle, to five years after graduation on the right side.
+                Hover your mouse over a bar or flow line to see the number of graduates it represents."
+                ),
+              column(5, "1 year after graduation"),
+              column(5, "3 years after graduation"),
+              column(3, "5 years after graduation"),
               withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
             ),
 
@@ -639,20 +637,21 @@ fluidPage(
       br(),
     ),
 
-    # Support links ----------------------------------------------
-
-    tabPanel(
-      "Support and feedback",
-      support_links() # defined in R/accessibility_statement.R
-    ),
-
     # Accessibility ----------------------------------------------
 
     tabPanel(
       "Accessibility",
       warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
       accessibility_statement() # defined in R/accessibility_statement.R
+    ),
+    
+    # Support links ----------------------------------------------
+    
+    tabPanel(
+      "Support and feedback",
+      support_links() # defined in R/accessibility_statement.R
     )
+    
   ), # navbar page
 
   # Footer ----------------------------------------------
