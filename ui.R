@@ -191,8 +191,8 @@ fluidPage(
       sidebarLayout(
         sidebarPanel(
           width = 3,
-          helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
-          helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+          #helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
+          #helpText("Switch between the sankey and the proportions table using the tabs on the right."),
           selectInput("qualinput",
             label = "Choose graduate qualification level",
             choices = list(
@@ -357,51 +357,56 @@ fluidPage(
         ## Main panel -------------------------------------------------------------
 
         mainPanel(
+          
+          ### Summary text ----------------------------------------------------
+          
+          div(
+            h3("Regional summary"),
+            htmlOutput("maptext"),
+            br(),
+            htmlOutput("maptext2"),
+            br()
+          ),
+          
           tabsetPanel(
 
             ### Map -------------------------------------------------------------
 
             tabPanel(
-              "Map",
-              h3(htmlOutput("map_title")),
-              withSpinner(leafletOutput(outputId = "map", height = 470))
+              "Map and sankey",
+              column(6,
+                     h3(htmlOutput("map_title")),
+                     withSpinner(leafletOutput(outputId = "map", height = 470))
+                     ),
+              column(6,
+                     h3(htmlOutput("regional_sankey_title")),
+                     withSpinner(sankeyNetworkOutput("regional_sankey"))
+                     )
+
             ),
-
-            ### Summary text -------------------------------------------------------------
-
-            tabPanel(
-              "Regional summary",
-              div(
-                h3("Regional summary"),
-                br(),
-                withSpinner(htmlOutput("maptext")),
-                br(),
-                withSpinner(htmlOutput("maptext2"))
-              )
-            ),
-
+            
             ### Table -------------------------------------------------------------
-
+            
             tabPanel(
               "Regional table",
               h3("Regional table"),
               div(
                 class = "well",
                 div(selectizeInput("regioninput",
-                  label = "Select multiple regions from the dropdown below to compare.",
-                  choices = list(
-                    "North East",
-                    "North West",
-                    "Yorkshire and the Humber",
-                    "East Midlands",
-                    "West Midlands",
-                    "East of England",
-                    "London",
-                    "South East",
-                    "South West"
-                  ),
-                  selected = "London", multiple = FALSE,
-                  options = list(maxItems = 9, placeholder = "Start typing a region")
+                                   label = "Select multiple regions from the dropdown below to compare.",
+                                   choices = list(
+                                     "North East",
+                                     "North West",
+                                     "Yorkshire and the Humber",
+                                     "East Midlands",
+                                     "West Midlands",
+                                     "East of England",
+                                     "London",
+                                     "South East",
+                                     "South West"
+                                   ),
+                                   selected = "London", multiple = FALSE,
+                                   options = list(maxItems = 9, placeholder = "Start typing a region")
                 ))
               ),
               strong("Click a column header to sort the table"),
@@ -409,15 +414,8 @@ fluidPage(
               withSpinner(reactableOutput("maptable")),
               br(),
               strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
-            ),
-
-            ### Sankey -------------------------------------------------------------
-
-            tabPanel(
-              "Regional flow sankey",
-              h3(htmlOutput("regional_sankey_title")),
-              withSpinner(sankeyNetworkOutput("regional_sankey"))
             )
+            
           )
         )
       ),
