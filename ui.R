@@ -116,7 +116,7 @@ fluidPage(
           width = 2,
 
           ### Help text -------------------------------------------------------
-          
+
           helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
           helpText("Switch between the sankey and the proportions table using the tabs on the right."),
 
