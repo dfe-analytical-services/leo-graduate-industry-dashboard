@@ -2,6 +2,7 @@ server <- function(input, output, session) {
 
   # Close session after closing app --------------------------
 
+  # TODO: Uncomment before opening PR for review
   # session$onSessionEnded(stopApp) commenting out to test the lighthouse redirect
 
   # Links to tabs --------------------------------------------

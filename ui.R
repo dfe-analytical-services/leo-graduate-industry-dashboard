@@ -1,8 +1,7 @@
 fluidPage(
   shinyjs::useShinyjs(),
-
   use_tota11y(), # accessibility layer for local testing
-  
+
   # This CSS sets the 7th item on the navbar to the right
   tagList(
     tags$head(tags$style(HTML("
@@ -46,10 +45,7 @@ fluidPage(
         fluidRow(
           column(
             12,
-            h2("Welcome"),
-            paste(welcome_text, " For more detail see our official statistics "), # stored in www/text, read in via R/dashboard_text.R
-            a(href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo", "publication on Graduate Outcomes", .noWS = c("after")),
-            ".",
+            welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
           ),
@@ -69,40 +65,18 @@ fluidPage(
                 div(
                   class = "panel-body",
                   h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
-                  paste(industryFlow_text), # stored in www/text, read in via R/dashboard_text.R
+                  industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
                   h3(actionLink("link_to_regional_tab", "Regional analysis")),
-                  paste(regional_text), # stored in www/text, read in via R/dashboard_text.R
-                  br()
+                  regional_text(), # defined in R/dashboard_text.R
+                  br(),
+                  h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables")),
+                  sub_by_ind_text(), # defined in R/dashboard_text.R
+                  h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables")),
+                  ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
             ),
-            div(
-              div(
-                class = "panel panel-info",
-                div(
-                  class = "panel-heading",
-                  style = "color: white;font-size: 18px;font-style: bold; background-color: #1d70b8;",
-                  h2("Tables")
-                ),
-                div(
-                  class = "panel-body",
-                  h3(actionLink("link_to_subjectByIndustry_tab", "(1) Subject by industry")),
-                  h3(actionLink("link_to_industryBySubject_tab", "(2) Industry by subject")),
-                  paste(tables_text), # stored in www/text, read in via R/dashboard_text.R
-                  br(),
-                  tags$ul(
-                    tags$li("sex"),
-                    tags$li("ethnicity"),
-                    tags$li("FSM status"),
-                    tags$li("current region"),
-                    tags$li("prior attainment"),
-                    tags$li("subject"),
-                    tags$li("qualification level")
-                  )
-                )
-              )
-            )
           ),
 
           ## Right panel ---------------------------------------------------------------------------
@@ -119,47 +93,7 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h3("IDBR (Inter-Departmental Business Register)"),
-                  "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
-                  h3("UK SIC (Standard Industrial Classification) code"),
-                  "The UK Standard Industrial Classification (SIC) of economic activties is used to classify businesses by the type of activity they do.",
-                  h3("Useful links"),
-                  a(
-                    href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
-                    "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
-                  ),
-                  br(),
-                  a(
-                    href = "https://siccode.com/sic-code-lookup-directory",
-                    "SIC Code Lookup | SIC Code Search Tool"
-                  ),
-                  h3("SIC Groups and sections"),
-                  paste(sicGroups_text), # stored in www/text, read in via R/dashboard_text.R
-                  br(),
-                  br(),
-                  tags$ol(
-                    tags$li("ACCOMMODATION AND FOOD SERVICE ACTIVITIES"),
-                    tags$li("ACTIVITITES OF EXTRATERRITORIAL ORGANISATIONS AND BODIES"),
-                    tags$li("ACTIVITIES OF HOUSEHOLDS AS EMPLOYERS - UNDIFFERENTIATED GOODS-AND SERVICES-PRODUCING ACTIVITIES OF HOUSEHOLDS FOR OWN USE"),
-                    tags$li("ADMINISTRATIVE AND SUPPORT SERVICE ACTIVITIES"),
-                    tags$li("AGRICULTURE, FORESTRY AND FISHING"),
-                    tags$li("ARTS, ENTERTAINMENT AND RECREATION"),
-                    tags$li("CONSTRUCTION"),
-                    tags$li("EDUCATION"),
-                    tags$li("ELECTRICITY, GAS, STEAM AND AIR CONDITIONG SUPPLY"),
-                    tags$li("FINANCIAL AND INSURANCE ACTIVITIES"),
-                    tags$li("HUMAN HEALTH AND SOCIAL WORK ACTIVITIES"),
-                    tags$li("INFORMATION AND COMMUNICATION"),
-                    tags$li("MANUFACTURING"),
-                    tags$li("MINING AND QUARRYING"),
-                    tags$li("OTHER SERVICE ACTIVITIES"),
-                    tags$li("PROFESSIONAL, SCIENTIFIC AND TECHNICAL ACTIVITIES"),
-                    tags$li("PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY"),
-                    tags$li("REAL ESTATE ACTIVITIES"),
-                    tags$li("TRANSPORTATION AND STORAGE"),
-                    tags$li("WATER SUPPLY - SEWERAGE, WASTE MANAGEMENT AND REMEDIATION ACTIVITIES"),
-                    tags$li("WHOLESALE AND RETAIL TRADE - REPAIR OF MOTOR VEHICLES AND MOTORCYCLES")
-                  )
+                  sic_groups_text(), # defined in R/dashboard_text.R
                 )
               )
             )
@@ -172,7 +106,7 @@ fluidPage(
 
     tabPanel(
       value = "industryFlow", title = "Industry flow",
-      
+
       ## Set metadata for browser ----------------------------------------------------
 
       tags$html(lang = "en"),
@@ -192,8 +126,8 @@ fluidPage(
         sidebarPanel(
           width = 3,
           # TODO: put this somewhere else
-          #helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
-          #helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+          # helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
+          # helpText("Switch between the sankey and the proportions table using the tabs on the right."),
           selectInput("qualinput",
             label = "Choose graduate qualification level",
             choices = list(
@@ -223,9 +157,9 @@ fluidPage(
         ## Main panel -------------------------------------------
 
         mainPanel(
-          
+
           ### Title  -------------------------------------
-          
+
           htmlOutput("sankey_title"),
           br(),
           strong("Most popular industry"),
@@ -235,36 +169,36 @@ fluidPage(
           htmlOutput("sankeytext2")
         )
       ),
-          tabsetPanel(
+      tabsetPanel(
 
-            ### Sankey plot -------------------------------------
+        ### Sankey plot -------------------------------------
 
-            tabPanel(
-              "Industry flow sankey plot",
-              br(),
-              details(
-                inputId = "sankeyhelp",
-                label = "How to read this sankey",
-                help_text = "The coloured bars represent graduates in that industry at each year after graduation, 
-                and the grey flow lines show the movement of these graduates from one year after graduation on the left, to 
+        tabPanel(
+          "Industry flow sankey plot",
+          br(),
+          details(
+            inputId = "sankeyhelp",
+            label = "How to read this sankey",
+            help_text = "The coloured bars represent graduates in that industry at each year after graduation,
+                and the grey flow lines show the movement of these graduates from one year after graduation on the left, to
                 three years of graduation in the middle, to five years after graduation on the right side.
                 Hover your mouse over a bar or flow line to see the number of graduates it represents."
-                ),
-              column(4, "1 year after graduation"),
-              column(4, div("3 years after graduation", style = "text-align: center")),
-              column(4, div("5 years after graduation", style = "text-align: right")),
-              withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
-            ),
-
-            ### Table ------------------------------------------
-
-            tabPanel(
-              "Industry proportions table",
-              withSpinner(reactableOutput("sankey_table")),
-              height = 1500
-            )
           ),
-        
+          column(4, "1 year after graduation"),
+          column(4, div("3 years after graduation", style = "text-align: center")),
+          column(4, div("5 years after graduation", style = "text-align: right")),
+          withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
+        ),
+
+        ### Table ------------------------------------------
+
+        tabPanel(
+          "Industry proportions table",
+          withSpinner(reactableOutput("sankey_table")),
+          height = 1500
+        )
+      ),
+
       ## Caveats ---------------------------------------------------------------------
 
       caveats_box(), # defined in R/caveats.R
@@ -307,9 +241,9 @@ fluidPage(
             selected = "First degree"
           ),
           selectInput("YAGinput",
-                      label = "Select year after graduation",
-                      choices = list(1, 3, 5, 10),
-                      selected = 5
+            label = "Select year after graduation",
+            choices = list(1, 3, 5, 10),
+            selected = 5
           ),
           selectInput("sectionnameinput",
             label = "Choose an industry area",
@@ -358,9 +292,9 @@ fluidPage(
         ## Main panel -------------------------------------------------------------
 
         mainPanel(
-          
+
           ### Summary text ----------------------------------------------------
-          
+
           div(
             h3("Regional summary"),
             htmlOutput("maptext"),
@@ -368,46 +302,46 @@ fluidPage(
             htmlOutput("maptext2"),
             br()
           ),
-          
           tabsetPanel(
 
             ### Map -------------------------------------------------------------
 
             tabPanel(
               "Map and sankey",
-              column(6,
-                     h3(htmlOutput("map_title")),
-                     withSpinner(leafletOutput(outputId = "map", height = 470))
-                     ),
-              column(6,
-                     h3(htmlOutput("regional_sankey_title")),
-                     withSpinner(sankeyNetworkOutput("regional_sankey"))
-                     )
-
+              column(
+                6,
+                h3(htmlOutput("map_title")),
+                withSpinner(leafletOutput(outputId = "map", height = 470))
+              ),
+              column(
+                6,
+                h3(htmlOutput("regional_sankey_title")),
+                withSpinner(sankeyNetworkOutput("regional_sankey"))
+              )
             ),
-            
+
             ### Table -------------------------------------------------------------
-            
+
             tabPanel(
               "Regional table",
               h3("Regional table"),
               div(
                 class = "well",
                 div(selectizeInput("regioninput",
-                                   label = "Select multiple regions from the dropdown below to compare.",
-                                   choices = list(
-                                     "North East",
-                                     "North West",
-                                     "Yorkshire and the Humber",
-                                     "East Midlands",
-                                     "West Midlands",
-                                     "East of England",
-                                     "London",
-                                     "South East",
-                                     "South West"
-                                   ),
-                                   selected = "London", multiple = FALSE,
-                                   options = list(maxItems = 9, placeholder = "Start typing a region")
+                  label = "Select multiple regions from the dropdown below to compare.",
+                  choices = list(
+                    "North East",
+                    "North West",
+                    "Yorkshire and the Humber",
+                    "East Midlands",
+                    "West Midlands",
+                    "East of England",
+                    "London",
+                    "South East",
+                    "South West"
+                  ),
+                  selected = "London", multiple = FALSE,
+                  options = list(maxItems = 9, placeholder = "Start typing a region")
                 ))
               ),
               strong("Click a column header to sort the table"),
@@ -416,7 +350,6 @@ fluidPage(
               br(),
               strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
             )
-            
           )
         )
       ),
@@ -458,27 +391,27 @@ fluidPage(
           conditionalPanel(
             condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
             selectInput("qualinput3",
-                        label = "Select qualification level",
-                        choices = list(
-                          "First degree",
-                          "Level 7 (taught)",
-                          "Level 7 (research)",
-                          "Level 8"
-                        ),
-                        selected = "First degree"
+              label = "Select qualification level",
+              choices = list(
+                "First degree",
+                "Level 7 (taught)",
+                "Level 7 (research)",
+                "Level 8"
+              ),
+              selected = "First degree"
             )
           ),
           selectInput("YAGinput2",
-                      label = "Select a year after graduation",
-                      choices = list(1, 3, 5, 10),
-                      selected = 5
+            label = "Select a year after graduation",
+            choices = list(1, 3, 5, 10),
+            selected = 5
           ),
           conditionalPanel(
             condition = "input.countinput2 != 'subject_name'",
             selectInput("crosstabs.subjectinput",
-                        label = "Select a subject area",
-                        choices = unique(c("All", sort(qual_subjects$subject_name))),
-                        selected = "All"
+              label = "Select a subject area",
+              choices = unique(c("All", sort(qual_subjects$subject_name))),
+              selected = "All"
             )
           ),
           selectInput("countinput2",
@@ -551,20 +484,20 @@ fluidPage(
           conditionalPanel(
             condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
             selectInput("qualinput4",
-                        label = "Select qualification level",
-                        choices = list(
-                          "First degree",
-                          "Level 7 (taught)",
-                          "Level 7 (research)",
-                          "Level 8"
-                        ),
-                        selected = "First degree"
+              label = "Select qualification level",
+              choices = list(
+                "First degree",
+                "Level 7 (taught)",
+                "Level 7 (research)",
+                "Level 8"
+              ),
+              selected = "First degree"
             )
           ),
           selectInput("YAGinput3",
-                      label = "Select a year after graduation",
-                      choices = list(1, 3, 5, 10),
-                      selected = 5
+            label = "Select a year after graduation",
+            choices = list(1, 3, 5, 10),
+            selected = 5
           ),
           conditionalPanel(
             condition = "input.countinput3 != 'SECTIONNAME'",
@@ -597,17 +530,17 @@ fluidPage(
             )
           ),
           selectInput("countinput3",
-                      label = "Choose a breakdown",
-                      choices = list(
-                        "Sex" = "sex",
-                        "Ethnicity" = "ethnicity",
-                        "Current region" = "current_region",
-                        "Free school meals (FSM)" = "FSM",
-                        "Prior attainment" = "prior_attainment",
-                        "Industry" = "SECTIONNAME",
-                        "Qualification level" = "qualification_TR"
-                      ),
-                      selected = "sex"
+            label = "Choose a breakdown",
+            choices = list(
+              "Sex" = "sex",
+              "Ethnicity" = "ethnicity",
+              "Current region" = "current_region",
+              "Free school meals (FSM)" = "FSM",
+              "Prior attainment" = "prior_attainment",
+              "Industry" = "SECTIONNAME",
+              "Qualification level" = "qualification_TR"
+            ),
+            selected = "sex"
           )
         ),
 
@@ -633,14 +566,13 @@ fluidPage(
       warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
-    
+
     # Support links ----------------------------------------------
-    
+
     tabPanel(
       "Support and feedback",
       support_links() # defined in R/accessibility_statement.R
     )
-    
   ), # navbar page
 
   # Footer ----------------------------------------------

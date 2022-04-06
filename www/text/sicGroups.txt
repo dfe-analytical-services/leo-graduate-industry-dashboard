@@ -1,1 +1,0 @@
-We have two SIC variables joined onto our data: SECTIONNAME and SIC2007. There are over 700 detailed SIC codes in the SIC2007 variable, which are grouped into 21 industry sections in the SECTIONNAME variable. We have used the broader industry sections as the base for our analysis, which consist of the following:
