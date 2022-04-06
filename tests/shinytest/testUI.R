@@ -1,9 +1,9 @@
-app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04)
+app <- ShinyDriver$new("../../", loadTimeout = 3e+04)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
+# Industry flow tab ===========================================================
 
-# Testing the industry flow panel
 industryFlow_input <- c("navbar", "qualinput", "sexinput", "indflow.subjectinput")
 industryFlow_output <- c(
   "sankey", "sankey_title", "sankeyhelp", "sankeysubjectlist",
@@ -59,15 +59,16 @@ app$snapshot(
   filename = "industryFlow_6.json"
 )
 
+# Industry by subject tab =====================================================
 
-
-# Run tests for industry by subject tab
 industryBySubject_input <- c(
   "navbar", "countinput3", "YAGinput3", "qualinput4",
   "sectionnameinput2", "earningsbutton2"
 )
+
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
+
 industryBySubject_output <- c("backwards_crosstab_title")
 
 app$setInputs(navbar = "industryBySubject", wait_ = FALSE, values_ = FALSE)
@@ -141,15 +142,17 @@ app$snapshot(
 
 
 
-# Run tests for subject by industry tab
+# Subject by industry tab =====================================================
+
 subjectByIndustry_input <- c(
   "navbar", "countinput2", "YAGinput2", "crosstabs.subjectinput", "earningsbutton", "qualinput3"
 )
+
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
 subjectByIndustry_output <- c("crosstab_title")
 
-app$setInputs(navbar = "subjectByIndustry", timeout_ = 2.e4)
+app$setInputs(navbar = "subjectByIndustry", timeout_ = 5.e4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -181,7 +184,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_3.json"
 )
-app$setInputs(countinput2 = "ethnicity", timeout_ = 1e+4)
+app$setInputs(countinput2 = "ethnicity", timeout_ = 2e+4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -222,6 +225,7 @@ app$snapshot(
   filename = "subjectByIndustry_8.json"
 )
 
+# Regional tab ================================================================
 
 # Run tests for regional tab - note: excluding the map output as it makes the
 # json files massive.
