@@ -29,6 +29,7 @@
 }
 
 .well {
+    height: 90vh; 
     padding: 19px;
     margin-bottom: 20px;
     background-color: #1d70b8;

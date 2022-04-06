@@ -11,7 +11,7 @@ welcome_text <- function() {
     what industry these graduates were working in at these points in time. For more detail see our ",
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo",
-      "official statisticspublication on Graduate Outcomes",
+      "official statistics publication on Graduate Outcomes",
       .noWS = c("after")
     ),
     ".",

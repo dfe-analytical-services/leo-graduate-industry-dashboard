@@ -1,6 +1,25 @@
 fluidPage(
   shinyjs::useShinyjs(),
-  use_tota11y(), # accessibility layer for local testing
+  includeCSS("www/dfe_shiny_gov_style.css"),
+  # use_tota11y(), # accessibility layer for local testing
+
+  # Set metadata for browser ==================================================
+
+  tags$html(lang = "en"),
+  meta_general(
+    application_name = "LEO Graduate Industry dashboard",
+    description = "Longitudinal Education Outcomes for graduates by industry",
+    robots = "index,follow",
+    generator = "R-Shiny",
+    subject = "Outcomes for graduates",
+    rating = "General",
+    referrer = "no-referrer"
+  ),
+
+  # Set title for search engines
+  HTML("<title>Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19</title>"),
+
+  # Navbar ====================================================================
 
   # This CSS sets the 7th item on the navbar to the right
   tagList(
@@ -14,43 +33,26 @@ fluidPage(
                            ")))
   ),
   navbarPage("",
-    id = "navbar", # No title so there's no fake clickable link that isn't actually clickable, will need to check for accessibility
+    id = "navbar",
 
-    # Homepage tab ------------------------------------------------------------------------------------
+    # Homepage tab ============================================================
 
     tabPanel(
       value = "homepage", title = "Homepage",
 
-      ## Style sheet ------------------------------------------------------------------------------
-
-      includeCSS("www/dfe_shiny_gov_style.css"),
-
-      ## Set metadata for browser ---------------------------------------------------------------------
-
-      tags$html(lang = "en"),
-      meta_general(
-        application_name = "LEO Graduate Industry dashboard",
-        description = "Longitudinal Education Outcomes for graduates by industry",
-        robots = "index,follow",
-        generator = "R-Shiny",
-        subject = "Outcomes for graduates",
-        rating = "General",
-        referrer = "no-referrer"
-      ),
-
-      ## Tab content ---------------------------------------------------------------------------------
+      ## Tab content ----------------------------------------------------------
 
       fluidPage(
-        h1("Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19"),
         fluidRow(
           column(
             12,
+            h1("Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19"),
             welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
           ),
 
-          ## Left panel ------------------------------------------------------------------------------
+          ## Left panel -------------------------------------------------------
 
           column(
             6,
@@ -79,7 +81,7 @@ fluidPage(
             ),
           ),
 
-          ## Right panel ---------------------------------------------------------------------------
+          ## Right panel ------------------------------------------------------
 
           column(
             6,
@@ -102,32 +104,23 @@ fluidPage(
       )
     ), # End of homepage tabPanel()
 
-    # Industry flow tab ---------------------------------------------------------------
+    # Industry flow tab =======================================================
 
     tabPanel(
       value = "industryFlow", title = "Industry flow",
 
-      ## Set metadata for browser ----------------------------------------------------
-
-      tags$html(lang = "en"),
-      meta_general(
-        application_name = "LEO Graduate Industry dashboard",
-        description = "Longitudinal Education Outcomes for graduates by industry",
-        robots = "index,follow",
-        generator = "R-Shiny",
-        subject = "Outcomes for graduates",
-        rating = "General",
-        referrer = "no-referrer"
-      ),
-
-      ## Side bar --------------------------------------------------------------------
+      ## Side bar -------------------------------------------------------------
 
       sidebarLayout(
         sidebarPanel(
-          width = 3,
+          width = 2,
+
           # TODO: put this somewhere else
           # helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
           # helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+
+          ### Degree input ----------------------------------------------------
+
           selectInput("qualinput",
             label = "Choose graduate qualification level",
             choices = list(
@@ -138,11 +131,17 @@ fluidPage(
             ),
             selected = "First degree"
           ),
+
+          ### Subject input ---------------------------------------------------
+
           selectizeInput("indflow.subjectinput",
             label = "Select a subject area",
             choices = unique(c("All", sort(qual_subjects$subject_name))),
             selected = "All"
           ),
+
+          ### Sex input -------------------------------------------------------
+
           selectInput("sexinput",
             label = "View by graduate sex",
             choices = list(
@@ -152,13 +151,15 @@ fluidPage(
             ),
             selected = "F+M"
           )
-        ),
+        ), # end of sidebar
 
-        ## Main panel -------------------------------------------
+        ## Main panel =========================================================
 
         mainPanel(
+          width = 10,
+          style = "height: 90vh; overflow-y: auto;",
 
-          ### Title  -------------------------------------
+          ### Title  ----------------------------------------------------------
 
           htmlOutput("sankey_title"),
           br(),
@@ -166,70 +167,80 @@ fluidPage(
           htmlOutput("sankeytext1"),
           br(),
           strong("Movement between industries"),
-          htmlOutput("sankeytext2")
-        )
-      ),
-      tabsetPanel(
-
-        ### Sankey plot -------------------------------------
-
-        tabPanel(
-          "Industry flow sankey plot",
+          htmlOutput("sankeytext2"),
           br(),
-          details(
-            inputId = "sankeyhelp",
-            label = "How to read this sankey",
-            help_text = "The coloured bars represent graduates in that industry at each year after graduation,
-                and the grey flow lines show the movement of these graduates from one year after graduation on the left, to
-                three years of graduation in the middle, to five years after graduation on the right side.
-                Hover your mouse over a bar or flow line to see the number of graduates it represents."
+
+          ### Tabs ------------------------------------------------------------
+
+          tabsetPanel(
+
+            #### Sankey plot --------------------------------------------------
+
+            tabPanel(
+              "Industry flow sankey plot",
+              br(),
+              details(
+                inputId = "sankeyhelp",
+                label = "How to read this sankey",
+                help_text = "The coloured bars represent graduates in that
+                industry at each year after graduation, and the grey flow lines
+                show the movement of these graduates from one year after
+                graduation on the left, to three years of graduation in the
+                middle, to five years after graduation on the right side. Hover
+                your mouse over a bar or flow line to see the number of
+                graduates it represents."
+              ),
+              column(
+                4,
+                "1 year after graduation"
+              ),
+              column(4, div(
+                "3 years after graduation",
+                style = "text-align: center"
+              )),
+              column(
+                4,
+                div("5 years after graduation", style = "text-align: right")
+              ),
+              withSpinner(
+                sankeyNetworkOutput(outputId = "sankey", height = 800)
+              )
+            ),
+
+            #### Table --------------------------------------------------------
+
+            tabPanel(
+              "Industry proportions table",
+              withSpinner(reactableOutput("sankey_table")),
+              height = 1500
+            )
           ),
-          column(4, "1 year after graduation"),
-          column(4, div("3 years after graduation", style = "text-align: center")),
-          column(4, div("5 years after graduation", style = "text-align: right")),
-          withSpinner(sankeyNetworkOutput(outputId = "sankey", height = 800))
+
+          ### Caveats ---------------------------------------------------------
+
+          caveats_box() # defined in R/caveats.R
         ),
-
-        ### Table ------------------------------------------
-
-        tabPanel(
-          "Industry proportions table",
-          withSpinner(reactableOutput("sankey_table")),
-          height = 1500
-        )
       ),
-
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br()
     ),
 
-    # Regional analysis tab ------------------------------------------
+    # Regional analysis tab ===================================================
 
     tabPanel(
       value = "regional", title = "Regional",
 
-      ## Set metadata for browser ----------------------------------------------------
-
-      tags$html(lang = "en"),
-      meta_general(
-        application_name = "LEO Graduate Industry dashboard",
-        description = "Longitudinal Education Outcomes for graduates by industry",
-        robots = "index,follow",
-        generator = "R-Shiny",
-        subject = "Outcomes for graduates",
-        rating = "General",
-        referrer = "no-referrer"
-      ),
-
-      ## Side bar ----------------------------------------------------
+      ## Side bar =============================================================
 
       sidebarLayout(
         sidebarPanel(
-          width = 3,
+          width = 2,
+
+          ### Help text -------------------------------------------------------
+
           helpText("Create a heat map to show graduate movement from study region to current region for the selected industry."),
           helpText("Click on a region to see all of the information for that region, including the number of providers and the median earnings for the selected industry."),
+
+          ### Degree input ----------------------------------------------------
+
           selectInput("qualinput2",
             label = "Choose graduate qualification level",
             choices = list(
@@ -240,11 +251,17 @@ fluidPage(
             ),
             selected = "First degree"
           ),
+
+          ### YAG input -------------------------------------------------------
+
           selectInput("YAGinput",
             label = "Select year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
           ),
+
+          ### Industry input --------------------------------------------------
+
           selectInput("sectionnameinput",
             label = "Choose an industry area",
             choices = list(
@@ -272,11 +289,17 @@ fluidPage(
             ),
             selected = "Education"
           ),
+
+          ### Subject input ---------------------------------------------------
+
           selectInput("regions.subjectinput",
             label = "Select a subject area",
             choices = unique(c("All", sort(qual_subjects$subject_name))),
             selected = "All"
           ),
+
+          ### Statistics input ------------------------------------------------
+
           selectInput("countinput",
             label = "View different statistics",
             choices = list(
@@ -289,9 +312,11 @@ fluidPage(
           )
         ),
 
-        ## Main panel -------------------------------------------------------------
+        ## Main panel =========================================================
 
         mainPanel(
+          width = 10,
+          style = "height: 90vh; overflow-y: auto;",
 
           ### Summary text ----------------------------------------------------
 
@@ -302,9 +327,12 @@ fluidPage(
             htmlOutput("maptext2"),
             br()
           ),
+
+          ### Tabs ------------------------------------------------------------
+
           tabsetPanel(
 
-            ### Map -------------------------------------------------------------
+            #### Map ----------------------------------------------------------
 
             tabPanel(
               "Map and sankey",
@@ -316,17 +344,24 @@ fluidPage(
               column(
                 6,
                 h3(htmlOutput("regional_sankey_title")),
-                withSpinner(sankeyNetworkOutput("regional_sankey"))
+                withSpinner(sankeyNetworkOutput("regional_sankey")),
+                br(),
+                br()
               )
             ),
 
-            ### Table -------------------------------------------------------------
+            #### Table --------------------------------------------------------
 
             tabPanel(
               "Regional table",
               h3("Regional table"),
               div(
+                # Set as well but override sidebar defaults
                 class = "well",
+                style = "height: 100%; overflow-y: visible",
+
+                #### Regional input -------------------------------------------
+
                 div(selectizeInput("regioninput",
                   label = "Select multiple regions from the dropdown below to compare.",
                   choices = list(
@@ -344,50 +379,49 @@ fluidPage(
                   options = list(maxItems = 9, placeholder = "Start typing a region")
                 ))
               ),
+
+              #### Table ------------------------------------------------------
+
               strong("Click a column header to sort the table"),
               br(),
               withSpinner(reactableOutput("maptable")),
               br(),
-              strong("Please note that the table only shows results for the selected industry, subject and year after graudation.")
+              strong("Please note that the table only shows results for the selected industry, subject and year after graduation.")
             )
-          )
-        )
-      ),
+          ),
 
-      ## Caveats ---------------------------------------------------------------------
+          ## Caveats ----------------------------------------------------------
 
-      caveats_box(), # defined in R/caveats.R
-      br()
-    ),
+          caveats_box() # defined in R/caveats.R
+        ) # end of main panel
+      ), # end of sidebar layout
+    ), # end of regional tab
 
-    # Subject by industry tab ---------------------------------------------
+    # Subject by industry tab =================================================
+
     tabPanel(
       title = "Subject by industry", value = "subjectByIndustry",
 
-      ## Set metadata for browser ----------------------------------------------------
-
-      tags$html(lang = "en"),
-      meta_general(
-        application_name = "LEO Graduate Industry dashboard",
-        description = "Longitudinal Education Outcomes for graduates by industry",
-        robots = "index,follow",
-        generator = "R-Shiny",
-        subject = "Outcomes for graduates",
-        rating = "General",
-        referrer = "no-referrer"
-      ),
-
-      ## Side bar ---------------------------------------------------------
+      ## Side bar =============================================================
 
       sidebarLayout(
         sidebarPanel(
-          width = 3,
-          helpText("Using the drop down boxes below, create your own table by selecting the breakdown, year after graduation, qualification level (available for sex and subject treakdowns only) and subject area you would like to view."),
-          radioGroupButtons("earningsbutton",
+          width = 2,
+
+          ### Helptext --------------------------------------------------------
+
+          helpText("Create your own table by selecting from the drop down boxes below."),
+
+          ### Proportions / earnings input ------------------------------------
+
+          selectInput("earningsbutton",
             label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
             choices = list("Proportions", "Median earnings"),
             selected = "Proportions"
           ),
+
+          ### Degree input ----------------------------------------------------
+
           conditionalPanel(
             condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
             selectInput("qualinput3",
@@ -401,11 +435,17 @@ fluidPage(
               selected = "First degree"
             )
           ),
+
+          ### YAG input -------------------------------------------------------
+
           selectInput("YAGinput2",
             label = "Select a year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
           ),
+
+          ### Subject input ---------------------------------------------------
+
           conditionalPanel(
             condition = "input.countinput2 != 'subject_name'",
             selectInput("crosstabs.subjectinput",
@@ -414,6 +454,9 @@ fluidPage(
               selected = "All"
             )
           ),
+
+          ### Breakdown input -------------------------------------------------
+
           selectInput("countinput2",
             label = "Choose a breakdown",
             choices = list(
@@ -427,60 +470,63 @@ fluidPage(
             ),
             selected = "sex"
           ),
+
+          ### Download data ---------------------------------------------------
+
           helpText("Download the current table as a csv"),
           shinyGovstyle::button_Input(inputId = "downloadData", label = "Download table"),
           br(),
-          br(),
-          div(
-            style = "color:#ffffff",
-            strong("Summary"),
-            htmlOutput("crosstab_text")
-          )
+          br()
         ),
 
-        ## Main panel ------------------------------------------------
+        ## Main panel =========================================================
 
         mainPanel(
-          width = 9,
+          width = 10,
+          style = "height: 90vh; overflow-y: auto; overflow-x: auto;",
+
+          ### Crosstab table --------------------------------------------------
+
           htmlOutput("crosstab_title"),
-          withSpinner(reactableOutput("crosstab"))
+
+          ### Crosstab text ---------------------------------------------------
+
+          div(
+            htmlOutput("crosstab_text")
+          ),
+          withSpinner(reactableOutput("crosstab")),
+
+          ### Caveats ---------------------------------------------------------
+
+          caveats_box() # defined in R/caveats.R
         )
       ),
+    ), # end of subject by industry tab
 
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
-    ),
-
-    # Industry by subject tab -------------------------------------
+    # Industry by subject tab =================================================
     tabPanel(
       title = "Industry by subject", value = "industryBySubject",
 
-      ## Set metadata for browser ----------------------------------------------------
-
-      tags$html(lang = "en"),
-      meta_general(
-        application_name = "LEO Graduate Industry dashboard",
-        description = "Longitudinal Education Outcomes for graduates by industry",
-        robots = "index,follow",
-        generator = "R-Shiny",
-        subject = "Outcomes for graduates",
-        rating = "General",
-        referrer = "no-referrer"
-      ),
-
-      ## Side bar ----------------------------------------------------
+      ## Side bar =============================================================
 
       sidebarLayout(
         sidebarPanel(
-          width = 3,
-          helpText("Using the drop down boxes below, create your own table by selecting the breakdown, year after graduation, qualification level (available for sex and subject breakdowns only) and industry area you would like to view."),
-          radioGroupButtons("earningsbutton2",
-            label = "View the proportion of graduates that studied each subject, or the median earnings of these graduates",
+          width = 2,
+
+          ### Help text -------------------------------------------------------
+
+          helpText("Create your own table by selecting from the drop down boxes below."),
+
+          ### Proportions / earnings input ------------------------------------
+
+          selectInput("earningsbutton2",
+            label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
             choices = list("Proportions", "Median earnings"),
             selected = "Proportions"
           ),
+
+          ### Degree input ----------------------------------------------------
+
           conditionalPanel(
             condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
             selectInput("qualinput4",
@@ -494,11 +540,17 @@ fluidPage(
               selected = "First degree"
             )
           ),
+
+          ### YAG input -------------------------------------------------------
+
           selectInput("YAGinput3",
             label = "Select a year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
           ),
+
+          ### Industry input -------------------------------------------------
+
           conditionalPanel(
             condition = "input.countinput3 != 'SECTIONNAME'",
             selectInput("sectionnameinput2",
@@ -529,6 +581,9 @@ fluidPage(
               selected = "Education"
             )
           ),
+
+          ### Breakdown input -------------------------------------------------
+
           selectInput("countinput3",
             label = "Choose a breakdown",
             choices = list(
@@ -542,24 +597,27 @@ fluidPage(
             ),
             selected = "sex"
           )
-        ),
+        ), # end of sidebar
 
-        ## Main panel -------------------------------------
+        ## Main panel =========================================================
 
         mainPanel(
-          width = 9,
+          width = 10,
+          style = "height: 90vh; overflow-y: auto; overflow-x: auto;",
+
+          ### Backwards crosstab ----------------------------------------------
+
           htmlOutput("backwards_crosstab_title"),
-          withSpinner(reactableOutput("crosstab_backwards"))
+          withSpinner(reactableOutput("crosstab_backwards")),
+
+          ### Caveats ---------------------------------------------------------
+
+          caveats_box() # defined in R/caveats.R
         )
       ),
+    ), # end of industry by subject tab
 
-      ## Caveats ---------------------------------------------------------------------
-
-      caveats_box(), # defined in R/caveats.R
-      br(),
-    ),
-
-    # Accessibility ----------------------------------------------
+    # Accessibility ===========================================================
 
     tabPanel(
       "Accessibility",
@@ -567,15 +625,15 @@ fluidPage(
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
 
-    # Support links ----------------------------------------------
+    # Support links ===========================================================
 
     tabPanel(
       "Support and feedback",
-      support_links() # defined in R/accessibility_statement.R
+      support_links() # defined in R/supporting_links.R
     )
-  ), # navbar page
+  ), # end of navbar page
 
-  # Footer ----------------------------------------------
+  # Footer ====================================================================
 
   shinyGovstyle::footer(TRUE)
-) # fluid page
+) # end of fluid page
