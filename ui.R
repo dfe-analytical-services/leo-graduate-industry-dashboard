@@ -109,15 +109,16 @@ fluidPage(
     tabPanel(
       value = "industryFlow", title = "Industry flow",
 
-      ## Side bar -------------------------------------------------------------
+      ## Side bar =============================================================
 
       sidebarLayout(
         sidebarPanel(
           width = 2,
 
-          # TODO: put this somewhere else
-          # helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
-          # helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+          ### Help text -------------------------------------------------------
+          
+          helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
+          helpText("Switch between the sankey and the proportions table using the tabs on the right."),
 
           ### Degree input ----------------------------------------------------
 
@@ -236,8 +237,11 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create a heat map to show graduate movement from study region to current region for the selected industry."),
-          helpText("Click on a region to see all of the information for that region, including the number of providers and the median earnings for the selected industry."),
+          helpText("Create a heat map to show graduate movement from study
+                   region to current region for the selected industry."),
+          helpText("Click on a region to see all of the information for
+                   that region, including the number of providers and the
+                   median earnings for the selected industry."),
 
           ### Degree input ----------------------------------------------------
 
