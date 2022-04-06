@@ -1,4 +1,4 @@
-app <- ShinyDriver$new("../../", loadTimeout = 3e+04)
+app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
@@ -152,7 +152,7 @@ subjectByIndustry_input <- c(
 # has a datakey that changes across different runs.
 subjectByIndustry_output <- c("crosstab_title")
 
-app$setInputs(navbar = "subjectByIndustry", timeout_ = 5.e4)
+app$setInputs(navbar = "subjectByIndustry", timeout_ = 2.e4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
