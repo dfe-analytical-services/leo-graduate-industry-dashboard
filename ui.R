@@ -42,7 +42,7 @@ fluidPage(
       ## Tab content ---------------------------------------------------------------------------------
 
       fluidPage(
-        h1("Longitudinal Education Outcomes Graduate Industry Dashboard, Tax year 2018-19"),
+        h1("Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19"),
         fluidRow(
           column(
             12,
