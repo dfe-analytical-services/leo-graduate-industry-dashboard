@@ -15,18 +15,18 @@
           "attribs": {
             "data": {
               "SECTIONNAME": [
-                "Wholesale and retail trade - repair of motor vehicles and motorcycles",
-                "Public administration and defence - compulsory social security",
-                "Administrative and support service activities",
-                "Other service activities",
                 "Education",
-                "NOT KNOWN",
-                "Transportation and storage",
-                "Financial and insurance activities",
-                "Professional, scientific and technical activities",
-                "Information and communication",
                 "Manufacturing",
-                "Human health and social work activities"
+                "Professional, scientific and technical activities",
+                "Public administration and defence - compulsory social security",
+                "Wholesale and retail trade - repair of motor vehicles and motorcycles",
+                "Administrative and support service activities",
+                "NOT KNOWN",
+                "Other service activities",
+                "Financial and insurance activities",
+                "Human health and social work activities",
+                "Information and communication",
+                "Transportation and storage"
               ],
               "group_name": [
                 "All",
@@ -43,46 +43,46 @@
                 "All"
               ],
               "Female": [
-                23700,
-                25500,
-                25300,
-                23700,
-                24200,
-                23400,
-                25500,
-                24600,
-                24100,
                 24200,
                 26000,
-                25200
+                24100,
+                25500,
+                23700,
+                25300,
+                23400,
+                23700,
+                24600,
+                25200,
+                24200,
+                25500
               ],
               "Male": [
-                25800,
-                24400,
-                25900,
-                "NA",
                 25600,
+                26400,
+                24900,
+                24400,
+                25800,
+                25900,
                 25000,
                 "NA",
                 25100,
                 24900,
                 24900,
-                26400,
-                24900
+                "NA"
               ],
               "Female & Male": [
-                26400,
-                26300,
-                25900,
-                25600,
                 25400,
-                25300,
-                25200,
-                24800,
-                24600,
-                24500,
                 24200,
-                24000
+                24600,
+                26300,
+                26400,
+                25900,
+                25300,
+                25600,
+                24800,
+                24000,
+                24500,
+                25200
               ]
             },
             "columns": [
@@ -99,6 +99,510 @@
                 "width": 45,
                 "align": "center",
                 "details": [
+                  {
+                    "name": "div",
+                    "attribs": {
+                      "style": {
+                        "padding": "16px"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "Reactable",
+                        "attribs": {
+                          "data": {
+                            "SECTIONNAME": [
+                              "Education",
+                              "Education"
+                            ],
+                            "group_name": [
+                              "Secondary education",
+                              "Higher education"
+                            ],
+                            "Female": [
+                              23400,
+                              25500
+                            ],
+                            "Male": [
+                              "NA",
+                              24900
+                            ],
+                            "Female & Male": [
+                              26000,
+                              25300
+                            ]
+                          },
+                          "columns": [
+                            {
+                              "accessor": "SECTIONNAME",
+                              "name": "Industry",
+                              "type": "character",
+                              "na": "x",
+                              "width": 500
+                            },
+                            {
+                              "accessor": "group_name",
+                              "name": "3 digit SIC code",
+                              "type": "character",
+                              "na": "x",
+                              "width": 300
+                            },
+                            {
+                              "accessor": "Female",
+                              "name": "Female",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Male",
+                              "name": "Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Female & Male",
+                              "name": "Female & Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            }
+                          ],
+                          "defaultPageSize": 300,
+                          "paginationType": "numbers",
+                          "showPageInfo": true,
+                          "minRows": 1,
+                          "outlined": true,
+                          "dataKey": "b5630aaaf441482635bbd619069768e4",
+                          "key": "b5630aaaf441482635bbd619069768e4",
+                          "nested": true
+                        },
+                        "children": [
+
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "div",
+                    "attribs": {
+                      "style": {
+                        "padding": "16px"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "Reactable",
+                        "attribs": {
+                          "data": {
+                            "SECTIONNAME": [
+                              "Manufacturing",
+                              "Manufacturing"
+                            ],
+                            "group_name": [
+                              "Manufacture of pharmaceutical preparations",
+                              "Manufacture of other chemical products"
+                            ],
+                            "Female": [
+                              24400,
+                              "NA"
+                            ],
+                            "Male": [
+                              27000,
+                              25900
+                            ],
+                            "Female & Male": [
+                              24300,
+                              24300
+                            ]
+                          },
+                          "columns": [
+                            {
+                              "accessor": "SECTIONNAME",
+                              "name": "Industry",
+                              "type": "character",
+                              "na": "x",
+                              "width": 500
+                            },
+                            {
+                              "accessor": "group_name",
+                              "name": "3 digit SIC code",
+                              "type": "character",
+                              "na": "x",
+                              "width": 300
+                            },
+                            {
+                              "accessor": "Female",
+                              "name": "Female",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Male",
+                              "name": "Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Female & Male",
+                              "name": "Female & Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            }
+                          ],
+                          "defaultPageSize": 300,
+                          "paginationType": "numbers",
+                          "showPageInfo": true,
+                          "minRows": 1,
+                          "outlined": true,
+                          "dataKey": "c5565811e84341836ca45cde92356aef",
+                          "key": "c5565811e84341836ca45cde92356aef",
+                          "nested": true
+                        },
+                        "children": [
+
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "div",
+                    "attribs": {
+                      "style": {
+                        "padding": "16px"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "Reactable",
+                        "attribs": {
+                          "data": {
+                            "SECTIONNAME": [
+                              "Professional, scientific and technical activities",
+                              "Professional, scientific and technical activities",
+                              "Professional, scientific and technical activities",
+                              "Professional, scientific and technical activities",
+                              "Professional, scientific and technical activities",
+                              "Professional, scientific and technical activities"
+                            ],
+                            "group_name": [
+                              "Research and experimental development on natural sciences and engineering",
+                              "Accounting; bookkeeping and auditing activities; tax consultancy",
+                              "Other professional; scientific and technical activities n.e.c.",
+                              "Market research and public opinion polling",
+                              "Legal activities",
+                              "Management consultancy activities"
+                            ],
+                            "Female": [
+                              26600,
+                              "NA",
+                              25500,
+                              25200,
+                              "NA",
+                              24200
+                            ],
+                            "Male": [
+                              23700,
+                              25900,
+                              24000,
+                              "NA",
+                              25200,
+                              "NA"
+                            ],
+                            "Female & Male": [
+                              25700,
+                              24900,
+                              24100,
+                              24400,
+                              24600,
+                              24600
+                            ]
+                          },
+                          "columns": [
+                            {
+                              "accessor": "SECTIONNAME",
+                              "name": "Industry",
+                              "type": "character",
+                              "na": "x",
+                              "width": 500
+                            },
+                            {
+                              "accessor": "group_name",
+                              "name": "3 digit SIC code",
+                              "type": "character",
+                              "na": "x",
+                              "width": 300
+                            },
+                            {
+                              "accessor": "Female",
+                              "name": "Female",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Male",
+                              "name": "Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Female & Male",
+                              "name": "Female & Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            }
+                          ],
+                          "defaultPageSize": 300,
+                          "paginationType": "numbers",
+                          "showPageInfo": true,
+                          "minRows": 1,
+                          "outlined": true,
+                          "dataKey": "804c55704a0986fe2a5227a4f8ed315b",
+                          "key": "804c55704a0986fe2a5227a4f8ed315b",
+                          "nested": true
+                        },
+                        "children": [
+
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "div",
+                    "attribs": {
+                      "style": {
+                        "padding": "16px"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "Reactable",
+                        "attribs": {
+                          "data": {
+                            "SECTIONNAME": [
+                              "Public administration and defence - compulsory social security",
+                              "Public administration and defence - compulsory social security"
+                            ],
+                            "group_name": [
+                              "Administration of the State and the economic and social policy of the community",
+                              "Provision of services to the community as a whole"
+                            ],
+                            "Female": [
+                              25600,
+                              23600
+                            ],
+                            "Male": [
+                              25700,
+                              26600
+                            ],
+                            "Female & Male": [
+                              24900,
+                              24700
+                            ]
+                          },
+                          "columns": [
+                            {
+                              "accessor": "SECTIONNAME",
+                              "name": "Industry",
+                              "type": "character",
+                              "na": "x",
+                              "width": 500
+                            },
+                            {
+                              "accessor": "group_name",
+                              "name": "3 digit SIC code",
+                              "type": "character",
+                              "na": "x",
+                              "width": 300
+                            },
+                            {
+                              "accessor": "Female",
+                              "name": "Female",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Male",
+                              "name": "Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Female & Male",
+                              "name": "Female & Male",
+                              "type": "numeric",
+                              "format": {
+                                "cell": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                },
+                                "aggregated": {
+                                  "prefix": "£",
+                                  "digits": 0,
+                                  "separators": true
+                                }
+                              },
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            }
+                          ],
+                          "defaultPageSize": 300,
+                          "paginationType": "numbers",
+                          "showPageInfo": true,
+                          "minRows": 1,
+                          "outlined": true,
+                          "dataKey": "51e9c4739df49c6bde77c420deb27035",
+                          "key": "51e9c4739df49c6bde77c420deb27035",
+                          "nested": true
+                        },
+                        "children": [
+
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "name": "div",
                     "attribs": {
@@ -243,382 +747,24 @@
                         "attribs": {
                           "data": {
                             "SECTIONNAME": [
-                              "Public administration and defence - compulsory social security",
-                              "Public administration and defence - compulsory social security"
-                            ],
-                            "group_name": [
-                              "Administration of the State and the economic and social policy of the community",
-                              "Provision of services to the community as a whole"
-                            ],
-                            "Female": [
-                              25600,
-                              23600
-                            ],
-                            "Male": [
-                              25700,
-                              26600
-                            ],
-                            "Female & Male": [
-                              24900,
-                              24700
-                            ]
-                          },
-                          "columns": [
-                            {
-                              "accessor": "SECTIONNAME",
-                              "name": "Industry",
-                              "type": "character",
-                              "na": "x",
-                              "width": 500
-                            },
-                            {
-                              "accessor": "group_name",
-                              "name": "3 digit SIC code",
-                              "type": "character",
-                              "na": "x",
-                              "width": 300
-                            },
-                            {
-                              "accessor": "Female",
-                              "name": "Female",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Male",
-                              "name": "Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Female & Male",
-                              "name": "Female & Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            }
-                          ],
-                          "defaultPageSize": 300,
-                          "paginationType": "numbers",
-                          "showPageInfo": true,
-                          "minRows": 1,
-                          "outlined": true,
-                          "dataKey": "51e9c4739df49c6bde77c420deb27035",
-                          "key": "51e9c4739df49c6bde77c420deb27035",
-                          "nested": true
-                        },
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "name": "div",
-                    "attribs": {
-                      "style": {
-                        "padding": "16px"
-                      }
-                    },
-                    "children": [
-                      {
-                        "name": "Reactable",
-                        "attribs": {
-                          "data": {
-                            "SECTIONNAME": [
                               "Administrative and support service activities",
                               "Administrative and support service activities"
                             ],
                             "group_name": [
-                              "Business support service activities n.e.c.",
-                              "Temporary employment agency activities"
+                              "Temporary employment agency activities",
+                              "Business support service activities n.e.c."
                             ],
                             "Female": [
-                              22900,
-                              23500
-                            ],
-                            "Male": [
-                              26300,
-                              "NA"
-                            ],
-                            "Female & Male": [
-                              25800,
-                              25200
-                            ]
-                          },
-                          "columns": [
-                            {
-                              "accessor": "SECTIONNAME",
-                              "name": "Industry",
-                              "type": "character",
-                              "na": "x",
-                              "width": 500
-                            },
-                            {
-                              "accessor": "group_name",
-                              "name": "3 digit SIC code",
-                              "type": "character",
-                              "na": "x",
-                              "width": 300
-                            },
-                            {
-                              "accessor": "Female",
-                              "name": "Female",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Male",
-                              "name": "Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Female & Male",
-                              "name": "Female & Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            }
-                          ],
-                          "defaultPageSize": 300,
-                          "paginationType": "numbers",
-                          "showPageInfo": true,
-                          "minRows": 1,
-                          "outlined": true,
-                          "dataKey": "2f15efac63200a2d8a7b49f61a8fb73b",
-                          "key": "2f15efac63200a2d8a7b49f61a8fb73b",
-                          "nested": true
-                        },
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "name": "div",
-                    "attribs": {
-                      "style": {
-                        "padding": "16px"
-                      }
-                    },
-                    "children": [
-                      {
-                        "name": "Reactable",
-                        "attribs": {
-                          "data": {
-                            "SECTIONNAME": [
-                              "Other service activities"
-                            ],
-                            "group_name": [
-                              "Activities of other membership organisations"
-                            ],
-                            "Female": [
-                              26800
-                            ],
-                            "Male": [
-                              "NA"
-                            ],
-                            "Female & Male": [
-                              26400
-                            ]
-                          },
-                          "columns": [
-                            {
-                              "accessor": "SECTIONNAME",
-                              "name": "Industry",
-                              "type": "character",
-                              "na": "x",
-                              "width": 500
-                            },
-                            {
-                              "accessor": "group_name",
-                              "name": "3 digit SIC code",
-                              "type": "character",
-                              "na": "x",
-                              "width": 300
-                            },
-                            {
-                              "accessor": "Female",
-                              "name": "Female",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Male",
-                              "name": "Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Female & Male",
-                              "name": "Female & Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            }
-                          ],
-                          "defaultPageSize": 300,
-                          "paginationType": "numbers",
-                          "showPageInfo": true,
-                          "minRows": 1,
-                          "outlined": true,
-                          "dataKey": "1480c3d077aeee61e283e8cb6724536e",
-                          "key": "1480c3d077aeee61e283e8cb6724536e",
-                          "nested": true
-                        },
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "name": "div",
-                    "attribs": {
-                      "style": {
-                        "padding": "16px"
-                      }
-                    },
-                    "children": [
-                      {
-                        "name": "Reactable",
-                        "attribs": {
-                          "data": {
-                            "SECTIONNAME": [
-                              "Education",
-                              "Education"
-                            ],
-                            "group_name": [
-                              "Secondary education",
-                              "Higher education"
-                            ],
-                            "Female": [
-                              23400,
-                              25500
+                              23500,
+                              22900
                             ],
                             "Male": [
                               "NA",
-                              24900
+                              26300
                             ],
                             "Female & Male": [
-                              26000,
-                              25300
+                              25200,
+                              25800
                             ]
                           },
                           "columns": [
@@ -699,8 +845,8 @@
                           "showPageInfo": true,
                           "minRows": 1,
                           "outlined": true,
-                          "dataKey": "b5630aaaf441482635bbd619069768e4",
-                          "key": "b5630aaaf441482635bbd619069768e4",
+                          "dataKey": "d05372244acf17a8f117332082a2e7d4",
+                          "key": "d05372244acf17a8f117332082a2e7d4",
                           "nested": true
                         },
                         "children": [
@@ -838,19 +984,19 @@
                         "attribs": {
                           "data": {
                             "SECTIONNAME": [
-                              "Transportation and storage"
+                              "Other service activities"
                             ],
                             "group_name": [
-                              "Postal activities under universal service obligation"
+                              "Activities of other membership organisations"
                             ],
                             "Female": [
-                              23300
+                              26800
                             ],
                             "Male": [
                               "NA"
                             ],
                             "Female & Male": [
-                              23900
+                              26400
                             ]
                           },
                           "columns": [
@@ -931,8 +1077,8 @@
                           "showPageInfo": true,
                           "minRows": 1,
                           "outlined": true,
-                          "dataKey": "9e5fea56c76e639dff265e25020c09da",
-                          "key": "9e5fea56c76e639dff265e25020c09da",
+                          "dataKey": "1480c3d077aeee61e283e8cb6724536e",
+                          "key": "1480c3d077aeee61e283e8cb6724536e",
                           "nested": true
                         },
                         "children": [
@@ -958,20 +1104,20 @@
                               "Financial and insurance activities"
                             ],
                             "group_name": [
-                              "Activities auxiliary to financial services; except insurance and pension funding",
-                              "Pension funding"
+                              "Pension funding",
+                              "Activities auxiliary to financial services; except insurance and pension funding"
                             ],
                             "Female": [
-                              "NA",
-                              25100
-                            ],
-                            "Male": [
-                              23000,
+                              25100,
                               "NA"
                             ],
+                            "Male": [
+                              "NA",
+                              23000
+                            ],
                             "Female & Male": [
-                              24800,
-                              24700
+                              24700,
+                              24800
                             ]
                           },
                           "columns": [
@@ -1052,8 +1198,8 @@
                           "showPageInfo": true,
                           "minRows": 1,
                           "outlined": true,
-                          "dataKey": "6f212713b4d9e4ea5c51663da66b0201",
-                          "key": "6f212713b4d9e4ea5c51663da66b0201",
+                          "dataKey": "9acb14fe5033320d258aaa55f16e75bf",
+                          "key": "9acb14fe5033320d258aaa55f16e75bf",
                           "nested": true
                         },
                         "children": [
@@ -1075,44 +1221,44 @@
                         "attribs": {
                           "data": {
                             "SECTIONNAME": [
-                              "Professional, scientific and technical activities",
-                              "Professional, scientific and technical activities",
-                              "Professional, scientific and technical activities",
-                              "Professional, scientific and technical activities",
-                              "Professional, scientific and technical activities",
-                              "Professional, scientific and technical activities"
+                              "Human health and social work activities",
+                              "Human health and social work activities",
+                              "Human health and social work activities",
+                              "Human health and social work activities",
+                              "Human health and social work activities",
+                              "Human health and social work activities"
                             ],
                             "group_name": [
-                              "Research and experimental development on natural sciences and engineering",
-                              "Accounting; bookkeeping and auditing activities; tax consultancy",
-                              "Management consultancy activities",
-                              "Legal activities",
-                              "Market research and public opinion polling",
-                              "Other professional; scientific and technical activities n.e.c."
+                              "Residential care activities for mental retardation; mental health and substance abuse",
+                              "Hospital activities",
+                              "Medical and dental practice activities",
+                              "Other residential care activities",
+                              "Other human health activities",
+                              "Other social work activities without accommodation"
                             ],
                             "Female": [
-                              26600,
-                              "NA",
-                              24200,
-                              "NA",
-                              25200,
-                              25500
+                              23700,
+                              24600,
+                              24000,
+                              24500,
+                              23700,
+                              24900
                             ],
                             "Male": [
-                              23700,
+                              25100,
+                              24500,
+                              "NA",
                               25900,
-                              "NA",
-                              25200,
-                              "NA",
-                              24000
+                              24800,
+                              24400
                             ],
                             "Female & Male": [
-                              25700,
-                              24900,
-                              24600,
-                              24600,
-                              24400,
-                              24100
+                              23400,
+                              24200,
+                              22400,
+                              24500,
+                              25500,
+                              25600
                             ]
                           },
                           "columns": [
@@ -1193,8 +1339,8 @@
                           "showPageInfo": true,
                           "minRows": 1,
                           "outlined": true,
-                          "dataKey": "c89462d6918fb2900c519a4abbfc186d",
-                          "key": "c89462d6918fb2900c519a4abbfc186d",
+                          "dataKey": "1f3db2e04863c2e59389002794b8484e",
+                          "key": "1f3db2e04863c2e59389002794b8484e",
                           "nested": true
                         },
                         "children": [
@@ -1332,165 +1478,19 @@
                         "attribs": {
                           "data": {
                             "SECTIONNAME": [
-                              "Manufacturing",
-                              "Manufacturing"
+                              "Transportation and storage"
                             ],
                             "group_name": [
-                              "Manufacture of other chemical products",
-                              "Manufacture of pharmaceutical preparations"
+                              "Postal activities under universal service obligation"
                             ],
                             "Female": [
-                              "NA",
-                              24400
+                              23300
                             ],
                             "Male": [
-                              25900,
-                              27000
-                            ],
-                            "Female & Male": [
-                              24300,
-                              24300
-                            ]
-                          },
-                          "columns": [
-                            {
-                              "accessor": "SECTIONNAME",
-                              "name": "Industry",
-                              "type": "character",
-                              "na": "x",
-                              "width": 500
-                            },
-                            {
-                              "accessor": "group_name",
-                              "name": "3 digit SIC code",
-                              "type": "character",
-                              "na": "x",
-                              "width": 300
-                            },
-                            {
-                              "accessor": "Female",
-                              "name": "Female",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Male",
-                              "name": "Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Female & Male",
-                              "name": "Female & Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                },
-                                "aggregated": {
-                                  "prefix": "£",
-                                  "digits": 0,
-                                  "separators": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 26400\n              var min = 23400\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            }
-                          ],
-                          "defaultPageSize": 300,
-                          "paginationType": "numbers",
-                          "showPageInfo": true,
-                          "minRows": 1,
-                          "outlined": true,
-                          "dataKey": "3a000ae6da133143792f273001c6a12b",
-                          "key": "3a000ae6da133143792f273001c6a12b",
-                          "nested": true
-                        },
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "name": "div",
-                    "attribs": {
-                      "style": {
-                        "padding": "16px"
-                      }
-                    },
-                    "children": [
-                      {
-                        "name": "Reactable",
-                        "attribs": {
-                          "data": {
-                            "SECTIONNAME": [
-                              "Human health and social work activities",
-                              "Human health and social work activities",
-                              "Human health and social work activities",
-                              "Human health and social work activities",
-                              "Human health and social work activities",
-                              "Human health and social work activities"
-                            ],
-                            "group_name": [
-                              "Other social work activities without accommodation",
-                              "Other human health activities",
-                              "Other residential care activities",
-                              "Hospital activities",
-                              "Residential care activities for mental retardation; mental health and substance abuse",
-                              "Medical and dental practice activities"
-                            ],
-                            "Female": [
-                              24900,
-                              23700,
-                              24500,
-                              24600,
-                              23700,
-                              24000
-                            ],
-                            "Male": [
-                              24400,
-                              24800,
-                              25900,
-                              24500,
-                              25100,
                               "NA"
                             ],
                             "Female & Male": [
-                              25600,
-                              25500,
-                              24500,
-                              24200,
-                              23400,
-                              22400
+                              23900
                             ]
                           },
                           "columns": [
@@ -1571,8 +1571,8 @@
                           "showPageInfo": true,
                           "minRows": 1,
                           "outlined": true,
-                          "dataKey": "6eaa36c5b4eba6e4e2365febd2583ef9",
-                          "key": "6eaa36c5b4eba6e4e2365febd2583ef9",
+                          "dataKey": "9e5fea56c76e639dff265e25020c09da",
+                          "key": "9e5fea56c76e639dff265e25020c09da",
                           "nested": true
                         },
                         "children": [
@@ -1680,8 +1680,8 @@
             "showPageInfo": true,
             "minRows": 1,
             "showSortable": true,
-            "dataKey": "23fb5fb7d7ca739fb1e553011f0953df",
-            "key": "23fb5fb7d7ca739fb1e553011f0953df"
+            "dataKey": "ab736d09bbb2563443ea8d94d57fd45b",
+            "key": "ab736d09bbb2563443ea8d94d57fd45b"
           },
           "children": [
 
