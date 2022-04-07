@@ -536,7 +536,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
                            where ", first(row.names(biggestdiffearnings2)), " ethnicity graduates the highest median earnings (£",
       format(first(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), ") and ", last(row.names(biggestdiffearnings2)),
       " ethnicity graduates had the lowest median earnings (£", format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), ").", br(), br(),
-      "The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2[, result[2]]), "</b> ethnicity graduates in
+      "The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in
                            the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",
       sep = ""
@@ -727,7 +727,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       YAGinput, " years after graduation, ", regiontext,
       br(), br(),
       "The group with the highest earnings was graduates currently living in ",
-      colnames(crosstabs_earnings_data2[, result[2]]), " working in the ",
+      colnames(crosstabs_earnings_data2)[result[2]], " working in the ",
       crosstabs_earnings_data[result[1], ]$SECTIONNAME, " industry (median earnings of £",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), ").",
       sep = ""
@@ -819,7 +819,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
   if (countinput == "subject_name") {
     crosstabs_earnings_data <- tables_data_grouped %>%
-      select(n = earn) %>%
+      select(-count, n = earnings_median) %>%
       spread(subject_name, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -834,7 +834,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     result <- which(crosstabs_earnings_data2 == max(crosstabs_earnings_data2), arr.ind = TRUE)
 
     crosstab_text <- paste("When splitting by subject for ", qualinput, " graduates, ", YAGinput, " years after graduation,
-                           the highest earning group was graduates of ", colnames(crosstabs_earnings_data2[, result[2]]), " who
+                           the highest earning group was graduates of ", colnames(crosstabs_earnings_data2)[result[2]], " who
                            worked in the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",
       sep = ""
@@ -943,7 +943,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
 
     crosstab_text <- paste("For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext, br(), br(),
-      "The highest earning group was ", colnames(crosstabs_earnings_data2[, result[2]]), " graduates
+      "The highest earning group was ", colnames(crosstabs_earnings_data2)[result[2]], " graduates
                            working in the <b>", crosstabs_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",
       sep = ""
@@ -1509,7 +1509,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
       # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
-      nested_table <- nested_table[,c(1,2)] %>% left_join(nested_table_earnings) 
+      nested <- nested_table[,c(1,2)] %>% left_join(nested_table_earnings) 
     }
     
     if ("All" %in% names(nested)) {
