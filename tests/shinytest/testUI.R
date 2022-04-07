@@ -1,4 +1,4 @@
-app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04)
+app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04, seed=2011)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
