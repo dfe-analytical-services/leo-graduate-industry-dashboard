@@ -954,6 +954,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 }
 
 
+# 2. Function to create the crosstabs table.
+# ==========================================
 crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, qualinput, buttoninput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
   tables_data$group_name[is.na(tables_data$group_name) == TRUE] <- "NOT KNOWN"
@@ -1018,17 +1020,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ungroup()
 
 
-    order <- subset(crosstabs_data_table, select = SECTIONNAME)
-    crosstabs_earnings_data2 <- order %>%
-      left_join(crosstabs_earnings_data)
-
-
     if (buttoninput == "Proportions") {
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data_table
     } else if (buttoninput == "Median earnings") {
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data2
+      # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+      crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
     }
 
     footer_data <- crosstabs_basedata %>%
@@ -1075,18 +1073,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     # ungroup()
 
 
-    nested_order <- subset(nested_table, select = c(SECTIONNAME, group_name))
-    nested_order$SECTIONNAME <- as.character(nested_order$SECTIONNAME)
-    nested_order$group_name <- as.character(nested_order$group_name)
-    nested_table_earnings2 <- nested_order %>%
-      left_join(nested_table_earnings)
-
     if (buttoninput == "Proportions") {
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
-      nested <- nested_table_earnings2
+      # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+      nested <- nested_table[,c(1,2)] %>% left_join(nested_table_earnings, by = c("SECTIONNAME", "group_name")) 
     }
-
+    
     for (column in column_defs$numeric_cols) {
       nested[column] <- if (column %in% colnames(nested)) {
         nested[column]
@@ -1107,7 +1100,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       as.data.frame()
 
-    if (buttoninput == "Proportions") {
       crosstabs_data_table <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(current_region, SECTIONNAME, group_name, n = count) %>%
@@ -1131,9 +1123,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
           `East of England`, `London`, `South East`, `South West`
         )
 
-      colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data_table
-    } else if (buttoninput == "Median earnings") {
       crosstabs_earnings_data <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(current_region, SECTIONNAME, group_name, n = earnings_median) %>%
@@ -1154,10 +1143,15 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
           SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
           `East of England`, `London`, `South East`, `South West`
         )
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data
-    }
-
+      if (buttoninput == "Proportions") {
+        colformat <- colFormat(percent = TRUE, digits = 1)
+        crosstabs_data <- crosstabs_data_table
+      } else if (buttoninput == "Median earnings") {
+        colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+        # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+        crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
+      }
+      
     footer_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
       select(current_region, SECTIONNAME, group_name, n = count) %>%
@@ -1257,17 +1251,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       select(SECTIONNAME, group_name, `non-FSM`, FSM, `Not known`)
 
 
-    order <- subset(crosstabs_data_table, select = SECTIONNAME)
-    crosstabs_earnings_data2 <- order %>%
-      left_join(crosstabs_earnings_data)
-
-
     if (buttoninput == "Proportions") {
       colformat <- colFormat(percent = TRUE, digits = 1)
       crosstabs_data <- crosstabs_data_table
     } else if (buttoninput == "Median earnings") {
       colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data2
+      # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+      crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
     }
 
     footer_data <- crosstabs_basedata %>%
@@ -1311,16 +1301,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
-    nested_order <- subset(nested_table, select = c(SECTIONNAME, group_name))
-    nested_order$SECTIONNAME <- as.character(nested_order$SECTIONNAME)
-    nested_order$group_name <- as.character(nested_order$group_name)
-    nested_table_earnings2 <- nested_order %>%
-      left_join(nested_table_earnings)
-
     if (buttoninput == "Proportions") {
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
-      nested <- nested_table_earnings2
+      nested <- nested_table_earnings
     }
 
     for (column in column_defs$numeric_cols) {
@@ -1343,7 +1327,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       as.data.frame()
 
-    if (buttoninput == "Proportions") {
       crosstabs_data_table <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(sex, SECTIONNAME, group_name, n = count) %>%
@@ -1361,9 +1344,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
       names(crosstabs_data_table) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
 
-      colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data_table
-    } else if (buttoninput == "Median earnings") {
       crosstabs_earnings_data <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(sex, SECTIONNAME, group_name, n = earnings_median) %>%
@@ -1379,8 +1359,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
       names(crosstabs_earnings_data) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
 
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data
+      if (buttoninput == "Proportions") {
+        colformat <- colFormat(percent = TRUE, digits = 1)
+        crosstabs_data <- crosstabs_data_table
+      } else if (buttoninput == "Median earnings") {
+        colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+        # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+        crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
     }
 
     footer_data <- crosstabs_basedata %>%
@@ -1407,7 +1392,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(sex) %>%
       mutate(proportion = count / sum(count, na.rm = TRUE))
 
-    if (buttoninput == "Proportions") {
       nested_table <- table_group_proportions %>%
         select(sex, SECTIONNAME, group_name, n = proportion) %>%
         spread(sex, n) %>%
@@ -1420,8 +1404,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         ) %>%
         select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
       names(nested_table) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
-      nested <- nested_table
-    } else if (buttoninput == "Median earnings") {
       nested_table_earnings <- table_group_proportions %>%
         select(sex, SECTIONNAME, group_name, n = earnings_median) %>%
         spread(sex, n) %>%
@@ -1435,10 +1417,11 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
       names(nested_table_earnings) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
-      nested_table <- nested_table_earnings
-      nested_order <- subset(nested_table, select = c(SECTIONNAME, group_name))
-      nested <- nested_order %>%
-        left_join(nested_table_earnings)
+      if (buttoninput == "Proportions") {
+        nested <- nested_table
+      } else if (buttoninput == "Median earnings") {
+        # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+        nested <- nested_table[,c(1,2)] %>% left_join(nested_table_earnings, by = c("SECTIONNAME", "group_name")) 
     }
   }
 
@@ -1450,7 +1433,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       as.data.frame()
 
-    if (buttoninput == "Proportions") {
       crosstabs_data_table <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(prior_attainment, SECTIONNAME, group_name, n = count) %>%
@@ -1468,9 +1450,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
 
-      colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data_table
-    } else if (buttoninput == "Median earnings") {
       crosstabs_earnings_data <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(prior_attainment, SECTIONNAME, group_name, n = earnings_median) %>%
@@ -1485,10 +1464,16 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data
-    }
 
+    if (buttoninput == "Proportions") {
+      colformat <- colFormat(percent = TRUE, digits = 1)
+      crosstabs_data <- crosstabs_data_table
+    } else if (buttoninput == "Median earnings") {
+      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+      crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
+    }
+    
     footer_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
       select(prior_attainment, SECTIONNAME, group_name, n = count) %>%
@@ -1523,9 +1508,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     if (buttoninput == "Proportions") {
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
-      nested <- nested_table_earnings2
+      # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+      nested_table <- nested_table[,c(1,2)] %>% left_join(nested_table_earnings) 
     }
-
+    
     if ("All" %in% names(nested)) {
       nested <- nested %>%
         arrange(-All)
@@ -1552,7 +1538,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       as.data.frame()
 
-    if (buttoninput == "Proportions") {
       crosstabs_data_table <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(subject_name, SECTIONNAME, group_name, n = count) %>%
@@ -1565,10 +1550,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         select(-All)
 
-      colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data_table
-    } else if (buttoninput == "Median earnings") {
-      crosstabs_earnings_data <- crosstabs_basedata %>%
+
+            crosstabs_earnings_data <- crosstabs_basedata %>%
         filter(group_name == "All") %>%
         select(subject_name, SECTIONNAME, group_name, n = earnings_median) %>%
         spread(subject_name, n) %>%
@@ -1577,17 +1560,15 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         select(-All)
-
-
-      order <- subset(crosstabs_data_table, select = SECTIONNAME)
-      crosstabs_earnings_data2 <- order %>%
-        left_join(crosstabs_earnings_data)
-
-
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data2
-    }
-
+      if (buttoninput == "Proportions") {
+        colformat <- colFormat(percent = TRUE, digits = 1)
+        crosstabs_data <- crosstabs_data_table
+      } else if (buttoninput == "Median earnings") {
+        colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+        # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+        crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
+      }
+      
     footer_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
       select(subject_name, SECTIONNAME, group_name, n = count) %>%
@@ -1627,16 +1608,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
-    nested_order <- subset(nested_table, select = c(SECTIONNAME, group_name))
-    nested_order$SECTIONNAME <- as.character(nested_order$SECTIONNAME)
-    nested_order$group_name <- as.character(nested_order$group_name)
-    nested_table_earnings2 <- nested_order %>%
-      left_join(nested_table_earnings)
-
     if (buttoninput == "Proportions") {
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
-      nested <- nested_table_earnings2
+      nested <- nested_table_earnings
     }
 
     for (column in column_defs$numeric_cols) {
@@ -1649,7 +1624,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
   }
 
   if (countinput == "qualification_TR") {
-    if (buttoninput == "Proportions") {
       crosstabs_data_table <- tables_data %>%
         filter(
           sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
@@ -1664,9 +1638,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_if(is.numeric, funs(. / sum(.))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
-      colformat <- colFormat(percent = TRUE, digits = 1)
-      crosstabs_data <- crosstabs_data_table
-    } else if (buttoninput == "Median earnings") {
       crosstabs_earnings_data <- tables_data %>%
         filter(
           sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
@@ -1680,10 +1651,15 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
-      crosstabs_data <- crosstabs_earnings_data
-    }
-
+      if (buttoninput == "Proportions") {
+        colformat <- colFormat(percent = TRUE, digits = 1)
+        crosstabs_data <- crosstabs_data_table
+      } else if (buttoninput == "Median earnings") {
+        colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+        # Note the left_join here is intended to make sure the proportions table is initially ordered identically to the proportions table. 
+        crosstabs_data <- crosstabs_data_table[,c(1,2)] %>% left_join(crosstabs_earnings_data, by = c("SECTIONNAME", "group_name"))
+      }
+      
     footer_data <- tables_data %>%
       filter(
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
