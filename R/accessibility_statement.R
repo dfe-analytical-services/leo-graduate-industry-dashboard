@@ -42,7 +42,7 @@ accessibility_statement <- function() {
       (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.",
     h4("Compliance status"),
     "This website is partially compliant with the ",
-    a(href = "", "Web Content Accessibility Guidelines version 2.1", .noWS = c("after")),
+    a(href = "https://www.w3.org/TR/WCAG21/", "Web Content Accessibility Guidelines version 2.1", .noWS = c("after")),
     " AA standard, due to [insert one of the following: ‘the non-compliances’, ‘the exemptions’ or ‘the non-compliances and exemptions’] listed below.",
     br(),
     br(),
