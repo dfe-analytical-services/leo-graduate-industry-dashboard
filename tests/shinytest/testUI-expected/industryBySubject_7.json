@@ -8,6 +8,566 @@
     "YAGinput3": "1"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Industry of graduate employment for graduates of Education  by FSM , 1 years after\n                          graduation, young (under 21 at start of course) male and female first degree\n                          graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>"
+    "backwards_crosstab_title": "<h4>Industry of graduate employment for graduates of Education  by FSM , 1 years after\n                          graduation, young (under 21 at start of course) male and female first degree\n                          graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "subject_name": [
+                "Computing",
+                "Psychology",
+                "Sport and exercise sciences",
+                "Languages and area studies",
+                "Sociology, social policy and anthropology",
+                "Agriculture, food and related studies",
+                "Creative arts and design",
+                "Business and management",
+                "Architecture, building and planning",
+                "Veterinary sciences",
+                "Health and social care",
+                "Law",
+                "Education and teaching",
+                "Economics",
+                "Medicine and dentistry",
+                "Medical sciences",
+                "Politics",
+                "Mathematical sciences",
+                "Engineering",
+                "History and archaeology",
+                "Performing arts",
+                "Chemistry",
+                "Philosophy and religious studies",
+                "General, applied and forensic sciences",
+                "Pharmacology, toxicology and pharmacy",
+                "Materials and technology",
+                "Geography, earth and environmental studies",
+                "Media, journalism and communications",
+                "Allied health",
+                "Biosciences",
+                "English studies",
+                "Nursing and midwifery",
+                "Combined and general studies",
+                "Physics and astronomy"
+              ],
+              "non-FSM": [
+                0.0430538035430264,
+                0.0391871880655953,
+                0.053529314978336,
+                0.0100641693632425,
+                0.0636757527559919,
+                0.0153841934953107,
+                0.00449733998793397,
+                0.0188668897054791,
+                0.00556682937530851,
+                0.0036746558437997,
+                0.0270388855372127,
+                0.00704766083475018,
+                0.0382822355070477,
+                0.02457083310481,
+                0.00935117643832611,
+                0.00957055887676191,
+                0.0378434706301761,
+                0.0419843141556518,
+                0.0142050128887183,
+                0.0677343278670542,
+                0.030631272966599,
+                0.0107223166785499,
+                0.0682827839631437,
+                0.0325508693029123,
+                0.0496901223057094,
+                0.0665277244556573,
+                0.0438216420775517,
+                0.0246256787144189,
+                0.0162617232490539,
+                0.0233368068886086,
+                0.059699446059343,
+                0.0220205122579937,
+                0.00937859924313059,
+                0.00732188888279493
+              ],
+              "FSM": [
+                0.0305178505020454,
+                0.0489494235775381,
+                0.00216158423205653,
+                0.0179899590925995,
+                0.0263108962439569,
+                0.0256136110078096,
+                0.0429760133878765,
+                0.0060198958720714,
+                0.0420695425808851,
+                "NA",
+                0.0304016362960208,
+                0.0393268873187058,
+                0.0618027147638527,
+                0.0343994049832652,
+                "NA",
+                0.0577352175529937,
+                0.0109938638899219,
+                0.0271243956861287,
+                0.0654983265154332,
+                0.00578746746002231,
+                0.0145732614354779,
+                0.0118306061732986,
+                0.0229174414280402,
+                0.0323075492748234,
+                0.043882484194868,
+                0.0234520267757531,
+                0.0613146150985496,
+                0.0231266269988843,
+                0.0292394942357754,
+                0.0423019709929342,
+                0.0404425436965415,
+                0.0302389364075865,
+                0.0133646336928226,
+                0.0353291186314615
+              ],
+              "Not known": [
+                0.0684362279511533,
+                0.0164942333785617,
+                0.00771709633649932,
+                0.0159430122116689,
+                0.0158582089552239,
+                0.00708107191316147,
+                0.000848032564450475,
+                0.10685210312076,
+                0.0121692672998643,
+                0.0463449796472185,
+                0.09375,
+                0.00843792401628222,
+                0.0104308005427408,
+                0.0203103799185889,
+                "NA",
+                0.00114484396200814,
+                0.0421048168249661,
+                0.0161550203527815,
+                0.016027815468114,
+                0.017893487109905,
+                0.0170878561736771,
+                0.0326068521031208,
+                0.00555461329715061,
+                0.0449881275440977,
+                0.0172574626865672,
+                0.027688263229308,
+                0.0463025780189959,
+                0.0245081411126187,
+                0.0447761194029851,
+                0.0726339891451832,
+                0.0721675712347354,
+                0.00169606512890095,
+                0.0159854138398915,
+                0.0527476255088195
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "subject_name",
+                "name": "Subject area",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "c",
+                "width": 600
+              },
+              {
+                "accessor": "non-FSM",
+                "name": "non-FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "36,465",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#AECAE4"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#E5EFF8"
+                  },
+                  {
+                    "background": "#80ABD3"
+                  },
+                  {
+                    "background": "#DBE8F4"
+                  },
+                  {
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "background": "#D5E4F2"
+                  },
+                  {
+                    "background": "#EEF5FB"
+                  },
+                  {
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "background": "#C5D9EC"
+                  },
+                  {
+                    "background": "#EBF3FA"
+                  },
+                  {
+                    "background": "#B0CBE4"
+                  },
+                  {
+                    "background": "#CADDEE"
+                  },
+                  {
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "background": "#E6EFF8"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#A9C6E2"
+                  },
+                  {
+                    "background": "#DDEAF5"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#BED5EA"
+                  },
+                  {
+                    "background": "#E4EEF8"
+                  },
+                  {
+                    "background": "#77A5CF"
+                  },
+                  {
+                    "background": "#BBD2E8"
+                  },
+                  {
+                    "background": "#9ABDDC"
+                  },
+                  {
+                    "background": "#7BA7D1"
+                  },
+                  {
+                    "background": "#A5C4E1"
+                  },
+                  {
+                    "background": "#CADCEE"
+                  },
+                  {
+                    "background": "#D9E7F4"
+                  },
+                  {
+                    "background": "#CCDEEF"
+                  },
+                  {
+                    "background": "#87B0D5"
+                  },
+                  {
+                    "background": "#CFE0F0"
+                  },
+                  {
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "background": "#EAF2FA"
+                  }
+                ]
+              },
+              {
+                "accessor": "FSM",
+                "name": "FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "43,025",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#9CBEDD"
+                  },
+                  {
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "background": "#D6E5F3"
+                  },
+                  {
+                    "background": "#C6DAED"
+                  },
+                  {
+                    "background": "#C8DBED"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "background": "#A9C6E2"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#AECAE4"
+                  },
+                  {
+                    "background": "#83ADD4"
+                  },
+                  {
+                    "background": "#B7D0E7"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#8BB3D7"
+                  },
+                  {
+                    "background": "#E3EEF7"
+                  },
+                  {
+                    "background": "#C5D9EC"
+                  },
+                  {
+                    "background": "#7DA9D1"
+                  },
+                  {
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "background": "#DDE9F5"
+                  },
+                  {
+                    "background": "#E2EDF7"
+                  },
+                  {
+                    "background": "#CDDFEF"
+                  },
+                  {
+                    "background": "#BBD3E9"
+                  },
+                  {
+                    "background": "#A5C4E0"
+                  },
+                  {
+                    "background": "#CCDEEF"
+                  },
+                  {
+                    "background": "#84AED4"
+                  },
+                  {
+                    "background": "#CCDEEF"
+                  },
+                  {
+                    "background": "#C1D7EB"
+                  },
+                  {
+                    "background": "#A8C6E2"
+                  },
+                  {
+                    "background": "#ACC8E3"
+                  },
+                  {
+                    "background": "#BFD5EA"
+                  },
+                  {
+                    "background": "#DFEBF6"
+                  },
+                  {
+                    "background": "#B5CFE6"
+                  }
+                ]
+              },
+              {
+                "accessor": "Not known",
+                "name": "Not known",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "digits": 1,
+                    "percent": true
+                  },
+                  "aggregated": {
+                    "digits": 1,
+                    "percent": true
+                  }
+                },
+                "footer": "23,585",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#77A5CF"
+                  },
+                  {
+                    "background": "#D9E7F4"
+                  },
+                  {
+                    "background": "#EAF2FA"
+                  },
+                  {
+                    "background": "#DAE7F4"
+                  },
+                  {
+                    "background": "#DAE8F4"
+                  },
+                  {
+                    "background": "#EBF3FA"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#E1ECF7"
+                  },
+                  {
+                    "background": "#A1C1DF"
+                  },
+                  {
+                    "background": "#4785BE"
+                  },
+                  {
+                    "background": "#E8F1F9"
+                  },
+                  {
+                    "background": "#E4EEF8"
+                  },
+                  {
+                    "background": "#D2E2F1"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "background": "#A9C6E2"
+                  },
+                  {
+                    "background": "#DAE7F4"
+                  },
+                  {
+                    "background": "#DAE7F4"
+                  },
+                  {
+                    "background": "#D6E5F3"
+                  },
+                  {
+                    "background": "#D8E6F3"
+                  },
+                  {
+                    "background": "#BBD2E8"
+                  },
+                  {
+                    "background": "#EEF5FB"
+                  },
+                  {
+                    "background": "#A3C3E0"
+                  },
+                  {
+                    "background": "#D8E6F3"
+                  },
+                  {
+                    "background": "#C4D9EC"
+                  },
+                  {
+                    "background": "#A1C1DF"
+                  },
+                  {
+                    "background": "#CADDEE"
+                  },
+                  {
+                    "background": "#A4C3E0"
+                  },
+                  {
+                    "background": "#6FA0CC"
+                  },
+                  {
+                    "background": "#70A0CD"
+                  },
+                  {
+                    "background": "#F5F9FE"
+                  },
+                  {
+                    "background": "#DAE7F4"
+                  },
+                  {
+                    "background": "#95B9DA"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 37,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "dataKey": "7705bad6868f8de5d835b6c153bd9814",
+            "key": "7705bad6868f8de5d835b6c153bd9814"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
   }
 }

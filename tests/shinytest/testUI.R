@@ -68,7 +68,7 @@ industryBySubject_input <- c(
 )
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
-industryBySubject_output <- c("backwards_crosstab_title")
+industryBySubject_output <- c("backwards_crosstab_title","crosstab_backwards")
 
 app$setInputs(navbar = "industryBySubject", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -147,7 +147,7 @@ subjectByIndustry_input <- c(
 )
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
-subjectByIndustry_output <- c("crosstab_title")
+subjectByIndustry_output <- c("crosstab_title","crosstab","crosstab_text")
 
 app$setInputs(navbar = "subjectByIndustry", timeout_ = 2.e4)
 app$snapshot(
