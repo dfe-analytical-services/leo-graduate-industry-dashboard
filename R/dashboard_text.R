@@ -24,9 +24,9 @@ welcome_text <- function() {
 
 industry_flow_text <- function() {
   div(
-    "This tab looks at the industries one longitudinal cohort (2012/13 academic year of graduation
-    cohort) worked in and flowed between at one, three and five years after graduation. You can filter
-    this analysis to look at graduates of a specific subject area, or filter by graduate sex."
+    "This tab takes a longitudinal view of the five year after graduation cohort (2012/13 academic year of graduation
+    cohort), as it shows the industry sections they worked in and flowed between at one, three and five years after 
+    graduation. You can filter this analysis to look at graduates of a specific subject area, or filter by graduate sex."
   )
 }
 
@@ -34,11 +34,10 @@ industry_flow_text <- function() {
 
 regional_text <- function() {
   div(
-    "This tab compares where graduates studied to where they lived at one, three and five years after
-   graduation, for each industry, and uses the latest tax year data, so does not follow the same cohort
-   as the longitudinal tab. It can be filtered to look at graduates of a specific subject and provides
-   context on the number of providers in each region that have graduates working in the selected
-   industry, and the median earnings of graduates working in the selected industry in each region."
+    "This tab compares where graduates studied to where they lived at one, three, five and ten years after
+   graduation, for each industry, and uses the 2018/19 tax year data (so does not follow the same cohort
+   as the industry flow analysis). It can be filtered to look at graduates of a specific subject area, and provides
+   context on the number of providers and median earnings for the selected options for each region."
   )
 }
 
@@ -46,19 +45,19 @@ regional_text <- function() {
 
 sub_by_ind_text <- function() {
   div(
-    "The tables use the latest tax year data, so do not follow the same cohort as the longitudinal tab.
-    Instead the table looks at the one, three, five and ten year after graduation cohorts from the
-    2018/19 tax year. The tables show breakdowns of graduate industry for the filtered subject area
-    and year after graduation. The following breakdowns are currently available:",
+    "These tables look at the one, three, five and ten year after graduation cohorts from the
+    2018/19 tax year. The tables show which industries graduates of the selected subject area go on to work in.
+    You can expand the industry sections in these tables to view a more detailed breakdown of the 3-digit SIC groups 
+    within that industry. The following breakdowns are currently available:",
     br(),
     tags$ul(
-      tags$li("sex"),
-      tags$li("ethnicity"),
+      tags$li("Sex"),
+      tags$li("Ethnicity"),
       tags$li("FSM status"),
-      tags$li("current region"),
-      tags$li("prior attainment"),
-      tags$li("subject"),
-      tags$li("qualification level")
+      tags$li("Current region"),
+      tags$li("Prior attainment"),
+      tags$li("Subject"),
+      tags$li("Qualification level")
     )
   )
 }
@@ -67,19 +66,19 @@ sub_by_ind_text <- function() {
 
 ind_by_sub_text <- function() {
   div(
-    "The tables use the latest tax year data, so do not follow the same cohort as the longitudinal tab.
-    Instead the table looks at the one, three, five and ten year after graduation cohorts from the
-    2018/19 tax year. The tables show breakdowns of graduate industry for the filtered subject area
-    and year after graduation. The following breakdowns are currently available:",
+    "These tables look at the one, three, five and ten year after graduation cohorts from the
+    2018/19 tax year. The tables show which subjects graduates working in a selected industry area previously studied. 
+    You can view this at the 3-digit SIC group level and may select multiple SIC groups within an industry area at one time. 
+    The following breakdowns are currently available:",
     br(),
     tags$ul(
-      tags$li("sex"),
-      tags$li("ethnicity"),
+      tags$li("Sex"),
+      tags$li("Ethnicity"),
       tags$li("FSM status"),
-      tags$li("current region"),
-      tags$li("prior attainment"),
-      tags$li("subject"),
-      tags$li("qualification level")
+      tags$li("Current region"),
+      tags$li("Prior attainment"),
+      tags$li("Industry section"),
+      tags$li("Qualification level")
     )
   )
 }
