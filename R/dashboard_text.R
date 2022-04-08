@@ -5,10 +5,10 @@
 welcome_text <- function() {
   div(
     h2("Welcome"),
-    "We have joined the IDBR (Inter-Departmental Business Register data) via SIC (Standard Industry
-    Classification) codes to the LEO (Longitudinal Educational Outcomes) data for the 2014/15 to
-    2018/19 tax years at one, three, five and ten years after graduation, which means we can now see
-    what industry these graduates were working in at these points in time. For more detail see our ",
+    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to 
+    LEO data using the IDBR (Inter-Departmental Business Register data) for the 2018/19 tax year at one, three, 
+    five and ten years after graduation. This means we can now see what industry graduates were working in 
+    at these points in time. For more detail see our ",
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo",
       "official statistics publication on Graduate Outcomes",
@@ -90,7 +90,7 @@ sic_groups_text <- function() {
     h3("IDBR (Inter-Departmental Business Register)"),
     "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
     h3("UK SIC (Standard Industrial Classification) code"),
-    "The UK Standard Industrial Classification (SIC) of economic activties is used to classify
+    "The UK Standard Industrial Classification (SIC) of economic activities is used to classify
     businesses by the type of activity they do.",
     h3("Useful links"),
     a(
@@ -99,14 +99,15 @@ sic_groups_text <- function() {
     ),
     br(),
     a(
-      href = "https://siccode.com/sic-code-lookup-directory",
-      "SIC Code Lookup | SIC Code Search Tool"
+      href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
+      "ONS interactive SIC hierarchy"
     ),
     h3("SIC Groups and sections"),
-    "We have two SIC variables joined onto our data: SECTIONNAME and SIC2007. There are over 700
-    detailed SIC codes in the SIC2007 variable, which are grouped into 21 industry sections in the
-    SECTIONNAME variable. We have used the broader industry sections as the base for our analysis,
-    which consist of the following:",
+    "Using the ONS Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
+    at the five digit level, which are then grouped hierarchically at the four, three and two digit level before being grouped into
+    21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis 
+    are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
+    SIC groups available to view at the three digit level by expanding the broad sections which consist of the following:",
     br(),
     br(),
     tags$ol(
