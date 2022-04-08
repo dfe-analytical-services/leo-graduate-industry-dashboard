@@ -1,4 +1,21 @@
-app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04)
+destroy_random_keys <- function(file, parent_script = "testUI") {
+  # Reactable outputs some random keys as part of its table rendering, which snag
+  # in shinytest when run across different machines. There's probably a way to fix
+  # fix this in shinytest itself, but I gave up on trying and did a post-process
+  # fix instead.
+  filepath <- paste0(parent_script, "-current/", file)
+  shinytest_json <- readr::read_lines(filepath)
+  for (i in 1:length(shinytest_json)) {
+    shinytest_json[i] <- gsub('ey\": \".*\"', 'ey\": "random_key"', shinytest_json[i])
+  }
+  readr::write_lines(shinytest_json, filepath)
+}
+
+
+# Run the shiny tests.
+# Should really set this up to loop over arrays of inputs in order to run
+# through the shiny tests.
+app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04, seed = 2011)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
@@ -66,10 +83,9 @@ industryBySubject_input <- c(
   "sectionnameinput2", "earningsbutton2"
 )
 
-# Note that I've excluded the crosstab_backwards tabulated output here as it
+# Note that I originally excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
-
-industryBySubject_output <- c("backwards_crosstab_title")
+industryBySubject_output <- c("backwards_crosstab_title", "crosstab_backwards")
 
 app$setInputs(navbar = "industryBySubject", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -79,6 +95,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_0.json"
 )
+destroy_random_keys("industryBySubject_0.json")
+
 app$setInputs(earningsbutton2 = "Median earnings", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -87,6 +105,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_1.json"
 )
+destroy_random_keys("industryBySubject_1.json")
+
 app$setInputs(countinput3 = "ethnicity", timeout_ = 1e+4)
 app$snapshot(
   items = list(
@@ -95,6 +115,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_2.json"
 )
+destroy_random_keys("industryBySubject_2.json")
+
 app$setInputs(YAGinput3 = "10", timeout_ = 1e+4)
 app$snapshot(
   items = list(
@@ -103,6 +125,7 @@ app$snapshot(
   ),
   filename = "industryBySubject_3.json"
 )
+destroy_random_keys("industryBySubject_3.json")
 
 app$setInputs(
   sectionnameinput2 = "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
@@ -115,6 +138,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_4.json"
 )
+destroy_random_keys("industryBySubject_4.json")
+
 app$setInputs(YAGinput3 = "1", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -123,6 +148,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_5.json"
 )
+destroy_random_keys("industryBySubject_5.json")
+
 app$setInputs(countinput3 = "FSM", timeout_ = 1e+4)
 app$snapshot(
   items = list(
@@ -131,6 +158,8 @@ app$snapshot(
   ),
   filename = "industryBySubject_6.json"
 )
+destroy_random_keys("industryBySubject_6.json")
+
 app$setInputs(earningsbutton2 = "Proportions", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -139,6 +168,7 @@ app$snapshot(
   ),
   filename = "industryBySubject_7.json"
 )
+destroy_random_keys("industryBySubject_7.json")
 
 
 
@@ -150,7 +180,7 @@ subjectByIndustry_input <- c(
 
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
-subjectByIndustry_output <- c("crosstab_title")
+subjectByIndustry_output <- c("crosstab_title", "crosstab", "crosstab_text")
 
 app$setInputs(navbar = "subjectByIndustry", timeout_ = 2.e4)
 app$snapshot(
@@ -160,6 +190,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_0.json"
 )
+destroy_random_keys("subjectByIndustry_0.json")
+
 app$setInputs(earningsbutton = "Median earnings", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -168,6 +200,9 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_1.json"
 )
+destroy_random_keys("subjectByIndustry_1.json")
+
+
 app$setInputs(qualinput3 = "Level 8", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -176,6 +211,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_2.json"
 )
+destroy_random_keys("subjectByIndustry_2.json")
+
 app$setInputs(crosstabs.subjectinput = "Allied health", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -184,7 +221,10 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_3.json"
 )
-app$setInputs(countinput2 = "ethnicity", timeout_ = 2e+4)
+destroy_random_keys("subjectByIndustry_3.json")
+
+
+app$setInputs(countinput2 = "ethnicity", timeout_ = 1e+4)
 app$snapshot(
   items = list(
     input = subjectByIndustry_input,
@@ -192,6 +232,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_4.json"
 )
+destroy_random_keys("subjectByIndustry_4.json")
+
 app$setInputs(YAGinput2 = "5", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -200,6 +242,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_5.json"
 )
+destroy_random_keys("subjectByIndustry_5.json")
+
 app$setInputs(YAGinput2 = "1", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -208,6 +252,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_6.json"
 )
+destroy_random_keys("subjectByIndustry_6.json")
+
 app$setInputs(crosstabs.subjectinput = "English studies", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -216,6 +262,8 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_7.json"
 )
+destroy_random_keys("subjectByIndustry_7.json")
+
 app$setInputs(earningsbutton = "Proportions", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
   items = list(
@@ -224,6 +272,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_8.json"
 )
+destroy_random_keys("subjectByIndustry_8.json")
 
 # Regional tab ================================================================
 

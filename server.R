@@ -151,9 +151,20 @@ server <- function(input, output, session) {
 
 
   # Tables functions --------------------------------------------------------
-  reactiveSubjIndTable <- reactive({
-    crosstabs(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)
+  reactiveSubjbyIndGroupedSummary <- reactive({
+    subjbyind_grouped_summary(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
+  reactiveSubjbyIndGroupedData <- reactive({
+    subjbyind_grouped_data(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
+  })
+
+  output$crosstab_text <- renderText({
+    crosstab_text(reactiveSubjbyIndGroupedSummary(), input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
+  })
+  reactiveSubjIndTable <- reactive({
+    crosstabs(reactiveSubjbyIndGroupedData, input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)
+  })
+
   output$crosstab <- renderReactable({
     reactiveSubjIndTable()
   })
@@ -179,12 +190,9 @@ server <- function(input, output, session) {
     crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
+
   output$backwards_crosstab_title <- renderText({
     crosstab_title(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4)
-  })
-
-  output$crosstab_text <- renderText({
-    crosstab_text(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
   output$sankeyhelp <- renderText({
