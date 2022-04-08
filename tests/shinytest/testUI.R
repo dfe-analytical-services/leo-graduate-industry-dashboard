@@ -4,11 +4,11 @@ destroy_random_keys <- function(file, parent_script = "testUI") {
   # fix this in shinytest itself, but I gave up on trying and did a post-process
   # fix instead.
   filepath <- paste0(parent_script, "-current/", file)
-  shinytest_json <- read_lines(filepath)
+  shinytest_json <- readr::read_lines(filepath)
   for (i in 1:length(shinytest_json)) {
     shinytest_json[i] <- gsub('ey\": \".*\"', 'ey\": "random_key"', shinytest_json[i])
   }
-  write_lines(shinytest_json, filepath)
+  readr::write_lines(shinytest_json, filepath)
 }
 
 

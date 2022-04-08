@@ -11,7 +11,7 @@ tidy_code <- function() {
 run_tests_locally <- function() {
   Sys.unsetenv("http_proxy")
   Sys.unsetenv("https_proxy")
-  shhh(source("global.r"))
+  shhh(source("global.R"))
   # message("================================================================================")
   # message("== testthat ====================================================================")
   # message("")
