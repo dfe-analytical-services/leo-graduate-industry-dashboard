@@ -164,6 +164,7 @@ server <- function(input, output, session) {
   reactiveSubjIndTable <- reactive({
     crosstabs(reactiveSubjbyIndGroupedData, input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)
   })
+
   output$crosstab <- renderReactable({
     reactiveSubjIndTable()
   })

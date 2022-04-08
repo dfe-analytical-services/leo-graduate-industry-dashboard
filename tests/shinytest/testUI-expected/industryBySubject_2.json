@@ -1066,8 +1066,8 @@
             "showPageInfo": true,
             "minRows": 1,
             "showSortable": true,
-            "dataKey": "f0c03508504b57cac151eb8777c225f6",
-            "key": "f0c03508504b57cac151eb8777c225f6"
+            "dataKey": "random_key",
+            "key": "random_key"
           },
           "children": [
 
