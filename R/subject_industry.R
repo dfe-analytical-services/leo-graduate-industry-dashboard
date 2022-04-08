@@ -613,7 +613,6 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     }
 
 
-    print(length(uniqueregions))
     if (length(uniqueregions) == 1) {
       regiontext <- paste("<b>", uniqueregions, "</b> is the most common industry for all current regions.")
     } else if (length(uniqueregions) == 2) {
@@ -703,7 +702,6 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     } else {
       # Just going to recreate the above with the collapse flag. Leaving it in
       # the else area for now, but should cover all of the above if statements in one go.
-      print("### Using new code for region text...")
       data <- regionfirstdata %>% filter(regionfirstdata %in% uniqueregions)
       textarray <- c()
       for (i in 1:nrow(data)) {
