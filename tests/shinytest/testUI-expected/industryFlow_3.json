@@ -514,8 +514,7 @@
 
       ]
     },
-    "sankey_title": "<h4> Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male and female Level 7 (research) graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
-    "sankeyhelp": "<a>\n  <h4>How to read this sankey?<\/h4>\n<\/a>",
+    "sankey_title": "<h3>Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male and female Level 7 (research) graduates from English HEIs, APs and FECs, 2018/19 tax year<\/h3>",
     "sankeytext1": "For both female and male, Level 7 (research) graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Professional, scientific and technical activities (14.7%)<\/b>, and at five years after graduation it is <b>Education (11.1%)<\/b>.",
     "sankeytext2": "The most movement between one and three years after graduation is seen for <b> Professional, scientific and technical activities <\/b>, where <\/b> 3,730  graduates move to <b> Other <\/b>. Between three and five\n                       years after graduation it's seen for <b> Professional, scientific and technical activities <\/b> where <b> 4,155 <\/b> graduates moved to <b> Other <\/b>."
   }

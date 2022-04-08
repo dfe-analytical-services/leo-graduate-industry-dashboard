@@ -19,8 +19,8 @@ app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04, seed = 2011)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
+# Industry flow tab ===========================================================
 
-# Testing the industry flow panel
 industryFlow_input <- c("navbar", "qualinput", "sexinput", "indflow.subjectinput")
 industryFlow_output <- c(
   "sankey", "sankey_title", "sankeyhelp", "sankeysubjectlist",
@@ -76,13 +76,13 @@ app$snapshot(
   filename = "industryFlow_6.json"
 )
 
+# Industry by subject tab =====================================================
 
-
-# Run tests for industry by subject tab
 industryBySubject_input <- c(
   "navbar", "countinput3", "YAGinput3", "qualinput4",
   "sectionnameinput2", "earningsbutton2"
 )
+
 # Note that I originally excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
 industryBySubject_output <- c("backwards_crosstab_title", "crosstab_backwards")
@@ -172,10 +172,12 @@ destroy_random_keys("industryBySubject_7.json")
 
 
 
-# Run tests for subject by industry tab
+# Subject by industry tab =====================================================
+
 subjectByIndustry_input <- c(
   "navbar", "countinput2", "YAGinput2", "crosstabs.subjectinput", "earningsbutton", "qualinput3"
 )
+
 # Note that I've excluded the crosstab_backwards tabulated output here as it
 # has a datakey that changes across different runs.
 subjectByIndustry_output <- c("crosstab_title", "crosstab", "crosstab_text")
@@ -272,6 +274,7 @@ app$snapshot(
 )
 destroy_random_keys("subjectByIndustry_8.json")
 
+# Regional tab ================================================================
 
 # Run tests for regional tab - note: excluding the map output as it makes the
 # json files massive.
