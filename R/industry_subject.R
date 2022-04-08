@@ -3,33 +3,43 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
+  
+  if(YAGinput == 1 ){
+    YAGtext <- 'one year'
+  } else if(YAGinput == 3){
+    YAGtext <- 'three years'
+  } else if(YAGinput == 5){
+    YAGtext <- 'five years'
+  } else if(YAGinput == 10){
+    YAGtext <- 'ten years'
+  }
 
   if (countinput %in% c("FSM", "prior_attainment")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", young (under 21 at start of course)
                             male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("sex")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", ", qualinput, " graduates from English HEIs,
                             APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and qualification level, male and female graduates from English HEIs,
                             APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("current_region", "ethnicity")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", ", "male and female first degree graduates from
                             English HEIs, APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("SECTIONNAME")) {
-    crosstab_title <- paste("<h4>Graduates working in each industry by subject studied, ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in each industry by subject studied, ", YAGtext, " after
                           graduation, male and female ", qualinput, " graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
   }

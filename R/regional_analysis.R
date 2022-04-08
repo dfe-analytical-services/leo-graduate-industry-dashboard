@@ -117,6 +117,16 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
+  
+  if(YAGinput == 1 ){
+    YAGtext <- 'one year'
+  } else if(YAGinput == 3){
+    YAGtext <- 'three years'
+  } else if(YAGinput == 5){
+    YAGtext <- 'five years'
+  } else if(YAGinput == 10){
+    YAGtext <- 'ten years'
+  }
 
   if (countinput == "trained_in_region") {
     counttext <- paste("number of graduates of", subjecttext, "now working in", sectionnameinput, " who
@@ -133,7 +143,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
   }
 
 
-  map_title <- paste("<h4> Map to show the ", counttext, YAGinput, "years after
+  map_title <- paste("<h4> Map to show the ", counttext, YAGtext, " after
                           graduation, male and female", qualinput, "graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
 
@@ -406,9 +416,19 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
+  
+  if(YAGinput == 1 ){
+    YAGtext <- 'one year'
+  } else if(YAGinput == 3){
+    YAGtext <- 'three years'
+  } else if(YAGinput == 5){
+    YAGtext <- 'five years'
+  } else if(YAGinput == 10){
+    YAGtext <- 'ten years'
+  }
 
   regional_sankey_title <- paste("<h4> Number of graduates working in the", sectionnameinput, " industry who
-                      studied in each region, and where they currently live", YAGinput, "years after graduation.</h4>")
+                      studied in each region, and where they currently live", YAGtext, " after graduation.</h4>")
 
   return(regional_sankey_title)
 }
