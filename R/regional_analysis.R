@@ -117,15 +117,15 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-  
-  if(YAGinput == 1 ){
-    YAGtext <- 'one year'
-  } else if(YAGinput == 3){
-    YAGtext <- 'three years'
-  } else if(YAGinput == 5){
-    YAGtext <- 'five years'
-  } else if(YAGinput == 10){
-    YAGtext <- 'ten years'
+
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
   }
 
   if (countinput == "trained_in_region") {
@@ -207,8 +207,8 @@ map_text <- function(sectionnameinput, subjectinput, countinput, YAGinput, quali
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
 
-  map_text <- paste(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region where 
-                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the least graduates 
+  map_text <- paste(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region where
+                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the least graduates
                     had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
                     ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
                     least graduates lived was <b>", last(mapdata_current$region), "</b>.",
@@ -416,15 +416,15 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-  
-  if(YAGinput == 1 ){
-    YAGtext <- 'one year'
-  } else if(YAGinput == 3){
-    YAGtext <- 'three years'
-  } else if(YAGinput == 5){
-    YAGtext <- 'five years'
-  } else if(YAGinput == 10){
-    YAGtext <- 'ten years'
+
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
   }
 
   regional_sankey_title <- paste("<h4> Number of graduates working in the", sectionnameinput, " industry who

@@ -3,15 +3,15 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-  
-  if(YAGinput == 1 ){
-    YAGtext <- 'one year'
-  } else if(YAGinput == 3){
-    YAGtext <- 'three years'
-  } else if(YAGinput == 5){
-    YAGtext <- 'five years'
-  } else if(YAGinput == 10){
-    YAGtext <- 'ten years'
+
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
   }
 
   if (countinput %in% c("FSM", "prior_attainment")) {

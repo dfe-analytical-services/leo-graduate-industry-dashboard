@@ -5,9 +5,9 @@
 welcome_text <- function() {
   div(
     h2("Welcome"),
-    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to 
-    LEO data using the IDBR (Inter-Departmental Business Register data) for the 2018/19 tax year at one, three, 
-    five and ten years after graduation. This means we can now see what industry graduates were working in 
+    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
+    LEO data using the IDBR (Inter-Departmental Business Register data) for the 2018/19 tax year at one, three,
+    five and ten years after graduation. This means we can now see what industry graduates were working in
     at these points in time. For more detail see our ",
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/graduate-outcomes-leo",
@@ -25,7 +25,7 @@ welcome_text <- function() {
 industry_flow_text <- function() {
   div(
     "This tab takes a longitudinal view of the five year after graduation cohort (2012/13 academic year of graduation
-    cohort), as it shows the industry sections they worked in and flowed between at one, three and five years after 
+    cohort), as it shows the industry sections they worked in and flowed between at one, three and five years after
     graduation. You can filter this analysis to look at graduates of a specific subject area, or filter by graduate sex."
   )
 }
@@ -47,7 +47,7 @@ sub_by_ind_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
     2018/19 tax year. The tables show which industries graduates of the selected subject area go on to work in.
-    You can expand the industry sections in these tables to view a more detailed breakdown of the 3-digit SIC groups 
+    You can expand the industry sections in these tables to view a more detailed breakdown of the 3-digit SIC groups
     within that industry. The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -67,8 +67,8 @@ sub_by_ind_text <- function() {
 ind_by_sub_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
-    2018/19 tax year. The tables show which subjects graduates working in a selected industry area previously studied. 
-    You can view this at the 3-digit SIC group level and may select multiple SIC groups within an industry area at one time. 
+    2018/19 tax year. The tables show which subjects graduates working in a selected industry area previously studied.
+    You can view this at the 3-digit SIC group level and may select multiple SIC groups within an industry area at one time.
     The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -105,7 +105,7 @@ sic_groups_text <- function() {
     h3("SIC Groups and sections"),
     "Using the ONS Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
     at the five digit level, which are then grouped hierarchically at the four, three and two digit level before being grouped into
-    21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis 
+    21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis
     are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
     SIC groups available to view at the three digit level by expanding the broad sections which consist of the following:",
     br(),
