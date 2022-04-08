@@ -118,8 +118,8 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
-          helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+          helpText("Create a Sankey chart using the dropdowns below."),
+          helpText("Switch between the Sankey and the proportions table using the tabs on the right."),
 
           ### Degree input ----------------------------------------------------
 
@@ -238,8 +238,8 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create a heat map to show graduate movement from study
-                   region to current region for the selected industry."),
+          helpText("Create a map and Sankey chart to show graduate movement between study region and current region
+                   using the dropdowns below."),
           helpText("Click on a region to see all of the information for
                    that region, including the number of providers and the
                    median earnings for the selected industry."),
@@ -303,18 +303,6 @@ fluidPage(
             selected = "All"
           ),
 
-          ### Statistics input ------------------------------------------------
-
-          selectInput("countinput",
-            label = "View different statistics",
-            choices = list(
-              "Studied in region" = "trained_in_region",
-              "Currently living in region" = "living_in_region",
-              "Difference (n)" = "difference",
-              "Difference (%)" = "difference_prop"
-            ),
-            selected = "trained_in_region"
-          )
         ),
 
         ## Main panel =========================================================
@@ -344,6 +332,25 @@ fluidPage(
               column(
                 6,
                 h3(htmlOutput("map_title")),
+                
+                div(
+                  # Set as well but override sidebar defaults
+                  class = "well",
+                  style = "height: 100%; overflow-y: visible",
+                
+                div(selectInput("countinput",
+                                label = "Select which statistic to view in the map below",
+                                choices = list(
+                                  "Studied in region" = "trained_in_region",
+                                  "Currently living in region" = "living_in_region",
+                                  "Difference (n)" = "difference",
+                                  "Difference (%)" = "difference_prop"
+                                ),
+                                selected = "trained_in_region"
+                ))
+                ),
+              
+                
                 withSpinner(leafletOutput(outputId = "map", height = 470))
               ),
               column(
