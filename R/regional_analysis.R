@@ -197,12 +197,12 @@ map_text <- function(sectionnameinput, subjectinput, countinput, YAGinput, quali
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
 
-  map_text <- paste(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region that saw the highest number of students
-                    studying there was <b>", first(mapdata_trained$region), "</b>. The region with the lowest number of students studying
-                    there was <b>", last(mapdata_trained$region), "</b>. The region with the highest number of graduates living
-                    there ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
-                    least graduates living there was <b>", last(mapdata_current$region), "</b>.",
-    sep = "''"
+  map_text <- paste(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region where 
+                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the least graduates 
+                    had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
+                    ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
+                    least graduates lived was <b>", last(mapdata_current$region), "</b>.",
+    sep = ""
   )
 
   return(map_text)
@@ -269,10 +269,10 @@ map_text2 <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
 
   map_text <- paste0(
     subjecttext, " in the ", sectionnameinput, " industry, the region with the highest proportionate increase in graduates who studied there compared to living
-                    there ", YAGinput, " years after graduation is ", first(mapdata_diff_prop$region), ", where the number of
-                    graduates increased by ", first(mapdata_diff_prop$difference_prop2), "%. The region with the largest
-                    decrease is ", last(mapdata_diff_prop$region), " where the number of graduates decreased by ", last(mapdata_diff_prop$difference_prop2),
-    "%."
+                    there ", YAGinput, " years after graduation was <b>", first(mapdata_diff_prop$region), "</b>, where the number of
+                    graduates increased by <b>", first(mapdata_diff_prop$difference_prop2), "%</b>. The region with the largest
+                    decrease is <b>", last(mapdata_diff_prop$region), "</b> where the number of graduates decreased by <b>", last(mapdata_diff_prop$difference_prop2),
+    "</b>%."
   )
 
   return(map_text)
