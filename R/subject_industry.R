@@ -124,7 +124,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate_if(is.numeric, funs(. / sum(.))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      #mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+      # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -142,7 +142,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      #mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+      # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -228,13 +228,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     )
 
     crosstab_text <- paste("For ", qualinput, " graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
-      "the industry with the highest proportion of ", sectiontext, br(),br(),
+      "the industry with the highest proportion of ", sectiontext, br(), br(),
       "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
       "</b> where ", sextext,
       "The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
-      "</b> where ", sextextearnings, 
-      sextextearnings2, 
-      sextext2, br(),br(),
+      "</b> where ", sextextearnings,
+      sextextearnings2,
+      sextext2, br(), br(),
       sep = ""
     )
   }
@@ -345,10 +345,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
       "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
-      "</b> where ", FSMtext, 
+      "</b> where ", FSMtext,
       "The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
-      "</b> where ", FSMearningstext, 
-      FSMearningstext2, br(),br(),
+      "</b> where ", FSMearningstext,
+      FSMearningstext2, br(), br(),
       sep = ""
     )
   }
@@ -537,14 +537,14 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       ethnicitytext,
       br(), br(), "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ", last(row.names(biggestdiff2)), "
-                           ethnicity graduates had the lowest proportion.", 
+                           ethnicity graduates had the lowest proportion.",
       "The industry with the largest range in median earnings was <b>", first(biggestdiffearnings$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiffearnings2)), " ethnicity graduates the highest median earnings (<b>£",
       format(first(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>) and ", last(row.names(biggestdiffearnings2)),
       " ethnicity graduates had the lowest median earnings (<b>£", format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>).",
       "The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in
                            the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",br(),br(),
+      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
   }
@@ -731,11 +731,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstab_text <- paste(
       "For first degree graduates of ", subjecttext, ", ",
       YAGinput, " years after graduation, ", regiontext,
-      br(), 
+      br(),
       "The group with the highest earnings was graduates currently living in <b>",
       colnames(crosstabs_earnings_data2)[result[2]], "</b> working in the <b>",
       crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",br(),br(),
+      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
   }
@@ -818,10 +818,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
                            Within this prior attainment band, the most common industry was <b>",
       first(topindustry$SECTIONNAME, order_by = -topindustry[2]), "</b>, and the median earnings for graduates with this prior
                        attainment band working in this industry were <b>£", format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE),
-      "</b>.", br(), 
+      "</b>.", br(),
       "The group with the highest median earnings was graduates in the <b>", colnames(crosstabs_earnings_data3[result[2]]),
       "</b> prior attainment band who worked in the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median
-                           earnings of <b>£", format(max(crosstabs_earnings_data3), big.mark = ",", scientific = FALSE), "</b>).",br(),br(),
+                           earnings of <b>£", format(max(crosstabs_earnings_data3), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
   }
@@ -846,7 +846,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstab_text <- paste("When splitting by subject for ", qualinput, " graduates, ", YAGinput, " years after graduation,
                            the highest earning group was graduates of ", colnames(crosstabs_earnings_data2)[result[2]], " who
                            worked in the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",br(),br(),
+      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
   }
@@ -954,10 +954,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     result <- which(crosstabs_earnings_data2 == max(crosstabs_earnings_data2), arr.ind = TRUE)
 
 
-    crosstab_text <- paste("For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext, 
+    crosstab_text <- paste("For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext,
       "The highest earning group was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> graduates
                            working in the <b>", crosstabs_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).",br(),br(),
+      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
   }
@@ -991,11 +991,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     color <- orange_pal(normalized)
     list(background = color)
   }
-  
- 
+
+
 
   if (countinput == "ethnicity") {
-    
     crosstabs_basedata <- tables_data %>%
       filter(
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, FSM == "All", current_region == "All",
