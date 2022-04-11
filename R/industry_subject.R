@@ -47,8 +47,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(ethnicity, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(ethnicity, SECTIONNAME,n = count) %>%
       spread(ethnicity, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
