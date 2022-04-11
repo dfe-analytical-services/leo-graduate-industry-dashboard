@@ -119,10 +119,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate_if(is.numeric, funs(. / sum(.))) %>%
+      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       #mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
@@ -138,6 +139,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       #mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -241,6 +243,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -259,6 +262,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -353,6 +357,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -367,6 +372,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
@@ -547,6 +553,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -568,6 +575,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -736,6 +744,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -751,6 +760,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -765,6 +775,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     footer_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -819,6 +830,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     crosstabs_earnings_data <- tables_data_grouped %>%
       select(-count, n = earnings_median) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -847,6 +859,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       ) %>%
       select(qualification_TR, SECTIONNAME, n = count) %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       as.data.frame() %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -862,6 +875,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       group_by(qualification_TR, SECTIONNAME) %>%
       summarise(n = earnings_median) %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -977,9 +991,11 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     color <- orange_pal(normalized)
     list(background = color)
   }
-
+  
+ 
 
   if (countinput == "ethnicity") {
+    
     crosstabs_basedata <- tables_data %>%
       filter(
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, FSM == "All", current_region == "All",
@@ -991,6 +1007,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(ethnicity, SECTIONNAME, group_name, n = count) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1007,6 +1024,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
@@ -1031,6 +1049,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(ethnicity, SECTIONNAME, group_name, n = count) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       as.data.frame() %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -1051,6 +1070,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table <- tables_data_nested %>%
       select(ethnicity, SECTIONNAME, group_name, n = prop) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
@@ -1062,6 +1082,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table_earnings <- tables_data_nested %>%
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) # %>%
     # mutate_at(c('White', 'Black','Asian', 'Mixed', 'Other', 'Not known'),
@@ -1102,6 +1123,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(current_region, SECTIONNAME, group_name, n = count) %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1125,6 +1147,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(current_region, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1154,6 +1177,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(current_region, SECTIONNAME, group_name, n = count) %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1177,6 +1201,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       nested_table <- tables_data_nested %>%
         select(current_region, SECTIONNAME, group_name, n = prop) %>%
         spread(current_region, n) %>%
+        colorders(countinput) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
@@ -1186,6 +1211,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         filter(group_name != "All") %>%
         select(current_region, SECTIONNAME, group_name, n = earnings_median) %>%
         spread(current_region, n) %>%
+        colorders(countinput) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
       nested <- nested_table_earnings
@@ -1222,6 +1248,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(FSM, SECTIONNAME, group_name, n = count) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1238,6 +1265,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(FSM, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1262,6 +1290,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(FSM, SECTIONNAME, group_name, n = count) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1284,6 +1313,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name != "All") %>%
       select(FSM, SECTIONNAME, group_name, n = prop) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
@@ -1296,6 +1326,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name != "All") %>%
       select(FSM, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
@@ -1329,6 +1360,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(sex, SECTIONNAME, group_name, n = count) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1346,6 +1378,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(sex, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1370,6 +1403,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(sex, SECTIONNAME, group_name, n = count) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1393,6 +1427,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table <- table_group_proportions %>%
       select(sex, SECTIONNAME, group_name, n = proportion) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1405,6 +1440,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table_earnings <- table_group_proportions %>%
       select(sex, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1435,6 +1471,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(prior_attainment, SECTIONNAME, group_name, n = count) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1452,6 +1489,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(prior_attainment, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1476,6 +1514,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(prior_attainment, SECTIONNAME, group_name, n = count) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1495,6 +1534,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table <- tables_data_nested %>%
       select(prior_attainment, SECTIONNAME, group_name, n = prop) %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
     nested_table_earnings <- tables_data_nested %>%
@@ -1540,6 +1580,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(subject_name, SECTIONNAME, group_name, n = count) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1553,6 +1594,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(subject_name, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1571,6 +1613,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name == "All") %>%
       select(subject_name, SECTIONNAME, group_name, n = count) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1590,6 +1633,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(subject_name, SECTIONNAME, group_name) %>%
       summarise(n = prop) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), (funs(ifelse(. == 0, NA, .))))
 
@@ -1603,6 +1647,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(subject_name, SECTIONNAME, group_name) %>%
       summarise(n = earnings_median) %>%
       spread(subject_name, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
@@ -1629,6 +1674,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       select(qualification_TR, SECTIONNAME, group_name, n = count) %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -1644,6 +1690,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(qualification_TR, SECTIONNAME, group_name) %>%
       summarise(n = earnings_median) %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -1665,6 +1712,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       select(qualification_TR, SECTIONNAME, group_name, n = count) %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       as.data.frame() %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
