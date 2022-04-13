@@ -30,7 +30,7 @@
                 "Mining and quarrying",
                 "Construction",
                 "Water supply - sewerage, waste management and remediation activities",
-                "NOT KNOWN",
+                "Not known",
                 "Other service activities",
                 "Electricity, gas, steam and air conditioning supply",
                 "Real estate activities",
@@ -2862,7 +2862,7 @@
                         "attribs": {
                           "data": {
                             "SECTIONNAME": [
-                              "NOT KNOWN"
+                              "Not known"
                             ],
                             "group_name": [
                               "NOT KNOWN"
@@ -4062,7 +4062,7 @@
 
       ]
     },
-    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is <b>Transportation and storage<\/b>, and the\n                                median earnings of females in this industry were <b>£24,800<\/b>. The industry\n                                with the highest proportion of male graduates was <b>Electricity, gas, steam and air conditioning supply<\/b> and the median earnings of males\n                                in this industry were <b>£25,700<\/b>.<br/><br/>The biggest difference in proportions is seen in <b>Transportation and storage<\/b> where the proportion of female graduates is <b> 9.5  percentage points higher<\/b> than the proportion of male graduates.<br/><br/>The biggest difference in median earnings is seen in <b>Financial and insurance activities<\/b> where the median earnings of female graduates were <b>£4,300  higher<\/b> than the median earnings of male graduates.<br/><br/>The group with the highest earnings was female graduates in the <b>Financial and insurance activities <\/b> industry (median earnings of <b>£27,900<\/b>).<br/><br/>",
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex , 5 years after\n                          graduation, male and female  First degree  graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is <b>Transportation and storage<\/b>, and the\n                                median earnings of females in this industry were <b>£24,800<\/b>. The industry\n                                with the highest proportion of male graduates was <b>Electricity, gas, steam and air conditioning supply<\/b> and the median earnings of males\n                                in this industry were <b>£25,700<\/b>.<br/><br/>The biggest difference in proportions is seen in <b>Transportation and storage<\/b> where the proportion of female graduates is <b> 9.5  percentage points higher<\/b> than the proportion of male graduates.The biggest difference in median earnings is seen in <b>Financial and insurance activities<\/b> where the median earnings of female graduates were <b>£4,300  higher<\/b> than the median earnings of male graduates.The group with the highest earnings was female graduates in the <b>Financial and insurance activities <\/b> industry (median earnings of <b>£27,900<\/b>).<br/><br/>",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex, five years after\n                          graduation, male and female First degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
   }
 }

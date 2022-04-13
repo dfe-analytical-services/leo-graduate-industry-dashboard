@@ -22,6 +22,7 @@ read_tables_data <- function(file) {
   )
   tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
   tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
+  tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
   tables_data$SECTIONNAME <- StrCap(tolower(tables_data$SECTIONNAME))
   return(tables_data)
 }
