@@ -226,8 +226,8 @@ server <- function(input, output, session) {
       choices = unique(c("All", data_filtered$group_name))
     )
   })
-  
-  
+
+
   # output$subjecttable <- renderReactable({
   #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)
   # })
