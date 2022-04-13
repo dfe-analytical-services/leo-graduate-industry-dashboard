@@ -65,8 +65,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(ethnicity, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(ethnicity, SECTIONNAME,n = count) %>%
       spread(ethnicity, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -91,8 +90,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(current_region, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(current_region, SECTIONNAME,n = count) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -117,8 +115,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(current_region, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(current_region, SECTIONNAME,n = count) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -149,8 +146,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(FSM, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(FSM, SECTIONNAME,n = count) %>%
       spread(FSM, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -168,8 +164,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(FSM, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(FSM, SECTIONNAME,n = count) %>%
       spread(FSM, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -191,8 +186,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == qualinput, group_name == "All"
       ) %>%
-      group_by(sex, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(sex, SECTIONNAME,n = count) %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -211,8 +205,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == qualinput, group_name == "All"
       ) %>%
-      group_by(sex, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(sex, SECTIONNAME,n = count) %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -235,8 +228,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         current_region == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(prior_attainment, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(prior_attainment, SECTIONNAME,n = count) %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -256,8 +248,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         current_region == "All", qualification_TR == "First degree", group_name == "All"
       ) %>%
-      group_by(prior_attainment, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(prior_attainment, SECTIONNAME,n = count) %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -288,8 +279,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == qualinput, group_name == "All"
       ) %>%
-      group_by(subject_name, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(subject_name, SECTIONNAME,n = count) %>%
       spread(subject_name, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -304,8 +294,7 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == qualinput, group_name == "All"
       ) %>%
-      group_by(subject_name, SECTIONNAME) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(subject_name, SECTIONNAME,n = count) %>%
       spread(subject_name, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -369,8 +358,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(ethnicity, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(ethnicity, SECTIONNAME,n = count) %>%
       spread(ethnicity, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -388,8 +376,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(ethnicity, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      select(ethnicity, SECTIONNAME,n = earnings_median) %>%
       spread(ethnicity, n) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -420,8 +407,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", threshold == "All"
       ) %>%
-      group_by(ethnicity, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(ethnicity, SECTIONNAME,n = count) %>%
       spread(ethnicity, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -445,8 +431,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(current_region, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(current_region, SECTIONNAME,n = count) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -472,8 +457,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(current_region, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      select(current_region, SECTIONNAME,n = earnings_median) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -511,8 +495,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(current_region, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(current_region, SECTIONNAME,n = count) %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -568,8 +551,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(FSM, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      select(FSM, SECTIONNAME,n = count) %>%
       spread(FSM, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -600,8 +582,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
         prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(FSM, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(FSM, SECTIONNAME,n = count) %>%
       spread(FSM, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -623,8 +604,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
       ) %>%
-      group_by(sex, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(sex, SECTIONNAME,n = count) %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -645,8 +625,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
       ) %>%
-      group_by(sex, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      select(sex, SECTIONNAME,n = earnings_median) %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -680,8 +659,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
         prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
       ) %>%
-      group_by(sex, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(sex, SECTIONNAME,n = count) %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -703,8 +681,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(prior_attainment, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(prior_attainment, SECTIONNAME,n=count) %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -724,8 +701,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(prior_attainment, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      select(prior_attainment, SECTIONNAME,n=earnings_median) %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -757,8 +733,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
         current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
       ) %>%
-      group_by(prior_attainment, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      select(prior_attainment, SECTIONNAME,n=count) %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%

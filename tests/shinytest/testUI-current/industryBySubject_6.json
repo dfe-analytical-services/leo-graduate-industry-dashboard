@@ -1,0 +1,18 @@
+{
+  "input": {
+    "countinput3": "ethnicity",
+    "earningsbutton2": "Median earnings",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Mining and quarrying",
+    "YAGinput3": "1"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4> Industry of graduate employment for graduates of Mining and quarrying by ethnicity , 1 years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "message": "Each row of output must be identified by a unique combination of keys.\nKeys are shared for 45 rows:\n* 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20\n* 24, 29, 38\n* 22, 26, 35\n* 21, 23, 27, 28, 30, 31, 32, 33, 36, 37, 39, 40, 41, 42, 43, 44, 45, 46, 47\n",
+      "call": "spread(., ethnicity, n)",
+      "type": "rlang_error"
+    }
+  }
+}

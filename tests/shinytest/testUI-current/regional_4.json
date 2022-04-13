@@ -1,0 +1,14 @@
+{
+  "input": {
+    "navbar": "regional",
+    "qualinput2": "Level 7 (research)",
+    "regions.subjectinput": "Medicine and dentistry",
+    "sectionnameinput": "Education",
+    "YAGinput": "5"
+  },
+  "output": {
+    "map_title": "<h4> Map to show the  number of graduates of Medicine and dentistry now working in Education  who\n                       studied in each region 5 years after\n                          graduation, male and female Level 7 (research) graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "maptext": "For Level 7 (research) graduates of Medicine and dentistry'' in the ''Education'' industry ''5'' years after graduation, the region that saw the highest number of students\n                    studying there was <b>''North West''<\/b>. The region with the lowest number of students studying\n                    there was <b>''North East''<\/b>. The region with the highest number of graduates living\n                    there ''5'' years after graduation was <b>''West Midlands''<\/b> and the region with the\n                    least graduates living there was <b>''East Midlands''<\/b>.",
+    "maptext2": "For Level 7 (research) graduates of Medicine and dentistry in the Education industry, the region with the highest proportionate increase in graduates who studied there compared to living\n                    there 5 years after graduation is Yorkshire and the Humber, where the number of\n                    graduates increased by 0%. The region with the largest\n                    decrease is London where the number of graduates decreased by -99.2%."
+  }
+}
