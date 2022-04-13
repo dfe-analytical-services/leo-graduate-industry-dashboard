@@ -326,15 +326,12 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
 }
 
 
-backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput) {
-
-  # tables_data <- tables_data %>%
-  #   filter(subject_name != 'All')
+backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput, groupinput) {
 
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
 
-  tables_data <- tables_data %>%
-    filter(group_name == "All")
+  # tables_data <- tables_data %>%
+  #   filter(group_name == "All")
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
@@ -368,7 +365,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(ethnicity, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -387,7 +385,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(ethnicity, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -419,7 +418,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(ethnicity, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -444,7 +444,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(current_region, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -471,7 +472,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(current_region, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -510,7 +512,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(current_region, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -547,7 +550,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(FSM, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -567,7 +571,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(FSM, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -599,7 +604,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(FSM, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -622,7 +628,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(sex, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -644,7 +651,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(sex, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -679,7 +687,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
-        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All"
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(sex, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -702,7 +711,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(prior_attainment, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -723,7 +733,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(prior_attainment, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -756,7 +767,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All"
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(prior_attainment, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -792,7 +804,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All", prior_attainment == "All",
-        qualification_TR == qualinput, threshold == "All"
+        qualification_TR == qualinput, threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -806,7 +819,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == qualinput, threshold == "All"
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -833,7 +847,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == qualinput, threshold == "All"
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -866,7 +881,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All"
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(qualification_TR, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
@@ -881,7 +897,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All"
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(qualification_TR, subject_name) %>%
       summarise(n = earnings_median) %>%
@@ -909,7 +926,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
-        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All"
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name == groupinput
       ) %>%
       group_by(qualification_TR, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
