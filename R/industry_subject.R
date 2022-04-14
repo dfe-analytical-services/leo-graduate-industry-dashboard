@@ -329,9 +329,6 @@ downloadcrosstabs <- function(subjectinput, YAGinput, countinput, qualinput) {
 backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput, groupinput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
 
-  # tables_data <- tables_data %>%
-  #   filter(group_name == "All")
-
   orange_pal <- function(x) {
     if (!is.na(x)) {
       rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
