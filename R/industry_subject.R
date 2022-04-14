@@ -340,13 +340,21 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
   # function which returns background colour based on cell value (using colour map)
   # also takes column name as an input, which allows to get max and min
   stylefunc <- function(value, index, name) {
-    normalized <- (value - min(crosstabs_data %>%
+    
+    if(value>0){
+      
+      data <- crosstabs_data %>%
+        mutate_if(is.numeric,
+                  funs(ifelse(.<0, NA, .)))
+      
+    normalized <- (value - min(data %>%
       select(-subject_name), na.rm = T)) /
-      (max(crosstabs_data %>%
-        select(-subject_name), na.rm = T) - min(crosstabs_data %>%
+      (max(data %>%
+        select(-subject_name), na.rm = T) - min(data %>%
         select(-subject_name), na.rm = T))
     color <- orange_pal(normalized)
-    list(background = color)
+    list(background = color)}
+    
   }
 
   footerfunc <- function(value, index, name) {
@@ -697,7 +705,13 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     coldefs <- list(
       subject_name = colDef(na = "c", name = "Subject area", width = 600, footer = "TOTAL (N)"),
-      Female = colDef(na = "c", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE)),
+      Female = colDef(na = "c", style = stylefunc, format = colformat, 
+                      footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE),
+                      cell = function(value){
+                        if(value < 0) "c" else value
+                      }
+                      
+                      ),
       Male = colDef(na = "c", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Male), 5), big.mark = ",", scientific = FALSE)),
       `Female & Male` = colDef(na = "c", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Female & Male`), 5), big.mark = ",", scientific = FALSE))
     )
