@@ -14,56 +14,56 @@ regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECT
 
 # Create the map
 
-create_maptabledata <- function(regional_data,regional_movement,
-                                sectionnameinput, subjectinput, 
-                                YAGinput, qualinput){
-  # This function creates one central table that the other functions can then 
+create_maptabledata <- function(regional_data, regional_movement,
+                                sectionnameinput, subjectinput,
+                                YAGinput, qualinput) {
+  # This function creates one central table that the other functions can then
   # call on. I've put the output of this function into a reactive() in server.R.
   mapdata <- regional_data %>%
     filter(
-      SECTIONNAME == sectionnameinput, subject_name == subjectinput, 
+      SECTIONNAME == sectionnameinput, subject_name == subjectinput,
       YAG == YAGinput, qualification_TR == qualinput
-    ) 
+    )
   mapdata <- left_join(ukRegions, mapdata, by = c("rgn19nm" = "region"))
-  
+
   mapdata2 <- regional_movement %>%
     filter(
-      SECTIONNAME == sectionnameinput, subject_name == subjectinput, 
+      SECTIONNAME == sectionnameinput, subject_name == subjectinput,
       YAG == YAGinput, qualification_TR == qualinput
     ) %>%
     mutate_at(
       "count",
       funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
     )
-  
+
   instregion <- mapdata2 %>%
     filter(is.na(count) != TRUE) %>%
     group_by(YAG, InstRegion, subject_name, SECTIONNAME, qualification_TR) %>%
-    summarise(trained_in_region2 = sum(count),.groups="drop") %>%
+    summarise(trained_in_region2 = sum(count), .groups = "drop") %>%
     ungroup() %>%
     select(InstRegion, trained_in_region2)
-  
+
   currentregion <- mapdata2 %>%
     filter(is.na(count) != TRUE) %>%
     group_by(YAG, current_region, subject_name, SECTIONNAME, qualification_TR) %>%
-    summarise(living_in_region2 = sum(count),.groups="drop") %>%
+    summarise(living_in_region2 = sum(count), .groups = "drop") %>%
     ungroup() %>%
     select(current_region, living_in_region2)
-  
+
   mapdata <- mapdata %>%
     left_join(instregion, by = c("rgn19nm" = "InstRegion")) %>%
     left_join(currentregion, by = c("rgn19nm" = "current_region")) %>%
     mutate(difference2 = living_in_region2 - trained_in_region2) %>%
-    mutate(difference_prop2 = difference2 / trained_in_region2) %>% 
-    rename(region=rgn19nm)
-  
+    mutate(difference_prop2 = difference2 / trained_in_region2) %>%
+    rename(region = rgn19nm)
+
   mapdata$difference_prop2 <- readr::parse_number(
     scales::percent(mapdata$difference_prop2, accuracy = 0.1)
   )
   return(mapdata)
 }
 
-map_chart <- function(mapdata,countinput) {
+map_chart <- function(mapdata, countinput) {
   leafletmapdata <- st_transform(mapdata, crs = 4326)
   if (countinput == "trained_in_region") {
     pal_fun <- colorNumeric("Blues", domain = leafletmapdata$trained_in_region2)
@@ -157,7 +157,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
   return(map_title)
 }
 
-map_text <- function(mapdata, sectionnameinput, subjectinput, 
+map_text <- function(mapdata, sectionnameinput, subjectinput,
                      YAGinput, qualinput) {
   mapdata <- mapdata %>% as.data.frame()
   ifelse(subjectinput == "All",
@@ -191,7 +191,7 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
   return(map_text)
 }
 
-map_text2 <- function(mapdata,sectionnameinput, subjectinput, 
+map_text2 <- function(mapdata, sectionnameinput, subjectinput,
                       YAGinput, qualinput) {
   mapdata <- mapdata %>% as.data.frame()
 
@@ -216,13 +216,13 @@ map_text2 <- function(mapdata,sectionnameinput, subjectinput,
     arrange(-difference_prop2)
 
   map_text <- paste0(
-    subjecttext, " in the ", sectionnameinput, 
+    subjecttext, " in the ", sectionnameinput,
     " industry, the region with the highest proportionate increase in graduates who studied there compared to living there ",
-    YAGinput, " years after graduation was <b>", first(mapdata_diff_prop$region), 
-    "</b>, where the number of graduates increased by <b>", 
-    first(mapdata_diff_prop$difference_prop2), 
-    "%</b>. The region with the largest decrease is <b>", 
-    last(mapdata_diff_prop$region), "</b> where the number of graduates decreased by <b>", 
+    YAGinput, " years after graduation was <b>", first(mapdata_diff_prop$region),
+    "</b>, where the number of graduates increased by <b>",
+    first(mapdata_diff_prop$difference_prop2),
+    "%</b>. The region with the largest decrease is <b>",
+    last(mapdata_diff_prop$region), "</b> where the number of graduates decreased by <b>",
     last(mapdata_diff_prop$difference_prop2), "</b>%."
   )
 
@@ -230,10 +230,12 @@ map_text2 <- function(mapdata,sectionnameinput, subjectinput,
 }
 
 create_regions_table <- function(maptabledata, regioninput) {
-  dftable <- maptabledata %>% as.data.frame() %>% 
+  dftable <- maptabledata %>%
+    as.data.frame() %>%
     select(
-    region, "trained_in_region2", "living_in_region2", "difference2", 
-    "difference_prop2", "number_of_providers", "earnings_median") %>%
+      region, "trained_in_region2", "living_in_region2", "difference2",
+      "difference_prop2", "number_of_providers", "earnings_median"
+    ) %>%
     filter(region %in% c(regioninput))
   map_table <- reactable(dftable,
     sortable = TRUE, resizable = TRUE, showSortable = TRUE,

@@ -112,33 +112,40 @@ server <- function(input, output, session) {
   })
 
   reactiveRegionTable <- reactive({
-    create_maptabledata(data,regional_movement_data,
-      input$sectionnameinput, input$regions.subjectinput, input$YAGinput, 
+    create_maptabledata(
+      data, regional_movement_data,
+      input$sectionnameinput, input$regions.subjectinput, input$YAGinput,
       input$qualinput2
     )
   })
 
   reactiveMapInput <- reactive({
-    map_chart(reactiveRegionTable(),input$countinput)
-    })
-    
+    map_chart(reactiveRegionTable(), input$countinput)
+  })
+
   output$map <- renderLeaflet({
     reactiveMapInput()
   })
 
   output$map_title <- renderText({
-    map_title(input$sectionnameinput, input$regions.subjectinput, 
-              input$countinput, input$YAGinput, input$qualinput2)
+    map_title(
+      input$sectionnameinput, input$regions.subjectinput,
+      input$countinput, input$YAGinput, input$qualinput2
+    )
   })
 
   output$maptext <- renderText({
-    map_text(reactiveRegionTable(), input$sectionnameinput, 
-             input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    map_text(
+      reactiveRegionTable(), input$sectionnameinput,
+      input$regions.subjectinput, input$YAGinput, input$qualinput2
+    )
   })
 
   output$maptext2 <- renderText({
-    map_text2(reactiveRegionTable(), input$sectionnameinput, 
-              input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    map_text2(
+      reactiveRegionTable(), input$sectionnameinput,
+      input$regions.subjectinput, input$YAGinput, input$qualinput2
+    )
   })
 
   output$maptable <- renderReactable(

@@ -15,7 +15,7 @@ destroy_random_keys <- function(file, parent_script = "testUI") {
 # Run the shiny tests.
 # Should really set this up to loop over arrays of inputs in order to run
 # through the shiny tests.
-app <- ShinyDriver$new("../../", loadTimeout = 1.6e+04, seed = 2011)
+app <- ShinyDriver$new("../../", loadTimeout = 1.2e+05, seed = 2011)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
