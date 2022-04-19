@@ -340,26 +340,27 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
   # function which returns background colour based on cell value (using colour map)
   # also takes column name as an input, which allows to get max and min
   stylefunc <- function(value, index, name) {
-    
-    if(value>=0 && !is.na(value)){
-      
+    if (value >= 0 && !is.na(value)) {
       data <- crosstabs_data %>%
-        mutate_if(is.numeric,
-                  funs(ifelse(.<0, NA, .)))
-      
-    normalized <- (value - min(data %>%
-      select(-subject_name), na.rm = T)) /
-      (max(data %>%
-        select(-subject_name), na.rm = T) - min(data %>%
-        select(-subject_name), na.rm = T))
-    color <- orange_pal(normalized)
-    list(background = color)}
-    
+        mutate_if(
+          is.numeric,
+          funs(ifelse(. < 0, NA, .))
+        )
+
+      normalized <- (value - min(data %>%
+        select(-subject_name), na.rm = T)) /
+        (max(data %>%
+          select(-subject_name), na.rm = T) - min(data %>%
+          select(-subject_name), na.rm = T))
+      color <- orange_pal(normalized)
+      list(background = color)
+    }
   }
-  
-  cellfunc = function(value){
-    if(is.na(value)){
-      "x" } else if(value < 0) "c" else cellformat(value)
+
+  cellfunc <- function(value) {
+    if (is.na(value)) {
+      "x"
+    } else if (value < 0) "c" else cellformat(value)
   }
 
   footerfunc <- function(value, index, name) {
@@ -367,7 +368,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     return(footer)
   }
 
-  cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+  cellformat <- function(value) {
+    paste0(format(round(value * 100, 1), nsmall = 1), "%")
+  }
 
 
   if (countinput == "ethnicity") {
@@ -416,11 +419,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -510,11 +517,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -602,11 +613,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -685,14 +700,14 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){
-        paste0(format(round(value * 100, 1), nsmall = 1),'%')
-      } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){
-        paste0('£', format(value, big.mark = ',' ))
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
       }
       crosstabs_data <- crosstabs_earnings_data2
     }
@@ -769,11 +784,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -849,11 +868,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -928,11 +951,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
