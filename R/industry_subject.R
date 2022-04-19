@@ -356,13 +356,18 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     list(background = color)}
     
   }
+  
+  cellfunc = function(value){
+    if(is.na(value)){
+      "x" } else if(value < 0) "c" else cellformat(value)
+  }
 
   footerfunc <- function(value, index, name) {
     footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
     return(footer)
   }
 
-  colformat <- colFormat(percent = TRUE, digits = 1)
+  cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
 
 
   if (countinput == "ethnicity") {
@@ -411,11 +416,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -435,12 +440,12 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     coldefs <- list(
       subject_name = colDef(name = "Subject area", width = 600, footer = "TOTAL (N)"),
-      White = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
-      Black = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Black), 5), big.mark = ",", scientific = FALSE)),
-      Asian = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Asian), 5), big.mark = ",", scientific = FALSE)),
-      Mixed = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Mixed), 5), big.mark = ",", scientific = FALSE)),
-      Other = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Other), 5), big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+      White = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
+      Black = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Black), 5), big.mark = ",", scientific = FALSE)),
+      Asian = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Asian), 5), big.mark = ",", scientific = FALSE)),
+      Mixed = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Mixed), 5), big.mark = ",", scientific = FALSE)),
+      Other = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Other), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -505,11 +510,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -538,15 +543,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
         footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
       ),
-      `North East` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`North East`), 5), big.mark = ",", scientific = FALSE)),
-      `North West` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`North West`), 5), big.mark = ",", scientific = FALSE)),
-      `Yorkshire and the Humber` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Yorkshire and the Humber`), 5), big.mark = ",", scientific = FALSE)),
-      `East Midlands` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`East Midlands`), 5), big.mark = ",", scientific = FALSE)),
-      `West Midlands` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`West Midlands`), 5), big.mark = ",", scientific = FALSE)),
-      `East of England` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`East of England`), 5), big.mark = ",", scientific = FALSE)),
-      `London` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`London`), 5), big.mark = ",", scientific = FALSE)),
-      `South East` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`South East`), 5), big.mark = ",", scientific = FALSE)),
-      `South West` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`South West`), 5), big.mark = ",", scientific = FALSE))
+      `North East` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North East`), 5), big.mark = ",", scientific = FALSE)),
+      `North West` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North West`), 5), big.mark = ",", scientific = FALSE)),
+      `Yorkshire and the Humber` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Yorkshire and the Humber`), 5), big.mark = ",", scientific = FALSE)),
+      `East Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East Midlands`), 5), big.mark = ",", scientific = FALSE)),
+      `West Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`West Midlands`), 5), big.mark = ",", scientific = FALSE)),
+      `East of England` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East of England`), 5), big.mark = ",", scientific = FALSE)),
+      `London` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`London`), 5), big.mark = ",", scientific = FALSE)),
+      `South East` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`South East`), 5), big.mark = ",", scientific = FALSE)),
+      `South West` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`South West`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -597,11 +602,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -622,9 +627,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     coldefs <- list(
       subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
-      `non-FSM` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`non-FSM`), 5), big.mark = ",", scientific = FALSE)),
-      FSM = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$FSM), 5), big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+      `non-FSM` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`non-FSM`), 5), big.mark = ",", scientific = FALSE)),
+      FSM = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$FSM), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -680,14 +685,12 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
       cellformat <- function(value){
         paste0(format(round(value * 100, 1), nsmall = 1),'%')
       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
       cellformat <- function(value){
         paste0('£', format(value, big.mark = ',' ))
       }
@@ -711,15 +714,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     coldefs <- list(
       subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
-      Female = colDef(na = "x", style = stylefunc, 
-                      footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE),
-                      cell = function(value){
-                        if(is.na(value)){
-                        "x" } else if(value < 0) "c" else cellformat(value)
-                        }, 
-                      ),
-      Male = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Male), 5), big.mark = ",", scientific = FALSE)),
-      `Female & Male` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Female & Male`), 5), big.mark = ",", scientific = FALSE))
+      Female = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE)),
+      Male = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Male), 5), big.mark = ",", scientific = FALSE)),
+      `Female & Male` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Female & Male`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -772,11 +769,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -802,17 +799,17 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
         footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
       ),
-      `All` = colDef(na = "x", name = "All", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`All`), 5), big.mark = ",", scientific = FALSE)),
-      `1` = colDef(na = "x", name = "4 As or more", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`1`), 5), big.mark = ",", scientific = FALSE)),
-      `2` = colDef(na = "x", name = "360 points", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`2`), 5), big.mark = ",", scientific = FALSE)),
-      `3` = colDef(na = "x", name = "300-359 points", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`3`), 5), big.mark = ",", scientific = FALSE)),
-      `4` = colDef(na = "x", name = "240-299 points", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`4`), 5), big.mark = ",", scientific = FALSE)),
-      `5` = colDef(na = "x", name = "180-239 points", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`5`), 5), big.mark = ",", scientific = FALSE)),
-      `6` = colDef(na = "x", name = "Below 180 points", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`6`), 5), big.mark = ",", scientific = FALSE)),
-      `7` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`7`), 5), big.mark = ",", scientific = FALSE)),
-      `8` = colDef(na = "x", name = "BTEC", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`8`), 5), big.mark = ",", scientific = FALSE)),
-      `9` = colDef(na = "x", name = "Other", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`9`), 5), big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = "x", name = "Not known", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+      `All` = colDef(na = "x", name = "All", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`All`), 5), big.mark = ",", scientific = FALSE)),
+      `1` = colDef(na = "x", name = "4 As or more", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`1`), 5), big.mark = ",", scientific = FALSE)),
+      `2` = colDef(na = "x", name = "360 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`2`), 5), big.mark = ",", scientific = FALSE)),
+      `3` = colDef(na = "x", name = "300-359 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`3`), 5), big.mark = ",", scientific = FALSE)),
+      `4` = colDef(na = "x", name = "240-299 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`4`), 5), big.mark = ",", scientific = FALSE)),
+      `5` = colDef(na = "x", name = "180-239 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`5`), 5), big.mark = ",", scientific = FALSE)),
+      `6` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`6`), 5), big.mark = ",", scientific = FALSE)),
+      `7` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`7`), 5), big.mark = ",", scientific = FALSE)),
+      `8` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`8`), 5), big.mark = ",", scientific = FALSE)),
+      `9` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`9`), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", name = "Not known", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -852,11 +849,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -873,7 +870,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
 
     coldefs <- list(
-      reactable::colDef(style = stylefunc, format = colformat, na = "x")
+      reactable::colDef(style = stylefunc, cell = cellfunc, na = "x")
     )
 
     # get names of numerical cols
@@ -931,11 +928,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     if (buttoninput == "Proportions") {
       footerdata <- tables_data
-      colformat <- colFormat(percent = TRUE, digits = 1)
+      cellformat <- function(value){         paste0(format(round(value * 100, 1), nsmall = 1),'%')       } 
       crosstabs_data <- crosstabs_data
     } else if (buttoninput == "Median earnings") {
       footerdata <- tables_data
-      colformat <- colFormat(prefix = "£", separators = TRUE, digits = 0)
+      cellformat <- function(value){         paste0('£', format(value, big.mark = ',' ))       }
       crosstabs_data <- crosstabs_earnings_data2
     }
 
@@ -955,10 +952,10 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
     coldefs <- list(
       subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
-      `First degree` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`First degree`), 5), big.mark = ",", scientific = FALSE)),
-      `Level 7 (taught)` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Level 7 (taught)`), 5), big.mark = ",", scientific = FALSE)),
-      `Level 7 (research)` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Level 7 (research)`), 5), big.mark = ",", scientific = FALSE)),
-      `Level 8` = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$`Level 8`), 5), big.mark = ",", scientific = FALSE))
+      `First degree` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`First degree`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 7 (taught)` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 7 (taught)`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 7 (research)` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 7 (research)`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 8` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 8`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
