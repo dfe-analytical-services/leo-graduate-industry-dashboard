@@ -341,7 +341,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
   # also takes column name as an input, which allows to get max and min
   stylefunc <- function(value, index, name) {
     
-    if(value>=0){
+    if(value>=0 && !is.na(value)){
       
       data <- crosstabs_data %>%
         mutate_if(is.numeric,
@@ -714,7 +714,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       Female = colDef(na = "x", style = stylefunc, 
                       footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE),
                       cell = function(value){
-                          if(value < 0) "c" else cellformat(value)
+                        if(is.na(value)){
+                        "x" } else if(value < 0) "c" else cellformat(value)
                         }, 
                       ),
       Male = colDef(na = "x", style = stylefunc, format = colformat, footer = format(round_any(sum(footer_data$Male), 5), big.mark = ",", scientific = FALSE)),
