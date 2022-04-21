@@ -368,11 +368,6 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     return(footer)
   }
 
-  cellformat <- function(value) {
-    paste0(format(round(value * 100, 1), nsmall = 1), "%")
-  }
-
-
   if (countinput == "ethnicity") {
     crosstabs_data <- tables_data %>%
       filter(
