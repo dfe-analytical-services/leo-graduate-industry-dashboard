@@ -13,8 +13,6 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
 
- 
-
   # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
 
   section_names1 <- cohort_sankey1 %>%
