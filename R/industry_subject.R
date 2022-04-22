@@ -571,7 +571,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(FSM, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(FSM, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -651,7 +651,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(sex, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(sex, n) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -733,7 +733,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(prior_attainment, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(prior_attainment, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -819,7 +819,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(SECTIONNAME, n) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -897,7 +897,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(qualification_TR, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(qualification_TR, n) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
