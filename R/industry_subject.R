@@ -385,7 +385,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(ethnicity, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(ethnicity, n) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -444,7 +444,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(current_region, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      summarise(n = count, .groups = "drop") %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -472,7 +472,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(current_region, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(current_region, n) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
