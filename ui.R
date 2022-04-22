@@ -533,7 +533,7 @@ fluidPage(
           ### Degree input ----------------------------------------------------
 
           conditionalPanel(
-            condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
+            condition = "input.countinput3 == 'sex' || input.countinput3 == 'SECTIONNAME'",
             selectInput("qualinput4",
               label = "Select qualification level",
               choices = list(
