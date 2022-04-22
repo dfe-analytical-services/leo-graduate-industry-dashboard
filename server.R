@@ -170,7 +170,7 @@ server <- function(input, output, session) {
   })
 
   reactiveIndSubjTable <- reactive({
-    backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2)
+    backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)
   })
   output$crosstab_backwards <- renderReactable({
     reactiveIndSubjTable()
@@ -212,6 +212,21 @@ server <- function(input, output, session) {
       unique(c("All", data_filtered$subject_name))
     )
   })
+
+  observe({
+    if (input$sectionnameinput != "All") {
+      data_filtered <- industry_groups %>%
+        filter(SECTIONNAME == input$sectionnameinput2) %>%
+        distinct()
+    } else {
+      data_filtered <- industry_groups
+    }
+    updateSelectizeInput(
+      session, "groupinput",
+      choices = unique(c("All", data_filtered$group_name))
+    )
+  })
+
 
   # output$subjecttable <- renderReactable({
   #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)

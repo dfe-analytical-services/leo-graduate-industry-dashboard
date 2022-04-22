@@ -62,3 +62,7 @@ tables_data <- read_tables_data("data/pg_sic_crosstabs_earnings_data_cf_dummy.cs
 qual_subjects <- tables_data %>%
   select(qualification_TR, subject_name) %>%
   distinct()
+
+industry_groups <- tables_data %>%
+  select(SECTIONNAME, group_name) %>%
+  distinct()
