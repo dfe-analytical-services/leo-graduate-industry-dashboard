@@ -364,7 +364,10 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     return(footer)
   }
 
-  colformat <- colFormat(percent = TRUE, digits = 1)
+  colformat <- colFormat(
+    percent = TRUE,
+    digits = 1
+  )
 
 
   if (countinput == "ethnicity") {
@@ -880,7 +883,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
 
     coldefs <- list(
-      reactable::colDef(style = stylefunc, format = colformat, na = "c")
+      reactable::colDef(style = stylefunc, format = colformat, na = "c", minWidth = 240)
     )
 
     # get names of numerical cols
