@@ -1,12 +1,9 @@
 # REGIONAL ---------------------------------------------------------------------
 
 
-#data <- read.csv("data/regional_data_with_pg_dummy.csv")
-data <- read.csv("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/regional_data_with_PG_rounded_suppressed.csv")
+data <- read.csv("data/regional_data_with_pg_dummy.csv")
 
-#regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
-regional_movement_data <- read.csv("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/regional_movement_with_PG_rounded.csv")
-
+regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
 
