@@ -30,13 +30,13 @@
                 "Mining and quarrying",
                 "Construction",
                 "Water supply - sewerage, waste management and remediation activities",
-                "NOT KNOWN",
                 "Other service activities",
                 "Electricity, gas, steam and air conditioning supply",
                 "Real estate activities",
                 "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
                 "Professional, scientific and technical activities",
-                "Wholesale and retail trade - repair of motor vehicles and motorcycles"
+                "Wholesale and retail trade - repair of motor vehicles and motorcycles",
+                "Not known"
               ],
               "group_name": [
                 "All",
@@ -78,13 +78,13 @@
                 0.11877246550458,
                 0.021141730761798,
                 0.0321184246125304,
-                0.0348239477447532,
                 0.0429791674718819,
                 0.0728558729177134,
                 0.0638116955899973,
                 0.0224944923279094,
                 0.0410080006184053,
-                0.0615313260928381
+                0.0615313260928381,
+                0.0348239477447532
               ],
               "Male": [
                 0.00861804810785966,
@@ -102,13 +102,13 @@
                 0.0402175578366784,
                 0.015167764669833,
                 0.0332848169143558,
-                0.0640799754864409,
                 0.0912747050712425,
                 0.111268576681477,
                 0.012371686839283,
                 0.0491420254328175,
                 0.016316837750881,
-                0.0161253255707063
+                0.0161253255707063,
+                0.0640799754864409
               ],
               "Female & Male": [
                 0.110233829334953,
@@ -126,13 +126,13 @@
                 0.0346948071667173,
                 0.0277482538718494,
                 0.0260400850288491,
-                0.0255845733373823,
                 0.0199286365016702,
                 0.0169298511995141,
                 0.0145763741269359,
                 0.00588369268144549,
                 0.00345429699362284,
-                0.00174612815062253
+                0.00174612815062253,
+                0.0255845733373823
               ]
             },
             "columns": [
@@ -236,16 +236,17 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%",
+                                "0.6%",
+                                "0.7%",
+                                "0.1%",
+                                "0.4%",
+                                "0.5%",
+                                "0.7%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -253,16 +254,17 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.5%",
+                                "0.5%",
+                                "0.6%",
+                                "1.1%",
+                                "0.6%",
+                                "0.4%",
+                                "0.6%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -270,16 +272,17 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.7%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.2%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -376,16 +379,15 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.9%",
+                                "0.8%",
+                                "0.1%",
+                                "0.8%",
+                                "0.5%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -393,16 +395,15 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.0%",
+                                "0.6%",
+                                "0.2%",
+                                "0.5%",
+                                "0.0%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -410,16 +411,15 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.9%",
+                                "0.7%",
+                                "0.6%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -578,7 +578,7 @@
                               "Printing and service activities related to printing",
                               "Manufacture of wearing apparel; except fur apparel",
                               "Forging; pressing; stamping and roll-forming of metal; powder metallurgy",
-                              "Manufacture of articles of paper and paperboard ",
+                              "Manufacture of articles of paper and paperboard",
                               "Manufacture of vegetable and animal oils and fats",
                               "Manufacture of paints; varnishes and similar coatings; printing ink and mastics",
                               "Manufacture of articles of fur",
@@ -931,16 +931,98 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.6%",
+                                "0.5%",
+                                "0.0%",
+                                "0.5%",
+                                "0.4%",
+                                "0.1%",
+                                "0.6%",
+                                "0.1%",
+                                "0.2%",
+                                "0.6%",
+                                "0.2%",
+                                "0.5%",
+                                "0.9%",
+                                "0.0%",
+                                "0.1%",
+                                "0.3%",
+                                "0.0%",
+                                "0.9%",
+                                "0.5%",
+                                "0.6%",
+                                "0.8%",
+                                "0.3%",
+                                "0.2%",
+                                "0.8%",
+                                "0.3%",
+                                "0.2%",
+                                "0.1%",
+                                "0.0%",
+                                "0.0%",
+                                "x",
+                                "0.3%",
+                                "0.2%",
+                                "0.4%",
+                                "0.1%",
+                                "0.3%",
+                                "0.6%",
+                                "0.2%",
+                                "0.0%",
+                                "0.0%",
+                                "0.1%",
+                                "0.7%",
+                                "0.4%",
+                                "0.6%",
+                                "1.0%",
+                                "0.2%",
+                                "0.3%",
+                                "0.3%",
+                                "0.6%",
+                                "0.3%",
+                                "0.4%",
+                                "0.2%",
+                                "0.4%",
+                                "0.8%",
+                                "1.3%",
+                                "0.2%",
+                                "0.3%",
+                                "0.2%",
+                                "0.8%",
+                                "0.6%",
+                                "0.5%",
+                                "0.5%",
+                                "0.1%",
+                                "0.1%",
+                                "0.0%",
+                                "0.0%",
+                                "0.1%",
+                                "0.7%",
+                                "0.1%",
+                                "1.1%",
+                                "0.5%",
+                                "0.4%",
+                                "0.9%",
+                                "0.3%",
+                                "0.1%",
+                                "0.0%",
+                                "0.4%",
+                                "x",
+                                "1.2%",
+                                "0.4%",
+                                "0.6%",
+                                "0.1%",
+                                "0.1%",
+                                "0.8%",
+                                "0.2%",
+                                "0.9%",
+                                "0.7%",
+                                "0.2%",
+                                "0.2%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -948,16 +1030,98 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.3%",
+                                "0.0%",
+                                "0.5%",
+                                "0.6%",
+                                "0.4%",
+                                "0.3%",
+                                "0.2%",
+                                "0.3%",
+                                "0.0%",
+                                "0.1%",
+                                "0.7%",
+                                "0.2%",
+                                "0.3%",
+                                "0.5%",
+                                "0.4%",
+                                "0.5%",
+                                "0.3%",
+                                "0.1%",
+                                "0.9%",
+                                "0.7%",
+                                "0.6%",
+                                "0.3%",
+                                "0.1%",
+                                "0.6%",
+                                "0.8%",
+                                "0.8%",
+                                "0.2%",
+                                "0.4%",
+                                "0.0%",
+                                "0.3%",
+                                "0.1%",
+                                "0.7%",
+                                "1.0%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "x",
+                                "0.9%",
+                                "0.2%",
+                                "0.6%",
+                                "0.0%",
+                                "0.1%",
+                                "0.8%",
+                                "0.5%",
+                                "0.3%",
+                                "0.2%",
+                                "0.1%",
+                                "0.4%",
+                                "0.4%",
+                                "0.2%",
+                                "0.3%",
+                                "0.5%",
+                                "0.1%",
+                                "0.3%",
+                                "0.5%",
+                                "0.2%",
+                                "0.7%",
+                                "0.3%",
+                                "0.4%",
+                                "0.2%",
+                                "0.6%",
+                                "0.6%",
+                                "0.0%",
+                                "0.6%",
+                                "0.2%",
+                                "0.4%",
+                                "0.1%",
+                                "0.5%",
+                                "1.1%",
+                                "0.2%",
+                                "1.3%",
+                                "0.5%",
+                                "0.3%",
+                                "0.4%",
+                                "0.1%",
+                                "0.2%",
+                                "0.8%",
+                                "0.1%",
+                                "0.3%",
+                                "0.6%",
+                                "0.3%",
+                                "0.1%",
+                                "0.7%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.0%",
+                                "0.5%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -965,16 +1129,98 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "1.1%",
+                                "1.0%",
+                                "0.9%",
+                                "0.8%",
+                                "0.8%",
+                                "0.8%",
+                                "0.7%",
+                                "0.7%",
+                                "0.7%",
+                                "0.7%",
+                                "0.7%",
+                                "0.7%",
+                                "0.7%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1101,16 +1347,21 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.9%",
+                                "0.5%",
+                                "0.5%",
+                                "0.2%",
+                                "0.2%",
+                                "0.4%",
+                                "0.0%",
+                                "0.1%",
+                                "0.3%",
+                                "0.4%",
+                                "0.7%",
+                                "0.2%",
+                                "0.4%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1118,16 +1369,21 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.3%",
+                                "0.1%",
+                                "0.1%",
+                                "0.7%",
+                                "0.0%",
+                                "0.0%",
+                                "0.2%",
+                                "0.2%",
+                                "0.6%",
+                                "0.5%",
+                                "0.4%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1135,16 +1391,21 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.5%",
+                                "0.5%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1256,16 +1517,18 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.2%",
+                                "0.2%",
+                                "0.3%",
+                                "0.4%",
+                                "0.2%",
+                                "0.0%",
+                                "0.6%",
+                                "0.1%",
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1273,16 +1536,18 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.1%",
+                                "0.7%",
+                                "0.7%",
+                                "0.2%",
+                                "0.5%",
+                                "0.6%",
+                                "0.1%",
+                                "0.1%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1290,16 +1555,18 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "1.1%",
+                                "0.7%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.3%",
+                                "0.1%",
+                                "0.1%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1456,16 +1723,27 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.2%",
+                                "0.9%",
+                                "0.1%",
+                                "0.7%",
+                                "0.6%",
+                                "0.5%",
+                                "0.1%",
+                                "0.1%",
+                                "0.4%",
+                                "0.7%",
+                                "0.5%",
+                                "0.7%",
+                                "0.6%",
+                                "0.3%",
+                                "0.4%",
+                                "0.0%",
+                                "0.5%",
+                                "0.4%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1473,16 +1751,27 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.3%",
+                                "0.7%",
+                                "0.0%",
+                                "0.4%",
+                                "0.8%",
+                                "0.4%",
+                                "0.2%",
+                                "0.6%",
+                                "0.1%",
+                                "0.4%",
+                                "0.2%",
+                                "0.1%",
+                                "0.5%",
+                                "0.5%",
+                                "0.3%",
+                                "0.5%",
+                                "0.5%",
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1490,16 +1779,27 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.8%",
+                                "0.8%",
+                                "0.7%",
+                                "0.7%",
+                                "0.6%",
+                                "0.6%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1566,16 +1866,9 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1583,16 +1876,9 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1600,16 +1886,9 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1659,7 +1938,7 @@
                               "Transportation and storage"
                             ],
                             "group_name": [
-                              "Other passenger land transport ",
+                              "Other passenger land transport",
                               "Warehousing and storage",
                               "Sea and coastal freight water transport",
                               "Sea and coastal passenger water transport",
@@ -1746,16 +2025,23 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.1%",
+                                "0.4%",
+                                "0.4%",
+                                "0.7%",
+                                "0.2%",
+                                "0.1%",
+                                "0.2%",
+                                "0.4%",
+                                "0.0%",
+                                "0.2%",
+                                "0.1%",
+                                "0.6%",
+                                "0.7%",
+                                "x",
+                                "0.9%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1763,16 +2049,23 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.5%",
+                                "0.0%",
+                                "0.1%",
+                                "0.9%",
+                                "0.2%",
+                                "0.3%",
+                                "0.4%",
+                                "0.2%",
+                                "0.3%",
+                                "0.4%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1780,16 +2073,23 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.7%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1881,16 +2181,14 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.1%",
+                                "0.4%",
+                                "0.6%",
+                                "0.4%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1898,16 +2196,14 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.0%",
+                                "0.4%",
+                                "0.4%",
+                                "0.2%",
+                                "0.8%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -1915,16 +2211,14 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.1%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -1972,7 +2266,7 @@
                               "Manufacture of musical instruments",
                               "Manufacture of jewellery; bijouterie and related articles",
                               "Manufacture of products of wood; cork; straw and plaiting materials",
-                              "NOT KNOWN",
+                              "Not known",
                               "Manufacture of articles of fur",
                               "Manufacture of knitted and crocheted apparel"
                             ],
@@ -2026,16 +2320,16 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.3%",
+                                "0.1%",
+                                "0.5%",
+                                "0.7%",
+                                "0.2%",
+                                "0.7%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2043,16 +2337,16 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.1%",
+                                "0.6%",
+                                "0.5%",
+                                "0.8%",
+                                "0.3%",
+                                "0.8%",
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2060,16 +2354,16 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.9%",
+                                "0.8%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.3%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2146,16 +2440,11 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.7%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2163,16 +2452,11 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.1%",
+                                "0.4%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2180,16 +2464,11 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.3%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2276,16 +2555,13 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.1%",
+                                "0.1%",
+                                "0.5%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2293,16 +2569,13 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%",
+                                "0.7%",
+                                "0.4%",
+                                "0.3%",
+                                "0.7%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2310,16 +2583,13 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.4%",
+                                "0.3%",
+                                "0.3%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2360,7 +2630,7 @@
                               "Mining and quarrying"
                             ],
                             "group_name": [
-                              "NOT KNOWN",
+                              "Not known",
                               "Combined facilities support activities",
                               "Computer programming; consultancy and related activities",
                               "Activities of extraterritorial organisations and bodies",
@@ -2411,16 +2681,14 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.4%",
+                                "x",
+                                "x",
+                                "0.4%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2428,16 +2696,14 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.7%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2445,16 +2711,14 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.7%",
+                                "0.6%",
+                                "0.6%",
+                                "0.4%",
+                                "0.3%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2561,16 +2825,17 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.1%",
+                                "1.3%",
+                                "0.3%",
+                                "0.1%",
+                                "0.8%",
+                                "0.2%",
+                                "0.2%",
+                                "0.3%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2578,16 +2843,17 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%",
+                                "0.6%",
+                                "0.3%",
+                                "0.3%",
+                                "0.3%",
+                                "0.1%",
+                                "0.9%",
+                                "0.2%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2595,16 +2861,17 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "1.0%",
+                                "0.6%",
+                                "0.6%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2696,16 +2963,14 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.1%",
+                                "0.5%",
+                                "0.4%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2713,16 +2978,14 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.5%",
+                                "0.4%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2730,126 +2993,14 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            }
-                          ],
-                          "defaultPageSize": 300,
-                          "paginationType": "numbers",
-                          "showPageInfo": true,
-                          "minRows": 1,
-                          "outlined": true,
-                          "dataKey": "random_key",
-                          "key": "random_key",
-                          "nested": true
-                        },
-                        "children": [
-
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "name": "div",
-                    "attribs": {
-                      "style": {
-                        "padding": "16px"
-                      }
-                    },
-                    "children": [
-                      {
-                        "name": "Reactable",
-                        "attribs": {
-                          "data": {
-                            "SECTIONNAME": [
-                              "NOT KNOWN"
-                            ],
-                            "group_name": [
-                              "NOT KNOWN"
-                            ],
-                            "Female": [
-                              2.71696677828872e-05
-                            ],
-                            "Male": [
-                              0.00105883737042314
-                            ],
-                            "Female & Male": [
-                              0.00760938061132531
-                            ]
-                          },
-                          "columns": [
-                            {
-                              "accessor": "SECTIONNAME",
-                              "name": "Industry",
-                              "type": "character",
-                              "na": "x",
-                              "width": 500
-                            },
-                            {
-                              "accessor": "group_name",
-                              "name": "3 digit SIC code",
-                              "type": "character",
-                              "na": "x",
-                              "width": 300
-                            },
-                            {
-                              "accessor": "Female",
-                              "name": "Female",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Male",
-                              "name": "Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
-                              "na": "x",
-                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
-                            },
-                            {
-                              "accessor": "Female & Male",
-                              "name": "Female & Male",
-                              "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.5%",
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -2941,16 +3092,14 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.5%",
+                                "0.1%",
+                                "0.5%",
+                                "0.6%",
+                                "0.9%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2958,16 +3107,14 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.0%",
+                                "0.2%",
+                                "0.5%",
+                                "0.2%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -2975,16 +3122,14 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.5%",
+                                "0.5%",
+                                "0.3%",
+                                "0.1%",
+                                "0.0%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3056,16 +3201,10 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.6%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3073,16 +3212,10 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.6%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3090,16 +3223,10 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3176,16 +3303,11 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.8%",
+                                "0.2%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3193,16 +3315,11 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.9%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3210,16 +3327,11 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.5%",
+                                "0.3%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3291,16 +3403,10 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.8%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3308,16 +3414,10 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "x",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3325,16 +3425,10 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.3%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3471,16 +3565,23 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.4%",
+                                "0.4%",
+                                "0.2%",
+                                "0.1%",
+                                "0.7%",
+                                "0.3%",
+                                "0.2%",
+                                "0.4%",
+                                "0.5%",
+                                "0.5%",
+                                "0.1%",
+                                "0.1%",
+                                "0.2%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3488,16 +3589,23 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.4%",
+                                "0.7%",
+                                "0.4%",
+                                "0.7%",
+                                "0.8%",
+                                "0.6%",
+                                "0.7%",
+                                "1.4%",
+                                "0.1%",
+                                "0.2%",
+                                "0.4%",
+                                "0.3%",
+                                "0.7%",
+                                "0.3%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3505,16 +3613,23 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.9%",
+                                "0.9%",
+                                "0.8%",
+                                "0.7%",
+                                "0.7%",
+                                "0.6%",
+                                "0.6%",
+                                "0.5%",
+                                "0.4%",
+                                "0.2%",
+                                "0.2%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%",
+                                "0.1%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3681,16 +3796,29 @@
                               "accessor": "Female",
                               "name": "Female",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.2%",
+                                "0.8%",
+                                "0.3%",
+                                "0.5%",
+                                "0.0%",
+                                "1.0%",
+                                "0.6%",
+                                "0.4%",
+                                "0.2%",
+                                "0.3%",
+                                "0.0%",
+                                "0.3%",
+                                "0.7%",
+                                "0.8%",
+                                "0.4%",
+                                "0.9%",
+                                "0.5%",
+                                "0.8%",
+                                "0.3%",
+                                "0.6%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3698,16 +3826,29 @@
                               "accessor": "Male",
                               "name": "Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.4%",
+                                "0.4%",
+                                "0.3%",
+                                "0.5%",
+                                "0.7%",
+                                "0.2%",
+                                "0.4%",
+                                "0.1%",
+                                "0.1%",
+                                "0.6%",
+                                "0.6%",
+                                "0.2%",
+                                "0.0%",
+                                "0.5%",
+                                "0.7%",
+                                "0.4%",
+                                "0.5%",
+                                "0.6%",
+                                "0.7%",
+                                "0.1%",
+                                "0.5%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             },
@@ -3715,16 +3856,118 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
-                              "format": {
-                                "cell": {
-                                  "digits": 1,
-                                  "percent": true
-                                },
-                                "aggregated": {
-                                  "digits": 1,
-                                  "percent": true
-                                }
-                              },
+                              "cell": [
+                                "0.8%",
+                                "0.8%",
+                                "0.8%",
+                                "0.7%",
+                                "0.6%",
+                                "0.6%",
+                                "0.6%",
+                                "0.5%",
+                                "0.5%",
+                                "0.4%",
+                                "0.3%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.2%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%",
+                                "0.0%"
+                              ],
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            }
+                          ],
+                          "defaultPageSize": 300,
+                          "paginationType": "numbers",
+                          "showPageInfo": true,
+                          "minRows": 1,
+                          "outlined": true,
+                          "dataKey": "random_key",
+                          "key": "random_key",
+                          "nested": true
+                        },
+                        "children": [
+
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "div",
+                    "attribs": {
+                      "style": {
+                        "padding": "16px"
+                      }
+                    },
+                    "children": [
+                      {
+                        "name": "Reactable",
+                        "attribs": {
+                          "data": {
+                            "SECTIONNAME": [
+                              "Not known"
+                            ],
+                            "group_name": [
+                              "Not known"
+                            ],
+                            "Female": [
+                              2.71696677828872e-05
+                            ],
+                            "Male": [
+                              0.00105883737042314
+                            ],
+                            "Female & Male": [
+                              0.00760938061132531
+                            ]
+                          },
+                          "columns": [
+                            {
+                              "accessor": "SECTIONNAME",
+                              "name": "Industry",
+                              "type": "character",
+                              "na": "x",
+                              "width": 500
+                            },
+                            {
+                              "accessor": "group_name",
+                              "name": "3 digit SIC code",
+                              "type": "character",
+                              "na": "x",
+                              "width": 300
+                            },
+                            {
+                              "accessor": "Female",
+                              "name": "Female",
+                              "type": "numeric",
+                              "cell": [
+                                "0.0%"
+                              ],
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Male",
+                              "name": "Male",
+                              "type": "numeric",
+                              "cell": [
+                                "0.1%"
+                              ],
+                              "na": "x",
+                              "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
+                            },
+                            {
+                              "accessor": "Female & Male",
+                              "name": "Female & Male",
+                              "type": "numeric",
+                              "cell": [
+                                "0.8%"
+                              ],
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -3775,16 +4018,30 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "0.1%",
+                  "5.7%",
+                  "4.1%",
+                  "4.0%",
+                  "1.1%",
+                  "0.9%",
+                  "7.5%",
+                  "12.3%",
+                  "2.1%",
+                  "6.7%",
+                  "3.2%",
+                  "1.2%",
+                  "11.9%",
+                  "2.1%",
+                  "3.2%",
+                  "4.3%",
+                  "7.3%",
+                  "6.4%",
+                  "2.2%",
+                  "4.1%",
+                  "6.2%",
+                  "3.5%"
+                ],
                 "footer": "25,875",
                 "na": "x",
                 "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
@@ -3796,16 +4053,30 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "0.9%",
+                  "9.2%",
+                  "2.6%",
+                  "1.9%",
+                  "6.2%",
+                  "7.0%",
+                  "0.4%",
+                  "2.7%",
+                  "9.3%",
+                  "5.7%",
+                  "2.0%",
+                  "7.2%",
+                  "4.0%",
+                  "1.5%",
+                  "3.3%",
+                  "9.1%",
+                  "11.1%",
+                  "1.2%",
+                  "4.9%",
+                  "1.6%",
+                  "1.6%",
+                  "6.4%"
+                ],
                 "footer": "26,110",
                 "na": "x",
                 "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
@@ -3817,16 +4088,30 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "11.0%",
+                  "11.0%",
+                  "9.5%",
+                  "9.0%",
+                  "6.8%",
+                  "5.9%",
+                  "5.8%",
+                  "5.6%",
+                  "5.6%",
+                  "4.3%",
+                  "4.0%",
+                  "3.8%",
+                  "3.5%",
+                  "2.8%",
+                  "2.6%",
+                  "2.0%",
+                  "1.7%",
+                  "1.5%",
+                  "0.6%",
+                  "0.3%",
+                  "0.2%",
+                  "2.6%"
+                ],
                 "footer": "26,345",
                 "na": "x",
                 "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"

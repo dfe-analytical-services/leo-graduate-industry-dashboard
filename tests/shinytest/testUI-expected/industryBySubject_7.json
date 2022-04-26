@@ -8,7 +8,7 @@
     "YAGinput3": "1"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Industry of graduate employment for graduates of Education  by FSM , 1 years after\n                          graduation, young (under 21 at start of course) male and female first degree\n                          graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the  Education  industry  1  years after\n                            graduation by the subject they studied and  FSM , young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -169,7 +169,7 @@
                   "fontWeight": "bold"
                 },
                 "footer": "TOTAL (N)",
-                "na": "c",
+                "na": "x",
                 "width": 600
               },
               {
@@ -179,18 +179,44 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "4.3%",
+                  "3.9%",
+                  "5.4%",
+                  "1.0%",
+                  "6.4%",
+                  "1.5%",
+                  "0.4%",
+                  "1.9%",
+                  "0.6%",
+                  "0.4%",
+                  "2.7%",
+                  "0.7%",
+                  "3.8%",
+                  "2.5%",
+                  "0.9%",
+                  "1.0%",
+                  "3.8%",
+                  "4.2%",
+                  "1.4%",
+                  "6.8%",
+                  "3.1%",
+                  "1.1%",
+                  "6.8%",
+                  "3.3%",
+                  "5.0%",
+                  "6.7%",
+                  "4.4%",
+                  "2.5%",
+                  "1.6%",
+                  "2.3%",
+                  "6.0%",
+                  "2.2%",
+                  "0.9%",
+                  "0.7%"
+                ],
                 "footer": "36,465",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#A7C5E1"
@@ -303,18 +329,44 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "3.1%",
+                  "4.9%",
+                  "0.2%",
+                  "1.8%",
+                  "2.6%",
+                  "2.6%",
+                  "4.3%",
+                  "0.6%",
+                  "4.2%",
+                  "x",
+                  "3.0%",
+                  "3.9%",
+                  "6.2%",
+                  "3.4%",
+                  "x",
+                  "5.8%",
+                  "1.1%",
+                  "2.7%",
+                  "6.5%",
+                  "0.6%",
+                  "1.5%",
+                  "1.2%",
+                  "2.3%",
+                  "3.2%",
+                  "4.4%",
+                  "2.3%",
+                  "6.1%",
+                  "2.3%",
+                  "2.9%",
+                  "4.2%",
+                  "4.0%",
+                  "3.0%",
+                  "1.3%",
+                  "3.5%"
+                ],
                 "footer": "43,025",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#BFD5EA"
@@ -343,9 +395,7 @@
                   {
                     "background": "#A9C6E2"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#BFD5EA"
                   },
@@ -358,9 +408,7 @@
                   {
                     "background": "#B7D0E7"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#8BB3D7"
                   },
@@ -427,18 +475,44 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "6.8%",
+                  "1.6%",
+                  "0.8%",
+                  "1.6%",
+                  "1.6%",
+                  "0.7%",
+                  "0.1%",
+                  "10.7%",
+                  "1.2%",
+                  "4.6%",
+                  "9.4%",
+                  "0.8%",
+                  "1.0%",
+                  "2.0%",
+                  "x",
+                  "0.1%",
+                  "4.2%",
+                  "1.6%",
+                  "1.6%",
+                  "1.8%",
+                  "1.7%",
+                  "3.3%",
+                  "0.6%",
+                  "4.5%",
+                  "1.7%",
+                  "2.8%",
+                  "4.6%",
+                  "2.5%",
+                  "4.5%",
+                  "7.3%",
+                  "7.2%",
+                  "0.2%",
+                  "1.6%",
+                  "5.3%"
+                ],
                 "footer": "23,585",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#77A5CF"
@@ -482,9 +556,7 @@
                   {
                     "background": "#D2E2F1"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#F6FAFE"
                   },
