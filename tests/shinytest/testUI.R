@@ -11,11 +11,26 @@ destroy_random_keys <- function(file, parent_script = "testUI") {
   readr::write_lines(shinytest_json, filepath)
 }
 
+run_set_shinytests <- function(dfinputs, outstring, listrecords) {
+  # This function loops through a set of inputs and takes a snapshot for each one.
+  # dfinputs: data frame containing field list and value list.
+  # outstring: the stem for the output filename.
+  # listrecords: list of input and output variables to record the values of.
+  for (i in 1:nrow(dfinputs)) {
+    file <- paste0(outstring, "_", i - 1, ".json")
+    eval(parse(text = paste0("app$setInputs(", dfinputs$field[i], '="', dfinputs$value[i], '", wait_ = FALSE, values_ = FALSE)')))
+    app$snapshot(
+      items = listrecords,
+      filename = file
+    )
+    destroy_random_keys(file)
+  }
+}
 
 # Run the shiny tests.
 # Should really set this up to loop over arrays of inputs in order to run
 # through the shiny tests.
-app <- ShinyDriver$new("../../", loadTimeout = 1.2e+05, seed = 2011)
+app <- ShinyDriver$new("../../", loadTimeout = 1.6e+05, seed = 2011)
 
 app$snapshotInit("testUI", screenshot = FALSE)
 
@@ -78,98 +93,29 @@ app$snapshot(
 
 # Industry by subject tab =====================================================
 
-industryBySubject_input <- c(
-  "navbar", "countinput3", "YAGinput3", "qualinput4",
-  "sectionnameinput2", "earningsbutton2"
-)
-
-# Note that I originally excluded the crosstab_backwards tabulated output here as it
-# has a datakey that changes across different runs.
-industryBySubject_output <- c("backwards_crosstab_title", "crosstab_backwards")
-
-app$setInputs(navbar = "industryBySubject", wait_ = FALSE, values_ = FALSE)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
+RecsIndustryBySubject <- list(
+  input = c(
+    "navbar", "countinput3", "YAGinput3", "qualinput4",
+    "sectionnameinput2", "earningsbutton2"
   ),
-  filename = "industryBySubject_0.json"
+  output = c("backwards_crosstab_title", "crosstab_backwards")
 )
-destroy_random_keys("industryBySubject_0.json")
 
-app$setInputs(earningsbutton2 = "Median earnings", wait_ = FALSE, values_ = FALSE)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
+dfTestInputs <- data.frame(
+  field = c(
+    "navbar", "earningsbutton2", "countinput3", "YAGinput3",
+    "sectionnameinput2", "YAGinput3",
+    "sectionnameinput2", "countinput3", "sectionnameinput2",
+    "earningsbutton2"
   ),
-  filename = "industryBySubject_1.json"
+  value = c(
+    "industryBySubject", "Median earnings", "ethnicity", "10",
+    "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY", "1",
+    "Mining and quarrying", "FSM", "Construction",
+    "Proportions"
+  )
 )
-destroy_random_keys("industryBySubject_1.json")
-
-app$setInputs(countinput3 = "ethnicity", timeout_ = 1e+4)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_2.json"
-)
-destroy_random_keys("industryBySubject_2.json")
-
-app$setInputs(YAGinput3 = "10", timeout_ = 1e+4)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_3.json"
-)
-destroy_random_keys("industryBySubject_3.json")
-
-app$setInputs(
-  sectionnameinput2 = "PUBLIC ADMINISTRATION AND DEFENCE - COMPULSORY SOCIAL SECURITY",
-  wait_ = FALSE, values_ = FALSE
-)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_4.json"
-)
-destroy_random_keys("industryBySubject_4.json")
-
-app$setInputs(YAGinput3 = "1", wait_ = FALSE, values_ = FALSE)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_5.json"
-)
-destroy_random_keys("industryBySubject_5.json")
-
-app$setInputs(countinput3 = "FSM", timeout_ = 1e+4)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_6.json"
-)
-destroy_random_keys("industryBySubject_6.json")
-
-app$setInputs(earningsbutton2 = "Proportions", wait_ = FALSE, values_ = FALSE)
-app$snapshot(
-  items = list(
-    input = industryBySubject_input,
-    output = industryBySubject_output
-  ),
-  filename = "industryBySubject_7.json"
-)
-destroy_random_keys("industryBySubject_7.json")
-
+run_set_shinytests(dfTestInputs, "industryBySubject", RecsIndustryBySubject)
 
 
 # Subject by industry tab =====================================================
