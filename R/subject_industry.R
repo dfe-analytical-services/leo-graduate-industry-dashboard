@@ -1018,12 +1018,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         funs(as.numeric(.))
       ) %>%
       select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1146,12 +1146,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1269,12 +1269,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         funs(as.numeric(.))
       ) %>%
       select(SECTIONNAME, group_name, `non-FSM`, FSM, `Not known`)
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1387,12 +1387,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(crosstabs_data_table) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1503,12 +1503,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1616,9 +1616,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
 
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
+        filter(SECTIONNAME == "Not known"))
 
     crosstabs_earnings_data <- crosstabs_basedata %>%
       filter(group_name == "All") %>%
@@ -1711,14 +1711,14 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_if(is.numeric, funs(. / sum(.))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
-    
+
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
-      filter(SECTIONNAME != 'Not known') %>%
+      filter(SECTIONNAME != "Not known") %>%
       full_join(crosstabs_data_table %>%
-                  filter(SECTIONNAME == 'Not known'))
-    
-    
+        filter(SECTIONNAME == "Not known"))
+
+
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", subject_name == subjectinput, YAG == YAGinput, ethnicity == "All", FSM == "All",
