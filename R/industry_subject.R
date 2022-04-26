@@ -1,5 +1,4 @@
 backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinput) {
- 
   if (countinput %in% c("FSM", "prior_attainment")) {
     crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
                             graduation by the subject they studied and ", countinput, ", young (under 21 at start of course)

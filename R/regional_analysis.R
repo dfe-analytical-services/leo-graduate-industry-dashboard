@@ -280,13 +280,12 @@ map_text2 <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
 }
 
 maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regioninput, qualinput) {
-  
   cellfunc <- function(value) {
     if (is.na(value)) {
       "x"
     } else if (value < 0) "c" else paste0("£", format(value, big.mark = ","))
   }
-  
+
   mapdata <- data %>%
     filter(SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput, region %in% c(regioninput), qualification_TR == qualinput)
 
@@ -335,17 +334,17 @@ maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regio
     highlight = TRUE, fullWidth = TRUE,
     columns = list(
       region = colDef(name = "Region"),
-      trained_in_region2 = colDef(name = "Studied in region", format = colFormat(separators = TRUE), na = 'x'),
-      living_in_region2 = colDef(name = "Living in region", format = colFormat(separators = TRUE), na = 'x'),
+      trained_in_region2 = colDef(name = "Studied in region", format = colFormat(separators = TRUE), na = "x"),
+      living_in_region2 = colDef(name = "Living in region", format = colFormat(separators = TRUE), na = "x"),
       number_of_providers = colDef(
         name = "Number of providers", style = list(backgroundColor = "#f7f7f7"),
-        headerStyle = list(backgroundColor = "#f7f7f7"), na = 'x'
+        headerStyle = list(backgroundColor = "#f7f7f7"), na = "x"
       ),
-      difference2 = colDef(name = "Difference", format = colFormat(separators = TRUE), na = 'x'),
-      difference_prop2 = colDef(name = "Difference (%)", na = 'x'),
+      difference2 = colDef(name = "Difference", format = colFormat(separators = TRUE), na = "x"),
+      difference_prop2 = colDef(name = "Difference (%)", na = "x"),
       earnings_median = colDef(
         name = "Median earnings",
-        #format = colFormat(prefix = "£", separators = TRUE, digits = 0), 
+        # format = colFormat(prefix = "£", separators = TRUE, digits = 0),
         style = list(backgroundColor = "#f7f7f7"),
         headerStyle = list(backgroundColor = "#f7f7f7"), cell = cellfunc
       )
