@@ -13,28 +13,6 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
 
-  # quick table code
-  # 1 YAG
-  one_yag_table <- cohort_sankey1 %>%
-    group_by(YAG.x, SECTIONNAME.x) %>%
-    dplyr::summarise(count = sum(count))
-  one_yag_table <- one_yag_table %>%
-    mutate("1 YAG" = count / sum(count))
-
-  # 3 YAG
-  three_yag_table <- cohort_sankey1 %>%
-    group_by(YAG.y, SECTIONNAME.y) %>%
-    dplyr::summarise(count = sum(count))
-  three_yag_table <- three_yag_table %>%
-    mutate("3 YAG" = count / sum(count))
-
-  # 5 YAG
-  five_yag_table <- cohort_sankey2 %>%
-    group_by(YAG.y, SECTIONNAME.y) %>%
-    dplyr::summarise(count = sum(count))
-  five_yag_table <- five_yag_table %>%
-    mutate("5 YAG" = count / sum(count))
-
   # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
 
   section_names1 <- cohort_sankey1 %>%

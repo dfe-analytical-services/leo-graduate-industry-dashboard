@@ -118,8 +118,8 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create sankey charts for each subject showing one, three and five years after graduation (YAG)."),
-          helpText("Switch between the sankey and the proportions table using the tabs on the right."),
+          helpText("Create a Sankey chart using the dropdowns below."),
+          helpText("Switch between the Sankey and the proportions table using the tabs on the right."),
 
           ### Degree input ----------------------------------------------------
 
@@ -238,11 +238,8 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create a heat map to show graduate movement from study
-                   region to current region for the selected industry."),
-          helpText("Click on a region to see all of the information for
-                   that region, including the number of providers and the
-                   median earnings for the selected industry."),
+          helpText("Create a map and Sankey chart to show graduate movement between study region and current region
+                   using the dropdowns below."),
 
           ### Degree input ----------------------------------------------------
 
@@ -302,19 +299,6 @@ fluidPage(
             choices = unique(c("All", sort(qual_subjects$subject_name))),
             selected = "All"
           ),
-
-          ### Statistics input ------------------------------------------------
-
-          selectInput("countinput",
-            label = "View different statistics",
-            choices = list(
-              "Studied in region" = "trained_in_region",
-              "Currently living in region" = "living_in_region",
-              "Difference (n)" = "difference",
-              "Difference (%)" = "difference_prop"
-            ),
-            selected = "trained_in_region"
-          )
         ),
 
         ## Main panel =========================================================
@@ -344,11 +328,44 @@ fluidPage(
               column(
                 6,
                 h3(htmlOutput("map_title")),
+                div(
+                  # Set as well but override sidebar defaults
+                  class = "well",
+                  style = "height: 100%; overflow-y: visible",
+                  div(selectInput("countinput",
+                    label = "Select which statistic to view in the map below",
+                    choices = list(
+                      "Studied in region" = "trained_in_region",
+                      "Currently living in region" = "living_in_region",
+                      "Difference (n)" = "difference",
+                      "Difference (%)" = "difference_prop"
+                    ),
+                    selected = "trained_in_region"
+                  ))
+                ),
+
+                # details(
+                #   inputId = "maphelp",
+                #   label = "How to read this map",
+                #   help_text = "Click on a region to see all of the information for
+                #    that region, including the number of providers and the
+                #    median earnings for the selected industry, subject section and year after graduation."
+                # ),
+
                 withSpinner(leafletOutput(outputId = "map", height = 470))
               ),
               column(
                 6,
                 h3(htmlOutput("regional_sankey_title")),
+                details(
+                  inputId = "sankeyhelp",
+                  label = "How to read this sankey",
+                  help_text = "The coloured bars represent graduates in that
+                region, and the grey flow lines show the movement of these graduates from region of study
+                on the left, to current region of residence on the right. Hover
+                your mouse over a bar or flow line to see the number of
+                graduates it represents."
+                ),
                 withSpinner(sankeyNetworkOutput("regional_sankey")),
                 br(),
                 br()

@@ -1,30 +1,42 @@
 backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinput) {
+
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
+  }
+
+
   if (countinput %in% c("FSM", "prior_attainment")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", young (under 21 at start of course)
                             male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("sex")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", ", qualinput, " graduates from English HEIs,
                             APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and qualification level, male and female graduates from English HEIs,
                             APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("current_region", "ethnicity")) {
-    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
                             graduation by the subject they studied and ", countinput, ", ", "male and female first degree graduates from
                             English HEIs, APs and FECs, 2018/19 tax year.</h4>")
   }
 
   if (countinput %in% c("SECTIONNAME")) {
-    crosstab_title <- paste("<h4>Graduates working in each industry by subject studied, ", YAGinput, " years after
+    crosstab_title <- paste("<h4>Graduates working in each industry by subject studied, ", YAGtext, " after
                           graduation, male and female ", qualinput, " graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
   }
@@ -373,6 +385,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(ethnicity, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -391,8 +404,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(ethnicity, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
@@ -430,6 +444,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(ethnicity, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(ethnicity, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -454,8 +469,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(current_region, subject_name) %>%
-      summarise(n = sum(count), .groups = "drop") %>%
+      summarise(n = count, .groups = "drop") %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -482,8 +498,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(current_region, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -528,6 +545,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(current_region, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(current_region, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -566,6 +584,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(FSM, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -585,8 +604,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(FSM, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -624,6 +644,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(FSM, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(FSM, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -648,6 +669,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(sex, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -669,8 +691,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(sex, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -711,6 +734,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(sex, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(sex, n) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -735,6 +759,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(prior_attainment, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -755,8 +780,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(prior_attainment, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -795,6 +821,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(prior_attainment, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -832,6 +859,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(SECTIONNAME, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(SECTIONNAME, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate_if(is.numeric, funs(. / sum(.))) %>%
@@ -845,7 +873,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(SECTIONNAME, n) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -879,6 +907,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(SECTIONNAME, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(SECTIONNAME, n) %>%
+      colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
 
@@ -913,6 +942,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(qualification_TR, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
@@ -927,8 +957,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         group_name %in% c(groupinput)
       ) %>%
       group_by(qualification_TR, subject_name) %>%
-      summarise(n = earnings_median) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
@@ -962,6 +993,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       group_by(qualification_TR, subject_name) %>%
       summarise(n = sum(count), .groups = "drop") %>%
       spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))

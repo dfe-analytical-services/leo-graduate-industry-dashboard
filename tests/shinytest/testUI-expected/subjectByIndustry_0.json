@@ -2993,6 +2993,7 @@
                               "accessor": "Female & Male",
                               "name": "Female & Male",
                               "type": "numeric",
+
                               "cell": [
                                 "0.6%",
                                 "0.5%",
@@ -3001,6 +3002,7 @@
                                 "0.3%",
                                 "0.2%"
                               ],
+
                               "na": "x",
                               "style": "\n            // source: https://glin.github.io/reactable/articles/examples.html#grouped-cell-rendering-1\n            function(rowInfo) {\n              // source: https://stackoverflow.com/a/44134328/4856719\n              function hslToHex(h, s, l) {\n                l /= 100;\n                const a = s * Math.min(l, 1 - l) / 100;\n                const f = n => {\n                  const k = (n + h / 30) % 12;\n                  const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);\n                  return Math.round(255 * color).toString(16).padStart(2, '0');\n                };\n                return `#${f(0)}${f(8)}${f(4)}`;\n              }\n              var value = rowInfo.row['Female & Male']\n              var max = 0.122792099872454\n              var min = 0.00085030727012716\n              // pct_value = (value - min) * 100 / (max - min)\n              pct_value = (Math.min(value, max) - min) * 100 / (max - min)\n              // If value equals 0, set font color grey.\n              if (value == 0) {\n                var color = '#F7FBFF'\n                var bg = '#F7FBFF'\n              } else {\n                var color = '#000000'\n                var bg = hslToHex(209, 59, 100 - pct_value / 2)\n              }\n              return { color: color, backgroundColor: bg}\n          }"
                             }
@@ -4209,7 +4211,7 @@
 
       ]
     },
-    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is <b>Transportation and storage<\/b>, and the\n                                median earnings of females in this industry were <b>£24,800<\/b>. The industry\n                                with the highest proportion of male graduates was <b>Electricity, gas, steam and air conditioning supply<\/b> and the median earnings of males\n                                in this industry were <b>£25,700<\/b>.<br/><br/>The biggest difference in proportions is seen in <b>Transportation and storage<\/b> where the proportion of female graduates is <b> 9.5  percentage points higher<\/b> than the proportion of male graduates.<br/><br/>The biggest difference in median earnings is seen in <b>Financial and insurance activities<\/b> where the median earnings of female graduates were <b>£4,300  higher<\/b> than the median earnings of male graduates.<br/><br/>The group with the highest earnings was female graduates in the <b>Financial and insurance activities <\/b> industry (median earnings of <b>£27,900<\/b>).<br/><br/>",
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex , 5 years after\n                          graduation, male and female  First degree  graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+    "crosstab_text": "For First degree graduates of all subjects, 5 years after graduation, the industry with the highest proportion of female graduates is <b>Transportation and storage<\/b>, and the\n                                median earnings of females in this industry were <b>£24,800<\/b>. The industry\n                                with the highest proportion of male graduates was <b>Electricity, gas, steam and air conditioning supply<\/b> and the median earnings of males\n                                in this industry were <b>£25,700<\/b>.<br/><br/>The biggest difference in proportions is seen in <b>Transportation and storage<\/b> where the proportion of female graduates is <b> 9.5  percentage points higher<\/b> than the proportion of male graduates.The biggest difference in median earnings is seen in <b>Financial and insurance activities<\/b> where the median earnings of female graduates were <b>£4,300  higher<\/b> than the median earnings of male graduates.The group with the highest earnings was female graduates in the <b>Financial and insurance activities <\/b> industry (median earnings of <b>£27,900<\/b>).<br/><br/>",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex, five years after\n                          graduation, male and female First degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
   }
 }
