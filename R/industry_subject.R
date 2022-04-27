@@ -22,7 +22,7 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
 
   if (countinput %in% c("sex")) {
     crosstab_title <- paste("<h4>Graduates working in the ", sectioninput, " industry ", YAGtext, " after
-                            graduation by the subject they studied and ", countinput, ", ", qualinput, " graduates from English HEIs,
+                            graduation by the subject they studied and ", countinput, ", ", tolower(qualinput), " graduates from English HEIs,
                             APs and FECs, 2018/19 tax year.</h4>")
   }
 
@@ -40,7 +40,7 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
 
   if (countinput %in% c("SECTIONNAME")) {
     crosstab_title <- paste("<h4>Graduates working in each industry by subject studied, ", YAGtext, " after
-                          graduation, male and female ", qualinput, " graduates from English HEIs, APs and FECs,
+                          graduation, male and female ", tolower(qualinput), " graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
   }
 

@@ -152,7 +152,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
                        studied in and are current living in each region")
   }
   map_title <- paste("<h4> Map to show the ", counttext, YAGtext, " after
-                          graduation, male and female", qualinput, "graduates from English HEIs, APs and FECs,
+                          graduation, male and female", tolower(qualinput), "graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
   return(map_title)
 }
@@ -172,8 +172,8 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
   
   mapdata <- mapdata %>% as.data.frame()
   ifelse(subjectinput == "All",
-    subjecttext <- paste("For", qualinput, "graduates of all subjects"),
-    subjecttext <- paste("For", qualinput, "graduates of", subjectinput)
+    subjecttext <- paste("For", tolower(qualinput), "graduates of all subjects"),
+    subjecttext <- paste("For", tolower(qualinput), "graduates of", subjectinput)
   )
 
   mapdata_trained <- mapdata %>%
@@ -218,8 +218,8 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   mapdata <- mapdata %>% as.data.frame()
 
   ifelse(subjectinput == "All",
-    subjecttext <- paste("For", qualinput, "graduates of all subjects"),
-    subjecttext <- paste("For", qualinput, "graduates of", subjectinput)
+    subjecttext <- paste("For", tolower(qualinput), "graduates of all subjects"),
+    subjecttext <- paste("For", tolower(qualinput), "graduates of", subjectinput)
   )
 
   mapdata_trained <- mapdata %>%
