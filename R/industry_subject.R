@@ -1,9 +1,5 @@
 backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinput) {
-  ifelse(subjectinput == "All",
-    subjecttext <- "all subjects",
-    subjecttext <- subjectinput
-  )
-
+ 
   if (YAGinput == 1) {
     YAGtext <- "one year"
   } else if (YAGinput == 3) {
