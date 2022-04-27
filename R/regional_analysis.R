@@ -222,7 +222,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   if (nrow(clean_map_data) >= 1) {
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
-        "the region with the highest proportionate increase in graduates who studied there compared to living there ",
+        "the region with the highest proportionate increase in graduates who studied compared to living in the region ",
         YAGinput, " years after graduation was <b>", first(clean_map_data$region),
         "</b>, where the number of graduates increased by <b>",
         first(clean_map_data$difference_prop2),
@@ -230,7 +230,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       )
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
-        "the region with the smallest proportionate decrease in graduates who studied there compared to living there ",
+        "the region with the smallest proportionate decrease in graduates who studied compared to living in the region ",
         YAGinput, " years after graduation was <b>", first(clean_map_data$region),
         "</b>, where the number of graduates decreased by <b>",
         first(clean_map_data$difference_prop2),
@@ -239,7 +239,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else {
       max_text <- paste0(
         "the region with the most graduates living there ",
-        YAGinput, " years after graduation, compared to the number having studied there was <b>",
+        YAGinput, " years after graduation, compared to the number having studied in the region was <b>",
         first(clean_map_data$region),
         "</b>, where the number of graduates was the same as the number of students."
       )
