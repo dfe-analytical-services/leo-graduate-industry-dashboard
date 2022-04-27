@@ -159,7 +159,6 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
 
 map_text <- function(mapdata, sectionnameinput, subjectinput,
                      YAGinput, qualinput) {
-  
   if (YAGinput == 1) {
     YAGtext <- "one year"
   } else if (YAGinput == 3) {
@@ -169,7 +168,7 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
   } else if (YAGinput == 10) {
     YAGtext <- "ten years"
   }
-  
+
   mapdata <- mapdata %>% as.data.frame()
   ifelse(subjectinput == "All",
     subjecttext <- paste("For", tolower(qualinput), "graduates of all subjects"),
@@ -204,7 +203,6 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
 
 map_text2 <- function(mapdata, sectionnameinput, subjectinput,
                       YAGinput, qualinput) {
-  
   if (YAGinput == 1) {
     YAGtext <- "one year"
   } else if (YAGinput == 3) {
@@ -214,7 +212,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   } else if (YAGinput == 10) {
     YAGtext <- "ten years"
   }
-  
+
   mapdata <- mapdata %>% as.data.frame()
 
   ifelse(subjectinput == "All",
