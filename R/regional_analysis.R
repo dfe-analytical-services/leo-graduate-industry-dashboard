@@ -143,7 +143,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
                        studied in each region")
   } else if (countinput == "living_in_region") {
     counttext <- paste("number of graduates of", subjecttext, "now working in", sectionnameinput, " who
-                       are current living in each region")
+                       are currently living in each region")
   } else if (countinput == "difference") {
     counttext <- paste("difference in graduates of", subjecttext, "now working in", sectionnameinput, " who
                        studied in and are current living in each region")
