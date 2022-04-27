@@ -165,7 +165,7 @@
                   "fontWeight": "bold"
                 },
                 "footer": "TOTAL (N)",
-                "na": "c",
+                "na": "x",
                 "width": 600
               },
               {
@@ -175,18 +175,43 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "0.5%",
+                  "1.5%",
+                  "3.1%",
+                  "0.2%",
+                  "2.2%",
+                  "5.8%",
+                  "5.0%",
+                  "5.2%",
+                  "4.7%",
+                  "2.8%",
+                  "3.2%",
+                  "2.7%",
+                  "0.0%",
+                  "0.9%",
+                  "4.3%",
+                  "5.7%",
+                  "7.9%",
+                  "1.2%",
+                  "0.9%",
+                  "4.8%",
+                  "1.6%",
+                  "5.2%",
+                  "0.3%",
+                  "5.0%",
+                  "7.0%",
+                  "2.7%",
+                  "0.1%",
+                  "3.2%",
+                  "3.2%",
+                  "2.6%",
+                  "0.8%",
+                  "0.6%",
+                  "5.2%"
+                ],
                 "footer": "38,495",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#EDF4FB"
@@ -296,18 +321,43 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "3.8%",
+                  "5.1%",
+                  "1.9%",
+                  "x",
+                  "x",
+                  "0.8%",
+                  "5.7%",
+                  "1.8%",
+                  "0.7%",
+                  "x",
+                  "6.0%",
+                  "4.7%",
+                  "4.6%",
+                  "3.4%",
+                  "7.9%",
+                  "2.6%",
+                  "3.5%",
+                  "x",
+                  "4.2%",
+                  "4.0%",
+                  "2.8%",
+                  "0.6%",
+                  "x",
+                  "x",
+                  "0.6%",
+                  "7.3%",
+                  "8.4%",
+                  "2.0%",
+                  "1.5%",
+                  "5.4%",
+                  "x",
+                  "4.2%",
+                  "6.6%"
+                ],
                 "footer": "30,420",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#A8C6E2"
@@ -318,12 +368,8 @@
                   {
                     "background": "#CFE0F0"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
+                  null,
                   {
                     "background": "#E7F0F9"
                   },
@@ -336,9 +382,7 @@
                   {
                     "background": "#E9F1F9"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#7CA9D1"
                   },
@@ -360,9 +404,7 @@
                   {
                     "background": "#AFCAE4"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#A2C2DF"
                   },
@@ -375,12 +417,8 @@
                   {
                     "background": "#EBF3FA"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
+                  null,
                   {
                     "background": "#EAF2FA"
                   },
@@ -399,9 +437,7 @@
                   {
                     "background": "#88B0D6"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#A0C0DE"
                   },
@@ -417,18 +453,43 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "digits": 1,
-                    "percent": true
-                  },
-                  "aggregated": {
-                    "digits": 1,
-                    "percent": true
-                  }
-                },
+                "cell": [
+                  "2.4%",
+                  "2.7%",
+                  "x",
+                  "4.1%",
+                  "x",
+                  "x",
+                  "2.6%",
+                  "3.3%",
+                  "4.7%",
+                  "x",
+                  "x",
+                  "8.7%",
+                  "0.4%",
+                  "8.3%",
+                  "5.7%",
+                  "3.3%",
+                  "x",
+                  "1.3%",
+                  "4.9%",
+                  "2.6%",
+                  "5.2%",
+                  "3.4%",
+                  "0.9%",
+                  "x",
+                  "4.1%",
+                  "9.8%",
+                  "1.6%",
+                  "1.4%",
+                  "7.5%",
+                  "2.3%",
+                  "x",
+                  "2.7%",
+                  "6.3%"
+                ],
                 "footer": "26,615",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#C6DAEC"
@@ -436,18 +497,12 @@
                   {
                     "background": "#C0D6EA"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#A3C2DF"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
+                  null,
                   {
                     "background": "#C2D7EB"
                   },
@@ -457,12 +512,8 @@
                   {
                     "background": "#97BBDB"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
+                  null,
                   {
                     "background": "#4583BD"
                   },
@@ -478,9 +529,7 @@
                   {
                     "background": "#B4CEE6"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#DCE8F5"
                   },
@@ -499,9 +548,7 @@
                   {
                     "background": "#E4EEF8"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#A2C2DF"
                   },
@@ -520,9 +567,7 @@
                   {
                     "background": "#C7DBED"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#BED5EA"
                   },
