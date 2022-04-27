@@ -374,7 +374,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
     return(footer)
   }
-
+  
   if (countinput == "ethnicity") {
     crosstabs_data <- tables_data %>%
       filter(
@@ -912,7 +912,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
 
     coldefs <- list(
-      reactable::colDef(style = stylefunc, cell = cellfunc, na = "x")
+      reactable::colDef(style = stylefunc, cell = cellfunc, na = "x", minWidth = 240)
     )
 
     # get names of numerical cols
