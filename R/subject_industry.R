@@ -229,9 +229,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     crosstab_text <- paste("For ", qualinput, " graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
-      "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+      " The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
       "</b> where ", sextext,
-      "The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
+      " The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
       "</b> where ", sextextearnings,
       sextextearnings2,
       sextext2, br(), br(),
