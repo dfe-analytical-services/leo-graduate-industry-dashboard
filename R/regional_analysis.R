@@ -228,7 +228,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
         "</b>, where the number of graduates increased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
-      )
+      ) 
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
         "the region with the smallest proportionate decrease in graduates who studied there compared to living there ",
@@ -244,19 +244,8 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
         first(clean_map_data$region),
         "</b>, where the number of graduates was the same as the number of students."
       )
-    }
-
-
-maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regioninput, qualinput) {
-  cellfunc <- function(value) {
-    if (is.na(value)) {
-      "x"
-    } else if (value < 0) "c" else paste0("£", format(value, big.mark = ","))
-  }
-
-  mapdata <- data %>%
-    filter(SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput, region %in% c(regioninput), qualification_TR == qualinput)
-
+    } 
+    
     if (last(clean_map_data$difference_prop2) > 0) {
       min_text <- paste0(
         "The region with the smallest increase is <b>",
@@ -277,8 +266,8 @@ maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regio
         "</b>, where the number of graduates was the same as the number of students."
       )
     }
-
-
+    
+    
     map_text <- paste0(
       subjecttext, " in the ", sectionnameinput,
       " industry, ", max_text, min_text
@@ -287,11 +276,19 @@ maptable <- function(sectionnameinput, subjectinput, countinput, YAGinput, regio
     # If the data is a full tranch of NAs, then return a blank.
     map_text <- ""
   }
-
+  
   return(map_text)
 }
 
+
 create_regions_table <- function(maptabledata, regioninput) {
+  
+  cellfunc <- function(value) {
+        if (is.na(value)) {
+          "x"
+        } else if (value < 0) "c" else paste0("£", format(value, big.mark = ","))
+      }
+  
   dftable <- maptabledata %>%
     as.data.frame() %>%
     select(
@@ -314,7 +311,6 @@ create_regions_table <- function(maptabledata, regioninput) {
       difference_prop2 = colDef(name = "Difference (%)", na = "x"),
       earnings_median = colDef(
         name = "Median earnings",
-        # format = colFormat(prefix = "£", separators = TRUE, digits = 0),
         style = list(backgroundColor = "#f7f7f7"),
         headerStyle = list(backgroundColor = "#f7f7f7"), cell = cellfunc
       )
