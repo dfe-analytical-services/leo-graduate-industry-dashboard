@@ -1,5 +1,4 @@
 backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinput) {
-
   if (YAGinput == 1) {
     YAGtext <- "one year"
   } else if (YAGinput == 3) {
@@ -374,7 +373,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
     return(footer)
   }
-  
+
   if (countinput == "ethnicity") {
     crosstabs_data <- tables_data %>%
       filter(
