@@ -1,0 +1,1089 @@
+{
+  "input": {
+    "countinput3": "ethnicity",
+    "earningsbutton2": "Median earnings",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Education",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4> Industry of graduate employment for graduates of Education by ethnicity, five years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "subject_name": [
+                "Agriculture, food and related studies",
+                "History and archaeology",
+                "Mathematical sciences",
+                "Economics",
+                "Chemistry",
+                "Engineering",
+                "Physics and astronomy",
+                "Celtic studies",
+                "Law",
+                "Politics",
+                "English studies",
+                "Materials and technology",
+                "Psychology",
+                "Medicine and dentistry",
+                "General, applied and forensic sciences",
+                "Biosciences",
+                "Pharmacology, toxicology and pharmacy",
+                "Performing arts",
+                "Allied health",
+                "Languages and area studies",
+                "Combined and general studies",
+                "Education and teaching",
+                "Creative arts and design",
+                "Geography, earth and environmental studies",
+                "Computing",
+                "Sport and exercise sciences",
+                "Veterinary sciences",
+                "Nursing and midwifery",
+                "Health and social care",
+                "Sociology, social policy and anthropology",
+                "Media, journalism and communications",
+                "Philosophy and religious studies",
+                "Medical sciences",
+                "Architecture, building and planning",
+                "Business and management"
+              ],
+              "White": [
+                26100,
+                26200,
+                24900,
+                26700,
+                25500,
+                25400,
+                26200,
+                23300,
+                24800,
+                24900,
+                25100,
+                27200,
+                25400,
+                22900,
+                23900,
+                23400,
+                22900,
+                25900,
+                25400,
+                24400,
+                25300,
+                24100,
+                26600,
+                24800,
+                26400,
+                24200,
+                27500,
+                26200,
+                25600,
+                24000,
+                25600,
+                22700,
+                25100,
+                23700,
+                24300
+              ],
+              "Black": [
+                23400,
+                24800,
+                25700,
+                24100,
+                24100,
+                24100,
+                26300,
+                "NA",
+                24800,
+                25000,
+                24800,
+                24200,
+                26300,
+                25000,
+                24600,
+                25000,
+                24700,
+                21500,
+                24700,
+                27500,
+                25900,
+                23600,
+                24300,
+                25500,
+                24400,
+                26500,
+                26200,
+                22900,
+                25600,
+                24200,
+                24500,
+                25500,
+                23500,
+                25100,
+                25200
+              ],
+              "Asian": [
+                25600,
+                27000,
+                25500,
+                24400,
+                23500,
+                23700,
+                26400,
+                "NA",
+                24200,
+                25500,
+                25700,
+                24900,
+                25300,
+                24800,
+                23500,
+                24700,
+                25400,
+                24400,
+                25300,
+                25500,
+                25900,
+                25600,
+                23400,
+                25700,
+                25600,
+                26000,
+                "NA",
+                26400,
+                24500,
+                23300,
+                24700,
+                24900,
+                24200,
+                24600,
+                25100
+              ],
+              "Mixed": [
+                26800,
+                23900,
+                24700,
+                23300,
+                26000,
+                25900,
+                26000,
+                "NA",
+                25800,
+                25600,
+                23700,
+                24100,
+                22500,
+                25600,
+                25200,
+                26400,
+                26400,
+                24100,
+                24700,
+                25100,
+                24000,
+                25300,
+                25100,
+                26400,
+                26500,
+                26700,
+                "NA",
+                24200,
+                25000,
+                25100,
+                25200,
+                24300,
+                25200,
+                24500,
+                25200
+              ],
+              "Other": [
+                "NA",
+                25300,
+                24300,
+                25400,
+                24500,
+                25600,
+                27000,
+                "NA",
+                24700,
+                25300,
+                24700,
+                "NA",
+                24600,
+                25100,
+                24200,
+                25600,
+                26500,
+                23700,
+                25100,
+                24600,
+                25200,
+                25400,
+                23900,
+                25200,
+                25400,
+                23800,
+                "NA",
+                24900,
+                25000,
+                24400,
+                25800,
+                25000,
+                24300,
+                "NA",
+                27200
+              ],
+              "Not known": [
+                23500,
+                23700,
+                24200,
+                25500,
+                25400,
+                25800,
+                24700,
+                "NA",
+                26200,
+                24400,
+                24700,
+                25100,
+                26200,
+                23600,
+                25800,
+                24100,
+                24700,
+                25100,
+                23100,
+                26000,
+                27400,
+                25400,
+                23900,
+                23900,
+                24900,
+                24300,
+                "NA",
+                26000,
+                26400,
+                25400,
+                24700,
+                25700,
+                24800,
+                25300,
+                24700
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "subject_name",
+                "name": "Subject area",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "width": 600
+              },
+              {
+                "accessor": "White",
+                "name": "White",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "36,935",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#5D94C6"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#4986BE"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#BBD2E8"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#397BB8"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#C8DBED"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#B7D0E7"
+                  },
+                  {
+                    "background": "#C8DBED"
+                  },
+                  {
+                    "background": "#6498C8"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#4D89C0"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#A3C3E0"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#CFE0F0"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  }
+                ]
+              },
+              {
+                "accessor": "Black",
+                "name": "Black",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "36,950",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#B7D0E7"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#6B9DCB"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#578FC3"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#578FC3"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#2F75B5"
+                  },
+                  {
+                    "background": "#6498C8"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#508BC1"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#C8DBED"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#B4CEE6"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  }
+                ]
+              },
+              {
+                "accessor": "Asian",
+                "name": "Asian",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "46,450",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#3F80BB"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#B4CEE6"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#6B9DCB"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#B4CEE6"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#6498C8"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#B7D0E7"
+                  },
+                  {
+                    "background": "#6B9DCB"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#6196C7"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#BBD2E8"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  }
+                ]
+              },
+              {
+                "accessor": "Mixed",
+                "name": "Mixed",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "39,165",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#4684BD"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#BBD2E8"
+                  },
+                  {
+                    "background": "#6196C7"
+                  },
+                  {
+                    "background": "#6498C8"
+                  },
+                  {
+                    "background": "#6196C7"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#679AC9"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#D5E4F2"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#A3C3E0"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#508BC1"
+                  },
+                  {
+                    "background": "#4986BE"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  }
+                ]
+              },
+              {
+                "accessor": "Other",
+                "name": "Other",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "36,630",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#93B8DA"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#3F80BB"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#6E9FCC"
+                  },
+                  {
+                    "background": "#508BC1"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#8FB5D8"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#7BA8D1"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#AAC7E2"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#679AC9"
+                  },
+                  {
+                    "background": "#82ACD3"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#397BB8"
+                  }
+                ]
+              },
+              {
+                "accessor": "Not known",
+                "name": "Not known",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "format": {
+                  "cell": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  },
+                  "aggregated": {
+                    "prefix": "£",
+                    "digits": 0,
+                    "separators": true
+                  }
+                },
+                "footer": "45,630",
+                "na": "c",
+                "style": [
+                  {
+                    "background": "#B4CEE6"
+                  },
+                  {
+                    "background": "#ADC9E3"
+                  },
+                  {
+                    "background": "#9DBEDD"
+                  },
+                  {
+                    "background": "#71A1CD"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#679AC9"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#96BADB"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#5A92C5"
+                  },
+                  {
+                    "background": "#B1CCE5"
+                  },
+                  {
+                    "background": "#679AC9"
+                  },
+                  {
+                    "background": "#A0C0DE"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#7FAAD2"
+                  },
+                  {
+                    "background": "#C1D7EB"
+                  },
+                  {
+                    "background": "#6196C7"
+                  },
+                  {
+                    "background": "#3277B6"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#A7C5E1"
+                  },
+                  {
+                    "background": "#85AFD5"
+                  },
+                  {
+                    "background": "#99BCDC"
+                  },
+                  {
+                    "background": "#e9e9e9"
+                  },
+                  {
+                    "background": "#6196C7"
+                  },
+                  {
+                    "background": "#538DC2"
+                  },
+                  {
+                    "background": "#75A3CE"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  },
+                  {
+                    "background": "#6B9DCB"
+                  },
+                  {
+                    "background": "#89B1D6"
+                  },
+                  {
+                    "background": "#78A6D0"
+                  },
+                  {
+                    "background": "#8CB3D7"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 37,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "dataKey": "random_key",
+            "key": "random_key"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  }
+}

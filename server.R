@@ -176,18 +176,20 @@ server <- function(input, output, session) {
   output$crosstab_text <- renderText({
     crosstab_text(reactiveSubjbyIndGroupedSummary(), input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
-  
+
   reactiveSubjIndTable <- reactive({
     crosstabs_table(reactiveSubjbyIndGroupedData, input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)
   })
 
   output$crosstab <- renderReactable({
     table_data <- reactiveSubjIndTable()
-    crosstabs_reactable(table_data$crosstabs_data, 
-                        table_data$nested_crosstabs, 
-                        table_data$numeric_cols_def, 
-                        table_data$nested_numeric_cols_def, 
-                        table_data$script)
+    crosstabs_reactable(
+      table_data$crosstabs_data,
+      table_data$nested_crosstabs,
+      table_data$numeric_cols_def,
+      table_data$nested_numeric_cols_def,
+      table_data$script
+    )
   })
 
   # Download current Subject by Industry view
@@ -199,25 +201,28 @@ server <- function(input, output, session) {
       table_data <- reactiveSubjIndTable()
 
       out_columns <- colnames(table_data$crosstabs_data)
-      
-      footsum <-           table_data$footer_crosstabs %>% select(-SECTIONNAME,-group_name) %>%
+
+      footsum <- table_data$footer_crosstabs %>%
+        select(-SECTIONNAME, -group_name) %>%
         summarise_all(sum) %>%
-        mutate(SECTIONNAME='TOTAL (N)',group_name='TOTAL (N)') %>%
+        mutate(SECTIONNAME = "TOTAL (N)", group_name = "TOTAL (N)") %>%
         select(out_columns)
-      dfDownload <- rbind(table_data$crosstabs_data,
-                          table_data$nested_crosstabs %>%
-                            select(out_columns)) %>% 
-        arrange(SECTIONNAME,group_name) %>% 
+      dfDownload <- rbind(
+        table_data$crosstabs_data,
+        table_data$nested_crosstabs %>%
+          select(out_columns)
+      ) %>%
+        arrange(SECTIONNAME, group_name) %>%
         rbind(footsum)
-      write.csv(dfDownload, file,row.names = FALSE)
+      write.csv(dfDownload, file, row.names = FALSE)
     }
   )
-  
-  
+
+
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)
   })
-  
+
   output$crosstab_backwards <- renderReactable({
     reactiveIndSubjTable()
   })

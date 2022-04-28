@@ -1,4 +1,4 @@
-destroy_random_keys <- function(file, parent_script = "testUI") {
+clean_json <- function(file, parent_script = "testUI") {
   # Reactable outputs some random keys as part of its table rendering, which snag
   # in shinytest when run across different machines. There's probably a way to fix
   # fix this in shinytest itself, but I gave up on trying and did a post-process
@@ -7,6 +7,7 @@ destroy_random_keys <- function(file, parent_script = "testUI") {
   shinytest_json <- readr::read_lines(filepath)
   for (i in 1:length(shinytest_json)) {
     shinytest_json[i] <- gsub('ey\": \".*\"', 'ey\": "random_key"', shinytest_json[i])
+    shinytest_json[i] <- gsub('\r\n', '\n', shinytest_json[i])
   }
   readr::write_lines(shinytest_json, filepath)
 }
@@ -23,7 +24,7 @@ run_set_shinytests <- function(dfinputs, outstring, listrecords) {
       items = listrecords,
       filename = file
     )
-    destroy_random_keys(file)
+    clean_json(file)
   }
 }
 
@@ -136,7 +137,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_0.json"
 )
-destroy_random_keys("subjectByIndustry_0.json")
+clean_json("subjectByIndustry_0.json")
 
 app$setInputs(earningsbutton = "Median earnings", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -146,7 +147,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_1.json"
 )
-destroy_random_keys("subjectByIndustry_1.json")
+clean_json("subjectByIndustry_1.json")
 
 
 app$setInputs(qualinput3 = "Level 8", wait_ = FALSE, values_ = FALSE)
@@ -157,7 +158,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_2.json"
 )
-destroy_random_keys("subjectByIndustry_2.json")
+clean_json("subjectByIndustry_2.json")
 
 app$setInputs(crosstabs.subjectinput = "Allied health", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -167,7 +168,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_3.json"
 )
-destroy_random_keys("subjectByIndustry_3.json")
+clean_json("subjectByIndustry_3.json")
 
 
 app$setInputs(countinput2 = "ethnicity", timeout_ = 1e+4)
@@ -178,7 +179,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_4.json"
 )
-destroy_random_keys("subjectByIndustry_4.json")
+clean_json("subjectByIndustry_4.json")
 
 app$setInputs(YAGinput2 = "5", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -188,7 +189,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_5.json"
 )
-destroy_random_keys("subjectByIndustry_5.json")
+clean_json("subjectByIndustry_5.json")
 
 app$setInputs(YAGinput2 = "1", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -198,7 +199,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_6.json"
 )
-destroy_random_keys("subjectByIndustry_6.json")
+clean_json("subjectByIndustry_6.json")
 
 app$setInputs(crosstabs.subjectinput = "English studies", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -208,7 +209,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_7.json"
 )
-destroy_random_keys("subjectByIndustry_7.json")
+clean_json("subjectByIndustry_7.json")
 
 app$setInputs(earningsbutton = "Proportions", wait_ = FALSE, values_ = FALSE)
 app$snapshot(
@@ -218,7 +219,7 @@ app$snapshot(
   ),
   filename = "subjectByIndustry_8.json"
 )
-destroy_random_keys("subjectByIndustry_8.json")
+clean_json("subjectByIndustry_8.json")
 
 # Regional tab ================================================================
 
