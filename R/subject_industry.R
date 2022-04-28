@@ -230,11 +230,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
     )
 
-    crosstab_text <- paste("For ", qualinput, " graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
+    crosstab_text <- paste("For ", tolower(qualinput), " graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
-      "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+      " The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
       "</b> where ", sextext,
-      "The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
+      " The biggest difference in median earnings is seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
       "</b> where ", sextextearnings,
       sextextearnings2,
       sextext2, br(), br(),
@@ -846,7 +846,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     result <- which(crosstabs_earnings_data2 == max(crosstabs_earnings_data2), arr.ind = TRUE)
 
-    crosstab_text <- paste("When splitting by subject for ", qualinput, " graduates, ", YAGinput, " years after graduation,
+    crosstab_text <- paste("When splitting by subject for ", tolower(qualinput), " graduates, ", YAGinput, " years after graduation,
                            the highest earning group was graduates of ", colnames(crosstabs_earnings_data2)[result[2]], " who
                            worked in the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
@@ -1900,7 +1900,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
 
   if (countinput %in% c("sex")) {
     crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
-                          graduation, male and female ", qualinput, " graduates from English HEIs, APs and FECs,
+                          graduation, male and female ", tolower(qualinput), " graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
     )
@@ -1924,7 +1924,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
 
   if (countinput %in% c("subject_name")) {
     crosstab_title <- paste("<h4> Industry of graduate employment for graduates by subject, ", YAGtext, " after
-                          graduation, male and female ", qualinput, " graduates from English HEIs, APs and FECs,
+                          graduation, male and female ", tolower(qualinput), " graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
     )
