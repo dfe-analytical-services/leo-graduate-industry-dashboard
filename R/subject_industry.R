@@ -1908,15 +1908,15 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   } else if (YAGinput == 10) {
     YAGtext <- "ten years"
   }
-  
+
   if (countinput == "FSM") {
-    counttext <- 'FSM status'
+    counttext <- "FSM status"
   } else if (countinput == "prior_attainment") {
-    counttext <- 'prior attainment'
+    counttext <- "prior attainment"
   } else if (countinput == "current_region") {
-    counttext <- 'current region'
-  } else if(countinput == "ethnicity") {
-    counttext <- 'ethnicity'
+    counttext <- "current region"
+  } else if (countinput == "ethnicity") {
+    counttext <- "ethnicity"
   }
 
 
