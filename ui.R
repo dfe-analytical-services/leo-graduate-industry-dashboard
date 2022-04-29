@@ -366,6 +366,14 @@ fluidPage(
                 your mouse over a bar or flow line to see the number of
                 graduates it represents."
                 ),
+                column(
+                  6,
+                  "Region of study"
+                ),
+                column(6, div(
+                  "Current region",
+                  style = "text-align: right"
+                )),
                 withSpinner(sankeyNetworkOutput("regional_sankey")),
                 br(),
                 br()
