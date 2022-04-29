@@ -1,4 +1,4 @@
-col_formats <- function(data, footer_data, colformat) {
+col_formats <- function(data, footer_data, colformat, minWidth=NULL) {
   max <- data %>%
     ungroup() %>%
     select(-c(group_name, SECTIONNAME))
@@ -38,6 +38,7 @@ col_formats <- function(data, footer_data, colformat) {
 
     numeric_cols_def_nested[column] <- list(colDef(
       na = "x", style = JS(script), format = colformat,
+      minWidth=minWidth
     ))
 
     numeric_cols_def[column] <- list(colDef(
@@ -45,7 +46,8 @@ col_formats <- function(data, footer_data, colformat) {
       footer = format(
         round_any(sum(footer_data[column]), 5),
         big.mark = ",", scientific = FALSE, na.m = T
-      )
+      ),
+      minWidth=minWidth
     ))
   }
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
@@ -1621,7 +1623,7 @@ crosstabs_table <- function(tables_data_grouped, subjectinput, YAGinput, countin
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       select(-All)
 
-    column_defs <- col_formats(crosstabs_data, footer_data, colformat)
+    column_defs <- col_formats(crosstabs_data, footer_data, colformat,minWidth=320)
     numeric_cols_def <- column_defs$numeric_cols_def
     numeric_cols_def_nested <- column_defs$numeric_cols_def_nested
     script <- column_defs$script
