@@ -1927,7 +1927,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   }
 
   if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of", subjecttext, "by qualification,", YAGtext, " after
+    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification,", YAGtext, " after
                           graduation, male and female graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
