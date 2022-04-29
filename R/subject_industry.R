@@ -1908,10 +1908,20 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   } else if (YAGinput == 10) {
     YAGtext <- "ten years"
   }
+  
+  if (countinput == "FSM") {
+    counttext <- 'FSM status'
+  } else if (countinput == "prior_attainment") {
+    counttext <- 'prior attainment'
+  } else if (countinput == "current_region") {
+    counttext <- 'current region'
+  } else if(countinput == "ethnicity") {
+    counttext <- 'ethnicity'
+  }
 
 
   if (countinput %in% c("FSM", "prior_attainment")) {
-    crosstab_title <- paste("<h4>Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
+    crosstab_title <- paste("<h4>Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
                           graduation, young (under 21 at start of course) male and female first degree
                           graduates from English HEIs, APs and FECs, 2018/19 tax year.</h4>",
       sep = ""
@@ -1927,7 +1937,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   }
 
   if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification,", YAGtext, " after
+    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification, ", YAGtext, " after
                           graduation, male and female graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
@@ -1935,7 +1945,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   }
 
   if (countinput %in% c("current_region", "ethnicity")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
+    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
                           graduation, male and female first degree graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
