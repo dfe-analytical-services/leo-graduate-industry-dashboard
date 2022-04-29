@@ -2,6 +2,7 @@
 
 
 data <- read.csv("data/regional_data_with_pg_dummy.csv")
+
 regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
@@ -143,7 +144,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
                        studied in each region")
   } else if (countinput == "living_in_region") {
     counttext <- paste("number of graduates of", subjecttext, "now working in", sectionnameinput, " who
-                       are current living in each region")
+                       are currently living in each region")
   } else if (countinput == "difference") {
     counttext <- paste("difference in graduates of", subjecttext, "now working in", sectionnameinput, " who
                        studied in and are current living in each region")
@@ -152,17 +153,27 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
                        studied in and are current living in each region")
   }
   map_title <- paste("<h4> Map to show the ", counttext, YAGtext, " after
-                          graduation, male and female", qualinput, "graduates from English HEIs, APs and FECs,
+                          graduation, male and female", tolower(qualinput), "graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>")
   return(map_title)
 }
 
 map_text <- function(mapdata, sectionnameinput, subjectinput,
                      YAGinput, qualinput) {
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
+  }
+
   mapdata <- mapdata %>% as.data.frame()
   ifelse(subjectinput == "All",
-    subjecttext <- paste("For", qualinput, "graduates of all subjects"),
-    subjecttext <- paste("For", qualinput, "graduates of", subjectinput)
+    subjecttext <- paste("For", tolower(qualinput), "graduates of all subjects"),
+    subjecttext <- paste("For", tolower(qualinput), "graduates of", subjectinput)
   )
 
   mapdata_trained <- mapdata %>%
@@ -180,7 +191,7 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
 
-  map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGinput, " years after graduation, the region where
+  map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
                     the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the least graduates
                     had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
                     ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
@@ -193,11 +204,21 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
 
 map_text2 <- function(mapdata, sectionnameinput, subjectinput,
                       YAGinput, qualinput) {
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
+  }
+
   mapdata <- mapdata %>% as.data.frame()
 
   ifelse(subjectinput == "All",
-    subjecttext <- paste("For", qualinput, "graduates of all subjects"),
-    subjecttext <- paste("For", qualinput, "graduates of", subjectinput)
+    subjecttext <- paste("For", tolower(qualinput), "graduates of all subjects"),
+    subjecttext <- paste("For", tolower(qualinput), "graduates of", subjectinput)
   )
 
   mapdata_trained <- mapdata %>%
@@ -222,16 +243,16 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   if (nrow(clean_map_data) >= 1) {
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
-        "the region with the highest proportionate increase in graduates who studied there compared to living there ",
-        YAGinput, " years after graduation was <b>", first(clean_map_data$region),
+        "the region with the highest proportionate increase in graduates who studied compared to living in the region ",
+        YAGtext, " after graduation was <b>", first(clean_map_data$region),
         "</b>, where the number of graduates increased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
       )
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
-        "the region with the smallest proportionate decrease in graduates who studied there compared to living there ",
-        YAGinput, " years after graduation was <b>", first(clean_map_data$region),
+        "the region with the smallest proportionate decrease in graduates who studied compared to living in the region ",
+        YAGtext, " after graduation was <b>", first(clean_map_data$region),
         "</b>, where the number of graduates decreased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
@@ -239,7 +260,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else {
       max_text <- paste0(
         "the region with the most graduates living there ",
-        YAGinput, " years after graduation, compared to the number having studied there was <b>",
+        YAGtext, " after graduation, compared to the number having studied in the region was <b>",
         first(clean_map_data$region),
         "</b>, where the number of graduates was the same as the number of students."
       )
@@ -260,11 +281,12 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else {
       min_text <- paste0(
         "The region with the fewest graduates living there ",
-        YAGinput, " years after graduation, compared to the number having studied there was <b>",
+        YAGtext, " after graduation, compared to the number having studied there was <b>",
         first(clean_map_data$region),
         "</b>, where the number of graduates was the same as the number of students."
       )
     }
+
 
     map_text <- paste0(
       subjecttext, " in the ", sectionnameinput,
@@ -278,7 +300,14 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   return(map_text)
 }
 
+
 create_regions_table <- function(maptabledata, regioninput) {
+  cellfunc <- function(value) {
+    if (is.na(value)) {
+      "x"
+    } else if (value < 0) "c" else paste0("£", format(value, big.mark = ","))
+  }
+
   dftable <- maptabledata %>%
     as.data.frame() %>%
     select(
@@ -291,18 +320,18 @@ create_regions_table <- function(maptabledata, regioninput) {
     highlight = TRUE, fullWidth = TRUE,
     columns = list(
       region = colDef(name = "Region"),
-      trained_in_region2 = colDef(name = "Studied in region", format = colFormat(separators = TRUE)),
-      living_in_region2 = colDef(name = "Living in region", format = colFormat(separators = TRUE)),
+      trained_in_region2 = colDef(name = "Studied in region", format = colFormat(separators = TRUE), na = "x"),
+      living_in_region2 = colDef(name = "Living in region", format = colFormat(separators = TRUE), na = "x"),
       number_of_providers = colDef(
         name = "Number of providers", style = list(backgroundColor = "#f7f7f7"),
-        headerStyle = list(backgroundColor = "#f7f7f7")
+        headerStyle = list(backgroundColor = "#f7f7f7"), na = "x"
       ),
-      difference2 = colDef(name = "Difference", format = colFormat(separators = TRUE)),
-      difference_prop2 = colDef(name = "Difference (%)"),
+      difference2 = colDef(name = "Difference", format = colFormat(separators = TRUE), na = "x"),
+      difference_prop2 = colDef(name = "Difference (%)", na = "x"),
       earnings_median = colDef(
         name = "Median earnings",
-        format = colFormat(prefix = "£", separators = TRUE, digits = 0), style = list(backgroundColor = "#f7f7f7"),
-        headerStyle = list(backgroundColor = "#f7f7f7")
+        style = list(backgroundColor = "#f7f7f7"),
+        headerStyle = list(backgroundColor = "#f7f7f7"), cell = cellfunc
       )
     ),
     columnGroups = list(

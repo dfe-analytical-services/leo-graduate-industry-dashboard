@@ -8,7 +8,7 @@
     "YAGinput3": "10"
   },
   "output": {
-    "backwards_crosstab_title": "<h4> Industry of graduate employment for graduates of Education by ethnicity, ten years after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the  Education  industry  ten years  after\n                            graduation by the subject they studied and  ethnicity ,  male and female first degree graduates from\n                            English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -293,20 +293,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£23,300",
+                  "£23,000",
+                  "£25,400",
+                  "£23,800",
+                  "£24,900",
+                  "£26,200",
+                  "£26,400",
+                  "£25,900",
+                  "£26,100",
+                  "£25,100",
+                  "£26,100",
+                  "£23,900",
+                  "£24,600",
+                  "£24,100",
+                  "£25,900",
+                  "£23,800",
+                  "£26,500",
+                  "£24,100",
+                  "£24,900",
+                  "£26,100",
+                  "£23,300",
+                  "£25,300",
+                  "£23,900",
+                  "£24,300",
+                  "£25,500",
+                  "£25,800",
+                  "£25,000",
+                  "£24,900",
+                  "£26,700",
+                  "£24,800",
+                  "£25,200",
+                  "£25,500",
+                  "£24,600",
+                  "£23,400",
+                  "£25,600"
+                ],
                 "footer": "43,950",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#C9DCEE"
@@ -422,20 +447,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£25,100",
+                  "£22,100",
+                  "£23,700",
+                  "£24,600",
+                  "£23,700",
+                  "£25,000",
+                  "x",
+                  "£25,500",
+                  "£23,800",
+                  "£24,700",
+                  "£25,800",
+                  "£25,700",
+                  "£24,500",
+                  "£24,700",
+                  "£25,100",
+                  "£25,300",
+                  "£24,700",
+                  "£24,600",
+                  "£26,200",
+                  "£24,500",
+                  "£25,400",
+                  "£25,100",
+                  "£24,000",
+                  "£25,700",
+                  "£26,100",
+                  "£26,200",
+                  "£25,400",
+                  "£24,900",
+                  "£25,100",
+                  "£24,100",
+                  "£24,300",
+                  "£26,500",
+                  "x",
+                  "£26,900",
+                  "£24,400"
+                ],
                 "footer": "32,395",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#85AFD5"
@@ -455,9 +505,7 @@
                   {
                     "background": "#89B1D6"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#76A5CF"
                   },
@@ -533,9 +581,7 @@
                   {
                     "background": "#508BC1"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#4181BB"
                   },
@@ -551,20 +597,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£26,300",
+                  "£26,300",
+                  "£24,400",
+                  "£25,900",
+                  "£24,400",
+                  "£24,500",
+                  "x",
+                  "£24,900",
+                  "£25,600",
+                  "£26,000",
+                  "£26,500",
+                  "£24,300",
+                  "£23,900",
+                  "£25,400",
+                  "£24,400",
+                  "£24,600",
+                  "£26,200",
+                  "£24,700",
+                  "£25,100",
+                  "£25,100",
+                  "£26,400",
+                  "£24,800",
+                  "£23,100",
+                  "£24,000",
+                  "£24,500",
+                  "£24,600",
+                  "£23,300",
+                  "£24,000",
+                  "£24,800",
+                  "£25,600",
+                  "£23,100",
+                  "£25,100",
+                  "x",
+                  "£25,800",
+                  "£24,900"
+                ],
                 "footer": "46,950",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#5890C4"
@@ -584,9 +655,7 @@
                   {
                     "background": "#9CBEDD"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#8DB4D7"
                   },
@@ -662,9 +731,7 @@
                   {
                     "background": "#85AFD5"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#6B9DCB"
                   },
@@ -680,20 +747,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£24,700",
+                  "£25,400",
+                  "£23,500",
+                  "£24,800",
+                  "£25,100",
+                  "£25,600",
+                  "x",
+                  "£25,100",
+                  "£25,300",
+                  "£24,700",
+                  "£24,600",
+                  "£25,000",
+                  "£24,800",
+                  "£25,800",
+                  "£24,900",
+                  "£26,300",
+                  "£26,200",
+                  "£24,100",
+                  "£25,500",
+                  "£23,600",
+                  "£25,200",
+                  "£27,400",
+                  "£24,900",
+                  "£23,000",
+                  "£24,900",
+                  "£24,300",
+                  "£25,500",
+                  "£25,700",
+                  "£25,300",
+                  "£24,000",
+                  "£24,400",
+                  "£26,600",
+                  "x",
+                  "£23,200",
+                  "£24,400"
+                ],
                 "footer": "44,290",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#94B9DA"
@@ -713,9 +805,7 @@
                   {
                     "background": "#72A2CE"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#85AFD5"
                   },
@@ -791,9 +881,7 @@
                   {
                     "background": "#4D89C0"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#CDDFEF"
                   },
@@ -809,20 +897,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£24,500",
+                  "£25,300",
+                  "£25,400",
+                  "£24,400",
+                  "£22,600",
+                  "£25,700",
+                  "x",
+                  "£24,600",
+                  "£25,900",
+                  "£26,200",
+                  "£24,500",
+                  "x",
+                  "£25,900",
+                  "£25,800",
+                  "£25,500",
+                  "£24,300",
+                  "£25,800",
+                  "£24,200",
+                  "x",
+                  "x",
+                  "£25,300",
+                  "£25,700",
+                  "£25,000",
+                  "x",
+                  "£24,200",
+                  "£26,700",
+                  "£25,100",
+                  "£25,500",
+                  "£24,900",
+                  "£25,800",
+                  "£25,200",
+                  "£24,200",
+                  "x",
+                  "£24,100",
+                  "£24,800"
+                ],
                 "footer": "32,765",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#9CBEDD"
@@ -842,9 +955,7 @@
                   {
                     "background": "#6F9FCC"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#98BBDC"
                   },
@@ -857,9 +968,7 @@
                   {
                     "background": "#9CBEDD"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#679AC9"
                   },
@@ -878,12 +987,8 @@
                   {
                     "background": "#A7C5E1"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
+                  null,
                   {
                     "background": "#7EAAD2"
                   },
@@ -893,9 +998,7 @@
                   {
                     "background": "#89B1D6"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#A7C5E1"
                   },
@@ -920,9 +1023,7 @@
                   {
                     "background": "#A7C5E1"
                   },
-                  {
-                    "background": "#e9e9e9"
-                  },
+                  null,
                   {
                     "background": "#ABC8E3"
                   },
@@ -938,20 +1039,45 @@
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
-                "format": {
-                  "cell": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  },
-                  "aggregated": {
-                    "prefix": "£",
-                    "digits": 0,
-                    "separators": true
-                  }
-                },
+                "cell": [
+                  "£24,300",
+                  "£24,900",
+                  "£24,800",
+                  "£25,200",
+                  "£25,000",
+                  "£25,200",
+                  "£23,500",
+                  "£25,300",
+                  "£22,800",
+                  "£27,000",
+                  "£22,400",
+                  "£25,900",
+                  "£25,000",
+                  "£23,500",
+                  "£24,800",
+                  "£26,700",
+                  "£24,800",
+                  "£23,200",
+                  "£26,700",
+                  "£26,300",
+                  "£25,300",
+                  "£26,500",
+                  "£27,200",
+                  "£23,500",
+                  "£25,000",
+                  "£25,300",
+                  "£24,500",
+                  "£23,800",
+                  "£25,900",
+                  "£25,800",
+                  "£23,900",
+                  "£25,100",
+                  "£26,000",
+                  "£25,900",
+                  "£24,800"
+                ],
                 "footer": "46,025",
-                "na": "c",
+                "na": "x",
                 "style": [
                   {
                     "background": "#A3C3E0"

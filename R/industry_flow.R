@@ -178,7 +178,7 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
 
 
   sankey_title <- paste("<h3>Industry of graduate employment for 2012/13 academic year graduates of", subjecttext, "one, three and five years after
-                          graduation (YAG), ", sextext, qualinput, "graduates from English HEIs, APs and FECs, 2018/19 tax year</h3>")
+                          graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HEIs, APs and FECs, 2018/19 tax year</h3>")
 
   return(sankey_title)
 }
@@ -355,7 +355,7 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
     arrange(., -`5 YAG`)
 
   ifelse(subjectinput == "All",
-    sankeytext1 <- paste("For ", sextext, ", ", qualinput, " graduates of all subjects, the industry with the highest
+    sankeytext1 <- paste("For ", sextext, ", ", tolower(qualinput), " graduates of all subjects, the industry with the highest
                       proportion of graduates one year after graduation is <b>", first(yag_table_final$SECTIONNAME.x),
       " (", first(yag_table_final$`1 YAG`), "%)</b>, and at five years after graduation it is <b>",
       ifelse(first(five_yag_table_subject$SECTIONNAME.x) == first(yag_table_final$SECTIONNAME.x),
@@ -365,7 +365,7 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
       sep = ""
     ),
     sankeytext1 <- paste(
-      "For ", sextext, ", ", qualinput, " graduates who studied", subjectinput, ", the industry with the highest
+      "For ", sextext, ", ", tolower(qualinput), " graduates who studied", subjectinput, ", the industry with the highest
                       proportion of graduates one year after graduation is <b>", first(yag_table_final$SECTIONNAME.x),
       "</b> (", first(yag_table_final$`1 YAG`), "%), and at five years after graduation it is <b>",
       ifelse(first(five_yag_table_subject$SECTIONNAME.x) == first(yag_table_final$SECTIONNAME.x),
