@@ -1,4 +1,4 @@
-col_formats <- function(data, footer_data, colformat, minWidth = NULL) {
+col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   max <- data %>%
     ungroup() %>%
     select(-c(group_name, SECTIONNAME)) %>%
