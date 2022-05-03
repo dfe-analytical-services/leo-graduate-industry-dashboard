@@ -1541,7 +1541,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         funs(as.numeric(.))
       ) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      rename(
+        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        "Other" = "9"
+      )
 
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
@@ -1563,7 +1568,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      rename(
+        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        "Other" = "9"
+      )
 
     if (buttoninput == "Proportions") {
       cellformat <- function(value) {
@@ -1587,7 +1597,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      rename(
+        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        "Other" = "9"
+      )
 
     column_defs <- col_formats(crosstabs_data, footer_data, cellfunc)
     numeric_cols_def <- column_defs$numeric_cols_def
@@ -1633,7 +1648,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     }
 
     nested <- nested %>%
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      rename(
+        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        "Other" = "9"
+      )
   }
 
   if (countinput == "subject_name") {
@@ -1901,9 +1921,19 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
     YAGtext <- "ten years"
   }
 
+  if (countinput == "FSM") {
+    counttext <- "FSM status"
+  } else if (countinput == "prior_attainment") {
+    counttext <- "prior attainment"
+  } else if (countinput == "current_region") {
+    counttext <- "current region"
+  } else if (countinput == "ethnicity") {
+    counttext <- "ethnicity"
+  }
+
 
   if (countinput %in% c("FSM", "prior_attainment")) {
-    crosstab_title <- paste("<h4>Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
+    crosstab_title <- paste("<h4>Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
                           graduation, young (under 21 at start of course) male and female first degree
                           graduates from English HEIs, APs and FECs, 2018/19 tax year.</h4>",
       sep = ""
@@ -1919,7 +1949,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   }
 
   if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of", subjecttext, "by qualification,", YAGtext, " after
+    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification, ", YAGtext, " after
                           graduation, male and female graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
@@ -1927,7 +1957,7 @@ crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
   }
 
   if (countinput %in% c("current_region", "ethnicity")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
+    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
                           graduation, male and female first degree graduates from English HEIs, APs and FECs,
                             2018/19 tax year.</h4>",
       sep = ""
