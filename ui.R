@@ -617,7 +617,7 @@ fluidPage(
           conditionalPanel(
             condition = "input.countinput3 != 'SECTIONNAME'",
             selectizeInput("groupinput",
-              label = "View 3-digit SIC groups within the selected industry",
+              label = "View 3 digit SIC groups within the selected industry",
               choices = unique(c("All", sort(industry_groups$group_name))),
               selected = "All", multiple = FALSE
             )

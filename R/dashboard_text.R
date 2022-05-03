@@ -47,7 +47,7 @@ sub_by_ind_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
     2018/19 tax year. The tables show which industries graduates of the selected subject area go on to work in.
-    You can expand the industry sections in these tables to view a more detailed breakdown of the 3-digit SIC groups
+    You can expand the industry sections in these tables to view a more detailed breakdown of the 3 digit SIC groups
     within that industry. The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -68,7 +68,7 @@ ind_by_sub_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
     2018/19 tax year. The tables show which subjects graduates working in a selected industry area previously studied.
-    You can view this at the 3-digit SIC group level and may select multiple SIC groups within an industry area at one time.
+    You can view this at the 3 digit SIC group level and may select multiple SIC groups within an industry area at one time.
     The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -104,10 +104,10 @@ sic_groups_text <- function() {
     ),
     h3("SIC Groups and sections"),
     "Using the Office of National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
-    at the five digit level, which are then grouped hierarchically at the four, three and two digit level before being grouped into
+    at the 5 digit level, which are then grouped hierarchically at the 4, 3 and 2 digit level before being grouped into
     21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis
     are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
-    SIC groups available to view at the three digit level by expanding the broad sections which consist of the following:",
+    SIC groups available to view at the 3 digit level by expanding the broad sections which consist of the following:",
     br(),
     br(),
     tags$ol(
