@@ -18,11 +18,11 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
   } else if (countinput == "ethnicity") {
     counttext <- "ethnicity"
   }
-  
-  if (groupinput == 'All') {
-    grouptext <- ''
+
+  if (groupinput == "All") {
+    grouptext <- ""
   } else {
-    grouptext <- paste(' in ', groupinput,', ', sep = '')
+    grouptext <- paste(" in ", groupinput, ", ", sep = "")
   }
 
 
