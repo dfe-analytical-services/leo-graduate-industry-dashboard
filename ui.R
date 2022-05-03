@@ -18,7 +18,7 @@ fluidPage(
   ),
 
   # Set title for search engines
-  HTML("<title>Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19</title>"),
+  HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</title>"),
 
   # Navbar ====================================================================
 
