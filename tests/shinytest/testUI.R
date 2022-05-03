@@ -1,13 +1,13 @@
-clean_json <- function(file, parent_script = "testUI",basedir='./',iteration='current') {
+clean_json <- function(file, parent_script = "testUI", basedir = "./", iteration = "current") {
   # Reactable outputs some random keys as part of its table rendering, which snag
   # in shinytest when run across different machines. There's probably a way to fix
   # fix this in shinytest itself, but I gave up on trying and did a post-process
   # fix instead.
-  filepath <- paste0(basedir,parent_script, "-",iteration,"/", file)
+  filepath <- paste0(basedir, parent_script, "-", iteration, "/", file)
   shinytest_json <- readr::read_lines(filepath)
   for (i in 1:length(shinytest_json)) {
     shinytest_json[i] <- gsub('ey\": \".*\"', 'ey\": "random_key"', shinytest_json[i])
-    shinytest_json[i] <- gsub('\r\n', '\n', shinytest_json[i])
+    shinytest_json[i] <- gsub("\r\n", "\n", shinytest_json[i])
   }
   readr::write_lines(shinytest_json, filepath)
 }
