@@ -48,12 +48,7 @@ col_formats <- function(data, footer_data, colformat, minWidth = NULL) {
         round_any(sum(footer_data[column]), 5),
         big.mark = ",", scientific = FALSE, na.m = T
       ),
-<<<<<<< HEAD
       minWidth = minWidth
-=======
-      minWidth=minWidth
-
->>>>>>> 1fc04e7e9cec343160507facfb01265833a732b5
     ))
   }
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
