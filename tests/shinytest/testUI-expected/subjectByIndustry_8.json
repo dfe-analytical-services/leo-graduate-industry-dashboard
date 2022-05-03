@@ -1,0 +1,22 @@
+{
+  "input": {
+    "countinput2": "ethnicity",
+    "crosstabs.subjectinput": "English studies",
+    "earningsbutton": "Proportions",
+    "navbar": "subjectByIndustry",
+    "qualinput3": "Level 8",
+    "YAGinput2": "1"
+  },
+  "output": {
+    "crosstab": {
+      "message": "could not find function \"crosstabs_table\"",
+      "call": [
+        "crosstabs_table(reactiveSubjbyIndGroupedData, input$crosstabs.subjectinput, ",
+        "    input$YAGinput2, input$countinput2, input$qualinput3, input$earningsbutton)"
+      ],
+      "type": null
+    },
+    "crosstab_text": "For first degree graduates of English studies, 1 years after graduation, <b> Administrative and support service activities <\/b> was the most common industry for    and White  ethnicity graduates,\n                      <b> Professional, scientific and technical activities <\/b> was the most common industry for    and Black  ethnicity graduates, <b> Not known <\/b> was the most common industry for    and Asian  ethnicity graduates, <b> Accommodation and food service activities <\/b> was the most common industry for    and Mixed  ethnicity graduates, <b> Manufacturing <\/b> was the most common industry for    and Other  ethnicity graduates, and <b> Information and communication <\/b> was the most common industry for    and Not known  ethnicity graduates.<br/><br/>The industry with the largest range in proportions was <b>Information and communication<\/b>\n                           where Not known ethnicity graduates had the highest proportion and Asian\n                           ethnicity graduates had the lowest proportion.The industry with the largest range in median earnings was <b>Education<\/b>\n                           where Mixed ethnicity graduates the highest median earnings (<b>£27,300<\/b>) and Black ethnicity graduates had the lowest median earnings (<b>£23,500<\/b>).The group with the highest median earnings was <b>Mixed<\/b> ethnicity graduates in\n                           the <b>Education<\/b> industry (median earnings of <b>£27,300<\/b>).<br/><br/>",
+    "crosstab_title": "<h4> Industry of graduate employment for graduates of English studies by ethnicity, one year after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>"
+  }
+}
