@@ -18,7 +18,7 @@ fluidPage(
   ),
 
   # Set title for search engines
-  HTML("<title>Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19</title>"),
+  HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</title>"),
 
   # Navbar ====================================================================
 
@@ -47,7 +47,7 @@ fluidPage(
         fluidRow(
           column(
             12,
-            h1("Longitudinal Education Outcomes: Graduate Industry, Tax year 2018-19"),
+            h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
             welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
@@ -366,6 +366,14 @@ fluidPage(
                 your mouse over a bar or flow line to see the number of
                 graduates it represents."
                 ),
+                column(
+                  6,
+                  "Region of study"
+                ),
+                column(6, div(
+                  "Current region",
+                  style = "text-align: right"
+                )),
                 withSpinner(sankeyNetworkOutput("regional_sankey")),
                 br(),
                 br()

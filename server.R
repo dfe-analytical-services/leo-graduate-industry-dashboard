@@ -207,7 +207,7 @@ server <- function(input, output, session) {
 
 
   output$backwards_crosstab_title <- renderText({
-    backwards_crosstab_title(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4)
+    backwards_crosstab_title(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$groupinput)
   })
 
   output$sankeyhelp <- renderText({
