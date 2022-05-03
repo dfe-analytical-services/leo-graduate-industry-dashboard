@@ -1,6 +1,4 @@
-
-
-col_formats <- function(data, footer_data, cellfunc) {
+col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   max <- data %>%
     ungroup() %>%
     select(-c(group_name, SECTIONNAME)) %>%
@@ -41,11 +39,13 @@ col_formats <- function(data, footer_data, cellfunc) {
 
     numeric_cols_def_nested[column] <- list(colDef(
       na = "x", style = JS(script), cell = cellfunc,
+      minWidth = minWidth
     ))
 
     numeric_cols_def[column] <- list(colDef(
       na = "x", style = JS(script), cell = cellfunc,
-      footer = format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+      footer = format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T),
+      minWidth = minWidth
     ))
   }
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
@@ -1713,7 +1713,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       select(-All)
 
-    column_defs <- col_formats(crosstabs_data, footer_data, cellfunc)
+    column_defs <- col_formats(crosstabs_data, footer_data, cellfunc, minWidth = 320)
     numeric_cols_def <- column_defs$numeric_cols_def
     numeric_cols_def_nested <- column_defs$numeric_cols_def_nested
     script <- column_defs$script
@@ -1861,8 +1861,17 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested <- nested %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
   }
+  return(list(
+    crosstabs_data = crosstabs_data,
+    footer_crosstabs = footer_data,
+    nested_crosstabs = nested,
+    numeric_cols_def = numeric_cols_def,
+    nested_numeric_cols_def = numeric_cols_def_nested,
+    script = script
+  ))
+}
 
-
+crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeric_cols_def_nested, script) {
   coldefs <- list(
     SECTIONNAME = colDef(na = "x", name = "Industry", width = 500, footer = "TOTAL (N)"),
     group_name = colDef(na = "x", name = "3 digit SIC code", width = 300, footer = "TOTAL (N)")
@@ -1873,7 +1882,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
   )
 
   nested_groups <- function(index) {
-    nested <- nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
+    nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
     htmltools::div(
       style = "padding: 16px",
       reactable(nested,

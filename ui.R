@@ -504,7 +504,7 @@ fluidPage(
           ### Download data ---------------------------------------------------
 
           helpText("Download the current table as a csv"),
-          shinyGovstyle::button_Input(inputId = "downloadData", label = "Download table"),
+          downloadButton("downloadData", "Download table"),
           br(),
           br()
         ),
@@ -558,7 +558,7 @@ fluidPage(
           ### Degree input ----------------------------------------------------
 
           conditionalPanel(
-            condition = "input.countinput3 == 'sex' || input.countinput3 == 'SECTIONNAME'",
+            condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
             selectInput("qualinput4",
               label = "Select qualification level",
               choices = list(
