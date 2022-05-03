@@ -47,7 +47,7 @@ fluidPage(
         fluidRow(
           column(
             12,
-            h1("Longitudinal Education Outcomes: Graduate Industry (LEO), Tax year 2018-19"),
+            h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
             welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
