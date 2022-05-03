@@ -544,8 +544,8 @@
 
       ]
     },
-    "sankey_title": "<h3>Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  female Level 8 graduates from English HEIs, APs and FECs, 2018/19 tax year<\/h3>",
-    "sankeytext1": "For female, Level 8 graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Education (17.3%)<\/b>, and at five years after graduation it is <b>Professional, scientific and technical activities (11%)<\/b>.",
+    "sankey_title": "<h3>Industry of graduate employment for 2012/13 academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  female level 8 graduates from English HEIs, APs and FECs, 2018/19 tax year<\/h3>",
+    "sankeytext1": "For female, level 8 graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Education (17.3%)<\/b>, and at five years after graduation it is <b>Professional, scientific and technical activities (11%)<\/b>.",
     "sankeytext2": "The most movement between one and three years after graduation is seen for <b> Education <\/b>, where <\/b> 7,240  graduates move to <b> Other <\/b>. Between three and five\n                       years after graduation it's seen for <b> Other <\/b> where <b> 7,960 <\/b> graduates moved to <b> Professional, scientific and technical activities <\/b>."
   }
 }
