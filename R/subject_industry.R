@@ -1,4 +1,4 @@
-col_formats <- function(data, footer_data, cellfunc,minWidth=NULL) {
+col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   max <- data %>%
     ungroup() %>%
     select(-c(group_name, SECTIONNAME)) %>%
@@ -36,12 +36,12 @@ col_formats <- function(data, footer_data, cellfunc,minWidth=NULL) {
               }
               return { color: color, backgroundColor: bg}
           }", sep = "")
-    
+
     numeric_cols_def_nested[column] <- list(colDef(
       na = "x", style = JS(script), cell = cellfunc,
       minWidth = minWidth
     ))
-    
+
     numeric_cols_def[column] <- list(colDef(
       na = "x", style = JS(script), cell = cellfunc,
       footer = format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T),
