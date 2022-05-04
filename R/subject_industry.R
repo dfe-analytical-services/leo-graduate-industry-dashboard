@@ -1887,7 +1887,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
   crosstab <- reactable(crosstabs_data,
     details = nested_groups,
     defaultPageSize = 22, showSortable = TRUE, columns = c(coldefs, numeric_cols_def),
-    defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+    defaultColDef = colDef(footerStyle = list(fontWeight = "bold")), height = 600
   )
 
   return(crosstab)
