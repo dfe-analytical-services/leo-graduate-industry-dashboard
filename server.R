@@ -202,37 +202,37 @@ server <- function(input, output, session) {
   # Download current Subject by Industry view
   output$downloadData <- downloadHandler(
     filename = function() {
-        prefix <- "DfE_LEO-SIC"
-        suffix <- "SubjectbyIndustry.csv"
-        if (input$countinput2 == "subject_name") {
-          paste(prefix,
-            gsub(" ", "-", input$earningsbutton),
-            input$countinput2,
-            paste0(input$YAGinput2, "YAG"),
-            gsub(" ", "-", input$qualinput3),
-            suffix,
-            sep = "_"
-          )
-        } else if (input$countinput2 == "sex") {
-          paste(prefix,
-            gsub(" ", "-", input$earningsbutton),
-            input$countinput2,
-            paste0(input$YAGinput2, "YAG"),
-            gsub(" ", "-", input$qualinput3),
-            input$crosstabs.subjectinput,
-            suffix,
-            sep = "_"
-          )
-        } else {
-          paste(prefix,
-            gsub(" ", "-", input$earningsbutton),
-            input$countinput2,
-            paste0(input$YAGinput2, "YAG"),
-            input$crosstabs.subjectinput,
-            suffix,
-            sep = "_"
-          )
-        }
+      prefix <- "DfE_LEO-SIC"
+      suffix <- "SubjectbyIndustry.csv"
+      if (input$countinput2 == "subject_name") {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton),
+          input$countinput2,
+          paste0(input$YAGinput2, "YAG"),
+          gsub(" ", "-", input$qualinput3),
+          suffix,
+          sep = "_"
+        )
+      } else if (input$countinput2 == "sex") {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton),
+          input$countinput2,
+          paste0(input$YAGinput2, "YAG"),
+          gsub(" ", "-", input$qualinput3),
+          input$crosstabs.subjectinput,
+          suffix,
+          sep = "_"
+        )
+      } else {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton),
+          input$countinput2,
+          paste0(input$YAGinput2, "YAG"),
+          input$crosstabs.subjectinput,
+          suffix,
+          sep = "_"
+        )
+      }
     },
     content = function(file) {
       table_data <- reactiveSubjIndTable()
