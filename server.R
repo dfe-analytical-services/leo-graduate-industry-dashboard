@@ -202,10 +202,9 @@ server <- function(input, output, session) {
   # Download current Subject by Industry view
   output$downloadData <- downloadHandler(
     filename = function() {
-      filename <- function() {
         prefix <- "DfE_LEO-SIC"
         suffix <- "SubjectbyIndustry.csv"
-        if (input$countinput3 == "subject_name") {
+        if (input$countinput2 == "subject_name") {
           paste(prefix,
             gsub(" ", "-", input$earningsbutton),
             input$countinput2,
@@ -214,7 +213,7 @@ server <- function(input, output, session) {
             suffix,
             sep = "_"
           )
-        } else if (input$countinput3 == "sex") {
+        } else if (input$countinput2 == "sex") {
           paste(prefix,
             gsub(" ", "-", input$earningsbutton),
             input$countinput2,
@@ -234,7 +233,6 @@ server <- function(input, output, session) {
             sep = "_"
           )
         }
-      }
     },
     content = function(file) {
       table_data <- reactiveSubjIndTable()
