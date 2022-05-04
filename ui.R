@@ -214,6 +214,7 @@ fluidPage(
             tabPanel(
               "Industry proportions table",
               withSpinner(reactableOutput("sankey_table")),
+              footnotes_box(),
               height = 1500
             )
           ),
