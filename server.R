@@ -202,34 +202,37 @@ server <- function(input, output, session) {
   # Download current Subject by Industry view
   output$downloadData <- downloadHandler(
     filename = function() {
-      filename = function() {
+      filename <- function() {
         prefix <- "DfE_LEO-SIC"
         suffix <- "SubjectbyIndustry.csv"
-        if(input$countinput3=='subject_name'){
+        if (input$countinput3 == "subject_name") {
           paste(prefix,
-                gsub(" ", "-", input$earningsbutton),
-                input$countinput2, 
-                paste0(input$YAGinput2, "YAG"), 
-                gsub(" ", "-", input$qualinput3), 
-                suffix,
-                sep = "_")
-        } else if(input$countinput3 == "sex") {
+            gsub(" ", "-", input$earningsbutton),
+            input$countinput2,
+            paste0(input$YAGinput2, "YAG"),
+            gsub(" ", "-", input$qualinput3),
+            suffix,
+            sep = "_"
+          )
+        } else if (input$countinput3 == "sex") {
           paste(prefix,
-                gsub(" ", "-", input$earningsbutton),
-                input$countinput2, 
-                paste0(input$YAGinput2, "YAG"), 
-                gsub(" ", "-", input$qualinput3), 
-                input$crosstabs.subjectinput,
-                suffix,
-                sep = "_")
+            gsub(" ", "-", input$earningsbutton),
+            input$countinput2,
+            paste0(input$YAGinput2, "YAG"),
+            gsub(" ", "-", input$qualinput3),
+            input$crosstabs.subjectinput,
+            suffix,
+            sep = "_"
+          )
         } else {
           paste(prefix,
-                gsub(" ", "-", input$earningsbutton),
-                input$countinput2, 
-                paste0(input$YAGinput2, "YAG"), 
-                input$crosstabs.subjectinput,
-                suffix,
-                sep = "_")
+            gsub(" ", "-", input$earningsbutton),
+            input$countinput2,
+            paste0(input$YAGinput2, "YAG"),
+            input$crosstabs.subjectinput,
+            suffix,
+            sep = "_"
+          )
         }
       }
     },
@@ -276,39 +279,42 @@ server <- function(input, output, session) {
     filename = function() {
       prefix <- "DfE_LEO-SIC"
       suffix <- "IndustrybySubject.csv"
-      if(input$countinput3=='SECTIONNAME'){
+      if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
-              gsub(" ", "-", input$earningsbutton2),
-              "industry", 
-              paste0(input$YAGinput3, "YAG"), 
-              suffix,
-              sep = "_")
-      } else if(input$countinput3 == "sex") {
+          gsub(" ", "-", input$earningsbutton2),
+          "industry",
+          paste0(input$YAGinput3, "YAG"),
+          suffix,
+          sep = "_"
+        )
+      } else if (input$countinput3 == "sex") {
         paste(prefix,
-              gsub(" ", "-", input$earningsbutton2),
-              input$countinput3, 
-              paste0(input$YAGinput3, "YAG"), 
-              gsub(" ", "-", input$qualinput4), 
-              input$sectionnameinput2,
-              input$groupinput,
-              suffix,
-              sep = "_")
+          gsub(" ", "-", input$earningsbutton2),
+          input$countinput3,
+          paste0(input$YAGinput3, "YAG"),
+          gsub(" ", "-", input$qualinput4),
+          input$sectionnameinput2,
+          input$groupinput,
+          suffix,
+          sep = "_"
+        )
       } else {
         paste(prefix,
-              gsub(" ", "-", input$earningsbutton2),
-              input$countinput3, 
-              paste0(input$YAGinput3, "YAG"), 
-              input$sectionnameinput2,
-              input$groupinput,
-              suffix,
-              sep = "_")
+          gsub(" ", "-", input$earningsbutton2),
+          input$countinput3,
+          paste0(input$YAGinput3, "YAG"),
+          input$sectionnameinput2,
+          input$groupinput,
+          suffix,
+          sep = "_"
+        )
       }
     },
     content = function(file) {
       table_data <- reactiveIndSubjTable()
-      
+
       out_columns <- colnames(table_data$data)
-      
+
       footsum <- table_data$footer %>%
         select(-subject_name) %>%
         summarise_all(sum) %>%
@@ -320,7 +326,7 @@ server <- function(input, output, session) {
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )
-  
+
 
   output$crosstab_title <- renderText({
     crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)

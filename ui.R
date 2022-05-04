@@ -639,14 +639,13 @@ fluidPage(
             ),
             selected = "sex"
           ),
-          
+
           ### Download data ---------------------------------------------------
-          
+
           helpText("Download the current table as a csv"),
           downloadButton("IndSubjDownload", "Download table"),
           br(),
           br()
-
         ), # end of sidebar
 
         ## Main panel =========================================================

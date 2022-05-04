@@ -747,7 +747,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer = footer_data,
     coldefs = coldefs
   ))
-}  
+}
 
 indsubj_reactable <- function(data, coldefs) {
   crosstab <- reactable(data,
