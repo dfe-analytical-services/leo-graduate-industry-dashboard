@@ -94,7 +94,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
           select(-subject_name), na.rm = T) - min(data %>%
           select(-subject_name), na.rm = T))
       color <- orange_pal(normalized)
-      list(background = color)
+      list(color = "#000000", background = color)
     }
   }
 
