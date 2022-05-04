@@ -202,9 +202,9 @@ server <- function(input, output, session) {
   # Download current Subject by Industry view
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste(input$crosstabs.subjectinput,
-        input$YAGinput2, "YAG", input$countinput2,
-        gsub(" ", "-", input$earningsbutton), "LEO_SIC.csv",
+      paste("DfE_LEO-SIC",input$crosstabs.subjectinput,
+            input$YAGinput2, "YAG", input$countinput2,
+            gsub(" ", "-", input$earningsbutton), "SubjectbyIndustry.csv",
         sep = "_"
       )
     },
@@ -229,15 +229,54 @@ server <- function(input, output, session) {
     }
   )
 
+  ### IndSubj panel server code
+  #############################
 
+  # Create the reactive Industry by Subject data in a data frame
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)
   })
 
+  # Render the reactive industry by subject data frame into a ReacTable element.
   output$crosstab_backwards <- renderReactable({
-    reactiveIndSubjTable()
+    table_data <- reactiveIndSubjTable()
+    indsubj_reactable(
+      table_data$data,
+      table_data$coldefs
+    )
   })
 
+  # Download the reactive industry by subject data.
+  output$IndSubjDownload <- downloadHandler(
+    filename = function() {
+      paste("DfE_LEO-SIC",
+            gsub(" ", "-", input$earningsbutton2),
+            input$countinput3, 
+            paste0(input$YAGinput3, "YAG"), 
+            gsub(" ", "-", input$qualinput4), 
+            input$sectionnameinput2,
+            input$groupinput,
+            "IndustrybySubject.csv",
+            sep = "_"
+      )
+    },
+    content = function(file) {
+      table_data <- reactiveIndSubjTable()
+      
+      out_columns <- colnames(table_data$data)
+      
+      footsum <- table_data$footer %>%
+        select(-subject_name) %>%
+        summarise_all(sum) %>%
+        mutate(subject_name = "TOTAL (N)") %>%
+        select(out_columns)
+      dfDownload <- table_data$data %>%
+        arrange(subject_name) %>%
+        rbind(footsum)
+      write.csv(dfDownload, file, row.names = FALSE)
+    }
+  )
+  
 
   output$crosstab_title <- renderText({
     crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)

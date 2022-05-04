@@ -969,8 +969,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 }
 
 
-# 2. Function to create the crosstabs table.
-# ==========================================
+# 2. Function to create the crosstabs data frame
+# ==============================================
 crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, qualinput, buttoninput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "Not known"
   tables_data$group_name[is.na(tables_data$group_name) == TRUE] <- "Not known"
