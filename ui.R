@@ -663,7 +663,6 @@ fluidPage(
 
     tabPanel(
       "Accessibility",
-      warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
 
