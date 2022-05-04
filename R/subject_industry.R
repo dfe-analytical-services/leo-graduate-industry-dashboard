@@ -1882,7 +1882,7 @@ crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeri
   )
 
   nested_groups <- function(index) {
-    nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
+    nested <- nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
     htmltools::div(
       style = "padding: 16px",
       reactable(nested,
