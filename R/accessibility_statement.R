@@ -30,7 +30,6 @@ accessibility_statement <- function() {
       tags$li("Keyboard navigation through the interactive charts is currently limited, and only some feaut"),
       tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
     )),
-
     h3("Feedback and contact information"),
     "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille or
       if you have any feedback on how we could further improve the accessibility of this application, please contact us at ",
