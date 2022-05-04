@@ -331,7 +331,7 @@ fluidPage(
                 div(
                   # Set as well but override sidebar defaults
                   class = "well",
-                  style = "height: 100%; overflow-y: visible",
+                  style = "min-height: 100%; height: 100%; overflow-y: visible",
                   div(selectInput("countinput",
                     label = "Select which statistic to view in the map below",
                     choices = list(
