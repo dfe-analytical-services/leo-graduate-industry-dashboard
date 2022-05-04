@@ -10,7 +10,7 @@ caveats_box <- function() {
       br(),
       "\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100.",
       br(),
-      "\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"
+      "\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)."
     )
   )
 }
