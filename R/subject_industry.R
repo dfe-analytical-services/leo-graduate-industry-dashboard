@@ -26,10 +26,10 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
               var min = ", min(max, na.rm = TRUE), "
               // pct_value = (value - min) * 100 / (max - min)
               pct_value = (Math.min(value, max) - min) * 100 / (max - min)
-              // If value equals 0, set font color grey.
-              if (value == 0) {
-                var color = '#F7FBFF'
-                var bg = '#F7FBFF'
+              // If value equals 0, set background to white.
+              if (value < 0.001) {
+                var color = '#000000'
+                var bg = '#FFFFFF'
               } else {
                 var color = '#000000'
                 var bg = hslToHex(209, 59, 100 - pct_value / 2)
