@@ -202,11 +202,36 @@ server <- function(input, output, session) {
   # Download current Subject by Industry view
   output$downloadData <- downloadHandler(
     filename = function() {
-      paste("DfE_LEO-SIC",input$crosstabs.subjectinput,
-            input$YAGinput2, "YAG", input$countinput2,
-            gsub(" ", "-", input$earningsbutton), "SubjectbyIndustry.csv",
-        sep = "_"
-      )
+      filename = function() {
+        prefix <- "DfE_LEO-SIC"
+        suffix <- "SubjectbyIndustry.csv"
+        if(input$countinput3=='subject_name'){
+          paste(prefix,
+                gsub(" ", "-", input$earningsbutton),
+                input$countinput2, 
+                paste0(input$YAGinput2, "YAG"), 
+                gsub(" ", "-", input$qualinput3), 
+                suffix,
+                sep = "_")
+        } else if(input$countinput3 == "sex") {
+          paste(prefix,
+                gsub(" ", "-", input$earningsbutton),
+                input$countinput2, 
+                paste0(input$YAGinput2, "YAG"), 
+                gsub(" ", "-", input$qualinput3), 
+                input$crosstabs.subjectinput,
+                suffix,
+                sep = "_")
+        } else {
+          paste(prefix,
+                gsub(" ", "-", input$earningsbutton),
+                input$countinput2, 
+                paste0(input$YAGinput2, "YAG"), 
+                input$crosstabs.subjectinput,
+                suffix,
+                sep = "_")
+        }
+      }
     },
     content = function(file) {
       table_data <- reactiveSubjIndTable()
@@ -249,16 +274,35 @@ server <- function(input, output, session) {
   # Download the reactive industry by subject data.
   output$IndSubjDownload <- downloadHandler(
     filename = function() {
-      paste("DfE_LEO-SIC",
-            gsub(" ", "-", input$earningsbutton2),
-            input$countinput3, 
-            paste0(input$YAGinput3, "YAG"), 
-            gsub(" ", "-", input$qualinput4), 
-            input$sectionnameinput2,
-            input$groupinput,
-            "IndustrybySubject.csv",
-            sep = "_"
-      )
+      prefix <- "DfE_LEO-SIC"
+      suffix <- "IndustrybySubject.csv"
+      if(input$countinput3=='SECTIONNAME'){
+        paste(prefix,
+              gsub(" ", "-", input$earningsbutton2),
+              "industry", 
+              paste0(input$YAGinput3, "YAG"), 
+              suffix,
+              sep = "_")
+      } else if(input$countinput3 == "sex") {
+        paste(prefix,
+              gsub(" ", "-", input$earningsbutton2),
+              input$countinput3, 
+              paste0(input$YAGinput3, "YAG"), 
+              gsub(" ", "-", input$qualinput4), 
+              input$sectionnameinput2,
+              input$groupinput,
+              suffix,
+              sep = "_")
+      } else {
+        paste(prefix,
+              gsub(" ", "-", input$earningsbutton2),
+              input$countinput3, 
+              paste0(input$YAGinput3, "YAG"), 
+              input$sectionnameinput2,
+              input$groupinput,
+              suffix,
+              sep = "_")
+      }
     },
     content = function(file) {
       table_data <- reactiveIndSubjTable()
