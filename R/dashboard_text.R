@@ -6,7 +6,7 @@ welcome_text <- function() {
   div(
     h2("Welcome"),
     "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
-    LEO data using the IDBR (Inter-Departmental Business Register data) for the 2018/19 tax year at one, three,
+    LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
     five and ten years after graduation. This means we can now see what industry graduates were working in
     at these points in time. For more detail see our ",
     a(
