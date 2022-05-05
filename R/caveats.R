@@ -8,7 +8,7 @@ caveats_box_flow <- function() {
       br(),
       "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us about the graduates occupation within that company.",
       br(),
-      "\U2022 For a graduate to be included in this chart they must have been employed at either both one and three years after graduation, or both three and five years after graduation. this is the reason for differences seen when comparing to the five year after graduation cohort in the tables tabs."
+      "\U2022 For a graduate to be included in this chart they must have been in sustained employment at either both one and three years after graduation, or both three and five years after graduation. this is the reason for differences seen when comparing to the five year after graduation cohort in the tables tabs."
      
     )
   )
