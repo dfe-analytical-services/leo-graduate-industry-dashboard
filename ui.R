@@ -67,7 +67,10 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand how well different industries retain graduates!",
+                    h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
+                  ),
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
                   h3(actionLink("link_to_regional_tab", "Regional analysis")),
@@ -79,7 +82,7 @@ fluidPage(
                   ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
-            ), 
+            ),
           ),
 
           ## Right panel ------------------------------------------------------
