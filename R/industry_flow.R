@@ -152,9 +152,9 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
       "value",
       funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
     )
-  
+
   # Force a space between node names and values
-  nodes$name <- paste(nodes$name, ' ')
+  nodes$name <- paste(nodes$name, " ")
 
   plot <- sankeyNetwork(
     Links = links, Nodes = nodes,

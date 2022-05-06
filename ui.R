@@ -79,7 +79,7 @@ fluidPage(
                   ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
-            ),div(
+            ), div(
               div(
                 class = "panel panel-info",
                 div(
@@ -88,7 +88,6 @@ fluidPage(
                 )
               )
             ),
-            
           ),
 
           ## Right panel ------------------------------------------------------
@@ -434,7 +433,7 @@ fluidPage(
               withSpinner(reactableOutput("maptable")),
               br(),
               strong("Please note that the table only shows results for the selected industry, subject and year after graduation."),
-              br(),br(),
+              br(), br(),
               strong("Footnotes"),
               br(),
               paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
