@@ -13,7 +13,7 @@ read_cohort <- function(cohortfile = "data/pg_sankey_data_1_3_yag_dummy.csv") {
 
 # Read in tables data.
 read_tables_data <- function(file) {
-  tables_data <- fread(file) %>% select(-V1) 
+  tables_data <- fread(file) %>% select(-V1)
   names(tables_data) <- c(
     "X", "YAG", "subject_name", "SECTIONNAME", "sex",
     "ethnicity", "current_region", "FSM", "prior_attainment",
