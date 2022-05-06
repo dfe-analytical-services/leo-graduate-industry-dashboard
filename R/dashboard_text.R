@@ -6,7 +6,7 @@ welcome_text <- function() {
   div(
     h2("Welcome"),
     "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
-    LEO data using the IDBR (Inter-Departmental Business Register data) for the 2018/19 tax year at one, three,
+    LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
     five and ten years after graduation. This means we can now see what industry graduates were working in
     at these points in time. For more detail see our ",
     a(
@@ -14,7 +14,8 @@ welcome_text <- function() {
       "official statistics publication on Graduate Outcomes",
       .noWS = c("after")
     ),
-    ".",
+    ".", br(), br(),
+    "This dashboard has been produced by the Department for Education to support the aims of the", strong("Unit for Future Skills."),
   )
 }
 
@@ -47,7 +48,7 @@ sub_by_ind_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
     2018/19 tax year. The tables show which industries graduates of the selected subject area go on to work in.
-    You can expand the industry sections in these tables to view a more detailed breakdown of the 3-digit SIC groups
+    You can expand the industry sections in these tables to view a more detailed breakdown of the 3 digit SIC groups
     within that industry. The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -68,7 +69,7 @@ ind_by_sub_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
     2018/19 tax year. The tables show which subjects graduates working in a selected industry area previously studied.
-    You can view this at the 3-digit SIC group level and may select multiple SIC groups within an industry area at one time.
+    You can view this at the 3 digit SIC group level and may select multiple SIC groups within an industry area at one time.
     The following breakdowns are currently available:",
     br(),
     tags$ul(
@@ -100,14 +101,14 @@ sic_groups_text <- function() {
     br(),
     a(
       href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
-      "Office of National Statistics interactive SIC hierarchy"
+      "Office for National Statistics interactive SIC hierarchy"
     ),
     h3("SIC Groups and sections"),
-    "Using the Office of National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
-    at the five digit level, which are then grouped hierarchically at the four, three and two digit level before being grouped into
+    "Using the Office for National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
+    at the 5 digit level, which are then grouped hierarchically at the 4, 3 and 2 digit level before being grouped into
     21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis
     are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
-    SIC groups available to view at the three digit level by expanding the broad sections which consist of the following:",
+    SIC groups available to view at the 3 digit level by expanding the broad sections which consist of the following:",
     br(),
     br(),
     tags$ol(

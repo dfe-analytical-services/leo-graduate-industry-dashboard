@@ -3297,6 +3297,7 @@
             "showPageInfo": true,
             "minRows": 1,
             "showSortable": true,
+            "height": "600px",
             "dataKey": "random_key",
             "key": "random_key"
           },
