@@ -14,7 +14,8 @@ welcome_text <- function() {
       "official statistics publication on Graduate Outcomes",
       .noWS = c("after")
     ),
-    ".",
+    ".",br(),br(),
+    "This dashboard has been produced by the Department for Education to support the aims of the", strong("Unit for Future Skills."),
   )
 }
 

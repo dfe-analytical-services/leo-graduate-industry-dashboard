@@ -22,6 +22,8 @@ support_links <- function() {
     "The source code for this dashboard is available in our ",
     a(href = "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard", "GitHub repository", .noWS = c("after")),
     ".",
+    h2("Unit for Future Skills"),
+    "This dashboard has been produced by the Department for Education to support the aims of the Unit for Future Skills",
     br(),
     br(),
     br(),
