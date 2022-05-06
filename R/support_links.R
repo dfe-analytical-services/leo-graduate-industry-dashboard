@@ -15,7 +15,7 @@ support_links <- function() {
     br(),
     h2("Contact us"),
     "If you have questions about the dashboard or data within it, please contact us at ",
-    a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")),br(),
+    a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")), br(),
     "This dashboard has been produced by the Department for Education to support the aims of the Unit for Future Skills",
     ".",
     br(),
