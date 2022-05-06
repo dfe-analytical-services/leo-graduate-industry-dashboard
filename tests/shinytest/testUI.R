@@ -19,7 +19,7 @@ run_set_shinytests <- function(dfinputs, outstring, listrecords) {
   # listrecords: list of input and output variables to record the values of.
   for (i in 1:nrow(dfinputs)) {
     file <- paste0(outstring, "_", i - 1, ".json")
-    eval(parse(text = paste0("app$setInputs(", dfinputs$field[i], '="', dfinputs$value[i], '", wait_ = FALSE, values_ = FALSE)')))
+    eval(parse(text = paste0("app$setInputs(", dfinputs$field[i], '="', dfinputs$value[i], '", timeout_ = 1e+4, values_ = FALSE)')))
     app$snapshot(
       items = listrecords,
       filename = file

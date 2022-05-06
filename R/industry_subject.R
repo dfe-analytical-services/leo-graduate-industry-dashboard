@@ -742,7 +742,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     )
   }
 
-  crosstab <- reactable(crosstabs_data,
+  return(list(
+    data = crosstabs_data,
+    footer = footer_data,
+    coldefs = coldefs
+  ))
+}
+
+indsubj_reactable <- function(data, coldefs) {
+  crosstab <- reactable(data,
     defaultPageSize = 37, showSortable = TRUE, columns = coldefs,
     defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
   )
