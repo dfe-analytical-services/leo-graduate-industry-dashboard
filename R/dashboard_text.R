@@ -100,10 +100,10 @@ sic_groups_text <- function() {
     br(),
     a(
       href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
-      "Office of National Statistics interactive SIC hierarchy"
+      "Office for National Statistics interactive SIC hierarchy"
     ),
     h3("SIC Groups and sections"),
-    "Using the Office of National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
+    "Using the Office for National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
     at the 5 digit level, which are then grouped hierarchically at the 4, 3 and 2 digit level before being grouped into
     21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis
     are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
