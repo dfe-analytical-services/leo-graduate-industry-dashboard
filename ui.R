@@ -79,7 +79,16 @@ fluidPage(
                   ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
+            ),div(
+              div(
+                class = "panel panel-info",
+                div(
+                  class = "panel-body",
+                  strong("This dashboard has been produced by the Department for Education to support the aims of the Unit for Future Skills")
+                )
+              )
             ),
+            
           ),
 
           ## Right panel ------------------------------------------------------
