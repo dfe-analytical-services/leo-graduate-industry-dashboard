@@ -73,12 +73,21 @@ fluidPage(
                   ),
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
-                  h3(actionLink("link_to_regional_tab", "Regional analysis")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which parts of the country graduates move to in order to find roles in particular sectors!",
+                    h3(actionLink("link_to_regional_tab", "Regional analysis"))
+                    ),
                   regional_text(), # defined in R/dashboard_text.R
                   br(),
-                  h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which industries your subject of study can lead to!",
+                    h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
+                    ),
                   sub_by_ind_text(), # defined in R/dashboard_text.R
-                  h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which subject to study to access certain sectors!",
+                    h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
+                    ),
                   ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
