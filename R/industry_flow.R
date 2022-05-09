@@ -5,10 +5,12 @@
 
 sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput) %>%
+    filter(count != 0)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput) %>%
+    filter(count != 0)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
