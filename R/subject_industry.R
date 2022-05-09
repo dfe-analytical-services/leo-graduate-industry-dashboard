@@ -1874,7 +1874,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
 crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeric_cols_def_nested, script) {
   coldefs <- list(
     SECTIONNAME = colDef(na = "x", name = "Industry", width = 500, footer = "TOTAL (N)"),
-    group_name = colDef(na = "x", name = "3 digit SIC code", width = 300, footer = "TOTAL (N)")
+    group_name = colDef(na = "x", name = "3 digit SIC code", width = 300)
   )
   coldefs_nested <- list(
     SECTIONNAME = colDef(na = "x", name = "Industry", width = 500),
