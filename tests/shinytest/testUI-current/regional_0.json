@@ -1,0 +1,14 @@
+{
+  "input": {
+    "navbar": "regional",
+    "qualinput2": "First degree",
+    "regions.subjectinput": "All",
+    "sectionnameinput": "Education",
+    "YAGinput": "5"
+  },
+  "output": {
+    "map_title": "<h4> Map to show the  number of graduates of all subjects now working in Education  who\n                       studied in each region five years  after\n                          graduation, male and female first degree graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "maptext": "For first degree graduates of all subjects in the Education industry five years after graduation, the region where\n                    the most graduates had studied was <b>South East<\/b>. The region where the least graduates\n                    had studied was <b>West Midlands<\/b>. The region where the highest number of graduates lived\n                    5 years after graduation was <b>East of England<\/b> and the region with the\n                    least graduates lived was <b>West Midlands<\/b>.",
+    "maptext2": "For first degree graduates of all subjects in the Education industry, the region with the highest proportionate increase in graduates who studied compared to living in the region five years after graduation was <b>East of England<\/b>, where the number of graduates increased by <b>15.5%<\/b>. The region with the largest decrease is <b>South West<\/b> where the number of graduates decreased by <b>-57.9%<\/b>."
+  }
+}
