@@ -204,7 +204,7 @@ fluidPage(
                 your mouse over a bar or flow line to see the number of
                 graduates it represents. Please note that this chart only displays the
                 top 9 industries and the rest are being grouped automatically into 'Other'. To see
-                the full breakdown of industries please view the Industyr proportions table."
+                the full breakdown of industries please view the Industry proportions table."
               ),
               column(
                 4,
