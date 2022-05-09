@@ -15,16 +15,12 @@ welcome_text <- function() {
       .noWS = c("after")
     ),
     ".", br(), br(),
-    div(
-      div(
-        class = "panel panel-info",
-        div(
-          class = "panel-body",
+    
           "This dashboard has been produced by the Department for Education to support the aims of the", strong("Unit for Future Skills."), # defined in R/dashboard_text.R
-        )
+        
       )
-    )
-  )
+    
+  
 }
 
 # Contents (left panel) ================================================================================
