@@ -277,7 +277,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   # create table
   sankey_table <- reactable(yag_table_final,
-    defaultPageSize = 21, columns = coldefs, showSortable = TRUE,
+    defaultPageSize = 22, columns = coldefs, showSortable = TRUE,
     defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
   )
 }
