@@ -220,7 +220,11 @@ fluidPage(
               ),
               withSpinner(
                 sankeyNetworkOutput(outputId = "sankey", height = 800)
-              )
+              ),
+              br(),
+              strong("Footnotes"),
+              br(),
+              paste("\U2022 Counts have been rounded to the nearest 5."),
             ),
 
             #### Table --------------------------------------------------------
@@ -372,7 +376,13 @@ fluidPage(
                 #    median earnings for the selected industry, subject section and year after graduation."
                 # ),
 
-                withSpinner(leafletOutput(outputId = "map", height = 470))
+                withSpinner(leafletOutput(outputId = "map", height = 470)),
+                br(),
+                strong("Footnotes"),
+                br(),
+                paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+                br(),
+                paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),br(),
               ),
               column(
                 6,
@@ -396,7 +406,7 @@ fluidPage(
                 )),
                 withSpinner(sankeyNetworkOutput("regional_sankey")),
                 br(),
-                br()
+                br(),
               )
             ),
 
