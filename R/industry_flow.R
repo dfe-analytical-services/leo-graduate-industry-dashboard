@@ -5,10 +5,10 @@
 
 sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -58,7 +58,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
   cohort_sankey1 <- cohort_sankey1 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -78,7 +78,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- "Other"
 
   cohort_sankey2 <- cohort_sankey2 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -191,10 +191,10 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
 
 sankey_table <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -298,10 +298,10 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
   }
 
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -383,10 +383,10 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
 
 sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -455,7 +455,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
   cohort_sankey1 <- cohort_sankey1 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -475,7 +475,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- "Other"
 
   cohort_sankey2 <- cohort_sankey2 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -513,7 +513,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 # earnings_text <- function(subjectinput, sexinput){
 #
 #   cohort_earnings1 <- cohort3 %>%
-#     filter(subject_name.x == subjectinput, sex.x == sexinput)
+#     filter(subject_name == subjectinput, sex.x == sexinput)
 #
 #   earnings_text_table <- cohort_earnings1 %>%
 #     arrange(.,-earnings_change_average) %>%
@@ -547,7 +547,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
 earnings_sankey <- function(subjectinput, sexinput, earningsinput) {
   cohort_earnings1 <- cohort3 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
 
   # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
 
@@ -602,7 +602,7 @@ earnings_sankey <- function(subjectinput, sexinput, earningsinput) {
 
 earnings_table <- function(subjectinput, sexinput, earningsinput) {
   cohort_earnings1 <- cohort3 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
 
   total_earnings <- earnings_data %>%
     filter(subject_name == subjectinput, sex == sexinput, SECTIONNAME == earningsinput)
