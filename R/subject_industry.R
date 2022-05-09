@@ -969,8 +969,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 }
 
 
-# 2. Function to create the crosstabs table.
-# ==========================================
+# 2. Function to create the crosstabs data frame
+# ==============================================
 crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, qualinput, buttoninput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "Not known"
   tables_data$group_name[is.na(tables_data$group_name) == TRUE] <- "Not known"
@@ -1882,7 +1882,7 @@ crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeri
   )
 
   nested_groups <- function(index) {
-    nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
+    nested <- nested %>% filter(SECTIONNAME == crosstabs_data$SECTIONNAME[index])
     htmltools::div(
       style = "padding: 16px",
       reactable(nested,
@@ -1896,7 +1896,7 @@ crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeri
   crosstab <- reactable(crosstabs_data,
     details = nested_groups,
     defaultPageSize = 22, showSortable = TRUE, columns = c(coldefs, numeric_cols_def),
-    defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+    defaultColDef = colDef(footerStyle = list(fontWeight = "bold")), height = 600
   )
 
   return(crosstab)

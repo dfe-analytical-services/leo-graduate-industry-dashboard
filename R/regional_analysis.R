@@ -385,6 +385,9 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
     ) %>%
     filter(value != 0)
 
+  # Force a space between node names and values
+  nodes$name <- paste(nodes$name, " ")
+
   plot <- sankeyNetwork(
     Links = links, Nodes = nodes,
     Source = "source", Target = "target",

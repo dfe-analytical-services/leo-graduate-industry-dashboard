@@ -67,15 +67,27 @@ fluidPage(
                 ),
                 div(
                   class = "panel-body",
-                  h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand how well different industries retain graduates!",
+                    h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
+                  ),
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
-                  h3(actionLink("link_to_regional_tab", "Regional analysis")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which parts of the country graduates move to in order to find roles in particular sectors!",
+                    h3(actionLink("link_to_regional_tab", "Regional analysis"))
+                  ),
                   regional_text(), # defined in R/dashboard_text.R
                   br(),
-                  h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which industries your subject of study can lead to!",
+                    h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
+                  ),
                   sub_by_ind_text(), # defined in R/dashboard_text.R
-                  h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables")),
+                  tags$div(
+                    title = "This section is really useful if you want to understand which subject to study to access certain sectors!",
+                    h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
+                  ),
                   ind_by_sub_text(), # defined in R/dashboard_text.R
                 )
               )
@@ -190,7 +202,9 @@ fluidPage(
                 graduation on the left, to three years of graduation in the
                 middle, to five years after graduation on the right side. Hover
                 your mouse over a bar or flow line to see the number of
-                graduates it represents."
+                graduates it represents. Please note that this chart only displays the
+                top 9 industries and the rest are being grouped automatically into 'Other'. To see
+                the full breakdown of industries please view the Industyr proportions table."
               ),
               column(
                 4,
@@ -214,13 +228,19 @@ fluidPage(
             tabPanel(
               "Industry proportions table",
               withSpinner(reactableOutput("sankey_table")),
+              br(),
+              strong("Footnotes"),
+              br(),
+              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              br(),
+              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
               height = 1500
             )
           ),
 
           ### Caveats ---------------------------------------------------------
 
-          caveats_box() # defined in R/caveats.R
+          caveats_box_flow() # defined in R/caveats.R
         ),
       ),
     ),
@@ -416,7 +436,13 @@ fluidPage(
               br(),
               withSpinner(reactableOutput("maptable")),
               br(),
-              strong("Please note that the table only shows results for the selected industry, subject and year after graduation.")
+              strong("Please note that the table only shows results for the selected industry, subject and year after graduation."),
+              br(), br(),
+              strong("Footnotes"),
+              br(),
+              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              br(),
+              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)")
             )
           ),
 
@@ -527,7 +553,12 @@ fluidPage(
           withSpinner(reactableOutput("crosstab")),
 
           ### Caveats ---------------------------------------------------------
-
+          br(),
+          strong("Footnotes"),
+          br(),
+          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          br(),
+          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
@@ -617,7 +648,7 @@ fluidPage(
           conditionalPanel(
             condition = "input.countinput3 != 'SECTIONNAME'",
             selectizeInput("groupinput",
-              label = "View 3-digit SIC groups within the selected industry",
+              label = "View 3 digit SIC groups within the selected industry",
               choices = unique(c("All", sort(industry_groups$group_name))),
               selected = "All", multiple = FALSE
             )
@@ -638,7 +669,14 @@ fluidPage(
               "Qualification level" = "qualification_TR"
             ),
             selected = "sex"
-          )
+          ),
+
+          ### Download data ---------------------------------------------------
+
+          helpText("Download the current table as a csv"),
+          downloadButton("IndSubjDownload", "Download table"),
+          br(),
+          br()
         ), # end of sidebar
 
         ## Main panel =========================================================
@@ -653,7 +691,12 @@ fluidPage(
           withSpinner(reactableOutput("crosstab_backwards")),
 
           ### Caveats ---------------------------------------------------------
-
+          br(),
+          strong("Footnotes"),
+          br(),
+          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          br(),
+          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
