@@ -1,0 +1,14 @@
+{
+  "input": {
+    "navbar": "regional",
+    "qualinput2": "Level 7 (research)",
+    "regions.subjectinput": "All",
+    "sectionnameinput": "Education",
+    "YAGinput": "3"
+  },
+  "output": {
+    "map_title": "<h4> Map to show the  number of graduates of all subjects now working in Education  who\n                       are currently living in each region three years  after\n                          graduation, male and female level 7 (research) graduates from English HEIs, APs and FECs,\n                            2018/19 tax year.<\/h4>",
+    "maptext": "For level 7 (research) graduates of all subjects in the Education industry three years after graduation, the region where\n                    the most graduates had studied was <b>East of England<\/b>. The region where the least graduates\n                    had studied was <b>East Midlands<\/b>. The region where the highest number of graduates lived\n                    3 years after graduation was <b>South East<\/b> and the region with the\n                    least graduates lived was <b>North East<\/b>.",
+    "maptext2": "For level 7 (research) graduates of all subjects in the Education industry, the region with the highest proportionate increase in graduates who studied compared to living in the region three years after graduation was <b>East Midlands<\/b>, where the number of graduates increased by <b>209.8%<\/b>. The region with the largest decrease is <b>North East<\/b> where the number of graduates decreased by <b>-87.9%<\/b>."
+  }
+}
