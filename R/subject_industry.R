@@ -119,14 +119,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
   )
 
   if (countinput == "sex") {
-    print(tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='F',])
-    tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='F','count'] <- 10*max(tables_data_grouped$count,na.rm=TRUE)
-    
-    print(tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='F',])
+    # !!! Set Not known to be top group for testing:
+    tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='M','count'] <- 10*max(tables_data_grouped$count,na.rm=TRUE)
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
       spread(sex, n) %>%
-#      colorders(countinput) %>%
+      colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
@@ -174,20 +173,43 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) %>%
       mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
 
-    ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male),
+    if(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)){
       sectiontext <- paste("graduates is the same for both female and male graduates (<b>", first(crosstabs_data$SECTIONNAME), "</b>). The median
                                 earnings for females in this industry  were <b>£", top_industry$Female, "</b> and for males were <b>£",
         top_industry$Male, "</b>.",
         sep = ""
-      ),
-      sectiontext <- paste("female graduates is <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female), "</b>, and the
-                                median earnings of females in this industry were <b>£", top_industry_female$Female, "</b>. The industry
-                                with the highest proportion of male graduates was <b>",
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male), "</b> and the median earnings of males
-                                in this industry were <b>£", top_industry_male$Male, "</b>.",
-        sep = ""
-      )
-    )
+      )} else{
+        top_section_female <- first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) 
+        if (top_section_female != "Not known"){
+          section_text_female <- paste0("the industry with the highest proportion of female graduates is <b>", 
+            top_section_female, "</b>, and the median earnings of females in this industry were <b>£", 
+            top_industry_female$Female, "</b>.")
+        } else {
+          top_section_female_exclnk <- (crosstabs_data %>% filter(SECTIONNAME != 'Not known') %>% arrange(-Female))[1,]
+          top_earnings_female_exclnk <- crosstabs_earnings_data %>% 
+            filter(SECTIONNAME == top_section_female_exclnk$SECTIONNAME) %>%
+            mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+          section_text_female <- paste0("the group with the highest proportion of female graduates is where the <b>industry is not known</b> and the median earnings of females in this group was <b>£", 
+                  top_industry_female$Female, "</b>. The industry with the highest proportion of female graduates after excluding the Not known category is ",
+                  top_section_female_exclnk$SECTIONNAME, " where the median earnings were <b>£",top_earnings_female_exclnk$Female,"</b>. ")
+        }
+        top_section_male <- first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male) 
+        if (top_section_male != "Not known"){
+          section_text_male <- paste0("The industry with the highest proportion of male graduates was <b>",
+                             top_section_male, 
+                             "</b> and the median earnings of males in this industry were <b>£", 
+                             top_industry_male$Male, "</b>.")
+        } else {
+          top_section_male_exclnk <- (crosstabs_data %>% filter(SECTIONNAME != 'Not known') %>% arrange(-Male))[1,]
+          top_earnings_male_exclnk <- crosstabs_earnings_data %>% 
+            filter(SECTIONNAME == top_section_male_exclnk$SECTIONNAME) %>%
+            mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+          section_text_male <- paste0("The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>£", 
+                                        top_industry_male$Male, "</b>). The industry with the highest proportion of male graduates after excluding the not known category is <b>",
+                                        top_section_male_exclnk$SECTIONNAME, "</b> where the median earnings were <b>£",top_earnings_male_exclnk$Male,"</b>.")
+        }
+        sectiontext <-  paste(section_text_female,section_text_male)
+    }
   sex_prop_text <- function(crosstabs,position="first"){
     if (position== "first"){
       line <- (crosstabs_data %>% arrange(-abs))[1,]
@@ -229,7 +251,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     ifelse(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male) > first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female),
       sextextearnings2 <- paste("The group with the highest earnings was male graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Male), "</b> industry
-           (median earnings of <b>£", format(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male), big.mark = ",", scientific = FALSE), "</b>).",
+           (median earnings of <b>£", format(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male), big.mark = ",", scientific = FALSE), "</b>). ",
         sep = ""
       ),
       sextextearnings2 <- paste("The group with the highest earnings was female graduates in the <b>",
@@ -257,7 +279,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     crosstab_text <- paste("For ", tolower(qualinput), " graduates of ", subjecttext, ", ", 
                            YAGinput, " years after graduation, ",
-      "the industry with the highest proportion of ", sectiontext, 
+      sectiontext, 
       br(), br(),
       prop_preamble,
       sex_prop_text(crosstabs_data),
