@@ -120,7 +120,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
   if (countinput == "sex") {
     # !!! Set Not known to be top group for testing:
-    tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='M','count'] <- 10*max(tables_data_grouped$count,na.rm=TRUE)
+    # tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='M','count'] <- 10*max(tables_data_grouped$count,na.rm=TRUE)
     # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     crosstabs_data <- tables_data_grouped %>%
       select(-earnings_median, n = count) %>%
