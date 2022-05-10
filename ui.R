@@ -74,7 +74,7 @@ fluidPage(
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
                   tags$div(
-                    title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular sectors.",
+                    title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.",
                     h3(actionLink("link_to_regional_tab", "Regional analysis"))
                   ),
                   regional_text(), # defined in R/dashboard_text.R
@@ -120,7 +120,8 @@ fluidPage(
     # Industry flow tab =======================================================
 
     tabPanel(
-      value = "industryFlow", title = "Industry flow",
+      value = "industryFlow", 
+      tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.","Industry flow"),
 
       ## Side bar =============================================================
 
@@ -248,7 +249,8 @@ fluidPage(
     # Regional analysis tab ===================================================
 
     tabPanel(
-      value = "regional", title = "Regional",
+      value = "regional", 
+      tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.","Regional"),
 
       ## Side bar =============================================================
 
@@ -456,7 +458,8 @@ fluidPage(
     # Subject by industry tab =================================================
 
     tabPanel(
-      title = "Subject by industry", value = "subjectByIndustry",
+      tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.","Subject by industry"), 
+      value = "subjectByIndustry",
 
       ## Side bar =============================================================
 
@@ -566,7 +569,8 @@ fluidPage(
 
     # Industry by subject tab =================================================
     tabPanel(
-      title = "Industry by subject", value = "industryBySubject",
+      tags$div(title = "This section is useful if you want to understand which subject to study to access certain industries.","Industry by subject"), 
+      value = "industryBySubject",
 
       ## Side bar =============================================================
 
