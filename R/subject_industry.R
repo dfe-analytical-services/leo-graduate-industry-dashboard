@@ -289,7 +289,6 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
       sex_prop_extra <- ""
     }
-    print(paste("sex_prop_extra", sex_prop_extra))
 
     crosstab_text <- paste("For ", tolower(qualinput), " graduates of ", subjecttext, ", ",
       YAGinput, " years after graduation, ",
@@ -1924,6 +1923,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     }
     nested <- nested %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
+  }
+  if (buttoninput == "Proportions") {
+    crosstabs_data <- crosstabs_data %>% mutate_if(is.numeric, funs(round(., digits = 3)))
+    nested <- nested %>% mutate_if(is.numeric, funs(round(., digits = 3)))
   }
   return(list(
     crosstabs_data = crosstabs_data,
