@@ -258,7 +258,8 @@ server <- function(input, output, session) {
         table_data$crosstabs_data,
         table_data$nested_crosstabs %>%
           select(out_columns)
-      ) %>%
+      ) %>% 
+        mutate_if(is.numeric,funs(100.0*.)) %>%
         arrange(SECTIONNAME, group_name) %>%
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
@@ -328,7 +329,8 @@ server <- function(input, output, session) {
         summarise_all(sum) %>%
         mutate(subject_name = "TOTAL (N)") %>%
         select(out_columns)
-      dfDownload <- table_data$data %>%
+      dfDownload <- table_data$data  %>% 
+        mutate_if(is.numeric,funs(100.0*.)) %>%
         arrange(subject_name) %>%
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
