@@ -258,10 +258,11 @@ server <- function(input, output, session) {
         table_data$crosstabs_data,
         table_data$nested_crosstabs %>%
           select(out_columns)
-      ) 
-      if (input$earningsbutton=='Proportions'){
-      dfDownload <- dfDownload %>% 
-        mutate_if(is.numeric,funs(100.0*.))} 
+      )
+      if (input$earningsbutton == "Proportions") {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, funs(100.0 * .))
+      }
       dfDownload <- dfDownload %>%
         arrange(SECTIONNAME, group_name) %>%
         rbind(footsum)
@@ -333,10 +334,11 @@ server <- function(input, output, session) {
         mutate(subject_name = "TOTAL (N)") %>%
         select(out_columns)
       dfDownload <- table_data$data
-        if (input$earningsbutton2=='Proportions'){
-          dfDownload <- dfDownload %>% 
-            mutate_if(is.numeric,funs(100.0*.))} 
-      dfDownload <- dfDownload %>% 
+      if (input$earningsbutton2 == "Proportions") {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, funs(100.0 * .))
+      }
+      dfDownload <- dfDownload %>%
         arrange(subject_name) %>%
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
