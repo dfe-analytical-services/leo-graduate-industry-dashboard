@@ -99,7 +99,7 @@ map_chart <- function(mapdata, countinput) {
     "Number who studied in region:        ", prettyNum(leafletmapdata$trained_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Number who currently live in region: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Difference in graduate numbers:      ", prettyNum(leafletmapdata$difference2, big.mark = ",", scientific = FALSE), br(),
-    "Difference in proportion:            ", round(100 * leafletmapdata$difference_prop2, digits = 1), "%", br(),
+    "Difference in proportion:            ", round(leafletmapdata$difference_prop2, digits = 1), "%", br(),
     "Number of providers in region:       ", leafletmapdata$number_of_providers, br(),
     "Median graduate earnings:            £", prettyNum(leafletmapdata$earnings_median, big.mark = ",", scientific = FALSE)
   )
