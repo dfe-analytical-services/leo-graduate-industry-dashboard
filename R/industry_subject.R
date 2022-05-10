@@ -72,7 +72,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -94,7 +94,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
           select(-subject_name), na.rm = T) - min(data %>%
           select(-subject_name), na.rm = T))
       color <- orange_pal(normalized)
-      list(background = color)
+      list(color = "#000000", background = color)
     }
   }
 
@@ -741,7 +741,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       `Level 8` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 8`), 5), big.mark = ",", scientific = FALSE))
     )
   }
-
+  if (buttoninput == "Proportions") {
+    crosstabs_data <- crosstabs_data %>% mutate_if(is.numeric, funs(round(., digits = 3)))
+  }
   return(list(
     data = crosstabs_data,
     footer = footer_data,
