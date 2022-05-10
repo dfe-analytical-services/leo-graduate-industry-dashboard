@@ -168,12 +168,14 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     top_industry_female <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female)) %>%
       mutate_if(is.numeric, funs(paste0("£",format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.)))
+      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.))) %>%
+      mutate_if(is.numeric, funs(ifelse(is.na(.),"not available",.)))
 
     top_industry_male <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) %>%
       mutate_if(is.numeric, funs(paste0("£",format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.)))
+      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.))) %>%
+      mutate_if(is.numeric, funs(ifelse(is.na(.),"not available",.)))
 
     
     if (first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) {
@@ -353,22 +355,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     top_industry_nonFSM <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`)) %>%
-      mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
-
+      mutate_if(is.numeric, funs(paste0("£",format(., big.mark = ",", scientific = FALSE)))) %>%
+      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.))) %>%
+      mutate_if(is.numeric, funs(ifelse(is.na(.),"not available",.)))
+    
     top_industry_FSM <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM)) %>%
-      mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
-
+      mutate_if(is.numeric, funs(paste0("£",format(., big.mark = ",", scientific = FALSE)))) %>%
+      mutate_if(is.numeric, funs(gsub("£-10,000","suppressed",.))) %>%
+      mutate_if(is.numeric, funs(ifelse(is.na(.),"not available",.)))
+    
     ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM),
-      sectiontext <- paste("graduates was the same for both non-FSM and FSM graduates (<b>", first(crosstabs_data$SECTIONNAME), "</b>), where median
-                                earnings for non-FSM graduates were <b>£", top_industry$`non-FSM`, "</b> and for FSM graduates were <b>£", top_industry$FSM, "</b>.",
-        sep = ""
-      ),
+      sectiontext <- paste0("the industry with the highest proportion of graduates was the same for both non-FSM and FSM graduates (<b>", 
+      top_industry_FSM$SECTIONNAME, "</b>), where median earnings for non-FSM graduates were <b>", 
+      top_industry_nonFSM$`non-FSM`, "</b> and for FSM graduates were <b>", top_industry_FSM$FSM, "</b>."),
       sectiontext <- paste("non-FSM graduates was <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`), "</b> and the median
-                                earnings of non-FSM graduates in this industry were <b>£", top_industry_nonFSM$`non-FSM`, "</b>. The
+                                earnings of non-FSM graduates in this industry were <b>", 
+                                top_industry_nonFSM$`non-FSM`, "</b>. The
                                 industry with the highest proportion of FSM graduates was <b>",
         first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM), "</b> and the median earnings of FSM
-                                graduates in this industry were <b>£", top_industry_FSM$FSM, "</b>.",
+                                graduates in this industry were <b>", top_industry_FSM$FSM, "</b>.",
         sep = ""
       )
     )
