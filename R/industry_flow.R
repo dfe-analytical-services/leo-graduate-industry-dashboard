@@ -253,7 +253,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -265,7 +265,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
     normalized <- (value - min(yag_table_final[name], na.rm = T)) /
       (max(yag_table_final[name], na.rm = T) - min(yag_table_final[name], na.rm = T))
     color <- orange_pal(normalized)
-    list(background = color)
+    list(color = "#000000", background = color)
   }
 
   # list giving column formatting (using style function) for single column
@@ -642,7 +642,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -654,7 +654,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     normalized <- (value - min(yag_table_final2[name], na.rm = T)) /
       (max(yag_table_final2[name], na.rm = T) - min(yag_table_final2[name], na.rm = T))
     color <- orange_pal(normalized)
-    list(background = color)
+    list(color = "#000000", background = color)
   }
 
 
@@ -723,6 +723,6 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
       colGroup(name = "1 YAG", columns = c("SECTIONNAME.x", "earnings_median_1YAG")),
       colGroup(name = "5 YAG", columns = c("SECTIONNAME.y", "earnings_median_5YAG"))
     ),
-    defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+    defaultColDef = colDef(footerStyle = list(color = "#000000", fontWeight = "bold"))
   )
 }
