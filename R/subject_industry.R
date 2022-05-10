@@ -498,8 +498,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       data2 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[2])
 
-      ethnicitytext <- paste("<b>", uniqueregions[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      and <b>", uniqueregions[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
+      ethnicitytext <- paste("<b>", uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      and <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
     } else if (length(uniqueethnicity) == 3) {
       data1 <- ethnicityfirstdata %>%
         filter(ethnicityfirstdata == uniqueethnicity[1])
