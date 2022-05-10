@@ -85,7 +85,7 @@ fluidPage(
                   ),
                   sub_by_ind_text(), # defined in R/dashboard_text.R
                   tags$div(
-                    title = "This section is useful if you want to understand which subject to study to access certain sectors.",
+                    title = "This section is useful if you want to understand which subject to study to access certain industries.",
                     h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
                   ),
                   ind_by_sub_text(), # defined in R/dashboard_text.R
