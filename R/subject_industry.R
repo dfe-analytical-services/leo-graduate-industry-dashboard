@@ -26,10 +26,10 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
               var min = ", min(max, na.rm = TRUE), "
               // pct_value = (value - min) * 100 / (max - min)
               pct_value = (Math.min(value, max) - min) * 100 / (max - min)
-              // If value equals 0, set font color grey.
-              if (value == 0) {
-                var color = '#F7FBFF'
-                var bg = '#F7FBFF'
+              // If value equals 0, x, or c, set background to white.
+              if (value < 0.001 || isNaN(value)) {
+                var color = '#000000'
+                var bg = '#FFFFFF'
               } else {
                 var color = '#000000'
                 var bg = hslToHex(209, 59, 100 - pct_value / 2)
@@ -1040,7 +1040,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }

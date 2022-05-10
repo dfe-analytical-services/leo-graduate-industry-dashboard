@@ -72,7 +72,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -94,7 +94,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
           select(-subject_name), na.rm = T) - min(data %>%
           select(-subject_name), na.rm = T))
       color <- orange_pal(normalized)
-      list(background = color)
+      list(color = "#000000", background = color)
     }
   }
 

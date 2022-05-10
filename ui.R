@@ -204,7 +204,7 @@ fluidPage(
                 your mouse over a bar or flow line to see the number of
                 graduates it represents. Please note that this chart only displays the
                 top 9 industries and the rest are being grouped automatically into 'Other'. To see
-                the full breakdown of industries please view the Industyr proportions table."
+                the full breakdown of industries please view the Industry proportions table."
               ),
               column(
                 4,
@@ -360,7 +360,7 @@ fluidPage(
                 div(
                   # Set as well but override sidebar defaults
                   class = "well",
-                  style = "height: 100%; overflow-y: visible",
+                  style = "min-height: 100%; height: 100%; overflow-y: visible",
                   div(selectInput("countinput",
                     label = "Select which statistic to view in the map below",
                     choices = list(
@@ -713,7 +713,6 @@ fluidPage(
 
     tabPanel(
       "Accessibility",
-      warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
 
