@@ -250,7 +250,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
       sextextearnings <- paste("the median earnings of male graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher</b> than the medain earnings of female graduates.",
+        "  higher</b> than the median earnings of female graduates.",
         sep = ""
       ),
       sextextearnings <- paste("the median earnings of female graduates were <b>£",
@@ -268,7 +268,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     )
 
     ifelse(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male) > first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female),
-      sextextearnings2 <- paste("The group with the highest earnings was male graduates in the <b>",
+      sextextearnings2 <- paste(" The group with the highest earnings was male graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Male), "</b> industry
            (median earnings of <b>£", format(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male), big.mark = ",", scientific = FALSE), "</b>). ",
         sep = ""
