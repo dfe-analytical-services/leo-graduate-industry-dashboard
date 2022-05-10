@@ -173,8 +173,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
       mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
       mutate_all(funs(ifelse(is.na(.), "not available", .)))
-        print(top_industry_female)
-        
+
     top_industry_male <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) %>%
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
@@ -231,7 +230,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     }
     sex_prop_text <- function(crosstabs, position = "first") {
       if (position == "first") {
-        line <- (crosstabs_data %>% arrange(-abs))[1, ]
+        line <- (crosstabs %>% arrange(-abs))[1, ]
       } else {
         line <- crosstabs %>% filter(SECTIONNAME == position)
       }
