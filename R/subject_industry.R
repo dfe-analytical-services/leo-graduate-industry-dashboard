@@ -1103,11 +1103,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
       mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         funs(as.numeric(.))
@@ -1125,7 +1123,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
@@ -1174,9 +1171,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table <- tables_data_nested %>%
       select(ethnicity, SECTIONNAME, group_name, n = prop) %>%
       spread(ethnicity, n) %>%
-      colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
+      colorders(countinput)
 
     if ("All" %in% names(nested_table)) {
       nested_table <- nested_table %>%
@@ -1186,14 +1181,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table_earnings <- tables_data_nested %>%
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
-      colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) # %>%
-    # mutate_at(c('White', 'Black','Asian', 'Mixed', 'Other', 'Not known'),
-    #           funs(as.numeric(.))) %>%
-    # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-    # select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`) %>%
-    # ungroup()
+      colorders(countinput)
 
 
     if (buttoninput == "Proportions") {
@@ -1486,11 +1474,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
       mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -1510,8 +1496,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -1563,8 +1547,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -1576,8 +1558,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
