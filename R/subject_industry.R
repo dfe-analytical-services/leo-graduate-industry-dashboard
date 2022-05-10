@@ -129,7 +129,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(., rm.na = TRUE))) %>%
+      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
       # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("F", "M", "F+M"),

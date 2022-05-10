@@ -20,6 +20,7 @@ read_tables_data <- function(file) {
     "count", "earnings_median", "threshold", "qualification_TR",
     "group_name"
   )
+  tables_data <- tables_data %>% select(-X)
   tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
   tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
