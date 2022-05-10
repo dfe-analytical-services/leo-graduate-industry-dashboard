@@ -68,7 +68,9 @@ map_chart <- function(mapdata, countinput) {
   
   mapdata <- mapdata %>%
     mutate_at("earnings_median",
-              funs(ifelse(.<0, 'c', .)))
+              funs(ifelse(.<0, 'c', .))) %>%
+    mutate_at(c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+              funs(ifelse(is.na(.), 'x', .)))
   
   leafletmapdata <- st_transform(mapdata, crs = 4326)
   if (countinput == "trained_in_region") {
