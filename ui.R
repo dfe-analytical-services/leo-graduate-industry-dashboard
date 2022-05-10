@@ -455,7 +455,7 @@ fluidPage(
 
           ## Caveats ----------------------------------------------------------
 
-          caveats_box() # defined in R/caveats.R
+          caveats_box_regional() # defined in R/caveats.R
         ) # end of main panel
       ), # end of sidebar layout
     ), # end of regional tab
