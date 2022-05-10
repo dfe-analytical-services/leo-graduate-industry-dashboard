@@ -27,7 +27,7 @@ accessibility_statement <- function() {
            to review updates to technology available to us to keep improving accessibility for all of our users. For example, these
            are known issues that we will continue to monitor and improve:",
     tags$div(tags$ul(
-      tags$li("Keyboard navigation through the interactive charts is currently limited, and only some feaut"),
+      tags$li("Keyboard navigation through the interactive charts is currently limited, and some features are unavailable for keyboard only users"),
       tags$li("Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)")
     )),
     h3("Feedback and contact information"),
