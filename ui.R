@@ -218,8 +218,17 @@ fluidPage(
                 4,
                 div("5 years after graduation", style = "text-align: right")
               ),
-              withSpinner(
-                sankeyNetworkOutput(outputId = "sankey", height = 800)
+              conditionalPanel(
+                condition = "!is.null(output$sankey_flag)",
+                withSpinner(
+                  uiOutput("sankey_flag")
+                )
+              ),
+              conditionalPanel(
+                condition = "is.null(output$sankey_flag)",
+                withSpinner(
+                  sankeyNetworkOutput(outputId = "sankey", height = 800)
+                )
               )
             ),
 
@@ -531,8 +540,7 @@ fluidPage(
 
           helpText("Download the current table as a csv"),
           downloadButton("downloadData", "Download table"),
-          br(),
-          br()
+          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry."),
         ),
 
         ## Main panel =========================================================
@@ -675,8 +683,7 @@ fluidPage(
 
           helpText("Download the current table as a csv"),
           downloadButton("IndSubjDownload", "Download table"),
-          br(),
-          br()
+          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject.")
         ), # end of sidebar
 
         ## Main panel =========================================================
