@@ -140,9 +140,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),
@@ -278,9 +276,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),

@@ -65,6 +65,11 @@ create_maptabledata <- function(regional_data, regional_movement,
 }
 
 map_chart <- function(mapdata, countinput) {
+  
+  mapdata <- mapdata %>%
+    mutate_at("earnings_median",
+              funs(ifelse(.<0, 'c', .)))
+  
   leafletmapdata <- st_transform(mapdata, crs = 4326)
   if (countinput == "trained_in_region") {
     pal_fun <- colorNumeric("Blues", domain = leafletmapdata$trained_in_region2)
@@ -348,7 +353,7 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
       SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput,
       qualification_TR == qualinput
     ) %>%
-    filter(is.na(count) != TRUE)
+    filter(is.na(count) != TRUE, count != 0)
 
   nodes <- data.frame("name" = c(
     unique(sankey_data$InstRegion),
