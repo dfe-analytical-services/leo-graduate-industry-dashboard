@@ -741,7 +741,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       `Level 8` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 8`), 5), big.mark = ",", scientific = FALSE))
     )
   }
-
+  if (buttoninput == "Proportions") {
+    crosstabs_data <- crosstabs_data %>% mutate_if(is.numeric, funs(round(., digits = 3)))
+  }
   return(list(
     data = crosstabs_data,
     footer = footer_data,

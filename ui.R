@@ -539,8 +539,7 @@ fluidPage(
 
           helpText("Download the current table as a csv"),
           downloadButton("downloadData", "Download table"),
-          br(),
-          br()
+          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry."),
         ),
 
         ## Main panel =========================================================
@@ -685,8 +684,7 @@ fluidPage(
 
           helpText("Download the current table as a csv"),
           downloadButton("IndSubjDownload", "Download table"),
-          br(),
-          br()
+          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject.")
         ), # end of sidebar
 
         ## Main panel =========================================================
