@@ -161,6 +161,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
     names(crosstabs_earnings_data) <- c("SECTIONNAME", "Female", "Male", "Female & Male", "diff", "abs")
 
+    # ! Test data
+    # crosstabs_earnings_data[crosstabs_earnings_data$SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female),]$Female <- -10000.
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     top_industry <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME)) %>%
       mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
@@ -168,14 +171,15 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     top_industry_female <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female)) %>%
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000", "suppressed", .))) %>%
-      mutate_if(is.numeric, funs(ifelse(is.na(.), "not available", .)))
-
+      mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+      mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        print(top_industry_female)
+        
     top_industry_male <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) %>%
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000", "suppressed", .))) %>%
-      mutate_if(is.numeric, funs(ifelse(is.na(.), "not available", .)))
+      mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+      mutate_all(funs(ifelse(is.na(.), "not available", .)))
 
 
     if (first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) {
@@ -356,14 +360,14 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     top_industry_nonFSM <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`)) %>%
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000", "suppressed", .))) %>%
-      mutate_if(is.numeric, funs(ifelse(is.na(.), "not available", .)))
+      mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+      mutate_all(funs(ifelse(is.na(.), "not available", .)))
 
     top_industry_FSM <- crosstabs_earnings_data %>%
       filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM)) %>%
       mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-      mutate_if(is.numeric, funs(gsub("£-10,000", "suppressed", .))) %>%
-      mutate_if(is.numeric, funs(ifelse(is.na(.), "not available", .)))
+      mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+      mutate_all(funs(ifelse(is.na(.), "not available", .)))
 
     ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM),
       sectiontext <- paste0(
