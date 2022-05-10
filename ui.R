@@ -551,6 +551,7 @@ fluidPage(
           ### Crosstab text ---------------------------------------------------
 
           div(
+            "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.",br(),
             htmlOutput("crosstab_text")
           ),
           withSpinner(reactableOutput("crosstab")),
