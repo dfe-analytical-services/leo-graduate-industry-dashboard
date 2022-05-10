@@ -49,9 +49,19 @@ server <- function(input, output, session) {
       input$qualinput
     )
   )
+
   output$sankey <- renderSankeyNetwork({
     reactiveSankey()
   })
+
+  output$sankey_flag <- renderUI({
+    if (!type_sum(reactiveSankey()) == "snkyNtwr") {
+      tagList(br(), h3("No data found for the selected filters."))
+    } else {
+      NULL
+    }
+  })
+
 
   output$sankey_title <- renderText({
     sankey_title(input$indflow.subjectinput, input$sexinput, input$qualinput)

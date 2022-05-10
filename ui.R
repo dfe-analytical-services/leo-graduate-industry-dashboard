@@ -219,8 +219,17 @@ fluidPage(
                 4,
                 div("5 years after graduation", style = "text-align: right")
               ),
-              withSpinner(
-                sankeyNetworkOutput(outputId = "sankey", height = 800)
+              conditionalPanel(
+                condition = "!is.null(output$sankey_flag)",
+                withSpinner(
+                  uiOutput("sankey_flag")
+                )
+              ),
+              conditionalPanel(
+                condition = "is.null(output$sankey_flag)",
+                withSpinner(
+                  sankeyNetworkOutput(outputId = "sankey", height = 800)
+                )
               )
             ),
 
