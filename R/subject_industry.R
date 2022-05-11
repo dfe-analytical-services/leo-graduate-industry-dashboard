@@ -507,11 +507,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     uniqueethnicity <- unique(ethnicityfirstdata$ethnicityfirstdata)
 
     textprod <- function(data) {
-      if (length(data) != 1) {
+      if (nrow(data) != 1) {
         x <- paste(data$ethnicity[1:nrow(data) - 1], collapse = ", ")
         y <- paste(" and ", data$ethnicity[nrow(data)], sep = "")
         paste(x, y)
-      } else if (length(data) == 1) {
+      } else if (nrow(data) == 1) {
         paste(data$ethnicity[1])
       }
     }
