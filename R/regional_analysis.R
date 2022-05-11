@@ -246,7 +246,6 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
   clean_map_data <- mapdata_diff_prop %>%
     filter(!is.na(difference_prop2)) %>%
     select(region, difference_prop2)
-  print(clean_map_data)
   if (nrow(clean_map_data) >= 1) {
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
