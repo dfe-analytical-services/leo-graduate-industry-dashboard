@@ -399,7 +399,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
       FSMearningstext <- paste("the median earnings of non-FSM graduates were <b>£",
         format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-        "  higher </b> than the medain earnings of FSM graduates.",
+        "  higher </b> than the median earnings of FSM graduates.",
         sep = ""
       ),
       FSMearningstext <- paste("the median earnings of FSM graduates were <b>£",
@@ -410,13 +410,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     )
 
     ifelse(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`) > first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM),
-      FSMearningstext2 <- paste("The group with the highest earnings was non-FSM graduates in the <b>",
+      FSMearningstext2 <- paste(" The group with the highest earnings was non-FSM graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$`non-FSM`), "</b>
                                      industry (median earnings of <b>£",
         format(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`), big.mark = ",", scientific = FALSE), "</b>).",
         sep = ""
       ),
-      FSMearningstext2 <- paste("The group with the highest earnings was FSM graduates in the <b>",
+      FSMearningstext2 <- paste(" The group with the highest earnings was FSM graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$FSM), "</b>
                                      industry (median earnings of <b>£",
         format(first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM), big.mark = ",", scientific = FALSE), "</b>).",
@@ -426,9 +426,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
-      "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+      " The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
       "</b> where ", FSMtext,
-      "The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
+      " The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
       "</b> where ", FSMearningstext,
       FSMearningstext2, br(), br(),
       sep = ""
@@ -617,14 +617,14 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       ethnicitytext,
-      br(), br(), "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME), "</b>
+      br(), br(), " The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ", last(row.names(biggestdiff2)), "
                            ethnicity graduates had the lowest proportion.",
-      "The industry with the largest range in median earnings was <b>", first(biggestdiffearnings$SECTIONNAME), "</b>
+      " The industry with the largest range in median earnings was <b>", first(biggestdiffearnings$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiffearnings2)), " ethnicity graduates the highest median earnings (<b>£",
       format(first(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>) and ", last(row.names(biggestdiffearnings2)),
       " ethnicity graduates had the lowest median earnings (<b>£", format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>).",
-      "The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in
+      " The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in
                            the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
@@ -814,7 +814,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       "For first degree graduates of ", subjecttext, ", ",
       YAGinput, " years after graduation, ", regiontext,
       br(),
-      "The group with the highest earnings was graduates currently living in <b>",
+      " The group with the highest earnings was graduates currently living in <b>",
       colnames(crosstabs_earnings_data2)[result[2]], "</b> working in the <b>",
       crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
@@ -901,7 +901,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       first(topindustry$SECTIONNAME, order_by = -topindustry[2]), "</b>, and the median earnings for graduates with this prior
                        attainment band working in this industry were <b>£", format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE),
       "</b>.", br(),
-      "The group with the highest median earnings was graduates in the <b>", colnames(crosstabs_earnings_data3[result[2]]),
+      " The group with the highest median earnings was graduates in the <b>", colnames(crosstabs_earnings_data3[result[2]]),
       "</b> prior attainment band who worked in the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median
                            earnings of <b>£", format(max(crosstabs_earnings_data3), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
@@ -1037,7 +1037,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
 
     crosstab_text <- paste("For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext,
-      "The highest earning group was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> graduates
+      " The highest earning group was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> graduates
                            working in the <b>", crosstabs_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
