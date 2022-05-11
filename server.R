@@ -184,13 +184,13 @@ server <- function(input, output, session) {
   })
 
   reactiveSubjbyIndText <- reactive({
-    subjbyind_grouped_data(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
+    crosstab_text(reactiveSubjbyIndGroupedSummary(), input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
   })
 
 
   output$crosstab_text <- renderText({
-    x <- crosstab_text(reactiveSubjbyIndGroupedSummary(), input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
-    print("Here's the crosstab_text as seen by server.R:")
+    x <- reactiveSubjbyIndText()
+    print("Here's the reactive summary text:")
     print(x)
     return(x)
   })

@@ -51,6 +51,13 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
 }
 
+topIndustries <- function(data, filter_value) {
+  dfMaxLines <- data %>%
+    filter(filter == filter_value, count > 0) %>%
+    filter(count == max(count, na.rm = TRUE))
+  return(format_filtervalues(dfMaxLines$SECTIONNAME))
+}
+
 format_filtervalues <- function(filtervalues) {
   filtervalues <- sort(unique(filtervalues))
   if (length(filtervalues) == 1) {
@@ -326,7 +333,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             mutate_all(funs(gsub("£-10,000", "suppressed", .)))
 
           section_text_female <- paste0(
-            "the group with the highest proportion of female graduates is where the <b>industry is not known</b> and the median earnings of females in this group was <b>£",
+            "the group with the highest proportion of female graduates is where the <b>industry is not known</b> and the median earnings of females in this group was <b>",
             top_industry_female$Female, "</b>. The industry with the highest proportion of female graduates after excluding the Not known category is ",
             top_section_female_exclnk$SECTIONNAME, " where the median earnings were <b>", top_earnings_female_exclnk$Female, "</b>. "
           )
@@ -592,16 +599,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
 
-
-
-
-      ethnicityfirst <- function(ethnicity) {
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data[ethnicity])
-      }
-
+      dfDataGrouped <- tables_data_grouped %>% rename(filter = ethnicity)
       ethnicityfirstdata <- c(
-        ethnicityfirst("White"), ethnicityfirst("Black"), ethnicityfirst("Asian"),
-        ethnicityfirst("Mixed"), ethnicityfirst("Other"), ethnicityfirst("Not known")
+        topIndustries(dfDataGrouped, "White"), topIndustries(dfDataGrouped, "Black"),
+        topIndustries(dfDataGrouped, "Asian"), topIndustries(dfDataGrouped, "Mixed"),
+        topIndustries(dfDataGrouped, "Other"), topIndustries(dfDataGrouped, "Not known")
       )
       ethnicityfirstdata <- data.frame(ethnicityfirstdata)
       ethnicityfirstdata$ethnicity <- c("White", "Black", "Asian", "Mixed", "Other", "Not known")
@@ -782,23 +784,17 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           `East of England`, `London`, `South East`, `South West`
         )
 
-      regionfirst <- function(data, region) {
-        dfMaxLines <- data %>%
-          filter(current_region == region, count > 0) %>%
-          filter(count == max(count, na.rm = TRUE))
-        return(format_filtervalues(dfMaxLines$SECTIONNAME))
-      }
-
+      dfDataGrouped <- tables_data_grouped %>% rename(filter = current_region)
       regionfirstdata <- c(
-        regionfirst(tables_data_grouped, "North East"),
-        regionfirst(tables_data_grouped, "North West"),
-        regionfirst(tables_data_grouped, "Yorkshire and the Humber"),
-        regionfirst(tables_data_grouped, "East Midlands"),
-        regionfirst(tables_data_grouped, "West Midlands"),
-        regionfirst(tables_data_grouped, "East of England"),
-        regionfirst(tables_data_grouped, "London"),
-        regionfirst(tables_data_grouped, "South East"),
-        regionfirst(tables_data_grouped, "South West")
+        topIndustries(dfDataGrouped, "North East"),
+        topIndustries(dfDataGrouped, "North West"),
+        topIndustries(dfDataGrouped, "Yorkshire and the Humber"),
+        topIndustries(dfDataGrouped, "East Midlands"),
+        topIndustries(dfDataGrouped, "West Midlands"),
+        topIndustries(dfDataGrouped, "East of England"),
+        topIndustries(dfDataGrouped, "London"),
+        topIndustries(dfDataGrouped, "South East"),
+        topIndustries(dfDataGrouped, "South West")
       )
       regionfirstdata <- data.frame(regionfirstdata)
       regionfirstdata$region <- c(
