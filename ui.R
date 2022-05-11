@@ -487,16 +487,16 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          
-            selectInput("qualinput3",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
+
+          selectInput("qualinput3",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
@@ -509,12 +509,11 @@ fluidPage(
 
           ### Subject input ---------------------------------------------------
 
-  
-            selectInput("crosstabs.subjectinput",
-              label = "Select a subject area",
-              choices = unique(c("All", sort(qual_subjects$subject_name))),
-              selected = "All"
-            
+
+          selectInput("crosstabs.subjectinput",
+            label = "Select a subject area",
+            choices = unique(c("All", sort(qual_subjects$subject_name))),
+            selected = "All"
           ),
 
           ### Breakdown input -------------------------------------------------
@@ -593,18 +592,15 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
-            selectInput("qualinput4",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
+          selectInput("qualinput4",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
