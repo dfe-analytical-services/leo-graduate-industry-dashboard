@@ -272,7 +272,63 @@ server <- function(input, output, session) {
 
   ### IndSubj panel server code
   #############################
-
+  
+  # Qualification input condition ----
+  observeEvent(input$countinput2, {
+    x <- input$countinput2
+    
+    if(!x %in% c("sex", "subject_name")){
+      updateSelectInput(
+        session,
+        "qualinput3",
+        label = "Select qualification level",
+        choices = list(
+          "First degree"
+        ),
+        selected = "First degree"
+        )
+    }
+    if(x %in% c("sex", "subject_name")){
+      updateSelectInput(
+        session,
+        "qualinput3",
+        label = "Select qualification level",
+        choices = list(
+          "First degree",
+          "Level 7 (taught)",
+          "Level 7 (research)",
+          "Level 8"
+        )
+      )
+    }
+  })
+  
+  # Subject input condition ----
+  
+  observeEvent(input$countinput2, {
+    x <- input$countinput2
+    
+    if(x == "subject_name"){
+      updateSelectInput(
+        session,
+        "crosstabs.subjectinput",
+        label = "Select a subject area",
+        choices = list(
+          "All"
+        ),
+        selected = "All"
+      )
+    } else {
+      updateSelectInput(
+        session,
+        "crosstabs.subjectinput",
+        label = "Select a subject area",
+        choices = unique(c("All", sort(qual_subjects$subject_name))),
+        selected = "All"
+      )
+    }
+  })
+  
   # Create the reactive Industry by Subject data in a data frame
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)

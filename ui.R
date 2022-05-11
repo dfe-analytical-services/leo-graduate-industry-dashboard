@@ -487,8 +487,7 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
+          
             selectInput("qualinput3",
               label = "Select qualification level",
               choices = list(
@@ -498,7 +497,6 @@ fluidPage(
                 "Level 8"
               ),
               selected = "First degree"
-            )
           ),
 
           ### YAG input -------------------------------------------------------
@@ -511,13 +509,12 @@ fluidPage(
 
           ### Subject input ---------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 != 'subject_name'",
+  
             selectInput("crosstabs.subjectinput",
               label = "Select a subject area",
               choices = unique(c("All", sort(qual_subjects$subject_name))),
               selected = "All"
-            )
+            
           ),
 
           ### Breakdown input -------------------------------------------------
