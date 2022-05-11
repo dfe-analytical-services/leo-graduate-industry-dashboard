@@ -122,7 +122,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(.))) %>%
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         funs(as.numeric(.))
@@ -139,7 +140,6 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       summarise(n = earnings_median, .groups = "drop") %>%
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         funs(as.numeric(.))
@@ -205,7 +205,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(.))) %>%
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) %>%
       mutate_at(
         c(
           "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
@@ -314,7 +315,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(.))) %>%
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) %>%
       mutate_at(
         c("non-FSM", "FSM", "Not known"),
         funs(as.numeric(.))
@@ -395,7 +397,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -481,7 +484,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) %>%
       mutate_at(
         c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
         funs(as.numeric(.))
@@ -576,7 +580,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       spread(SECTIONNAME, n) %>%
       colorders(countinput) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) 
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE)))) 
 
 
     crosstabs_earnings_data <- tables_data %>%
@@ -656,7 +661,8 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       colorders(countinput) %>%
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE)))
+      mutate_if(is.numeric,
+                funs(ifelse(.==0,0, . / sum(., na.rm = TRUE))))
 
 
     crosstabs_earnings_data <- tables_data %>%
