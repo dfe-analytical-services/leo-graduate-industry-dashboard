@@ -1146,7 +1146,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       crosstab_text <- paste0(
         "For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext,
-        funcHighestEarnings(tables_data_grouped %>% mutate(filter = qualfication_TR)),
+        funcHighestEarnings(tables_data_grouped %>% mutate(filter = qualification_TR)),
         br(), br()
       )
     }
