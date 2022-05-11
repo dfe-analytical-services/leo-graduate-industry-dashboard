@@ -782,14 +782,23 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           `East of England`, `London`, `South East`, `South West`
         )
 
-      regionfirst <- function(current_region) {
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data[current_region])
+      regionfirst <- function(data, region) {
+        dfMaxLines <- data %>%
+          filter(current_region == region, count > 0) %>%
+          filter(count == max(count, na.rm = TRUE))
+        return(format_filtervalues(dfMaxLines$SECTIONNAME))
       }
 
       regionfirstdata <- c(
-        regionfirst("North East"), regionfirst("North West"), regionfirst("Yorkshire and the Humber"), regionfirst("East Midlands"),
-        regionfirst("West Midlands"), regionfirst("East of England"), regionfirst("London"), regionfirst("South East"),
-        regionfirst("South West")
+        regionfirst(tables_data_grouped, "North East"),
+        regionfirst(tables_data_grouped, "North West"),
+        regionfirst(tables_data_grouped, "Yorkshire and the Humber"),
+        regionfirst(tables_data_grouped, "East Midlands"),
+        regionfirst(tables_data_grouped, "West Midlands"),
+        regionfirst(tables_data_grouped, "East of England"),
+        regionfirst(tables_data_grouped, "London"),
+        regionfirst(tables_data_grouped, "South East"),
+        regionfirst(tables_data_grouped, "South West")
       )
       regionfirstdata <- data.frame(regionfirstdata)
       regionfirstdata$region <- c(
@@ -923,7 +932,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         br(),
         funcHighestEarnings(
           tables_data_grouped %>% mutate(filter = current_region),
-          prefix = "graduates currently living in the", suffix = ""
+          prefix = "graduates currently living in the ", suffix = ""
         )
       )
     }
