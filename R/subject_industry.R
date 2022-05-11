@@ -1759,7 +1759,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(subject_name, SECTIONNAME, group_name) %>%
       summarise(n = prop) %>%
       spread(subject_name, n) %>%
-      colorders(countinput)
+      colorders(countinput) 
 
     if ("All" %in% names(nested_table)) {
       nested_table <- nested_table %>%
@@ -1776,9 +1776,11 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
     if (buttoninput == "Proportions") {
-      nested <- nested_table
+      nested <- nested_table %>%
+        select(-All)
     } else if (buttoninput == "Median earnings") {
-      nested <- nested_table_earnings
+      nested <- nested_table_earnings %>%
+        select(-All)
     }
 
     for (column in column_defs$numeric_cols) {
