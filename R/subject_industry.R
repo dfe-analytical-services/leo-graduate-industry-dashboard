@@ -221,6 +221,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
+  print("Here's the output I to check on the null data test:")
+  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+  print(tables_data_grouped %>% filter(!is.na(count), count > 0))
+  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
   if (nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0) {
     return("")
   } else {
