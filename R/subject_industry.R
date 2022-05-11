@@ -96,6 +96,7 @@ subjbyind_grouped_summary <- function(subjectinput, YAGinput, countinput, qualin
     subjecttext <- subjectinput
   )
 
+  
   if (countinput == "sex") {
     tables_data_grouped <- tables_data %>%
       filter(
@@ -155,7 +156,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-
+  if (nrow(tables_data_grouped %>% filter(!is.na(count),count>0))==0){
+    return("")
+  } else{
+    
   if (countinput == "sex") {
     # !!! Set Not known to be top group for testing:
     # tables_data_grouped[tables_data_grouped$SECTIONNAME=='Not known' & tables_data_grouped$sex=='F','count'] <- 10*max(tables_data_grouped$count,na.rm=TRUE)
@@ -1093,6 +1097,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
   }
 
   return(crosstab_text)
+  }
 }
 
 
