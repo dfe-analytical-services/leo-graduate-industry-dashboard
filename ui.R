@@ -239,9 +239,11 @@ fluidPage(
               br(),
               strong("Footnotes"),
               br(),
-              paste("1. Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("2. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("3. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
               height = 1500
             )
           ),
@@ -447,9 +449,13 @@ fluidPage(
               br(), br(),
               strong("Footnotes"),
               br(),
-              paste("1. Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("2. c = data has been supressed due to small numbers. x = there is no result available (N/A)")
+              paste("2. Earnings figures are rounded to the nearest £100"),
+              br(),
+              paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
             )
           ),
 
@@ -564,9 +570,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("1. Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("2. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
@@ -702,9 +712,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("1. Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("2. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
