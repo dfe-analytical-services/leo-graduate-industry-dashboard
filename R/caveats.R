@@ -25,10 +25,11 @@ caveats_box <- function() {
       br(),
       "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us about the graduates occupation within that company.",
       br(),
-      "\U2022 Please note there are a small number of cases where there are conflicting section names and group names – see the data quality section of ", 
-      a( 
+      "\U2022 Please note there are a small number of cases where there are conflicting section names and group names – see the data quality section of ",
+      a(
         href = "https://explore-education-statistics.service.gov.uk/methodology/graduate-outcomes-leo-methodology",
-        "the methodology"), " for further details"
+        "the methodology"
+      ), " for further details"
     )
   )
 }

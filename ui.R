@@ -120,8 +120,8 @@ fluidPage(
     # Industry flow tab =======================================================
 
     tabPanel(
-      value = "industryFlow", 
-      tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.","Industry flow"),
+      value = "industryFlow",
+      tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.", "Industry flow"),
 
       ## Side bar =============================================================
 
@@ -258,8 +258,8 @@ fluidPage(
     # Regional analysis tab ===================================================
 
     tabPanel(
-      value = "regional", 
-      tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.","Regional"),
+      value = "regional",
+      tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.", "Regional"),
 
       ## Side bar =============================================================
 
@@ -471,7 +471,7 @@ fluidPage(
     # Subject by industry tab =================================================
 
     tabPanel(
-      tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.","Subject by industry"), 
+      tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.", "Subject by industry"),
       value = "subjectByIndustry",
 
       ## Side bar =============================================================
@@ -559,7 +559,7 @@ fluidPage(
           ### Crosstab text ---------------------------------------------------
 
           div(
-            "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.",br(),
+            "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.", br(),
             htmlOutput("crosstab_text")
           ),
           withSpinner(reactableOutput("crosstab")),
@@ -582,7 +582,7 @@ fluidPage(
 
     # Industry by subject tab =================================================
     tabPanel(
-      tags$div(title = "This section is useful if you want to understand which subject to study to access certain industries.","Industry by subject"), 
+      tags$div(title = "This section is useful if you want to understand which subject to study to access certain industries.", "Industry by subject"),
       value = "industryBySubject",
 
       ## Side bar =============================================================

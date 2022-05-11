@@ -51,14 +51,13 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
 }
 
-format_filtervalues <- function(filtervalues){
+format_filtervalues <- function(filtervalues) {
   filtervalues <- sort(unique(filtervalues))
-  if (length(filtervalues)==1){
+  if (length(filtervalues) == 1) {
     return(filtervalues)
   } else {
-    return(paste0(paste0(filtervalues[1:length(filtervalues)-1],collapse=', ')," and ",filtervalues[length(filtervalues)]))
+    return(paste0(paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), " and ", filtervalues[length(filtervalues)]))
   }
-  
 }
 
 funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffix = " graduates",
@@ -68,7 +67,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
     filter(
       earnings_median > 0, !is.na(earnings_median),
       filter != allcat, filter != strNK, !is.na(filter)
-    ) 
+    )
   dfRangesEarnings <- dfFiltered %>%
     group_by(SECTIONNAME) %>%
     summarise(
@@ -83,7 +82,8 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
     mutate(strEarningsRange = paste0("£", format(earnings_range, big.mark = ",", scientific = FALSE))) %>%
     mutate(strEarningsMax = paste0("£", format(earnings_max, big.mark = ",", scientific = FALSE))) %>%
     mutate(strEarningsMin = paste0("£", format(earnings_min, big.mark = ",", scientific = FALSE))) %>%
-    arrange(-earnings_range) %>% distinct()
+    arrange(-earnings_range) %>%
+    distinct()
   if (nrow(dfRangesEarnings) > 0) {
     dfWidest <- dfRangesEarnings %>% filter(earnings_range == max(earnings_range, na.rm = TRUE))
     if (nrow(dfWidest) == 1 | length(unique(dfWidest$SECTIONNAME)) == 1) {
@@ -95,7 +95,8 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
         format_filtervalues(dfWidest$strEarningsMax),
         "</b>) and ", format_filtervalues(dfWidest$min_filter), suffix,
         " had the lowest median earnings (<b>",
-        format_filtervalues(dfWidest$strEarningsMin), "</b>)")
+        format_filtervalues(dfWidest$strEarningsMin), "</b>)"
+      )
     } else {
       text <- paste0(
         " The industries with the largest range in median earnings were <b>",
@@ -1157,7 +1158,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
   print(crosstab_text)
   print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
   return(crosstab_text)
-  }
+}
 
 
 # 2. Function to create the crosstabs data frame
@@ -1412,7 +1413,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       nested_table <- tables_data_nested %>%
         select(current_region, SECTIONNAME, group_name, n = prop) %>%
         spread(current_region, n) %>%
-        colorders(countinput) 
+        colorders(countinput)
 
       nested <- nested_table
     } else if (buttoninput == "Median earnings") {
@@ -1420,7 +1421,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         filter(group_name != "All") %>%
         select(current_region, SECTIONNAME, group_name, n = earnings_median) %>%
         spread(current_region, n) %>%
-        colorders(countinput) 
+        colorders(countinput)
       nested <- nested_table_earnings
     }
     if ("All" %in% names(nested)) {
@@ -1526,7 +1527,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name != "All") %>%
       select(FSM, SECTIONNAME, group_name, n = prop) %>%
       spread(FSM, n) %>%
-      colorders(countinput) 
+      colorders(countinput)
 
     if ("All" %in% names(nested_table)) {
       nested_table <- nested_table %>%
@@ -1537,7 +1538,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       filter(group_name != "All") %>%
       select(FSM, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(FSM, n) %>%
-      colorders(countinput) 
+      colorders(countinput)
 
     if (buttoninput == "Proportions") {
       nested <- nested_table
@@ -1766,10 +1767,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested_table <- tables_data_nested %>%
       select(prior_attainment, SECTIONNAME, group_name, n = prop) %>%
       spread(prior_attainment, n) %>%
-      colorders(countinput) 
+      colorders(countinput)
     nested_table_earnings <- tables_data_nested %>%
       select(prior_attainment, SECTIONNAME, group_name, n = earnings_median) %>%
-      spread(prior_attainment, n) 
+      spread(prior_attainment, n)
 
     if (buttoninput == "Proportions") {
       nested <- nested_table
@@ -1871,7 +1872,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(subject_name, SECTIONNAME, group_name) %>%
       summarise(n = prop) %>%
       spread(subject_name, n) %>%
-      colorders(countinput) 
+      colorders(countinput)
 
     if ("All" %in% names(nested_table)) {
       nested_table <- nested_table %>%

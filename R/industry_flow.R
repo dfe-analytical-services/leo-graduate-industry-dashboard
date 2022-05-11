@@ -62,10 +62,10 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
     # so assuming it was an accidental deletion.
     cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
-  cohort_sankey1 <- cohort_sankey1 %>%
-    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
-    dplyr::summarise(count = sum(count.x)) %>%
-    arrange(., -count)
+    cohort_sankey1 <- cohort_sankey1 %>%
+      group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+      dplyr::summarise(count = sum(count.x)) %>%
+      arrange(., -count)
 
     # re-calculate counts using new section names variable
 
@@ -82,10 +82,10 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
     cohort_sankey2$SECTIONNAME.y[is.na(cohort_sankey2$SECTIONNAME.y) == TRUE] <- "Other"
     cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- "Other"
 
-  cohort_sankey2 <- cohort_sankey2 %>%
-    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
-    dplyr::summarise(count = sum(count.x)) %>%
-    arrange(., -count)
+    cohort_sankey2 <- cohort_sankey2 %>%
+      group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+      dplyr::summarise(count = sum(count.x)) %>%
+      arrange(., -count)
 
     # Now name nodes
 
