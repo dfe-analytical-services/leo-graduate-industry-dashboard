@@ -52,6 +52,7 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
 }
 
 format_filtervalues <- function(filtervalues){
+  filtervalues <- sort(unique(filtervalues))
   if (length(filtervalues)==1){
     return(filtervalues)
   } else {
@@ -91,10 +92,10 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
         unique(dfWidest$SECTIONNAME), "</b>",
         " where ", format_filtervalues(dfWidest$max_filter), suffix,
         " had the highest median earnings (<b>",
-        dfWidest$strEarningsMax,
+        format_filtervalues(dfWidest$strEarningsMax),
         "</b>) and ", format_filtervalues(dfWidest$min_filter), suffix,
         " had the lowest median earnings (<b>",
-        dfWidest$strEarningsMin, "</b>)")
+        format_filtervalues(dfWidest$strEarningsMin), "</b>)")
     } else {
       text <- paste0(
         " The industries with the largest range in median earnings were <b>",
