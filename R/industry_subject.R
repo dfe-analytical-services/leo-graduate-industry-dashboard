@@ -572,7 +572,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_data <- tables_data %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All", prior_attainment == "All",
-        qualification_TR == qualinput, threshold == "All",
+        qualification_TR == qualinput, threshold == "All", subject_name != 'All',
         group_name %in% c(groupinput)
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
@@ -587,7 +587,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     crosstabs_earnings_data <- tables_data %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == qualinput, threshold == "All",
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All", subject_name != 'All',
         group_name %in% c(groupinput)
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
@@ -617,7 +617,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     footer_data <- footerdata %>%
       filter(
         sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
-        prior_attainment == "All", qualification_TR == qualinput, threshold == "All",
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All", subject_name != 'All',
         group_name %in% c(groupinput)
       ) %>%
       group_by(SECTIONNAME, subject_name) %>%
