@@ -265,7 +265,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     } else {
       text_sexdiff_base <- paste0(
         " The biggest difference in median earnings is seen in <b>",
-        paste(dfEarningsTopDiff$SECTIONNAME,collapse = " and "),
+        paste(dfEarningsTopDiff$SECTIONNAME, collapse = " and "),
         "</b> where "
       )
       if (all(dfEarningsTopDiff$diff > 0)) {
@@ -293,6 +293,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       sextext2 <- paste("")
     )
 
+<<<<<<< HEAD
     ifelse(first(crosstabs_earnings_data$Male, order_by = -crosstabs_earnings_data$Male) > first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female),
       sextextearnings2 <- paste(" The group with the highest earnings was male graduates in the <b>",
         first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$Male), "</b> industry
@@ -304,8 +305,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         " </b> industry (median earnings of <b>£", format(first(crosstabs_earnings_data$Female, order_by = -crosstabs_earnings_data$Female), big.mark = ",", scientific = FALSE),
         "</b>).",
         sep = ""
+=======
+    dfHighestEarnings <- tables_data_grouped %>%
+      filter(earnings_median > 0, !is.na(earnings_median), sex != "F+M") %>%
+      mutate(sex = case_when(sex == "F" ~ "Female", sex == "M" ~ "Male", TRUE ~ "NA")) %>%
+      mutate(strMedianEarn=paste0("£",format(earnings_median,big.mark = ",", scientific = FALSE))) %>%
+      arrange(-earnings_median)
+    if (nrow(dfHighestEarnings) > 0) {
+      dfHighestEarnings <- dfHighestEarnings %>% filter(earnings_median == max(earnings_median, na.rm = TRUE))
+      textHighestEarnings <- paste(
+        "The group with the highest earnings was ",
+        dfHighestEarnings$sex[1], " graduates in the <b>",
+        dfHighestEarnings$SECTIONNAME[1], 
+        "</b> industry (median earnings of <b>",
+        dfHighestEarnings$strMedianEarn[1],"</b>). ",
+>>>>>>> fix-summarytextmatched
       )
-    )
+    } else {
+      textHighestEarnings <- ""
+    }
+
 
     top_prop_industry <- first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs)
     if (top_prop_industry == "Not known") {
@@ -507,11 +526,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     uniqueethnicity <- unique(ethnicityfirstdata$ethnicityfirstdata)
 
     textprod <- function(data) {
-      if (length(data) != 1) {
+      if (nrow(data) != 1) {
         x <- paste(data$ethnicity[1:nrow(data) - 1], collapse = ", ")
         y <- paste(" and ", data$ethnicity[nrow(data)], sep = "")
         paste(x, y)
-      } else if (length(data) == 1) {
+      } else if (nrow(data) == 1) {
         paste(data$ethnicity[1])
       }
     }
@@ -637,11 +656,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     result <- which(crosstabs_earnings_data2 == max(crosstabs_earnings_data2), arr.ind = TRUE)
 
-    result
-
-    crosstabs_earnings_data2[result[1], result[2]]
-
     crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
+<<<<<<< HEAD
       ethnicitytext,
       br(), br(), " The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME), "</b>
                            where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ", last(row.names(biggestdiff2)), "
@@ -652,6 +668,22 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       " ethnicity graduates had the lowest median earnings (<b>£", format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>).",
       " The group with the highest median earnings was <b>", colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in
                            the <b>", crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
+=======
+      ethnicitytext, br(), br(),
+      "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
+      "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
+      last(row.names(biggestdiff2)), "ethnicity graduates had the lowest proportion.",
+      "The industry with the largest range in median earnings was <b>",
+      first(biggestdiffearnings$SECTIONNAME), "</b> where ", first(row.names(biggestdiffearnings2)),
+      " ethnicity graduates the highest median earnings (<b>£",
+      format(first(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE),
+      "</b>) and ", last(row.names(biggestdiffearnings2)),
+      " ethnicity graduates had the lowest median earnings (<b>£",
+      format(last(biggestdiffearnings2$.), big.mark = ",", scientific = FALSE), "</b>).",
+      "The group with the highest median earnings was <b>",
+      colnames(crosstabs_earnings_data2)[result[2]], "</b> ethnicity graduates in the <b>",
+      crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
+>>>>>>> fix-summarytextmatched
       format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
       sep = ""
     )
