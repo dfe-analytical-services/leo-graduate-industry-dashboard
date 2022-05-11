@@ -54,27 +54,26 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
 funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffix = " graduates",
                               exclNK = TRUE, fs = TRUE) {
   ifelse(exclNK, strNK <- "Not known", strNK <- "")
-  print(colnames(dfGroupedData))
-  dfRangesEarnings <- dfGroupedData %>%
+  dfFiltered <- dfGroupedData %>%
     filter(
       earnings_median > 0, !is.na(earnings_median),
       filter != allcat, filter != strNK, !is.na(filter)
-    ) %>%
+    ) 
+  dfGroupedData <- dfFiltered %>%
     group_by(SECTIONNAME) %>%
     summarise(
       earnings_range = max(earnings_median, na.rm = TRUE) - min(earnings_median, na.rm = TRUE),
       earnings_max = max(earnings_median, na.rm = TRUE),
       earnings_min = min(earnings_median, na.rm = TRUE)
     ) %>%
-    left_join(dfGroupedData, by = c("SECTIONNAME" = "SECTIONNAME", "earnings_max" = "earnings_median")) %>%
+    left_join(dfFiltered, by = c("SECTIONNAME" = "SECTIONNAME", "earnings_max" = "earnings_median")) %>%
     rename(max_filter = filter) %>%
-    left_join(dfGroupedData, by = c("SECTIONNAME" = "SECTIONNAME", "earnings_min" = "earnings_median")) %>%
+    left_join(dfFiltered, by = c("SECTIONNAME" = "SECTIONNAME", "earnings_min" = "earnings_median")) %>%
     rename(min_filter = filter) %>%
     mutate(strEarningsRange = paste0("£", format(earnings_range, big.mark = ",", scientific = FALSE))) %>%
     mutate(strEarningsMax = paste0("£", format(earnings_max, big.mark = ",", scientific = FALSE))) %>%
     mutate(strEarningsMin = paste0("£", format(earnings_min, big.mark = ",", scientific = FALSE))) %>%
-    arrange(-earnings_range)
-  print(dfRangesEarnings)
+    arrange(-earnings_range) %>% distinct()
   if (nrow(dfRangesEarnings) > 0) {
     dfWidest <- dfRangesEarnings %>% filter(earnings_range == max(earnings_range, na.rm = TRUE))
     if (nrow(dfWidest) == 1) {
@@ -95,7 +94,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
       for (i in 1:nrow(dfWidest)) {
         text <- paste0(
           text,
-          "In ", dfWidest$SECTIONNAME[i], ", ", dfWidest$max_filter[i], suffix,
+          " For the ", dfWidest$SECTIONNAME[i], " industry, ", dfWidest$max_filter[i], suffix,
           " had the highest median earnings (<b>",
           dfWidest$strEarningsMax[i],
           "</b>) and ", dfWidest$min_filter[i], suffix,
