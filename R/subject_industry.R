@@ -51,6 +51,15 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
 }
 
+format_filtervalues <- function(filtervalues){
+  if (length(filtervalues)==1){
+    return(filtervalues)
+  } else {
+    return(paste0(paste0(filtervalues[1:length(filtervalues)-1],collapse=', ')," and ",filtervalues[length(filtervalues)]))
+  }
+  
+}
+
 funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffix = " graduates",
                               exclNK = TRUE, fs = TRUE) {
   ifelse(exclNK, strNK <- "Not known", strNK <- "")
@@ -59,7 +68,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
       earnings_median > 0, !is.na(earnings_median),
       filter != allcat, filter != strNK, !is.na(filter)
     ) 
-  dfGroupedData <- dfFiltered %>%
+  dfRangesEarnings <- dfFiltered %>%
     group_by(SECTIONNAME) %>%
     summarise(
       earnings_range = max(earnings_median, na.rm = TRUE) - min(earnings_median, na.rm = TRUE),
@@ -76,19 +85,19 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
     arrange(-earnings_range) %>% distinct()
   if (nrow(dfRangesEarnings) > 0) {
     dfWidest <- dfRangesEarnings %>% filter(earnings_range == max(earnings_range, na.rm = TRUE))
-    if (nrow(dfWidest) == 1) {
+    if (nrow(dfWidest) == 1 | length(unique(dfWidest$SECTIONNAME)) == 1) {
       text <- paste0(
-        "The industry with the largest range in median earnings was <b>",
-        dfWidest$SECTIONNAME, "</b> where ", dfWidest$max_filter, suffix,
+        " The industry with the largest range in median earnings was <b>",
+        unique(dfWidest$SECTIONNAME), "</b>",
+        " where ", format_filtervalues(dfWidest$max_filter), suffix,
         " had the highest median earnings (<b>",
         dfWidest$strEarningsMax,
-        "</b>) and ", dfWidest$min_filter, suffix,
+        "</b>) and ", format_filtervalues(dfWidest$min_filter), suffix,
         " had the lowest median earnings (<b>",
-        dfWidest$strEarningsMin, "</b>)"
-      )
+        dfWidest$strEarningsMin, "</b>)")
     } else {
       text <- paste0(
-        "The industries with the largest range in median earnings were <b>",
+        " The industries with the largest range in median earnings were <b>",
         paste(dfWidest$SECTIONNAME, collapse = " and "), "</b>."
       )
       for (i in 1:nrow(dfWidest)) {
@@ -224,9 +233,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
   print("Here's the output I to check on the null data test:")
   print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
   print(tables_data_grouped %>% filter(!is.na(count), count > 0))
-  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+  print(nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)))
+  print(nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0)
   if (nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0) {
-    return("")
+    crosstab_text <- ""
   } else {
     if (countinput == "sex") {
       # !!! Set Not known to be top group for testing:
@@ -1140,10 +1150,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         br(), br()
       )
     }
-
-    return(crosstab_text)
   }
-}
+  print(crosstab_text)
+  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+  return(crosstab_text)
+  }
 
 
 # 2. Function to create the crosstabs data frame
