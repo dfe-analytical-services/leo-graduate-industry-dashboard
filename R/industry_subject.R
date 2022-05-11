@@ -110,7 +110,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
   # }
   footerfunc <- function(footer_data){
     for (column in numcols) {
-      footerfunc <- format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+      format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
       
     }}
 
@@ -639,7 +639,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     
     footerfunc <- function(footer_data){
       for (column in numcols) {
-        footerfunc <- format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+        format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
         
       }}
     
