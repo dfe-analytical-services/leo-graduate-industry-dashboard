@@ -104,10 +104,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
     } else if (value < 0) "c" else cellformat(value)
   }
 
-  footerfunc <- function(value, index, name) {
-    footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
-    return(footer)
-  }
+  # footerfunc <- function(value, index, name) {
+  #   footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+  #   return(footer)
+  # }
+  footerfunc <- function(footer_data){
+    for (column in numcols) {
+      footerfunc <- format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+      
+    }}
 
   if (countinput == "ethnicity") {
     crosstabs_data <- tables_data %>%
@@ -627,14 +632,21 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
 
-    coldefs <- list(
-      reactable::colDef(style = stylefunc, cell = cellfunc, na = "x", minWidth = 240)
-    )
-
     # get names of numerical cols
     numcols <- crosstabs_data %>%
       dplyr::select(where(is.numeric)) %>%
-      colnames()
+      colnames()   
+    
+    footerfunc <- function(footer_data){
+      for (column in numcols) {
+        footerfunc <- format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+        
+      }}
+    
+    coldefs <- list(
+      reactable::colDef(style = stylefunc, cell = cellfunc, na = "x", minWidth = 240, footer = footerfunc)
+    )
+
     # replicate list to required length
     coldefs <- rep(coldefs, length(numcols))
     # name elements of list according to cols
