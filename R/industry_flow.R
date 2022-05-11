@@ -502,6 +502,11 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
+  if(first(cohort_sankey1_text$count) == 0){
+    sankeytext2 <- ''
+  } else if(first(cohort_sankey2_text$count)==0){
+    sankeytext2 <- ''
+  } else {
   sankeytext2 <- paste(
     "The most movement between one and three years after graduation is seen for <b>",
     first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
@@ -509,7 +514,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
                        years after graduation it's seen for <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> where <b>",
     first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
     "</b>."
-  )
+  )}
 
   return(sankeytext2)
 }
