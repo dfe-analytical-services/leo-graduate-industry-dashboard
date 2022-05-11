@@ -95,15 +95,15 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
       for (i in 1:nrow(dfWidest)) {
         text <- paste0(
           text,
-          "In ", dfWidest$SECTIONNAME[i], ", ", dfWidest$max_filter, suffix,
+          "In ", dfWidest$SECTIONNAME[i], ", ", dfWidest$max_filter[i], suffix,
           " had the highest median earnings (<b>",
-          dfWidest$strEarningsMax,
-          "</b>) and ", dfWidest$min_filter, suffix,
+          dfWidest$strEarningsMax[i],
+          "</b>) and ", dfWidest$min_filter[i], suffix,
           " had the lowest median earnings (<b>",
-          dfWidest$strEarningsMin, "</b>)"
+          dfWidest$strEarningsMin[i], "</b>)"
         )
         if (i < nrow(dfWidest)) {
-          paste0(text, ".")
+          paste0(text, ". ")
         }
       }
     }
