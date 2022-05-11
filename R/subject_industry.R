@@ -66,7 +66,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
   dfFiltered <- dfGroupedData %>%
     filter(
       earnings_median > 0, !is.na(earnings_median),
-      filter != allcat, filter != strNK, !is.na(filter)
+      filter != allcat, filter != strNK, SECTIONNAME != strNK, !is.na(filter)
     )
   dfRangesEarnings <- dfFiltered %>%
     group_by(SECTIONNAME) %>%
@@ -514,7 +514,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           top_industry_FSM$SECTIONNAME, "</b>), where median earnings for non-FSM graduates were <b>",
           top_industry_nonFSM$`non-FSM`, "</b> and for FSM graduates were <b>", top_industry_FSM$FSM, "</b>."
         ),
-        sectiontext <- paste("non-FSM graduates was <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`), "</b> and the median
+        sectiontext <- paste("the industry with the highest proportion of non-FSM graduates was <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`), "</b> and the median
                                 earnings of non-FSM graduates in this industry were <b>",
           top_industry_nonFSM$`non-FSM`, "</b>. The
                                 industry with the highest proportion of FSM graduates was <b>",
@@ -548,14 +548,17 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         )
       )
 
+      textWidestEarnings <- funcRangeEarnings(
+        tables_data_grouped %>% mutate(filter = FSM),
+        suffix = " graduates"
+      )
 
       crosstab_text <- paste0(
         "For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
-        "the industry with the highest proportion of ", sectiontext, br(), br(),
+        sectiontext, br(), br(),
         "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
         "</b> where ", FSMtext,
-        "The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
-        "</b> where ", FSMearningstext,
+        textWidestEarnings,
         funcHighestEarnings(tables_data_grouped %>% mutate(filter = FSM)), br(), br()
       )
     }
@@ -623,8 +626,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         data2 <- ethnicityfirstdata %>%
           filter(ethnicityfirstdata == uniqueethnicity[2])
 
-        ethnicitytext <- paste("<b>", uniqueregions[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      and <b>", uniqueregions[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
+        ethnicitytext <- paste("<b>", uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
+                      and <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates.")
       } else if (length(uniqueethnicity) == 3) {
         data1 <- ethnicityfirstdata %>%
           filter(ethnicityfirstdata == uniqueethnicity[1])
@@ -779,14 +782,23 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           `East of England`, `London`, `South East`, `South West`
         )
 
-      regionfirst <- function(current_region) {
-        first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data[current_region])
+      regionfirst <- function(data, region) {
+        dfMaxLines <- data %>%
+          filter(current_region == region, count > 0) %>%
+          filter(count == max(count, na.rm = TRUE))
+        return(format_filtervalues(dfMaxLines$SECTIONNAME))
       }
 
       regionfirstdata <- c(
-        regionfirst("North East"), regionfirst("North West"), regionfirst("Yorkshire and the Humber"), regionfirst("East Midlands"),
-        regionfirst("West Midlands"), regionfirst("East of England"), regionfirst("London"), regionfirst("South East"),
-        regionfirst("South West")
+        regionfirst(tables_data_grouped, "North East"),
+        regionfirst(tables_data_grouped, "North West"),
+        regionfirst(tables_data_grouped, "Yorkshire and the Humber"),
+        regionfirst(tables_data_grouped, "East Midlands"),
+        regionfirst(tables_data_grouped, "West Midlands"),
+        regionfirst(tables_data_grouped, "East of England"),
+        regionfirst(tables_data_grouped, "London"),
+        regionfirst(tables_data_grouped, "South East"),
+        regionfirst(tables_data_grouped, "South West")
       )
       regionfirstdata <- data.frame(regionfirstdata)
       regionfirstdata$region <- c(
@@ -920,7 +932,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         br(),
         funcHighestEarnings(
           tables_data_grouped %>% mutate(filter = current_region),
-          prefix = "graduates currently living in the", suffix = ""
+          prefix = "graduates currently living in the ", suffix = ""
         )
       )
     }
