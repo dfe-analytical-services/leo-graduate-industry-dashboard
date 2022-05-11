@@ -360,7 +360,7 @@ server <- function(input, output, session) {
   })
 
   observe({
-    if (input$qualinput != "All") {
+    if (input$qualinput3 != "All") {
       data_filtered <- qual_subjects %>%
         filter(qualification_TR == input$qualinput3) %>%
         distinct()
@@ -368,13 +368,13 @@ server <- function(input, output, session) {
       data_filtered <- qual_subjects
     }
     updateSelectInput(
-      session, "subjInd.subjectinput",
-      unique(c("All", data_filtered$subject_name))
+      session, "crosstabs.subjectinput",
+      choices = unique(c("All", data_filtered$subject_name))
     )
   })
 
   observe({
-    if (input$sectionnameinput != "All") {
+    if (input$sectionnameinput2 != "All") {
       data_filtered <- industry_groups %>%
         filter(SECTIONNAME == input$sectionnameinput2) %>%
         distinct()
