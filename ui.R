@@ -417,26 +417,28 @@ fluidPage(
               div(
                 # Set as well but override sidebar defaults
                 class = "well",
-                style = "height: 100%; overflow-y: visible",
+                style = "min-height: 100%; height: 100%; overflow-y: visible",
 
                 #### Regional input -------------------------------------------
 
-                div(selectizeInput("regioninput",
-                  label = "Select multiple regions from the dropdown below to compare.",
-                  choices = list(
-                    "North East",
-                    "North West",
-                    "Yorkshire and the Humber",
-                    "East Midlands",
-                    "West Midlands",
-                    "East of England",
-                    "London",
-                    "South East",
-                    "South West"
-                  ),
-                  selected = "London", multiple = FALSE,
-                  options = list(maxItems = 9, placeholder = "Start typing a region")
-                ))
+                div(
+                  selectizeInput("regioninput",
+                    label = "Select multiple regions from the dropdown below to compare.",
+                    choices = list(
+                      "North East",
+                      "North West",
+                      "Yorkshire and the Humber",
+                      "East Midlands",
+                      "West Midlands",
+                      "East of England",
+                      "London",
+                      "South East",
+                      "South West"
+                    ),
+                    selected = "London", multiple = FALSE,
+                    options = list(maxItems = 9, placeholder = "Start typing a region")
+                  )
+                )
               ),
 
               #### Table ------------------------------------------------------
