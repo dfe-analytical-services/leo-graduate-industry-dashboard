@@ -100,7 +100,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
           dfWidest$strEarningsMax,
           "</b>) and ", dfWidest$min_filter, suffix,
           " had the lowest median earnings (<b>",
-          strEarningsMin, "</b>)"
+          dfWidest$strEarningsMin, "</b>)"
         )
         if (i < nrow(dfWidest)) {
           paste0(text, ".")
