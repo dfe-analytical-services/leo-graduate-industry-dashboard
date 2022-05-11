@@ -51,11 +51,14 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   return(list(numeric_cols = numeric_cols, numeric_cols_def = numeric_cols_def, numeric_cols_def_nested = numeric_cols_def_nested, script = script))
 }
 
-funcHighestEarnings <- function(dfGroupedData,allcat='All',prefix=' ',suffix=' graduates'){
+funcHighestEarnings <- function(dfGroupedData,allcat='All',prefix=' ',suffix=' graduates', exclNK=TRUE){
+  ifelse(exclNK,strNK<-'Not known',strNK<-'')
   dfHighestEarnings <- dfGroupedData %>%
-    filter(earnings_median > 0, !is.na(earnings_median), filter != allcat) %>%
+    filter(earnings_median > 0, !is.na(earnings_median), 
+           filter != allcat, filter != strNK, !is.na(filter)) %>%
     mutate(strMedianEarn=paste0("£",format(earnings_median,big.mark = ",", scientific = FALSE))) %>%
     arrange(-earnings_median)
+  print(dfHighestEarnings)
   if (nrow(dfHighestEarnings) > 0) {
     dfHighestEarnings <- dfHighestEarnings %>% filter(earnings_median == max(earnings_median, na.rm = TRUE))
     text <- paste0(
@@ -316,7 +319,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
     # Create the highest earnings text.
   textHighestEarnings <- funcHighestEarnings(tables_data_grouped %>%
-    mutate(filter = case_when(sex == "F" ~ "Female", sex == "M" ~ "Male", sex=="M+F" ~ 'All',TRUE ~ "NA"))
+    mutate(filter = case_when(sex == "F" ~ "Female", sex == "M" ~ "Male", sex=="F+M" ~ 'All',TRUE ~ "NA"))
   )
     
     top_prop_industry <- first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs)
@@ -447,29 +450,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
     )
 
-    ifelse(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`) > first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM),
-      FSMearningstext2 <- paste("The group with the highest earnings was non-FSM graduates in the <b>",
-        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$`non-FSM`), "</b>
-                                     industry (median earnings of <b>£",
-        format(first(crosstabs_earnings_data$`non-FSM`, order_by = -crosstabs_earnings_data$`non-FSM`), big.mark = ",", scientific = FALSE), "</b>).",
-        sep = ""
-      ),
-      FSMearningstext2 <- paste("The group with the highest earnings was FSM graduates in the <b>",
-        first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$FSM), "</b>
-                                     industry (median earnings of <b>£",
-        format(first(crosstabs_earnings_data$FSM, order_by = -crosstabs_earnings_data$FSM), big.mark = ",", scientific = FALSE), "</b>).",
-        sep = ""
-      )
-    )
-
-    crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
+    crosstab_text <- paste0("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
       "the industry with the highest proportion of ", sectiontext, br(), br(),
       "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
       "</b> where ", FSMtext,
       "The biggest difference in median earnings was seen in <b>", first(crosstabs_earnings_data$SECTIONNAME, order_by = -crosstabs_earnings_data$abs),
       "</b> where ", FSMearningstext,
-      FSMearningstext2, br(), br(),
-      sep = ""
+      funcHighestEarnings(tables_data_grouped %>% mutate(filter = FSM)), br(), br()
     )
   }
 
