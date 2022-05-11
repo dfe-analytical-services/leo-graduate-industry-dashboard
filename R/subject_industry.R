@@ -658,7 +658,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       ethnicitytext, br(), br(),
       "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
       "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
-      last(row.names(biggestdiff2)), "ethnicity graduates had the lowest proportion.",
+      last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion.",
       "The industry with the largest range in median earnings was <b>",
       first(biggestdiffearnings$SECTIONNAME), "</b> where ", first(row.names(biggestdiffearnings2)),
       " ethnicity graduates the highest median earnings (<b>£",
@@ -732,11 +732,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     uniqueregions <- unique(regionfirstdata$regionfirstdata)
 
     textprod <- function(data) {
-      if (length(data) != 1) {
+      if (nrow(data) != 1) {
         x <- paste(data$region[1:nrow(data) - 1], collapse = ", ")
         y <- paste(" and ", data$region[nrow(data)], sep = "")
         paste(x, y)
-      } else if (length(data) == 1) {
+      } else if (nrow(data) == 1) {
         paste(data$region[1])
       }
     }
@@ -853,11 +853,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       "For first degree graduates of ", subjecttext, ", ",
       YAGinput, " years after graduation, ", regiontext,
       br(),
-      "The group with the highest earnings was graduates currently living in <b>",
-      colnames(crosstabs_earnings_data2)[result[2]], "</b> working in the <b>",
-      crosstabs_earnings_data[result[1], ]$SECTIONNAME, "</b> industry (median earnings of <b>£",
-      format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE), "</b>).", br(), br(),
-      sep = ""
+      funcHighestEarnings(
+        tables_data_grouped %>% mutate(filter = current_region),prefix ='graduates currently living in the',suffix=''
+      )
     )
   }
 
@@ -1029,11 +1027,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     uniquequal <- unique(qualfirstdata$qualfirstdata)
 
     textprod <- function(data) {
-      if (length(data) != 1) {
+      if (nrow(data) != 1) {
         x <- paste(data$qual[1:nrow(data) - 1], collapse = ", ")
         y <- paste(" and ", data$qual[nrow(data)], sep = "")
         paste(x, y)
-      } else if (length(data) == 1) {
+      } else if (nrow(data) == 1) {
         paste(data$qual[1])
       }
     }
