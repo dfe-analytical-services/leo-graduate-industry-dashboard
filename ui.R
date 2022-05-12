@@ -225,10 +225,10 @@ fluidPage(
               ),
               # conditionalPanel(
               #   condition = "!is.null(output$sankey_flag)",
-              withSpinner(
-                uiOutput("sankey_flag")
-                #   )
-              ),
+              # withSpinner(
+              #  uiOutput("sankey_flag")
+              #   )
+              # ),
               # conditionalPanel(
               #  condition = "is.null(output$sankey_flag)",
               withSpinner(
