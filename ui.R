@@ -489,18 +489,16 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
-            selectInput("qualinput3",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
+
+          selectInput("qualinput3",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
@@ -513,13 +511,11 @@ fluidPage(
 
           ### Subject input ---------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 != 'subject_name'",
-            selectInput("crosstabs.subjectinput",
-              label = "Select a subject area",
-              choices = unique(c("All", sort(qual_subjects$subject_name))),
-              selected = "All"
-            )
+
+          selectInput("crosstabs.subjectinput",
+            label = "Select a subject area",
+            choices = unique(c("All", sort(qual_subjects$subject_name))),
+            selected = "All"
           ),
 
           ### Breakdown input -------------------------------------------------
@@ -598,18 +594,15 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
-            selectInput("qualinput4",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
+          selectInput("qualinput4",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
@@ -622,46 +615,40 @@ fluidPage(
 
           ### Industry input -------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 != 'SECTIONNAME'",
-            selectInput("sectionnameinput2",
-              label = "Choose an industry area",
-              choices = list(
-                "Accommodation and food service activities",
-                "Activities of extraterritorial organisations and bodies",
-                "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
-                "Administrative and support service activities",
-                "Agriculture, forestry and fishing",
-                "Arts, entertainment and recreation",
-                "Construction",
-                "Education",
-                "Electricity, gas, steam and air conditioning supply",
-                "Financial and insurance activities",
-                "Human health and social work activities",
-                "Information and communication",
-                "Manufacturing",
-                "Mining and quarrying",
-                "Other service activities",
-                "Professional, scientific and technical activities",
-                "Public administration and defence - compulsory social security",
-                "Real estate activities",
-                "Transportation and storage",
-                "Water supply - sewerage, waste management and remediation activities",
-                "Wholesale and retail trade - repair of motor vehicles and motorcycles"
-              ),
-              selected = "Education"
-            )
+          selectInput("sectionnameinput2",
+            label = "Choose an industry area",
+            choices = list(
+              "Accommodation and food service activities",
+              "Activities of extraterritorial organisations and bodies",
+              "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
+              "Administrative and support service activities",
+              "Agriculture, forestry and fishing",
+              "Arts, entertainment and recreation",
+              "Construction",
+              "Education",
+              "Electricity, gas, steam and air conditioning supply",
+              "Financial and insurance activities",
+              "Human health and social work activities",
+              "Information and communication",
+              "Manufacturing",
+              "Mining and quarrying",
+              "Other service activities",
+              "Professional, scientific and technical activities",
+              "Public administration and defence - compulsory social security",
+              "Real estate activities",
+              "Transportation and storage",
+              "Water supply - sewerage, waste management and remediation activities",
+              "Wholesale and retail trade - repair of motor vehicles and motorcycles"
+            ),
+            selected = "Education"
           ),
 
           ### Group input -----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 != 'SECTIONNAME'",
-            selectizeInput("groupinput",
-              label = "View 3 digit SIC groups within the selected industry",
-              choices = unique(c("All", sort(industry_groups$group_name))),
-              selected = "All", multiple = FALSE
-            )
+          selectizeInput("groupinput",
+            label = "View 3 digit SIC groups within the selected industry",
+            choices = unique(c("All", sort(industry_groups$group_name))),
+            selected = "All", multiple = FALSE
           ),
 
 
