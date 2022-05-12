@@ -240,11 +240,6 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-  print("Here's the output I to check on the null data test:")
-  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
-  print(tables_data_grouped %>% filter(!is.na(count), count > 0))
-  print(nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)))
-  print(nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0)
   if (nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0) {
     crosstab_text <- ""
   } else {
@@ -1164,8 +1159,6 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
     }
   }
-  print(crosstab_text)
-  print("+++++++++++++++++++++++++++++++++++++++++++++++++++")
   return(crosstab_text)
 }
 
