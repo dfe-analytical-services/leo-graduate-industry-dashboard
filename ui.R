@@ -626,35 +626,32 @@ fluidPage(
 
           ### Industry input -------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 != 'SECTIONNAME'",
-            selectInput("sectionnameinput2",
-              label = "Choose an industry area",
-              choices = list(
-                "Accommodation and food service activities",
-                "Activities of extraterritorial organisations and bodies",
-                "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
-                "Administrative and support service activities",
-                "Agriculture, forestry and fishing",
-                "Arts, entertainment and recreation",
-                "Construction",
-                "Education",
-                "Electricity, gas, steam and air conditioning supply",
-                "Financial and insurance activities",
-                "Human health and social work activities",
-                "Information and communication",
-                "Manufacturing",
-                "Mining and quarrying",
-                "Other service activities",
-                "Professional, scientific and technical activities",
-                "Public administration and defence - compulsory social security",
-                "Real estate activities",
-                "Transportation and storage",
-                "Water supply - sewerage, waste management and remediation activities",
-                "Wholesale and retail trade - repair of motor vehicles and motorcycles"
-              ),
-              selected = "Education"
-            )
+          selectInput("sectionnameinput2",
+            label = "Choose an industry area",
+            choices = list(
+              "Accommodation and food service activities",
+              "Activities of extraterritorial organisations and bodies",
+              "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
+              "Administrative and support service activities",
+              "Agriculture, forestry and fishing",
+              "Arts, entertainment and recreation",
+              "Construction",
+              "Education",
+              "Electricity, gas, steam and air conditioning supply",
+              "Financial and insurance activities",
+              "Human health and social work activities",
+              "Information and communication",
+              "Manufacturing",
+              "Mining and quarrying",
+              "Other service activities",
+              "Professional, scientific and technical activities",
+              "Public administration and defence - compulsory social security",
+              "Real estate activities",
+              "Transportation and storage",
+              "Water supply - sewerage, waste management and remediation activities",
+              "Wholesale and retail trade - repair of motor vehicles and motorcycles"
+            ),
+            selected = "Education"
           ),
 
           ### Group input -----------------------------------------------------
