@@ -92,7 +92,7 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
     arrange(-earnings_range) %>%
     distinct() %>%
     filter(max_filter != min_filter)
-  if (nrow(dfRangesEarnings) > 0 & max(earnings_range > 0)) {
+  if (nrow(dfRangesEarnings) > 0 & max(dfRangesEarnings$earnings_range) > 0) {
     dfWidest <- dfRangesEarnings %>% filter(earnings_range == max(earnings_range, na.rm = TRUE))
     if (nrow(dfWidest) == 1 | length(unique(dfWidest$SECTIONNAME)) == 1) {
       text <- paste0(
