@@ -53,11 +53,11 @@ tidy_code_function <- function() {
 }
 
 source("R/read_data.R")
-cohort1 <- read_cohort("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/PG sankey data 1-3 YAG_v4.csv")
-cohort2 <- read_cohort("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/PG sankey data 3-5 YAG_v4.csv")
-cohort3 <- read_cohort("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/PG sankey data 1-5 YAG_v4.csv")
+cohort1 <- read_cohort("data/PG sankey data 1-3 YAG_v4.csv")
+cohort2 <- read_cohort("data/PG sankey data 3-5 YAG_v4.csv")
+cohort3 <- read_cohort("data/PG sankey data 1-5 YAG_v4.csv")
 
-tables_data <- read_tables_data("//vmt1pr-dhfs01/working/EDUDEST-WKG-HE-FS/SIC analysis/Code for csvs/CSVs/tables_data_3digit_FD_PG.csv")
+tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
 
 qual_subjects <- tables_data %>%
   select(qualification_TR, subject_name) %>%
