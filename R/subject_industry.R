@@ -259,7 +259,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-`F+M`) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c("F", "M", "F+M"),
@@ -470,7 +470,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-All) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c("non-FSM", "FSM", "Not known"),
@@ -579,7 +579,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-All) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
@@ -749,7 +749,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-All) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c(
@@ -942,7 +942,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-All) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
@@ -1074,7 +1074,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-`First degree`) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
       crosstabs_earnings_data <- tables_data %>%
@@ -1227,7 +1227,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         funs(as.numeric(.))
@@ -1245,7 +1248,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         funs(as.numeric(.))
@@ -1288,7 +1290,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     tables_data_nested <- crosstabs_basedata %>%
       filter(group_name != "All") %>%
       group_by(ethnicity) %>%
-      mutate(prop = count / sum(count, na.rm = TRUE))
+      mutate(prop = ifelse(count == 0, 0, count / sum(count, na.rm = TRUE)))
 
     nested_table <- tables_data_nested %>%
       select(ethnicity, SECTIONNAME, group_name, n = prop) %>%
@@ -1341,7 +1343,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       mutate_at(
         c(
           "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
@@ -1367,7 +1372,6 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(current_region, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
       mutate_at(
         c(
           "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
@@ -1416,7 +1420,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     tables_data_nested <- crosstabs_basedata %>%
       filter(group_name != "All") %>%
       group_by(current_region) %>%
-      mutate(prop = count / sum(count, na.rm = TRUE))
+      mutate(prop = ifelse(count == 0, 0, count / sum(count, na.rm = TRUE)))
 
     if (buttoninput == "Proportions") {
       nested_table <- tables_data_nested %>%
@@ -1469,7 +1473,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       mutate_at(
         c("non-FSM", "FSM", "Not known"),
         funs(as.numeric(.))
@@ -1530,7 +1537,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         prior_attainment == "All", qualification_TR == "First degree", group_name != "All"
       ) %>%
       group_by(FSM) %>%
-      mutate(prop = count / sum(count, na.rm = TRUE))
+      mutate(prop = ifelse(count == 0, 0, count / sum(count, na.rm = TRUE)))
 
     nested_table <- tables_data_nested %>%
       filter(group_name != "All") %>%
@@ -1583,7 +1590,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       mutate_at(
         c("F", "M", "F+M"),
         funs(as.numeric(.))
@@ -1696,7 +1706,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       mutate_at(
         c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
         funs(as.numeric(.))
@@ -1771,7 +1784,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     tables_data_nested <- crosstabs_basedata %>%
       filter(group_name != "All") %>%
       group_by(prior_attainment) %>%
-      mutate(prop = count / sum(count, na.rm = TRUE))
+      mutate(prop = ifelse(count == 0, 0, count / sum(count, na.rm = TRUE)))
 
     nested_table <- tables_data_nested %>%
       select(prior_attainment, SECTIONNAME, group_name, n = prop) %>%
@@ -1827,7 +1840,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       select(-All)
 
     # Ensure Not known is always at the bottom
@@ -1875,7 +1891,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     tables_data_nested <- crosstabs_basedata %>%
       filter(group_name != "All") %>%
       group_by(subject_name) %>%
-      mutate(prop = count / sum(count, na.rm = TRUE))
+      mutate(prop = ifelse(count == 0, 0, count / sum(count, na.rm = TRUE)))
 
     nested_table <- tables_data_nested %>%
       group_by(subject_name, SECTIONNAME, group_name) %>%
@@ -1893,9 +1909,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       group_by(subject_name, SECTIONNAME, group_name) %>%
       summarise(n = earnings_median) %>%
       spread(subject_name, n) %>%
-      colorders(countinput) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
+      colorders(countinput)
 
     if (buttoninput == "Proportions") {
       nested <- nested_table %>%
@@ -1926,7 +1940,10 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(is.numeric, funs(. / sum(., na.rm = TRUE))) %>%
+      mutate_if(
+        is.numeric,
+        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
 
     # Ensure Not known is always at the bottom
