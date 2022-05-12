@@ -56,6 +56,10 @@ body {
     font-weight: bold;
 }
 
+.govuk-notification-banner__content>* {
+    box-sizing: border-box;
+    max-width: 6000px; !important
+}
 
 
 .small-box.bg-purple {
