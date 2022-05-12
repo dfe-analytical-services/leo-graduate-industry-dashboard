@@ -268,13 +268,11 @@ server <- function(input, output, session) {
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
           mutate_if(is.numeric, funs(100.0 * .))
-      } else {
-        dfDownload <- dfDownload %>%
-          mutate_if(is.numeric, funs(gsub(" ", "", format(., scientific = FALSE)))) %>%
-          mutate_all(funs(gsub("-10000", "c", .))) %>%
-          mutate_all(funs(ifelse(. == "NA", "x", .)))
       }
       dfDownload <- dfDownload %>%
+        mutate_if(is.numeric, funs(gsub(" ", "", format(., scientific = FALSE)))) %>%
+        mutate_all(funs(gsub("-10000", "c", .))) %>%
+        mutate_all(funs(ifelse(. == "NA", "x", .))) %>%
         arrange(SECTIONNAME, group_name) %>%
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
@@ -348,13 +346,11 @@ server <- function(input, output, session) {
       if (input$earningsbutton2 == "Proportions") {
         dfDownload <- dfDownload %>%
           mutate_if(is.numeric, funs(100.0 * .))
-      } else {
-        dfDownload <- dfDownload %>%
-          mutate_if(is.numeric, funs(gsub(" ", "", format(., scientific = FALSE)))) %>%
-          mutate_all(funs(gsub("-10000", "c", .))) %>%
-          mutate_all(funs(ifelse(. == "NA", "x", .)))
       }
       dfDownload <- dfDownload %>%
+        mutate_if(is.numeric, funs(gsub(" ", "", format(., scientific = FALSE)))) %>%
+        mutate_all(funs(gsub("-10000", "c", .))) %>%
+        mutate_all(funs(ifelse(. == "NA", "x", .))) %>%
         arrange(subject_name) %>%
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
