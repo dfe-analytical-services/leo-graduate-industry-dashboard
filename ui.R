@@ -40,12 +40,12 @@ fluidPage(
 
     tabPanel(
       value = "homepage", title = "Homepage",
-      noti_banner(
-        "notId",
-        title_txt = "Known issue",
-        body_txt = "We are aware of and working to address performance issues with the dashboard, during this time some interactive elements may be slow.",
-        type = "standard"
-      ),
+      # noti_banner(
+      #   "notId",
+      #   title_txt = "Known issue",
+      #   body_txt = "We are aware of and working to address performance issues with the dashboard, during this time some interactive elements may be slow.",
+      #   type = "standard"
+      # ),
 
       ## Tab content ----------------------------------------------------------
 
