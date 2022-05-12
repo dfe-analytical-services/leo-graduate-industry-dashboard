@@ -403,7 +403,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             text_sexdiff_base,
             "the median earnings of male graduates were <b>£",
             format(unique(dfEarningsTopDiff$abs), big.mark = ",", scientific = FALSE),
-            "  higher</b> than the medain earnings of female graduates."
+            "  higher</b> than the median earnings of female graduates."
           )
         } else if (all(dfEarningsTopDiff$diff < 0)) {
           sextextearnings <- paste0(
@@ -546,7 +546,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
         FSMearningstext <- paste("the median earnings of non-FSM graduates were <b>£",
           format(first(crosstabs_earnings_data$abs, order_by = -crosstabs_earnings_data$abs), big.mark = ",", scientific = FALSE),
-          "  higher </b> than the medain earnings of FSM graduates.",
+          "  higher </b> than the median earnings of FSM graduates.",
           sep = ""
         ),
         FSMearningstext <- paste("the median earnings of FSM graduates were <b>£",
