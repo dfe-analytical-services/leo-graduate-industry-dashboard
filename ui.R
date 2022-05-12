@@ -68,24 +68,24 @@ fluidPage(
                 div(
                   class = "panel-body",
                   tags$div(
-                    title = "This section is really useful if you want to understand how well different industries retain graduates!",
+                    title = "This section is useful if you want to understand how well different industries retain graduates.",
                     h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
                   ),
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
                   tags$div(
-                    title = "This section is really useful if you want to understand which parts of the country graduates move to in order to find roles in particular sectors!",
+                    title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.",
                     h3(actionLink("link_to_regional_tab", "Regional analysis"))
                   ),
                   regional_text(), # defined in R/dashboard_text.R
                   br(),
                   tags$div(
-                    title = "This section is really useful if you want to understand which industries your subject of study can lead to!",
+                    title = "This section is useful if you want to understand which industries your subject of study can lead to.",
                     h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
                   ),
                   sub_by_ind_text(), # defined in R/dashboard_text.R
                   tags$div(
-                    title = "This section is really useful if you want to understand which subject to study to access certain sectors!",
+                    title = "This section is useful if you want to understand which subject to study to access certain industries.",
                     h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
                   ),
                   ind_by_sub_text(), # defined in R/dashboard_text.R
@@ -120,7 +120,8 @@ fluidPage(
     # Industry flow tab =======================================================
 
     tabPanel(
-      value = "industryFlow", title = "Industry flow",
+      value = "industryFlow",
+      tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.", "Industry flow"),
 
       ## Side bar =============================================================
 
@@ -139,9 +140,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),
@@ -240,9 +239,11 @@ fluidPage(
               br(),
               strong("Footnotes"),
               br(),
-              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("3. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
               height = 1500
             )
           ),
@@ -257,7 +258,8 @@ fluidPage(
     # Regional analysis tab ===================================================
 
     tabPanel(
-      value = "regional", title = "Regional",
+      value = "regional",
+      tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.", "Regional"),
 
       ## Side bar =============================================================
 
@@ -276,9 +278,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),
@@ -451,15 +451,19 @@ fluidPage(
               br(), br(),
               strong("Footnotes"),
               br(),
-              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)")
+              paste("2. Earnings figures are rounded to the nearest £100"),
+              br(),
+              paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
             )
           ),
 
           ## Caveats ----------------------------------------------------------
 
-          caveats_box() # defined in R/caveats.R
+          caveats_box_regional() # defined in R/caveats.R
         ) # end of main panel
       ), # end of sidebar layout
     ), # end of regional tab
@@ -467,7 +471,8 @@ fluidPage(
     # Subject by industry tab =================================================
 
     tabPanel(
-      title = "Subject by industry", value = "subjectByIndustry",
+      tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.", "Subject by industry"),
+      value = "subjectByIndustry",
 
       ## Side bar =============================================================
 
@@ -554,6 +559,7 @@ fluidPage(
           ### Crosstab text ---------------------------------------------------
 
           div(
+            "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.", br(),
             htmlOutput("crosstab_text")
           ),
           withSpinner(reactableOutput("crosstab")),
@@ -562,9 +568,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
@@ -572,7 +582,8 @@ fluidPage(
 
     # Industry by subject tab =================================================
     tabPanel(
-      title = "Industry by subject", value = "industryBySubject",
+      tags$div(title = "This section is useful if you want to understand which subject to study to access certain industries.", "Industry by subject"),
+      value = "industryBySubject",
 
       ## Side bar =============================================================
 
@@ -690,9 +701,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),

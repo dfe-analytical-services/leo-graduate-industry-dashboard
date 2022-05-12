@@ -13,13 +13,14 @@ read_cohort <- function(cohortfile = "data/pg_sankey_data_1_3_yag_dummy.csv") {
 
 # Read in tables data.
 read_tables_data <- function(file) {
-  tables_data <- fread(file) %>% select(-V1)
+  tables_data <- fread(file)
   names(tables_data) <- c(
     "X", "YAG", "subject_name", "SECTIONNAME", "sex",
     "ethnicity", "current_region", "FSM", "prior_attainment",
     "count", "earnings_median", "threshold", "qualification_TR",
     "group_name"
   )
+  tables_data <- tables_data %>% select(-X)
   tables_data$SECTIONNAME[tables_data$group_name == "Radio broadcasting"] <- "INFORMATION AND COMMUNICATION"
   tables_data$SECTIONNAME[tables_data$group_name == "Reproduction of recorded media"] <- "MANUFACTURING"
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
