@@ -90,8 +90,9 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
     mutate(strEarningsMax = paste0("£", format(earnings_max, big.mark = ",", scientific = FALSE))) %>%
     mutate(strEarningsMin = paste0("£", format(earnings_min, big.mark = ",", scientific = FALSE))) %>%
     arrange(-earnings_range) %>%
-    distinct() %>% filter(max_filter != min_filter)
-  if (nrow(dfRangesEarnings) > 0 & max(earnings_range>0)) {
+    distinct() %>%
+    filter(max_filter != min_filter)
+  if (nrow(dfRangesEarnings) > 0 & max(earnings_range > 0)) {
     dfWidest <- dfRangesEarnings %>% filter(earnings_range == max(earnings_range, na.rm = TRUE))
     if (nrow(dfWidest) == 1 | length(unique(dfWidest$SECTIONNAME)) == 1) {
       text <- paste0(

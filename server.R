@@ -191,7 +191,7 @@ server <- function(input, output, session) {
   output$crosstab_text <- renderText({
     x <- reactiveSubjbyIndText()
     print("Here's the reactive summary text...")
-    print(paste("For the filter combination",input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3))
+    print(paste("For the filter combination", input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3))
     print(x)
     return(x)
   })
