@@ -16,144 +16,144 @@
           "attribs": {
             "data": {
               "subject_name": [
-                "Biosciences",
-                "Law",
-                "Politics",
-                "Languages and area studies",
-                "Physics and astronomy",
-                "General, applied and forensic sciences",
-                "Computing",
-                "Economics",
-                "English studies",
-                "Nursing and midwifery",
-                "Philosophy and religious studies",
-                "Engineering",
-                "Materials and technology",
                 "Architecture, building and planning",
-                "Psychology",
-                "Medical sciences",
-                "Mathematical sciences",
-                "Chemistry",
-                "Performing arts",
+                "Engineering",
                 "Business and management",
-                "Allied health",
                 "Creative arts and design",
-                "Combined and general studies",
-                "Veterinary sciences",
-                "Agriculture, food and related studies",
+                "Geography, earth and environmental studies",
+                "Sport and exercise sciences",
+                "Computing",
+                "Performing arts",
+                "Sociology, social policy and anthropology",
+                "English studies",
+                "Law",
+                "Media, journalism and communications",
+                "Psychology",
                 "History and archaeology",
                 "Education and teaching",
-                "Sport and exercise sciences",
-                "Media, journalism and communications",
+                "Mathematical sciences",
+                "Combined and general studies",
+                "Economics",
+                "Allied health",
+                "Biosciences",
+                "Agriculture, food and related studies",
+                "Materials and technology",
+                "Politics",
+                "Chemistry",
+                "Languages and area studies",
+                "Nursing and midwifery",
+                "Philosophy and religious studies",
+                "General, applied and forensic sciences",
                 "Health and social care",
+                "Medical sciences",
+                "Physics and astronomy",
                 "Pharmacology, toxicology and pharmacy",
-                "Geography, earth and environmental studies",
-                "Sociology, social policy and anthropology"
+                "Veterinary sciences"
               ],
               "non-FSM": [
-                0.005,
-                0.015,
+                0.241,
+                0.193,
+                0.136,
+                0.068,
+                0.054,
+                0.037,
                 0.031,
-                0.002,
-                0.022,
-                0.058,
-                0.05,
-                0.052,
-                0.047,
-                0.028,
-                0.032,
                 0.027,
-                0,
-                0.009,
-                0.043,
-                0.057,
-                0.079,
-                0.012,
-                0.009,
-                0.048,
-                0.016,
-                0.052,
+                0.02,
+                0.02,
+                0.017,
+                0.02,
+                0.02,
+                0.02,
+                0.014,
+                0.014,
                 0.003,
-                0.05,
-                0.07,
-                0.027,
-                0.001,
-                0.032,
-                0.032,
-                0.026,
-                0.008,
-                0.006,
-                0.052
+                0.01,
+                0.003,
+                0.01,
+                0.007,
+                0.007,
+                0.007,
+                0.003,
+                0.007,
+                0,
+                0.003,
+                0.003,
+                0,
+                0,
+                0.003,
+                0,
+                0
               ],
               "FSM": [
-                0.038,
-                0.051,
-                0.019,
-                "NA",
-                "NA",
-                0.008,
-                0.057,
-                0.018,
-                0.007,
-                "NA",
-                0.06,
-                0.047,
-                0.046,
-                0.034,
-                0.079,
-                0.026,
-                0.035,
-                "NA",
-                0.042,
-                0.04,
-                0.028,
-                0.006,
-                "NA",
-                "NA",
-                0.006,
-                0.073,
-                0.084,
-                0.02,
-                0.015,
+                0.243,
+                0.243,
+                0.189,
                 0.054,
+                0.027,
+                0.027,
+                0.027,
+                0.027,
+                0.027,
+                0,
+                0.027,
+                0.027,
+                0,
+                0.027,
+                0.027,
+                0,
                 "NA",
-                0.042,
-                0.066
+                0.027,
+                0,
+                0,
+                0,
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA",
+                0,
+                0,
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA"
               ],
               "Not known": [
-                0.024,
-                0.027,
-                "NA",
-                0.041,
-                "NA",
-                "NA",
-                0.026,
-                0.033,
-                0.047,
-                "NA",
-                "NA",
-                0.087,
-                0.004,
-                0.083,
-                0.057,
-                0.033,
-                "NA",
-                0.013,
+                0.268,
+                0.22,
+                0.195,
                 0.049,
-                0.026,
-                0.052,
-                0.034,
-                0.009,
+                0.049,
+                0.024,
+                0.024,
+                0,
+                0.024,
+                0,
+                0.024,
+                0.024,
+                0,
+                0.024,
+                0,
                 "NA",
-                0.041,
-                0.098,
-                0.016,
-                0.014,
-                0.075,
-                0.023,
+                0,
+                0.024,
+                0,
+                0.024,
+                0,
+                0,
                 "NA",
-                0.027,
-                0.063
+                0,
+                0.024,
+                "NA",
+                "NA",
+                "NA",
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA"
               ]
             },
             "columns": [
@@ -176,141 +176,174 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "0.5%",
-                  "1.5%",
+                  "24.1%",
+                  "19.3%",
+                  "13.6%",
+                  "6.8%",
+                  "5.4%",
+                  "3.7%",
                   "3.1%",
-                  "0.2%",
-                  "2.2%",
-                  "5.8%",
-                  "5.0%",
-                  "5.2%",
-                  "4.7%",
-                  "2.8%",
-                  "3.2%",
                   "2.7%",
-                  "0.0%",
-                  "0.9%",
-                  "4.3%",
-                  "5.7%",
-                  "7.9%",
-                  "1.2%",
-                  "0.9%",
-                  "4.8%",
-                  "1.6%",
-                  "5.2%",
+                  "2.0%",
+                  "2.0%",
+                  "1.7%",
+                  "2.0%",
+                  "2.0%",
+                  "2.0%",
+                  "1.4%",
+                  "1.4%",
                   "0.3%",
-                  "5.0%",
-                  "7.0%",
-                  "2.7%",
-                  "0.1%",
-                  "3.2%",
-                  "3.2%",
-                  "2.6%",
-                  "0.8%",
-                  "0.6%",
-                  "5.2%"
+                  "1.0%",
+                  "0.3%",
+                  "1.0%",
+                  "0.7%",
+                  "0.7%",
+                  "0.7%",
+                  "0.3%",
+                  "0.7%",
+                  "0.0%",
+                  "0.3%",
+                  "0.3%",
+                  "0.0%",
+                  "0.0%",
+                  "0.3%",
+                  "0.0%",
+                  "0.0%"
                 ],
-                "footer": "38,495",
+                "footer": "1,475",
                 "na": "x",
                 "style": [
                   {
-                    "background": "#ECF4FB"
+                    "color": "#000000",
+                    "background": "#4486C5"
                   },
                   {
-                    "background": "#D8E6F3"
+                    "color": "#000000",
+                    "background": "#689ED0"
                   },
                   {
-                    "background": "#B7D0E7"
+                    "color": "#000000",
+                    "background": "#92B9DE"
                   },
                   {
-                    "background": "#F2F8FD"
+                    "color": "#000000",
+                    "background": "#C4DAEE"
                   },
                   {
-                    "background": "#CADCEE"
+                    "color": "#000000",
+                    "background": "#CFE1F2"
                   },
                   {
-                    "background": "#80ABD3"
+                    "color": "#000000",
+                    "background": "#DBE9F6"
                   },
                   {
-                    "background": "#90B6D9"
+                    "color": "#000000",
+                    "background": "#E0ECF7"
                   },
                   {
-                    "background": "#8CB3D7"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#97BADB"
+                    "color": "#000000",
+                    "background": "#E8F1FA"
                   },
                   {
-                    "background": "#BDD4E9"
+                    "color": "#000000",
+                    "background": "#E8F1FA"
                   },
                   {
-                    "background": "#B5CFE6"
-                  },
-                  {
-                    "background": "#BFD6EA"
-                  },
-                  {
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "background": "#E4EEF8"
-                  },
-                  {
-                    "background": "#9FC0DE"
-                  },
-                  {
-                    "background": "#82ADD3"
-                  },
-                  {
-                    "background": "#558EC3"
-                  },
-                  {
-                    "background": "#DEEAF5"
-                  },
-                  {
-                    "background": "#E4EEF8"
-                  },
-                  {
-                    "background": "#95B9DA"
-                  },
-                  {
-                    "background": "#D6E5F2"
-                  },
-                  {
-                    "background": "#8CB3D7"
-                  },
-                  {
-                    "background": "#F0F6FC"
-                  },
-                  {
-                    "background": "#90B6D9"
-                  },
-                  {
-                    "background": "#689BCA"
-                  },
-                  {
-                    "background": "#BFD6EA"
-                  },
-                  {
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "background": "#B5CFE6"
-                  },
-                  {
-                    "background": "#B5CFE6"
-                  },
-                  {
-                    "background": "#C1D7EB"
-                  },
-                  {
-                    "background": "#E6F0F8"
-                  },
-                  {
+                    "color": "#000000",
                     "background": "#EAF2FA"
                   },
                   {
-                    "background": "#8CB3D7"
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   }
                 ]
               },
@@ -322,128 +355,154 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "3.8%",
-                  "5.1%",
-                  "1.9%",
-                  "x",
-                  "x",
-                  "0.8%",
-                  "5.7%",
-                  "1.8%",
-                  "0.7%",
-                  "x",
-                  "6.0%",
-                  "4.7%",
-                  "4.6%",
-                  "3.4%",
-                  "7.9%",
-                  "2.6%",
-                  "3.5%",
-                  "x",
-                  "4.2%",
-                  "4.0%",
-                  "2.8%",
-                  "0.6%",
-                  "x",
-                  "x",
-                  "0.6%",
-                  "7.3%",
-                  "8.4%",
-                  "2.0%",
-                  "1.5%",
+                  "24.3%",
+                  "24.3%",
+                  "18.9%",
                   "5.4%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
                   "x",
-                  "4.2%",
-                  "6.6%"
+                  "2.7%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x"
                 ],
-                "footer": "30,420",
+                "footer": "185",
                 "na": "x",
                 "style": [
                   {
-                    "background": "#A9C7E2"
+                    "color": "#000000",
+                    "background": "#4386C4"
                   },
                   {
-                    "background": "#8EB5D8"
+                    "color": "#000000",
+                    "background": "#4386C4"
                   },
                   {
-                    "background": "#D0E1F0"
-                  },
-                  null,
-                  null,
-                  {
-                    "background": "#E6F0F8"
+                    "color": "#000000",
+                    "background": "#6BA0D1"
                   },
                   {
-                    "background": "#82ADD3"
+                    "color": "#000000",
+                    "background": "#CFE1F2"
                   },
                   {
-                    "background": "#D2E2F1"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#E8F1F9"
-                  },
-                  null,
-                  {
-                    "background": "#7CA8D1"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#97BADB"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#99BCDC"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#B1CCE5"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#558EC3"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#C1D7EB"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#AFCBE4"
-                  },
-                  null,
-                  {
-                    "background": "#A1C1DF"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#A5C4E0"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#BDD4E9"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#EAF2FA"
-                  },
-                  null,
-                  null,
-                  {
-                    "background": "#EAF2FA"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#6297C7"
-                  },
-                  {
-                    "background": "#4B88BF"
-                  },
-                  {
-                    "background": "#CEDFEF"
-                  },
-                  {
-                    "background": "#D8E6F3"
-                  },
-                  {
-                    "background": "#88B1D6"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   null,
                   {
-                    "background": "#A1C1DF"
+                    "color": "#000000",
+                    "background": "#E3EEF8"
                   },
                   {
-                    "background": "#70A0CD"
-                  }
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null
                 ]
               },
               {
@@ -454,126 +513,151 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "2.4%",
-                  "2.7%",
-                  "x",
-                  "4.1%",
-                  "x",
-                  "x",
-                  "2.6%",
-                  "3.3%",
-                  "4.7%",
-                  "x",
-                  "x",
-                  "8.7%",
-                  "0.4%",
-                  "8.3%",
-                  "5.7%",
-                  "3.3%",
-                  "x",
-                  "1.3%",
+                  "26.8%",
+                  "22.0%",
+                  "19.5%",
                   "4.9%",
-                  "2.6%",
-                  "5.2%",
-                  "3.4%",
-                  "0.9%",
+                  "4.9%",
+                  "2.4%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
                   "x",
-                  "4.1%",
-                  "9.8%",
-                  "1.6%",
-                  "1.4%",
-                  "7.5%",
-                  "2.3%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "0.0%",
                   "x",
-                  "2.7%",
-                  "6.3%"
+                  "0.0%",
+                  "2.4%",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x"
                 ],
-                "footer": "26,615",
+                "footer": "205",
                 "na": "x",
                 "style": [
                   {
-                    "background": "#C6DAEC"
+                    "color": "#000000",
+                    "background": "#317ABF"
                   },
                   {
-                    "background": "#BFD6EA"
-                  },
-                  null,
-                  {
-                    "background": "#A3C2E0"
-                  },
-                  null,
-                  null,
-                  {
-                    "background": "#C1D7EB"
+                    "color": "#000000",
+                    "background": "#5491CA"
                   },
                   {
-                    "background": "#B3CDE6"
+                    "color": "#000000",
+                    "background": "#669DD0"
                   },
                   {
-                    "background": "#97BADB"
-                  },
-                  null,
-                  null,
-                  {
-                    "background": "#4584BD"
+                    "color": "#000000",
+                    "background": "#D2E3F3"
                   },
                   {
-                    "background": "#EEF5FB"
+                    "color": "#000000",
+                    "background": "#D2E3F3"
                   },
                   {
-                    "background": "#4D89C0"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#82ADD3"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#B3CDE6"
-                  },
-                  null,
-                  {
-                    "background": "#DCE9F5"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#93B8DA"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#C1D7EB"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#8CB3D7"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#B1CCE5"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#E4EEF8"
-                  },
-                  null,
-                  {
-                    "background": "#A3C2E0"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#2F75B5"
+                    "color": "#000000",
+                    "background": "#E5EFF9"
                   },
                   {
-                    "background": "#D6E5F2"
-                  },
-                  {
-                    "background": "#DAE7F4"
-                  },
-                  {
-                    "background": "#5D94C6"
-                  },
-                  {
-                    "background": "#C8DBED"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   null,
                   {
-                    "background": "#BFD6EA"
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   {
-                    "background": "#76A4CF"
-                  }
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null
                 ]
               }
             ],

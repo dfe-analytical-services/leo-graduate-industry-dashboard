@@ -379,7 +379,7 @@ server <- function(input, output, session) {
   })
 
   observe({
-    if (input$qualinput != "All") {
+    if (input$qualinput3 != "All") {
       data_filtered <- qual_subjects %>%
         filter(qualification_TR == input$qualinput3) %>%
         distinct()
@@ -387,13 +387,13 @@ server <- function(input, output, session) {
       data_filtered <- qual_subjects
     }
     updateSelectInput(
-      session, "subjInd.subjectinput",
-      unique(c("All", data_filtered$subject_name))
+      session, "crosstabs.subjectinput",
+      choices = unique(c("All", data_filtered$subject_name))
     )
   })
 
   observe({
-    if (input$sectionnameinput != "All") {
+    if (input$sectionnameinput2 != "All") {
       data_filtered <- industry_groups %>%
         filter(SECTIONNAME == input$sectionnameinput2) %>%
         distinct()
@@ -406,6 +406,167 @@ server <- function(input, output, session) {
     )
   })
 
+  # Conditional panel replacements ####
+
+  # Qualification input condition (sub by ind) ----
+  observeEvent(input$countinput2, {
+    x <- input$countinput2
+
+    if (!x %in% c("sex", "subject_name")) {
+      updateSelectInput(
+        session,
+        "qualinput3",
+        label = "Select qualification level",
+        choices = list(
+          "First degree"
+        ),
+        selected = "First degree"
+      )
+    }
+    if (x %in% c("sex", "subject_name")) {
+      updateSelectInput(
+        session,
+        "qualinput3",
+        label = "Select qualification level",
+        choices = list(
+          "First degree",
+          "Level 7 (taught)",
+          "Level 7 (research)",
+          "Level 8"
+        )
+      )
+    }
+  })
+
+  # Subject input condition (sub by ind) ----
+
+  observeEvent(input$countinput2, {
+    x <- input$countinput2
+
+    if (x == "subject_name") {
+      updateSelectInput(
+        session,
+        "crosstabs.subjectinput",
+        label = "Select a subject area",
+        choices = list(
+          "All"
+        ),
+        selected = "All"
+      )
+    } else {
+      updateSelectInput(
+        session,
+        "crosstabs.subjectinput",
+        label = "Select a subject area",
+        choices = unique(c("All", sort(qual_subjects$subject_name))),
+        selected = "All"
+      )
+    }
+  })
+
+  # Qualification input condition (ind by sub) ----
+  observeEvent(input$countinput3, {
+    x <- input$countinput3
+
+    if (!x %in% c("sex", "subject_name")) {
+      updateSelectInput(
+        session,
+        "qualinput4",
+        label = "Select qualification level",
+        choices = list(
+          "First degree"
+        ),
+        selected = "First degree"
+      )
+    }
+    if (x %in% c("sex", "subject_name")) {
+      updateSelectInput(
+        session,
+        "qualinput4",
+        label = "Select qualification level",
+        choices = list(
+          "First degree",
+          "Level 7 (taught)",
+          "Level 7 (research)",
+          "Level 8"
+        )
+      )
+    }
+  })
+
+  # Industry input condition (ind by sub) ----
+
+  observeEvent(input$countinput3, {
+    x <- input$countinput3
+
+    if (x == "SECTIONNAME") {
+      updateSelectInput(
+        session,
+        "sectionnameinput2",
+        label = "Choose an industry area",
+        choices = list(
+          "Education"
+        ),
+        selected = "Education"
+      )
+    } else {
+      updateSelectInput(
+        session,
+        "sectionnameinput2",
+        label = "Choose an industry area",
+        choices = list(
+          "Accommodation and food service activities",
+          "Activities of extraterritorial organisations and bodies",
+          "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
+          "Administrative and support service activities",
+          "Agriculture, forestry and fishing",
+          "Arts, entertainment and recreation",
+          "Construction",
+          "Education",
+          "Electricity, gas, steam and air conditioning supply",
+          "Financial and insurance activities",
+          "Human health and social work activities",
+          "Information and communication",
+          "Manufacturing",
+          "Mining and quarrying",
+          "Other service activities",
+          "Professional, scientific and technical activities",
+          "Public administration and defence - compulsory social security",
+          "Real estate activities",
+          "Transportation and storage",
+          "Water supply - sewerage, waste management and remediation activities",
+          "Wholesale and retail trade - repair of motor vehicles and motorcycles"
+        ),
+        selected = "Education"
+      )
+    }
+  })
+
+  # Group input condition (ind by sub) ----
+
+  observeEvent(input$countinput3, {
+    x <- input$countinput3
+
+    if (x == "SECTIONNAME") {
+      updateSelectInput(
+        session,
+        "groupinput",
+        label = "View 3 digit SIC groups within the selected industry",
+        choices = list(
+          "All"
+        ),
+        selected = "All"
+      )
+    } else {
+      updateSelectInput(
+        session,
+        "groupinput",
+        label = "View 3 digit SIC groups within the selected industry",
+        choices = unique(c("All", sort(industry_groups$group_name))),
+        selected = "All"
+      )
+    }
+  })
 
   # output$subjecttable <- renderReactable({
   #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)

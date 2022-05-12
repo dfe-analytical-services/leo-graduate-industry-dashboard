@@ -41,6 +41,13 @@ fluidPage(
     tabPanel(
       value = "homepage", title = "Homepage",
 
+      noti_banner(
+        "notId",
+        title_txt = "Known issue",
+        body_txt = "We are aware of and working to address performance issues with the dashboard, during this time some interactive elements may be slow.",
+        type = "standard"
+      ),
+      
       ## Tab content ----------------------------------------------------------
 
       fluidPage(
@@ -68,24 +75,24 @@ fluidPage(
                 div(
                   class = "panel-body",
                   tags$div(
-                    title = "This section is really useful if you want to understand how well different industries retain graduates!",
+                    title = "This section is useful if you want to understand how well different industries retain graduates.",
                     h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
                   ),
                   industry_flow_text(), # defined in R/dashboard_text.R
                   br(),
                   tags$div(
-                    title = "This section is really useful if you want to understand which parts of the country graduates move to in order to find roles in particular sectors!",
+                    title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.",
                     h3(actionLink("link_to_regional_tab", "Regional analysis"))
                   ),
                   regional_text(), # defined in R/dashboard_text.R
                   br(),
                   tags$div(
-                    title = "This section is really useful if you want to understand which industries your subject of study can lead to!",
+                    title = "This section is useful if you want to understand which industries your subject of study can lead to.",
                     h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
                   ),
                   sub_by_ind_text(), # defined in R/dashboard_text.R
                   tags$div(
-                    title = "This section is really useful if you want to understand which subject to study to access certain sectors!",
+                    title = "This section is useful if you want to understand which subject to study to access certain industries.",
                     h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
                   ),
                   ind_by_sub_text(), # defined in R/dashboard_text.R
@@ -120,7 +127,8 @@ fluidPage(
     # Industry flow tab =======================================================
 
     tabPanel(
-      value = "industryFlow", title = "Industry flow",
+      value = "industryFlow",
+      tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.", "Industry flow"),
 
       ## Side bar =============================================================
 
@@ -139,9 +147,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),
@@ -204,7 +210,7 @@ fluidPage(
                 your mouse over a bar or flow line to see the number of
                 graduates it represents. Please note that this chart only displays the
                 top 9 industries and the rest are being grouped automatically into 'Other'. To see
-                the full breakdown of industries please view the Industyr proportions table."
+                the full breakdown of industries please view the Industry proportions table."
               ),
               column(
                 4,
@@ -240,9 +246,11 @@ fluidPage(
               br(),
               strong("Footnotes"),
               br(),
-              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("3. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
               height = 1500
             )
           ),
@@ -257,7 +265,8 @@ fluidPage(
     # Regional analysis tab ===================================================
 
     tabPanel(
-      value = "regional", title = "Regional",
+      value = "regional",
+      tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.", "Regional"),
 
       ## Side bar =============================================================
 
@@ -276,9 +285,7 @@ fluidPage(
             label = "Choose graduate qualification level",
             choices = list(
               "First degree",
-              "Level 7 (taught)",
-              "Level 7 (research)",
-              "Level 8"
+              "Level 7 (taught)"
             ),
             selected = "First degree"
           ),
@@ -360,7 +367,7 @@ fluidPage(
                 div(
                   # Set as well but override sidebar defaults
                   class = "well",
-                  style = "height: 100%; overflow-y: visible",
+                  style = "min-height: 100%; height: 100%; overflow-y: visible",
                   div(selectInput("countinput",
                     label = "Select which statistic to view in the map below",
                     choices = list(
@@ -417,26 +424,28 @@ fluidPage(
               div(
                 # Set as well but override sidebar defaults
                 class = "well",
-                style = "height: 100%; overflow-y: visible",
+                style = "min-height: 100%; height: 100%; overflow-y: visible",
 
                 #### Regional input -------------------------------------------
 
-                div(selectizeInput("regioninput",
-                  label = "Select multiple regions from the dropdown below to compare.",
-                  choices = list(
-                    "North East",
-                    "North West",
-                    "Yorkshire and the Humber",
-                    "East Midlands",
-                    "West Midlands",
-                    "East of England",
-                    "London",
-                    "South East",
-                    "South West"
-                  ),
-                  selected = "London", multiple = FALSE,
-                  options = list(maxItems = 9, placeholder = "Start typing a region")
-                ))
+                div(
+                  selectizeInput("regioninput",
+                    label = "Select multiple regions from the dropdown below to compare.",
+                    choices = list(
+                      "North East",
+                      "North West",
+                      "Yorkshire and the Humber",
+                      "East Midlands",
+                      "West Midlands",
+                      "East of England",
+                      "London",
+                      "South East",
+                      "South West"
+                    ),
+                    selected = "London", multiple = FALSE,
+                    options = list(maxItems = 9, placeholder = "Start typing a region")
+                  )
+                )
               ),
 
               #### Table ------------------------------------------------------
@@ -449,15 +458,19 @@ fluidPage(
               br(), br(),
               strong("Footnotes"),
               br(),
-              paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)")
+              paste("2. Earnings figures are rounded to the nearest £100"),
+              br(),
+              paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              br(),
+              paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
             )
           ),
 
           ## Caveats ----------------------------------------------------------
 
-          caveats_box() # defined in R/caveats.R
+          caveats_box_regional() # defined in R/caveats.R
         ) # end of main panel
       ), # end of sidebar layout
     ), # end of regional tab
@@ -465,7 +478,8 @@ fluidPage(
     # Subject by industry tab =================================================
 
     tabPanel(
-      title = "Subject by industry", value = "subjectByIndustry",
+      tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.", "Subject by industry"),
+      value = "subjectByIndustry",
 
       ## Side bar =============================================================
 
@@ -487,18 +501,16 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 == 'sex' || input.countinput2 == 'subject_name'",
-            selectInput("qualinput3",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
+
+          selectInput("qualinput3",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
@@ -511,13 +523,11 @@ fluidPage(
 
           ### Subject input ---------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput2 != 'subject_name'",
-            selectInput("crosstabs.subjectinput",
-              label = "Select a subject area",
-              choices = unique(c("All", sort(qual_subjects$subject_name))),
-              selected = "All"
-            )
+
+          selectInput("crosstabs.subjectinput",
+            label = "Select a subject area",
+            choices = unique(c("All", sort(qual_subjects$subject_name))),
+            selected = "All"
           ),
 
           ### Breakdown input -------------------------------------------------
@@ -556,6 +566,7 @@ fluidPage(
           ### Crosstab text ---------------------------------------------------
 
           div(
+            "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.", br(),
             htmlOutput("crosstab_text")
           ),
           withSpinner(reactableOutput("crosstab")),
@@ -564,9 +575,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
@@ -574,7 +589,8 @@ fluidPage(
 
     # Industry by subject tab =================================================
     tabPanel(
-      title = "Industry by subject", value = "industryBySubject",
+      tags$div(title = "This section is useful if you want to understand which subject to study to access certain industries.", "Industry by subject"),
+      value = "industryBySubject",
 
       ## Side bar =============================================================
 
@@ -596,18 +612,15 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 == 'sex' || input.countinput3 == 'subject_name'",
-            selectInput("qualinput4",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )
+          selectInput("qualinput4",
+            label = "Select qualification level",
+            choices = list(
+              "First degree",
+              "Level 7 (taught)",
+              "Level 7 (research)",
+              "Level 8"
+            ),
+            selected = "First degree"
           ),
 
           ### YAG input -------------------------------------------------------
@@ -620,46 +633,40 @@ fluidPage(
 
           ### Industry input -------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 != 'SECTIONNAME'",
-            selectInput("sectionnameinput2",
-              label = "Choose an industry area",
-              choices = list(
-                "Accommodation and food service activities",
-                "Activities of extraterritorial organisations and bodies",
-                "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
-                "Administrative and support service activities",
-                "Agriculture, forestry and fishing",
-                "Arts, entertainment and recreation",
-                "Construction",
-                "Education",
-                "Electricity, gas, steam and air conditioning supply",
-                "Financial and insurance activities",
-                "Human health and social work activities",
-                "Information and communication",
-                "Manufacturing",
-                "Mining and quarrying",
-                "Other service activities",
-                "Professional, scientific and technical activities",
-                "Public administration and defence - compulsory social security",
-                "Real estate activities",
-                "Transportation and storage",
-                "Water supply - sewerage, waste management and remediation activities",
-                "Wholesale and retail trade - repair of motor vehicles and motorcycles"
-              ),
-              selected = "Education"
-            )
+          selectInput("sectionnameinput2",
+            label = "Choose an industry area",
+            choices = list(
+              "Accommodation and food service activities",
+              "Activities of extraterritorial organisations and bodies",
+              "Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use",
+              "Administrative and support service activities",
+              "Agriculture, forestry and fishing",
+              "Arts, entertainment and recreation",
+              "Construction",
+              "Education",
+              "Electricity, gas, steam and air conditioning supply",
+              "Financial and insurance activities",
+              "Human health and social work activities",
+              "Information and communication",
+              "Manufacturing",
+              "Mining and quarrying",
+              "Other service activities",
+              "Professional, scientific and technical activities",
+              "Public administration and defence - compulsory social security",
+              "Real estate activities",
+              "Transportation and storage",
+              "Water supply - sewerage, waste management and remediation activities",
+              "Wholesale and retail trade - repair of motor vehicles and motorcycles"
+            ),
+            selected = "Education"
           ),
 
           ### Group input -----------------------------------------------------
 
-          conditionalPanel(
-            condition = "input.countinput3 != 'SECTIONNAME'",
-            selectizeInput("groupinput",
-              label = "View 3 digit SIC groups within the selected industry",
-              choices = unique(c("All", sort(industry_groups$group_name))),
-              selected = "All", multiple = FALSE
-            )
+          selectizeInput("groupinput",
+            label = "View 3 digit SIC groups within the selected industry",
+            choices = unique(c("All", sort(industry_groups$group_name))),
+            selected = "All", multiple = FALSE
           ),
 
 
@@ -701,9 +708,13 @@ fluidPage(
           br(),
           strong("Footnotes"),
           br(),
-          paste("\U2022 Counts have been rounded to the nearest 5 and earnings are rounded to the nearest £100."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
           br(),
-          paste("\U2022 c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("2. Earnings figures are rounded to the nearest £100"),
+          br(),
+          paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+          br(),
+          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
       ),
@@ -713,7 +724,6 @@ fluidPage(
 
     tabPanel(
       "Accessibility",
-      warning_text(inputId = "accessWarn", text = "THIS IS A DRAFT STATEMENT - NEEDS UPDATING AFTER TESTING"),
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
 

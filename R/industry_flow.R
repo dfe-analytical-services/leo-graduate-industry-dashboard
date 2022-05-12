@@ -5,10 +5,12 @@
 
 sankey_chart <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput) %>%
+    filter(count != 0)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput) %>%
+    filter(count != 0)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -61,7 +63,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
     cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
     cohort_sankey1 <- cohort_sankey1 %>%
-      group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+      group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
       dplyr::summarise(count = sum(count.x)) %>%
       arrange(., -count)
 
@@ -81,7 +83,7 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
     cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- "Other"
 
     cohort_sankey2 <- cohort_sankey2 %>%
-      group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+      group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
       dplyr::summarise(count = sum(count.x)) %>%
       arrange(., -count)
 
@@ -184,7 +186,7 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
 
 
   sankey_title <- paste("<h3>Industry of graduate employment for 2012/13 academic year graduates of", subjecttext, "one, three and five years after
-                          graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HEIs, APs and FECs, 2018/19 tax year</h3>")
+                          graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HEIs, APs and FECs</h3>")
 
   return(sankey_title)
 }
@@ -194,10 +196,10 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
 
 sankey_table <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -251,7 +253,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -263,7 +265,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
     normalized <- (value - min(yag_table_final[name], na.rm = T)) /
       (max(yag_table_final[name], na.rm = T) - min(yag_table_final[name], na.rm = T))
     color <- orange_pal(normalized)
-    list(background = color)
+    list(color = "#000000", background = color)
   }
 
   # list giving column formatting (using style function) for single column
@@ -278,7 +280,7 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   # create table
   sankey_table <- reactable(yag_table_final,
-    defaultPageSize = 21, columns = coldefs, showSortable = TRUE,
+    defaultPageSize = 22, columns = coldefs, showSortable = TRUE,
     defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
   )
 }
@@ -301,10 +303,10 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
   }
 
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -386,10 +388,10 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
 
 sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1 <- cohort1 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey2 <- cohort2 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, qualification_TR.x == qualinput)
 
   cohort_sankey1 <- na.omit(cohort_sankey1)
   cohort_sankey2 <- na.omit(cohort_sankey2)
@@ -458,7 +460,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey1$SECTIONNAME.y[is.na(cohort_sankey1$SECTIONNAME.y) == TRUE] <- "Other"
 
   cohort_sankey1 <- cohort_sankey1 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -478,7 +480,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey2$SECTIONNAME.x[is.na(cohort_sankey2$SECTIONNAME.x) == TRUE] <- "Other"
 
   cohort_sankey2 <- cohort_sankey2 %>%
-    group_by(sex.x, subject_name.x, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
+    group_by(sex.x, subject_name, YAG.x, SECTIONNAME.x, YAG.y, SECTIONNAME.y) %>%
     dplyr::summarise(count = sum(count.x)) %>%
     arrange(., -count)
 
@@ -500,6 +502,11 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
+  if(first(cohort_sankey1_text$count) == 0){
+    sankeytext2 <- ''
+  } else if(first(cohort_sankey2_text$count)==0){
+    sankeytext2 <- ''
+  } else {
   sankeytext2 <- paste(
     "The most movement between one and three years after graduation is seen for <b>",
     first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
@@ -507,7 +514,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
                        years after graduation it's seen for <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> where <b>",
     first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
     "</b>."
-  )
+  )}
 
   return(sankeytext2)
 }
@@ -516,7 +523,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 # earnings_text <- function(subjectinput, sexinput){
 #
 #   cohort_earnings1 <- cohort3 %>%
-#     filter(subject_name.x == subjectinput, sex.x == sexinput)
+#     filter(subject_name == subjectinput, sex.x == sexinput)
 #
 #   earnings_text_table <- cohort_earnings1 %>%
 #     arrange(.,-earnings_change_average) %>%
@@ -550,7 +557,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
 earnings_sankey <- function(subjectinput, sexinput, earningsinput) {
   cohort_earnings1 <- cohort3 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
 
   # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
 
@@ -605,7 +612,7 @@ earnings_sankey <- function(subjectinput, sexinput, earningsinput) {
 
 earnings_table <- function(subjectinput, sexinput, earningsinput) {
   cohort_earnings1 <- cohort3 %>%
-    filter(subject_name.x == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
+    filter(subject_name == subjectinput, sex.x == sexinput, SECTIONNAME.x == earningsinput)
 
   total_earnings <- earnings_data %>%
     filter(subject_name == subjectinput, sex == sexinput, SECTIONNAME == earningsinput)
@@ -640,7 +647,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
-      rgb(colorRamp(c("#F7FBFF", "#2F75B5"))(x), maxColorValue = 255)
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
     } else {
       "#e9e9e9" # grey
     }
@@ -652,7 +659,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     normalized <- (value - min(yag_table_final2[name], na.rm = T)) /
       (max(yag_table_final2[name], na.rm = T) - min(yag_table_final2[name], na.rm = T))
     color <- orange_pal(normalized)
-    list(background = color)
+    list(color = "#000000", background = color)
   }
 
 
@@ -721,6 +728,6 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
       colGroup(name = "1 YAG", columns = c("SECTIONNAME.x", "earnings_median_1YAG")),
       colGroup(name = "5 YAG", columns = c("SECTIONNAME.y", "earnings_median_5YAG"))
     ),
-    defaultColDef = colDef(footerStyle = list(fontWeight = "bold"))
+    defaultColDef = colDef(footerStyle = list(color = "#000000", fontWeight = "bold"))
   )
 }

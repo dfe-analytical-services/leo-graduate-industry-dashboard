@@ -1,9 +1,9 @@
 # REGIONAL ---------------------------------------------------------------------
 
 
-data <- read.csv("data/regional_data_with_pg_dummy.csv")
+data <- read.csv("data/regional_data_all.csv")
 
-regional_movement_data <- read.csv("data/regional_movement_with_pg_dummy.csv")
+regional_movement_data <- read.csv("data/regional_movement_with_PG_rounded.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
 
@@ -65,6 +65,16 @@ create_maptabledata <- function(regional_data, regional_movement,
 }
 
 map_chart <- function(mapdata, countinput) {
+  mapdata <- mapdata %>%
+    mutate_at(
+      "earnings_median",
+      funs(ifelse(. < 0, "c", .))
+    ) %>%
+    mutate_at(
+      c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+      funs(ifelse(is.na(.), "x", .))
+    )
+
   leafletmapdata <- st_transform(mapdata, crs = 4326)
   if (countinput == "trained_in_region") {
     pal_fun <- colorNumeric("Blues", domain = leafletmapdata$trained_in_region2)
@@ -99,7 +109,7 @@ map_chart <- function(mapdata, countinput) {
     "Number who studied in region:        ", prettyNum(leafletmapdata$trained_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Number who currently live in region: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Difference in graduate numbers:      ", prettyNum(leafletmapdata$difference2, big.mark = ",", scientific = FALSE), br(),
-    "Difference in proportion:            ", round(100 * leafletmapdata$difference_prop2, digits = 1), "%", br(),
+    "Difference in proportion:            ", round(leafletmapdata$difference_prop2, digits = 1), "%", br(),
     "Number of providers in region:       ", leafletmapdata$number_of_providers, br(),
     "Median graduate earnings:            £", prettyNum(leafletmapdata$earnings_median, big.mark = ",", scientific = FALSE)
   )
@@ -192,10 +202,10 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
     arrange(-difference_prop2)
 
   map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
-                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the least graduates
+                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the fewest graduates
                     had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
                     ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
-                    least graduates lived was <b>", last(mapdata_current$region), "</b>.",
+                    fewest graduates lived was <b>", last(mapdata_current$region), "</b>.",
     sep = ""
   )
 
@@ -347,7 +357,7 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
       SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput,
       qualification_TR == qualinput
     ) %>%
-    filter(is.na(count) != TRUE)
+    filter(is.na(count) != TRUE, count != 0)
 
   nodes <- data.frame("name" = c(
     unique(sankey_data$InstRegion),
@@ -359,7 +369,7 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
   nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
 
   links <- as.data.frame(
-    sankey_data[, c(4, 5, 7)],
+    sankey_data[, c(3, 4, 6)],
     byrow = TRUE, ncol = 3
   )
 
