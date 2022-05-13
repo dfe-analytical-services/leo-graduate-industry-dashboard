@@ -372,34 +372,6 @@ server <- function(input, output, session) {
     paste(a(h4("How to read this sankey?")))
   })
 
-  observe({
-    if (input$qualinput3 != "All") {
-      data_filtered <- qual_subjects %>%
-        filter(qualification_TR == input$qualinput3) %>%
-        distinct()
-    } else {
-      data_filtered <- qual_subjects
-    }
-    updateSelectInput(
-      session, "crosstabs.subjectinput",
-      choices = unique(c("All", data_filtered$subject_name))
-    )
-  })
-
-  observe({
-    if (input$sectionnameinput2 != "All") {
-      data_filtered <- industry_groups %>%
-        filter(SECTIONNAME == input$sectionnameinput2) %>%
-        distinct()
-    } else {
-      data_filtered <- industry_groups
-    }
-    updateSelectizeInput(
-      session, "groupinput",
-      choices = unique(c("All", data_filtered$group_name))
-    )
-  })
-
   # Conditional panel replacements ####
 
   # Qualification input condition (sub by ind) ----
@@ -434,6 +406,20 @@ server <- function(input, output, session) {
 
   # Subject input condition (sub by ind) ----
 
+  observeEvent(input$qualinput3, {
+    if (input$qualinput3 != "All") {
+      data_filtered <- qual_subjects %>%
+        filter(qualification_TR == input$qualinput3) %>%
+        distinct()
+    } else {
+      data_filtered <- qual_subjects
+    }
+    updateSelectInput(
+      session, "crosstabs.subjectinput",
+      choices = na.exclude(unique(c("All", data_filtered$subject_name)))
+    )
+  })
+
   observeEvent(input$countinput2, {
     x <- input$countinput2
 
@@ -448,12 +434,16 @@ server <- function(input, output, session) {
         selected = "All"
       )
     } else {
+      if (input$qualinput3 != "All") {
+        data_filtered <- qual_subjects %>%
+          filter(qualification_TR == input$qualinput3) %>%
+          distinct()
+      } else {
+        data_filtered <- qual_subjects
+      }
       updateSelectInput(
-        session,
-        "crosstabs.subjectinput",
-        label = "Select a subject area",
-        choices = unique(c("All", sort(qual_subjects$subject_name))),
-        selected = "All"
+        session, "crosstabs.subjectinput",
+        choices = na.exclude(unique(c("All", data_filtered$subject_name)))
       )
     }
   })
@@ -538,6 +528,20 @@ server <- function(input, output, session) {
 
   # Group input condition (ind by sub) ----
 
+  observeEvent(input$sectionnameinput2, {
+    if (input$sectionnameinput2 != "All") {
+      data_filtered <- industry_groups %>%
+        filter(SECTIONNAME == input$sectionnameinput2) %>%
+        distinct()
+    } else {
+      data_filtered <- industry_groups
+    }
+    updateSelectizeInput(
+      session, "groupinput",
+      choices = na.exclude(unique(c("All", data_filtered$group_name)))
+    )
+  })
+
   observeEvent(input$countinput3, {
     x <- input$countinput3
 
@@ -552,12 +556,17 @@ server <- function(input, output, session) {
         selected = "All"
       )
     } else {
-      updateSelectInput(
-        session,
-        "groupinput",
+      if (input$sectionnameinput2 != "All") {
+        data_filtered <- industry_groups %>%
+          filter(SECTIONNAME == input$sectionnameinput2) %>%
+          distinct()
+      } else {
+        data_filtered <- industry_groups
+      }
+      updateSelectizeInput(
+        session, "groupinput",
         label = "View 3 digit SIC groups within the selected industry",
-        choices = unique(c("All", sort(industry_groups$group_name))),
-        selected = "All"
+        choices = na.exclude(unique(c("All", data_filtered$group_name)))
       )
     }
   })
