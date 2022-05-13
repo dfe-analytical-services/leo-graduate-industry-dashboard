@@ -252,7 +252,8 @@ server <- function(input, output, session) {
     },
     content = function(file) {
       table_data <- reactiveSubjIndTable()
-
+      print(table_data$crosstabs_data)
+      print(table_data$nested_crosstabs)
       out_columns <- colnames(table_data$crosstabs_data)
 
       footsum <- table_data$footer_crosstabs %>%
