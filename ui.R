@@ -48,7 +48,7 @@ fluidPage(
       # ),
 
       ## Tab content ----------------------------------------------------------
-      banner("banner", "beta", 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'),
+
       fluidPage(
         fluidRow(
           column(
