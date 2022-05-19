@@ -1123,7 +1123,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           filter(qualfirstdata == uniquequal[2])
 
         qualtext <- paste("<b>", uniquequal[1], "</b> was the most common industry for ", textprod(data1), " graduates,
-                      and <b>", uniquequal[2], ",</b> was the most common industry for ", textprod(data2), " graduates.")
+                      and <b>", uniquequal[2], "</b> was the most common industry for ", textprod(data2), " graduates.")
       } else if (length(uniquequal) == 3) {
         data1 <- qualfirstdata %>%
           filter(qualfirstdata == uniquequal[1])
