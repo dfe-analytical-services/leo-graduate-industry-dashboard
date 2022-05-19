@@ -642,7 +642,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         ethnicitytext <- paste(
           "<b>",
           uniqueethnicity[1], "</b> was the most common industry for ", textprod(data1), " ethnicity graduates,
-                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, ,and <b>",
+                      <b>", uniqueethnicity[2], "</b> was the most common industry for ", textprod(data2), " ethnicity graduates, and <b>",
           uniqueethnicity[3], "</b> was the most common industry for ", textprod(data3), " ethnicity graduates."
         )
       } else if (length(uniqueethnicity) == 4) {
