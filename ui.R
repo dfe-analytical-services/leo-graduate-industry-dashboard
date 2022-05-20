@@ -182,10 +182,10 @@ fluidPage(
 
           htmlOutput("sankey_title"),
           br(),
-          strong("Most popular industry"),
+          #strong("Most popular industry"),
           htmlOutput("sankeytext1"),
           br(),
-          strong("Movement between industries"),
+          #strong("Movement between industries"),
           htmlOutput("sankeytext2"),
           br(),
 

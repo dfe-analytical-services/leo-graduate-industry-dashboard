@@ -373,13 +373,14 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
       sep = ""
     ),
     sankeytext1 <- paste(
-      "For ", sextext, ", ", tolower(qualinput), " graduates who studied", subjectinput, ", the industry with the highest
+      "For ", sextext, ", ", tolower(qualinput), " graduates who studied ", subjectinput, ", the industry with the highest
                       proportion of graduates one year after graduation is <b>", first(yag_table_final$SECTIONNAME.x),
-      "</b> (", first(yag_table_final$`1 YAG`), "%), and at five years after graduation it is <b>",
+      " (", first(yag_table_final$`1 YAG`), "%)</b>, and at five years after graduation it is <b>",
       ifelse(first(five_yag_table_subject$SECTIONNAME.x) == first(yag_table_final$SECTIONNAME.x),
         "the same",
         first(five_yag_table_subject$SECTIONNAME.x)
-      ), " (", first(five_yag_table_subject$`5 YAG`), "%)</b>."
+      ), " (", first(five_yag_table_subject$`5 YAG`), "%)</b>.",
+      sep = ""
     )
   )
 
@@ -506,7 +507,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
     sankeytext2 <- ""
   } else if (first(cohort_sankey2_text$count) == 0) {
     sankeytext2 <- ""
-  } else {
+  } else if (!first(cohort_sankey1_text$count) %in% cohort_sankey1_text$count[duplicated(cohort_sankey1_text$count)] == TRUE & !first(cohort_sankey2_text$count) %in% cohort_sankey2_text$count[duplicated(cohort_sankey2_text$count)] == TRUE) {
     sankeytext2 <- paste(
       "The most movement between one and three years after graduation is seen for <b>",
       first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
@@ -515,6 +516,8 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
       first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
       "</b>."
     )
+  } else {
+    sankeytext2 <- ""
   }
 
   return(sankeytext2)
