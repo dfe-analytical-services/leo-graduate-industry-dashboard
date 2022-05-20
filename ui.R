@@ -396,7 +396,7 @@ fluidPage(
                 br(),
                 paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
                 br(),
-                paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),br(),br()
+                paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"), br(), br()
               ),
               column(
                 6,
@@ -423,7 +423,7 @@ fluidPage(
                 br()
               ),
             ),
-            
+
 
             #### Table --------------------------------------------------------
 

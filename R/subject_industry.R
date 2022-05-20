@@ -939,9 +939,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         YAGtext, " after graduation, ", regiontext,
         br(),
         funcHighestEarnings(
-          tables_data_grouped %>% 
-            filter(current_region %in% c("North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
-              "East of England", "London", "South East", "South West")) %>%
+          tables_data_grouped %>%
+            filter(current_region %in% c(
+              "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+              "East of England", "London", "South East", "South West"
+            )) %>%
             mutate(filter = current_region),
           prefix = "graduates currently living in ", suffix = ""
         ),
