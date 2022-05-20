@@ -240,7 +240,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
-  
+
   if (YAGinput == 1) {
     YAGtext <- "one year"
   } else if (YAGinput == 3) {
@@ -250,7 +250,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
   } else if (YAGinput == 10) {
     YAGtext <- "ten years"
   }
-  
+
   if (nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0) {
     crosstab_text <- ""
   } else {
