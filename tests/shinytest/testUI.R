@@ -221,6 +221,17 @@ app$snapshot(
 )
 clean_json("subjectByIndustry_8.json")
 
+app$setInputs(crosstabs.subjectinput = "Physics and astronomy", wait_ = FALSE, values_ = FALSE)
+app$snapshot(
+  items = list(
+    input = subjectByIndustry_input,
+    output = subjectByIndustry_output
+  ),
+  filename = "subjectByIndustry_9.json"
+)
+clean_json("subjectByIndustry_9.json")
+
+
 # Regional tab ================================================================
 
 # Run tests for regional tab - note: excluding the map output as it makes the
