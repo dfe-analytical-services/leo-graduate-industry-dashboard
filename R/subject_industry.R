@@ -832,7 +832,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
         regiontext <- paste(
           "<b>", uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
-      and <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), "."
+      and <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ".",
+          sep = ""
         )
       } else if (length(uniqueregions) == 3) {
         data1 <- regionfirstdata %>%
@@ -846,7 +847,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           "<b>",
           uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), " and <b>",
-          uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), "."
+          uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), ".",
+          sep = ""
         )
       } else if (length(uniqueregions) == 4) {
         data1 <- regionfirstdata %>%
@@ -863,7 +865,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           uniqueregions[1], "</b> was the most common industry for those currently living in ", textprod(data1), ",
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ", <b>",
           uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), " and <b>",
-          uniqueregions[4], "</b> was the most common industry for those living in ", textprod(data4), "."
+          uniqueregions[4], "</b> was the most common industry for those living in ", textprod(data4), ".",
+          sep = ""
         )
       } else if (length(uniqueregions) == 5) {
         data1 <- regionfirstdata %>%
@@ -883,7 +886,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
                       <b>", uniqueregions[2], "</b> was the most common industry for those living in ", textprod(data2), ", <b>",
           uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), ", <b>",
           uniqueregions[4], "</b> was the most common industry for those living in ", textprod(data4), " and <b>",
-          uniqueregions[5], "</b> was the most common industry for those living in ", textprod(data5), "."
+          uniqueregions[5], "</b> was the most common industry for those living in ", textprod(data5), ".",
+          sep = ""
         )
       } else if (length(uniqueregions) == 6) {
         data1 <- regionfirstdata %>%
@@ -906,7 +910,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           uniqueregions[3], "</b> was the most common industry for those living in ", textprod(data3), ", <b>",
           uniqueregions[4], "</b> was the most common industry for those living in ", textprod(data4), ", <b>",
           uniqueregions[5], "</b> was the most common industry for those living in ", textprod(data5), " and <b>",
-          uniqueregions[6], "</b> was the most common industry for those living in ", textprod(data6), "."
+          uniqueregions[6], "</b> was the most common industry for those living in ", textprod(data6), ".",
+          sep = ""
         )
       } else {
         # Just going to recreate the above with the collapse flag. Leaving it in
@@ -934,9 +939,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         YAGtext, " after graduation, ", regiontext,
         br(),
         funcHighestEarnings(
-          tables_data_grouped %>% mutate(filter = current_region),
-          prefix = "graduates currently living in the ", suffix = ""
-        )
+          tables_data_grouped %>% 
+            filter(current_region %in% c("North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+              "East of England", "London", "South East", "South West")) %>%
+            mutate(filter = current_region),
+          prefix = "graduates currently living in ", suffix = ""
+        ),
+        sep = ""
       )
     }
 
