@@ -240,6 +240,17 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
     subjecttext <- "all subjects",
     subjecttext <- subjectinput
   )
+  
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
+  }
+  
   if (nrow(tables_data_grouped %>% filter(!is.na(count), count > 0)) == 0) {
     crosstab_text <- ""
   } else {
@@ -444,7 +455,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       # Here's the final output text:
       crosstab_text <- paste("For ", tolower(qualinput), " graduates of ", subjecttext, ", ",
-        YAGinput, " years after graduation, ",
+        YAGtext, " after graduation, ",
         sectiontext,
         br(), br(),
         prop_preamble,
@@ -557,7 +568,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
 
       crosstab_text <- paste0(
-        "For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
+        "For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, ",
         sectiontext, br(), br(),
         "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
         "</b> where ", FSMtext,
@@ -726,7 +737,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
 
       crosstab_text <- paste0(
-        "For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ",
+        "For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, ",
         ethnicitytext, br(), br(),
         "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
         "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
@@ -920,7 +931,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       crosstab_text <- paste(
         "For first degree graduates of ", subjecttext, ", ",
-        YAGinput, " years after graduation, ", regiontext,
+        YAGtext, " after graduation, ", regiontext,
         br(),
         funcHighestEarnings(
           tables_data_grouped %>% mutate(filter = current_region),
@@ -1002,7 +1013,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         "BTEC", "Other", "Not known"
       )
 
-      crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGinput, " years after graduation, the prior attainment band
+      crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, the prior attainment band
                            with the highest number of graduates was `", first(grad_numbers$prior_attainment, order_by = -grad_numbers$grad_numbers), "`.
                            Within this prior attainment band, the most common industry was <b>",
         first(topindustry$SECTIONNAME, order_by = -topindustry[2]), "</b>, and the median earnings for graduates with this prior
@@ -1051,7 +1062,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         funcHighestEarnings(tables_data_grouped %>% mutate(filter = subject_name),
           prefix = "graduates of ", suffix = "", fs = FALSE
         ),
-        " when splitting by subject for ", tolower(qualinput), " graduates, ", YAGinput, " years after graduation.",
+        " when splitting by subject for ", tolower(qualinput), " graduates, ", YAGtext, " after graduation.",
         br(), br()
       )
     }
@@ -1153,7 +1164,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       }
 
       crosstab_text <- paste0(
-        "For graduates of ", subjecttext, ", ", YAGinput, " years after graduation, ", qualtext,
+        "For graduates of ", subjecttext, ", ", YAGtext, " after graduation, ", qualtext,
         funcHighestEarnings(tables_data_grouped %>% mutate(filter = qualification_TR)),
         br(), br()
       )
