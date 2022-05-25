@@ -204,7 +204,7 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
   map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
                     the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the fewest graduates
                     had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
-                    ", YAGinput, " years after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
+                    ", YAGtext, " after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
                     fewest graduates lived was <b>", last(mapdata_current$region), "</b>.",
     sep = ""
   )

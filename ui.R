@@ -182,10 +182,10 @@ fluidPage(
 
           htmlOutput("sankey_title"),
           br(),
-          strong("Most popular industry"),
+          # strong("Most popular industry"),
           htmlOutput("sankeytext1"),
           br(),
-          strong("Movement between industries"),
+          # strong("Movement between industries"),
           htmlOutput("sankeytext2"),
           br(),
 
@@ -387,7 +387,16 @@ fluidPage(
                 #    median earnings for the selected industry, subject section and year after graduation."
                 # ),
 
-                withSpinner(leafletOutput(outputId = "map", height = 470))
+                withSpinner(leafletOutput(outputId = "map", height = 470)),
+                strong("Footnotes"),
+                br(),
+                paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+                br(),
+                paste("2. Earnings figures are rounded to the nearest £100"),
+                br(),
+                paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+                br(),
+                paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"), br(), br()
               ),
               column(
                 6,
@@ -412,8 +421,9 @@ fluidPage(
                 withSpinner(sankeyNetworkOutput("regional_sankey")),
                 br(),
                 br()
-              )
+              ),
             ),
+
 
             #### Table --------------------------------------------------------
 
