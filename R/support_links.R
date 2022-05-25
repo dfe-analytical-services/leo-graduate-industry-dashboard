@@ -18,8 +18,10 @@ support_links <- function() {
     "If you have questions about the dashboard or data within it, please contact us at ",
     a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")), br(),
     "This dashboard has been produced by the Department for Education to support the aims of the ",
-    a(href = "https://www.gov.uk/government/groups/unit-for-future-skills",
-      "Unit for Future Skills", .noWS = c("after")),".",
+    a(
+      href = "https://www.gov.uk/government/groups/unit-for-future-skills",
+      "Unit for Future Skills", .noWS = c("after")
+    ), ".",
     br(),
     h2("See the source code"),
     "The source code for this dashboard is available in our ",
