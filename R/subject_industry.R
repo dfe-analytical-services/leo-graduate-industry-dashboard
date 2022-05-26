@@ -62,8 +62,10 @@ format_filtervalues <- function(filtervalues) {
   filtervalues <- sort(unique(filtervalues))
   if (length(filtervalues) == 1) {
     return(filtervalues)
-  } else {
+  } else if (length(filtervalues) > 1) {
     return(paste0(paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), " and ", filtervalues[length(filtervalues)]))
+  } else if ((length(filtervalues) == 0)) {
+    return(paste("there is no data"))
   }
 }
 
@@ -537,17 +539,23 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           sep = ""
         )
       )
+      
+      if (is.na(first(crosstabs_data$diff, order_by = -crosstabs_data$abs)) == TRUE) {
+        FSMtext <- ""
+      } else {
 
       ifelse(first(crosstabs_data$diff, order_by = -crosstabs_data$abs) > 0,
         FSMtext <- paste(
-          "the proportion of non-FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+          "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+        "</b> where the proportion of non-FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
           "percentage points higher </b> than the proportion of FSM graduates."
         ),
         FSMtext <- paste(
-          "the proportion of FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
+          "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
+          "</b> where the proportion of FSM graduates is <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
           "percentage points higher </b> than the proportion of non-FSM graduates."
         )
-      )
+      )}
 
       ifelse(first(crosstabs_earnings_data$diff, order_by = -crosstabs_earnings_data$abs) > 0,
         FSMearningstext <- paste("the median earnings of non-FSM graduates were <b>£",
@@ -570,8 +578,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       crosstab_text <- paste0(
         "For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, ",
         sectiontext, br(), br(),
-        "The biggest difference in proportions is seen in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
-        "</b> where ", FSMtext,
+        FSMtext,
         textWidestEarnings,
         funcHighestEarnings(tables_data_grouped %>% mutate(filter = FSM)), br(), br()
       )
