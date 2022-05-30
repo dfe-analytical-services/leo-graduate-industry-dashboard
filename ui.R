@@ -233,7 +233,10 @@ fluidPage(
               #  condition = "is.null(output$sankey_flag)",
               withSpinner(
                 sankeyNetworkOutput(outputId = "sankey", height = 800)
-              )
+              ),br(),
+              strong("Footnotes"),
+              br(),
+              paste("1. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals.")
               # )
             ),
 
