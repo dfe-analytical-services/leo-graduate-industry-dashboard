@@ -70,7 +70,7 @@ format_filtervalues <- function(filtervalues) {
   if (length(filtervalues) == 1) {
     return(paste(filtervalues))
   } else if (length(filtervalues) > 1) {
-    return(paste0(paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), " and ", filtervalues[length(filtervalues)]))
+    return(paste0(paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b> and <b>", filtervalues[length(filtervalues)]))
   } else if ((length(filtervalues) == 0)) {
     return(paste("there is no data"))
   }
