@@ -820,7 +820,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       regionfirstdata <- data.frame(regionfirstdata)
       regionfirstdata$region <- c(
         "the North East", "the North West", "Yorkshire and the Humber", "the East Midlands", "the West Midlands",
-        " the East of England", "London", "the South East", "the South West"
+        "the East of England", "London", "the South East", "the South West"
       )
 
       uniqueregions <- unique(regionfirstdata$regionfirstdata)
