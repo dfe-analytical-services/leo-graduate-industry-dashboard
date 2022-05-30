@@ -167,6 +167,9 @@ server <- function(input, output, session) {
     regional_sankey(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
   })
   output$regional_sankey <- renderSankeyNetwork({
+    validate(
+      need(nrow(nodes) > 1 ,"There is no data available.")
+    )
     reactiveRegionalSankey()
   })
 
