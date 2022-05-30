@@ -56,11 +56,11 @@ topIndustries <- function(data, filter_value) {
     filter(filter == filter_value, count > 0) %>%
     filter(count == max(count, na.rm = TRUE))
   if (nrow(dfMaxLines) == 0) {
-    text <- paste(" there is no data </b>")
+    text <- paste(" there is no data</b>")
   } else if (nrow(dfMaxLines) > 1) {
-    text <- paste(format_filtervalues(dfMaxLines$SECTIONNAME), "</b> were the most common industries ")
+    text <- paste(format_filtervalues(dfMaxLines$SECTIONNAME), "</b> were the most common industries")
   } else {
-    text <- paste(format_filtervalues(dfMaxLines$SECTIONNAME), "</b> was the most common industry ")
+    text <- paste(format_filtervalues(dfMaxLines$SECTIONNAME), "</b> was the most common industry")
   }
   return(text)
 }
