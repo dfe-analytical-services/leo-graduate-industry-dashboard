@@ -503,6 +503,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
+  if (is.na(first(cohort_sankey1_text$count)) == FALSE) {
   if (first(cohort_sankey1_text$count) == 0) {
     sankeytext2 <- ""
   } else if (first(cohort_sankey2_text$count) == 0) {
@@ -517,6 +518,8 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
       "</b>."
     )
   } else {
+    sankeytext2 <- ""
+  }} else if (is.na(first(cohort_sankey1_text$count)) == TRUE) {
     sankeytext2 <- ""
   }
 
