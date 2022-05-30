@@ -351,7 +351,7 @@ create_regions_table <- function(maptabledata, regioninput) {
   return(map_table)
 }
 
-regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput) {
+create_regionalsankeyframe <- function(sectionnameinput, subjectinput, YAGinput, qualinput) {
   sankey_data <- regional_movement_data %>%
     filter(
       SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput,
@@ -363,11 +363,6 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
     unique(sankey_data$InstRegion),
     unique(sankey_data$current_region)
   ))
-
-  nodes$ID <- 0:(nrow(nodes) - 1)
-  nodes1 <- nodes[1:length(unique(sankey_data$InstRegion)), ]
-  nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
-
   links <- as.data.frame(
     sankey_data[, c(3, 4, 6)],
     byrow = TRUE, ncol = 3
@@ -377,6 +372,10 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
 
   # Change names in links to numbers
 
+  if(nrow(nodes)>=1){
+    nodes$ID <- 0:(nrow(nodes) - 1)
+    nodes1 <- nodes[1:length(unique(sankey_data$InstRegion)), ]
+    nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
   links <- links %>%
     left_join(nodes1, by = c("source" = "name"))
   links$source <- links$ID
@@ -396,7 +395,11 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
 
   # Force a space between node names and values
   nodes$name <- paste(nodes$name, " ")
-
+  }
+  list(links=links,nodes=nodes)
+}
+  
+regional_sankey <- function(links,nodes) {
   plot <- sankeyNetwork(
     Links = links, Nodes = nodes,
     Source = "source", Target = "target",

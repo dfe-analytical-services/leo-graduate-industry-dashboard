@@ -1,0 +1,516 @@
+{
+  "input": {
+    "countinput3": "FSM",
+    "earningsbutton2": "Median earnings",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Construction",
+    "YAGinput3": "1"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "subject_name": [
+                "Architecture, building and planning",
+                "Engineering",
+                "Business and management",
+                "Creative arts and design",
+                "Geography, earth and environmental studies",
+                "Sport and exercise sciences",
+                "Computing",
+                "Performing arts",
+                "Sociology, social policy and anthropology",
+                "English studies",
+                "Law",
+                "Media, journalism and communications",
+                "Psychology",
+                "History and archaeology",
+                "Education and teaching",
+                "Mathematical sciences",
+                "Combined and general studies",
+                "Economics",
+                "Allied health",
+                "Biosciences",
+                "Agriculture, food and related studies",
+                "Materials and technology",
+                "Politics",
+                "Chemistry",
+                "Languages and area studies",
+                "Nursing and midwifery",
+                "Philosophy and religious studies",
+                "General, applied and forensic sciences",
+                "Health and social care",
+                "Medical sciences",
+                "Physics and astronomy",
+                "Pharmacology, toxicology and pharmacy",
+                "Veterinary sciences"
+              ],
+              "non-FSM": [
+                29900,
+                27700,
+                22300,
+                18200,
+                24100,
+                19300,
+                21500,
+                17900,
+                21200,
+                18200,
+                20800,
+                18600,
+                18600,
+                17900,
+                18400,
+                23000,
+                -10000,
+                24800,
+                -10000,
+                18200,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000
+              ],
+              "FSM": [
+                24100,
+                26600,
+                21500,
+                17200,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                "NA",
+                "NA",
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                "NA",
+                "NA"
+              ],
+              "Not known": [
+                31000,
+                28300,
+                24500,
+                18600,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                -10000,
+                -10000,
+                "NA",
+                "NA",
+                "NA",
+                -10000,
+                -10000,
+                "NA",
+                "NA",
+                "NA"
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "subject_name",
+                "name": "Subject area",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "x",
+                "width": 600
+              },
+              {
+                "accessor": "non-FSM",
+                "name": "non-FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "£29,900",
+                  "£27,700",
+                  "£22,300",
+                  "£18,200",
+                  "£24,100",
+                  "£19,300",
+                  "£21,500",
+                  "£17,900",
+                  "£21,200",
+                  "£18,200",
+                  "£20,800",
+                  "£18,600",
+                  "£18,600",
+                  "£17,900",
+                  "£18,400",
+                  "£23,000",
+                  "c",
+                  "£24,800",
+                  "c",
+                  "£18,200",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c"
+                ],
+                "footer": "1,475",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#4084C4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#6098CE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ADCBE7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#93BADF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D8E7F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B9D2EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BDD5EC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C3D9EE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A3C4E4"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#89B3DB"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              },
+              {
+                "accessor": "FSM",
+                "name": "FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "£24,100",
+                  "£26,600",
+                  "£21,500",
+                  "£17,200",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "x",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "x",
+                  "x",
+                  "x",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "x",
+                  "x",
+                  "x"
+                ],
+                "footer": "185",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#93BADF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#70A3D3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B9D2EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              },
+              {
+                "accessor": "Not known",
+                "name": "Not known",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "£31,000",
+                  "£28,300",
+                  "£24,500",
+                  "£18,600",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "x",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "x",
+                  "c",
+                  "c",
+                  "x",
+                  "x",
+                  "x",
+                  "c",
+                  "c",
+                  "x",
+                  "x",
+                  "x"
+                ],
+                "footer": "205",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#317ABF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#5793CB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#8EB6DD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  null
+                ]
+              }
+            ],
+            "defaultPageSize": 37,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "height": "800px",
+            "dataKey": "random_key",
+            "key": "random_key"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  }
+}

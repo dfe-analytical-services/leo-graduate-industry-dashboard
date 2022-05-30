@@ -1,0 +1,690 @@
+{
+  "input": {
+    "countinput3": "FSM",
+    "earningsbutton2": "Proportions",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Construction",
+    "YAGinput3": "1"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "subject_name": [
+                "Architecture, building and planning",
+                "Engineering",
+                "Business and management",
+                "Creative arts and design",
+                "Geography, earth and environmental studies",
+                "Sport and exercise sciences",
+                "Computing",
+                "Performing arts",
+                "Sociology, social policy and anthropology",
+                "English studies",
+                "Law",
+                "Media, journalism and communications",
+                "Psychology",
+                "History and archaeology",
+                "Education and teaching",
+                "Mathematical sciences",
+                "Combined and general studies",
+                "Economics",
+                "Allied health",
+                "Biosciences",
+                "Agriculture, food and related studies",
+                "Materials and technology",
+                "Politics",
+                "Chemistry",
+                "Languages and area studies",
+                "Nursing and midwifery",
+                "Philosophy and religious studies",
+                "General, applied and forensic sciences",
+                "Health and social care",
+                "Medical sciences",
+                "Physics and astronomy",
+                "Pharmacology, toxicology and pharmacy",
+                "Veterinary sciences"
+              ],
+              "non-FSM": [
+                0.241,
+                0.193,
+                0.136,
+                0.068,
+                0.054,
+                0.037,
+                0.031,
+                0.027,
+                0.02,
+                0.02,
+                0.017,
+                0.02,
+                0.02,
+                0.02,
+                0.014,
+                0.014,
+                0.003,
+                0.01,
+                0.003,
+                0.01,
+                0.007,
+                0.007,
+                0.007,
+                0.003,
+                0.007,
+                0,
+                0.003,
+                0.003,
+                0,
+                0,
+                0.003,
+                0,
+                0
+              ],
+              "FSM": [
+                0.243,
+                0.243,
+                0.189,
+                0.054,
+                0.027,
+                0.027,
+                0.027,
+                0.027,
+                0.027,
+                0,
+                0.027,
+                0.027,
+                0,
+                0.027,
+                0.027,
+                0,
+                "NA",
+                0.027,
+                0,
+                0,
+                0,
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA",
+                0,
+                0,
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA"
+              ],
+              "Not known": [
+                0.268,
+                0.22,
+                0.195,
+                0.049,
+                0.049,
+                0.024,
+                0.024,
+                0,
+                0.024,
+                0,
+                0.024,
+                0.024,
+                0,
+                0.024,
+                0,
+                "NA",
+                0,
+                0.024,
+                0,
+                0.024,
+                0,
+                0,
+                "NA",
+                0,
+                0.024,
+                "NA",
+                "NA",
+                "NA",
+                0,
+                0,
+                "NA",
+                "NA",
+                "NA"
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "subject_name",
+                "name": "Subject area",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "x",
+                "width": 600
+              },
+              {
+                "accessor": "non-FSM",
+                "name": "non-FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "24.1%",
+                  "19.3%",
+                  "13.6%",
+                  "6.8%",
+                  "5.4%",
+                  "3.7%",
+                  "3.1%",
+                  "2.7%",
+                  "2.0%",
+                  "2.0%",
+                  "1.7%",
+                  "2.0%",
+                  "2.0%",
+                  "2.0%",
+                  "1.4%",
+                  "1.4%",
+                  "0.3%",
+                  "1.0%",
+                  "0.3%",
+                  "1.0%",
+                  "0.7%",
+                  "0.7%",
+                  "0.7%",
+                  "0.3%",
+                  "0.7%",
+                  "0.0%",
+                  "0.3%",
+                  "0.3%",
+                  "0.0%",
+                  "0.0%",
+                  "0.3%",
+                  "0.0%",
+                  "0.0%"
+                ],
+                "footer": "1,475",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#4486C5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#689ED0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#92B9DE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C4DAEE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CFE1F2"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DBE9F6"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E0ECF7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  }
+                ]
+              },
+              {
+                "accessor": "FSM",
+                "name": "FSM",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "24.3%",
+                  "24.3%",
+                  "18.9%",
+                  "5.4%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
+                  "2.7%",
+                  "2.7%",
+                  "0.0%",
+                  "x",
+                  "2.7%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x"
+                ],
+                "footer": "185",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#4386C4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#4386C4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#6BA0D1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CFE1F2"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null
+                ]
+              },
+              {
+                "accessor": "Not known",
+                "name": "Not known",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "26.8%",
+                  "22.0%",
+                  "19.5%",
+                  "4.9%",
+                  "4.9%",
+                  "2.4%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "x",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "2.4%",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "0.0%",
+                  "2.4%",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x"
+                ],
+                "footer": "205",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#317ABF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#5491CA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#669DD0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D2E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D2E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null
+                ]
+              }
+            ],
+            "defaultPageSize": 37,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "height": "800px",
+            "dataKey": "random_key",
+            "key": "random_key"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  }
+}

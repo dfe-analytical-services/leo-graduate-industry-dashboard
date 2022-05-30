@@ -1,0 +1,773 @@
+{
+  "input": {
+    "countinput3": "sex",
+    "earningsbutton2": "Proportions",
+    "navbar": "industryBySubject",
+    "qualinput4": "First degree",
+    "sectionnameinput2": "Education",
+    "YAGinput3": "5"
+  },
+  "output": {
+    "backwards_crosstab_title": "<h4>Graduates working in the Education industry five years after\n                            graduation by the subject they studied and sex, first degree graduates from English HEIs,\n                            APs and FECs, 2018/19 tax year.<\/h4>",
+    "crosstab_backwards": {
+      "x": {
+        "tag": {
+          "name": "Reactable",
+          "attribs": {
+            "data": {
+              "subject_name": [
+                "Education and teaching",
+                "English studies",
+                "Health and social care",
+                "Sport and exercise sciences",
+                "Performing arts",
+                "Psychology",
+                "Business and management",
+                "Creative arts and design",
+                "History and archaeology",
+                "Sociology, social policy and anthropology",
+                "Biosciences",
+                "Combined and general studies",
+                "Mathematical sciences",
+                "Geography, earth and environmental studies",
+                "Languages and area studies",
+                "Media, journalism and communications",
+                "Allied health",
+                "Computing",
+                "Law",
+                "Philosophy and religious studies",
+                "Politics",
+                "Engineering",
+                "Chemistry",
+                "Physics and astronomy",
+                "Nursing and midwifery",
+                "Agriculture, food and related studies",
+                "Architecture, building and planning",
+                "General, applied and forensic sciences",
+                "Economics",
+                "Medical sciences",
+                "Materials and technology",
+                "Medicine and dentistry",
+                "Pharmacology, toxicology and pharmacy",
+                "Veterinary sciences",
+                "Celtic studies"
+              ],
+              "Female": [
+                0.284,
+                0.078,
+                0.079,
+                0.032,
+                0.051,
+                0.062,
+                0.043,
+                0.05,
+                0.04,
+                0.044,
+                0.025,
+                0.025,
+                0.019,
+                0.021,
+                0.025,
+                0.016,
+                0.02,
+                0.006,
+                0.017,
+                0.014,
+                0.007,
+                0.003,
+                0.007,
+                0.003,
+                0.007,
+                0.006,
+                0.002,
+                0.004,
+                0.002,
+                0.004,
+                0.001,
+                0.002,
+                0.001,
+                0.001,
+                0
+              ],
+              "Male": [
+                0.096,
+                0.05,
+                0.029,
+                0.132,
+                0.062,
+                0.023,
+                0.066,
+                0.045,
+                0.06,
+                0.03,
+                0.04,
+                0.026,
+                0.042,
+                0.032,
+                0.018,
+                0.025,
+                0.014,
+                0.045,
+                0.015,
+                0.016,
+                0.021,
+                0.029,
+                0.016,
+                0.017,
+                0.002,
+                0.004,
+                0.013,
+                0.007,
+                0.01,
+                0.004,
+                0.007,
+                0.003,
+                0.003,
+                0.001,
+                0
+              ],
+              "Female & Male": [
+                0.234,
+                0.07,
+                0.066,
+                0.058,
+                0.054,
+                0.052,
+                0.049,
+                0.049,
+                0.045,
+                0.04,
+                0.029,
+                0.025,
+                0.025,
+                0.024,
+                0.023,
+                0.019,
+                0.019,
+                0.017,
+                0.016,
+                0.014,
+                0.011,
+                0.01,
+                0.009,
+                0.006,
+                0.006,
+                0.005,
+                0.005,
+                0.005,
+                0.004,
+                0.004,
+                0.003,
+                0.002,
+                0.002,
+                0.001,
+                0
+              ]
+            },
+            "columns": [
+              {
+                "accessor": "subject_name",
+                "name": "Subject area",
+                "type": "character",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "footer": "TOTAL (N)",
+                "na": "x",
+                "width": 600
+              },
+              {
+                "accessor": "Female",
+                "name": "Female",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "28.4%",
+                  "7.8%",
+                  "7.9%",
+                  "3.2%",
+                  "5.1%",
+                  "6.2%",
+                  "4.3%",
+                  "5.0%",
+                  "4.0%",
+                  "4.4%",
+                  "2.5%",
+                  "2.5%",
+                  "1.9%",
+                  "2.1%",
+                  "2.5%",
+                  "1.6%",
+                  "2.0%",
+                  "0.6%",
+                  "1.7%",
+                  "1.4%",
+                  "0.7%",
+                  "0.3%",
+                  "0.7%",
+                  "0.3%",
+                  "0.7%",
+                  "0.6%",
+                  "0.2%",
+                  "0.4%",
+                  "0.2%",
+                  "0.4%",
+                  "0.1%",
+                  "0.2%",
+                  "0.1%",
+                  "0.1%",
+                  "0.0%"
+                ],
+                "footer": "25,015",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#317ABF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C0D7ED"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BFD7ED"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E0ECF7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D3E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CBDEF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D9E7F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DBE8F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D8E7F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  }
+                ]
+              },
+              {
+                "accessor": "Male",
+                "name": "Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "9.6%",
+                  "5.0%",
+                  "2.9%",
+                  "13.2%",
+                  "6.2%",
+                  "2.3%",
+                  "6.6%",
+                  "4.5%",
+                  "6.0%",
+                  "3.0%",
+                  "4.0%",
+                  "2.6%",
+                  "4.2%",
+                  "3.2%",
+                  "1.8%",
+                  "2.5%",
+                  "1.4%",
+                  "4.5%",
+                  "1.5%",
+                  "1.6%",
+                  "2.1%",
+                  "2.9%",
+                  "1.6%",
+                  "1.7%",
+                  "0.2%",
+                  "0.4%",
+                  "1.3%",
+                  "0.7%",
+                  "1.0%",
+                  "0.4%",
+                  "0.7%",
+                  "0.3%",
+                  "0.3%",
+                  "0.1%",
+                  "0.0%"
+                ],
+                "footer": "8,880",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#B4CFE9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#9ABFE1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CBDEF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C8DDF0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D7E6F4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CDDFF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DBE8F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E4EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D9E7F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E0ECF7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D7E6F4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF5FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  }
+                ]
+              },
+              {
+                "accessor": "Female & Male",
+                "name": "Female & Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "23.4%",
+                  "7.0%",
+                  "6.6%",
+                  "5.8%",
+                  "5.4%",
+                  "5.2%",
+                  "4.9%",
+                  "4.9%",
+                  "4.5%",
+                  "4.0%",
+                  "2.9%",
+                  "2.5%",
+                  "2.5%",
+                  "2.4%",
+                  "2.3%",
+                  "1.9%",
+                  "1.9%",
+                  "1.7%",
+                  "1.6%",
+                  "1.4%",
+                  "1.1%",
+                  "1.0%",
+                  "0.9%",
+                  "0.6%",
+                  "0.6%",
+                  "0.5%",
+                  "0.5%",
+                  "0.5%",
+                  "0.4%",
+                  "0.4%",
+                  "0.3%",
+                  "0.2%",
+                  "0.2%",
+                  "0.1%",
+                  "0.0%"
+                ],
+                "footer": "33,905",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#5390CA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C6DBEF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C8DDF0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CEE0F1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D1E2F2"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D2E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D7E6F4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DBE8F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E2EDF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E5EFF9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E6F0F9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EBF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  }
+                ]
+              }
+            ],
+            "defaultPageSize": 37,
+            "paginationType": "numbers",
+            "showPageInfo": true,
+            "minRows": 1,
+            "showSortable": true,
+            "height": "800px",
+            "dataKey": "random_key",
+            "key": "random_key"
+          },
+          "children": [
+
+          ]
+        },
+        "class": "reactR_markup"
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+
+      ]
+    }
+  }
+}
