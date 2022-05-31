@@ -754,7 +754,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         range_text <- paste(
           "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
           "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
-          last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion."
+          last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion.",
+          sep = ""
         )
       } else if (is.na(first(biggestdiff$range)) == TRUE) {
         range_text <- ""
