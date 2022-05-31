@@ -200,12 +200,36 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
 
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
+  
+  if (first(is.na(mapdata_trained$trained_in_region2)) == FALSE & first(mapdata_trained$trained_in_region2) > 0) {
+    highest_studied <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
+                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>.")
+  } else if (first(mapdata_trained$trained_in_region2) == 0 | is.na(first(mapdata_trained$trained_in_region2)) == TRUE) {
+    highest_studied <- ""
+  }
+  
+  if (last(is.na(mapdata_trained$trained_in_region2)) == FALSE) {
+    fewest_studied <- paste0(" The region where the fewest graduates
+                    had studied was <b>", last(mapdata_trained$region), "</b>.")
+  } else if (is.na(last(mapdata_trained$trained_in_region2)) == TRUE | last(mapdata_trained$trained_in_region2) == mapdata_trained$trained_in_region2[length(mapdata_trained$trained_in_region2)-1]) {
+    fewest_studied <- ""
+  }
+  
+  if (first(is.na(mapdata_current$living_in_region2)) == FALSE & first(mapdata_current$living_in_region2) > 0) {
+    highest_current <- paste0(" The region where the highest number of graduates lived
+                    ", YAGtext, " after graduation was <b>", first(mapdata_current$region), "</b>")
+  } else if (first(mapdata_current$living_in_region2) == 0 | is.na(first(mapdata_current$living_in_region2)) == TRUE) {
+    highest_current <- ""
+  }
+  
+  if (last(is.na(mapdata_current$living_in_region2)) == FALSE) {
+    fewest_current <- paste0(" and the region with the
+                    fewest graduates lived was <b>", last(mapdata_current$region), "</b>.")
+  } else if (is.na(last(mapdata_current$living_in_region2)) == TRUE | last(mapdata_current$living_in_region2) == mapdata_current$living_in_region2[length(mapdata_current$living_in_region2)-1]) {
+    fewest_current <- paste0(".")
+  }
 
-  map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
-                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the fewest graduates
-                    had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
-                    ", YAGtext, " after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
-                    fewest graduates lived was <b>", last(mapdata_current$region), "</b>.",
+  map_text <- paste0(highest_studied, fewest_studied, highest_current, fewest_current,
     sep = ""
   )
 
