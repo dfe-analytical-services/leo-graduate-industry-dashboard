@@ -372,34 +372,34 @@ create_regionalsankeyframe <- function(sectionnameinput, subjectinput, YAGinput,
 
   # Change names in links to numbers
 
-  if(nrow(nodes)>=1){
+  if (nrow(nodes) >= 1) {
     nodes$ID <- 0:(nrow(nodes) - 1)
     nodes1 <- nodes[1:length(unique(sankey_data$InstRegion)), ]
     nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
-  links <- links %>%
-    left_join(nodes1, by = c("source" = "name"))
-  links$source <- links$ID
-  links <- links[, -4]
+    links <- links %>%
+      left_join(nodes1, by = c("source" = "name"))
+    links$source <- links$ID
+    links <- links[, -4]
 
-  links <- links %>%
-    left_join(nodes2, by = c("target" = "name"))
-  links$target <- links$ID
-  links <- links[, -4]
+    links <- links %>%
+      left_join(nodes2, by = c("target" = "name"))
+    links$target <- links$ID
+    links <- links[, -4]
 
-  links <- links %>%
-    mutate_at(
-      "value",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    ) %>%
-    filter(value != 0)
+    links <- links %>%
+      mutate_at(
+        "value",
+        funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+      ) %>%
+      filter(value != 0)
 
-  # Force a space between node names and values
-  nodes$name <- paste(nodes$name, " ")
+    # Force a space between node names and values
+    nodes$name <- paste(nodes$name, " ")
   }
-  list(links=links,nodes=nodes)
+  list(links = links, nodes = nodes)
 }
-  
-regional_sankey <- function(links,nodes) {
+
+regional_sankey <- function(links, nodes) {
   plot <- sankeyNetwork(
     Links = links, Nodes = nodes,
     Source = "source", Target = "target",
