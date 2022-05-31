@@ -749,13 +749,19 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         tables_data_grouped %>% mutate(filter = ethnicity),
         suffix = " ethnicity graduates"
       )
+      
+      if (is.na(first(biggestdiff$range)) == FALSE) {
+        range_text <- paste("The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
+                            "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
+                            last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion.")
+      } else if (is.na(first(biggestdiff$range)) == TRUE) {
+        range_text <- ""
+      }
 
       crosstab_text <- paste0(
         "For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, ",
         ethnicitytext, br(), br(),
-        "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
-        "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
-        last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion.",
+        range_text,
         textWidestEarnings,
         textHighestEarnings, br(), br()
       )
