@@ -70,7 +70,7 @@ format_filtervalues <- function(filtervalues) {
   if (length(filtervalues) == 1) {
     return(paste("<b>", filtervalues, "</b>"))
   } else if (length(filtervalues) > 1) {
-    return(paste0("<b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b> and <b>", filtervalues[length(filtervalues)], "</b>"))
+    return(paste0("<b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b></b> and <b>", filtervalues[length(filtervalues)], "</b>"))
   } else if ((length(filtervalues) == 0)) {
     return(paste("there is no data"))
   }
@@ -753,8 +753,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       if (is.na(first(biggestdiff$range)) == FALSE) {
         range_text <- paste(
           "The industry with the largest range in proportions was <b>", first(biggestdiff$SECTIONNAME),
-          "</b> where ", first(row.names(biggestdiff2)), " ethnicity graduates had the highest proportion and ",
-          last(row.names(biggestdiff2)), " ethnicity graduates had the lowest proportion.",
+          "</b> where <b>", first(row.names(biggestdiff2)), "</b> ethnicity graduates had the highest proportion and <b>",
+          last(row.names(biggestdiff2)), "</b> ethnicity graduates had the lowest proportion.",
           sep = ""
         )
       } else if (is.na(first(biggestdiff$range)) == TRUE) {
