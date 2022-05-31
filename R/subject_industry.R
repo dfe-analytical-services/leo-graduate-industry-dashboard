@@ -68,9 +68,9 @@ topIndustries <- function(data, filter_value) {
 format_filtervalues <- function(filtervalues) {
   filtervalues <- sort(unique(filtervalues))
   if (length(filtervalues) == 1) {
-    return(paste(filtervalues))
+    return(paste("<b>", filtervalues, "</b>"))
   } else if (length(filtervalues) > 1) {
-    return(paste0(paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b> and <b>", filtervalues[length(filtervalues)]))
+    return(paste0("<b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b> and <b>", filtervalues[length(filtervalues)], "</b>"))
   } else if ((length(filtervalues) == 0)) {
     return(paste("there is no data"))
   }
@@ -158,7 +158,7 @@ funcHighestEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suf
   if (nrow(dfHighestEarnings) > 0) {
     dfHighestEarnings <- dfHighestEarnings %>% filter(earnings_median == max(earnings_median, na.rm = TRUE))
     text <- paste0(
-      "The group with the highest earnings was ", prefix, "<b>",
+      " The group with the highest earnings was ", prefix, "<b>",
       dfHighestEarnings$filter[1], "</b>", suffix, " who worked in the <b>",
       dfHighestEarnings$SECTIONNAME[1],
       "</b> industry (median earnings of <b>",
@@ -372,7 +372,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             mutate_all(funs(gsub("£-10,000", "suppressed", .)))
 
           section_text_male <- paste0(
-            "The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>£",
+            " The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>£",
             top_industry_male$Male, "</b>). The industry with the highest proportion of male graduates after excluding the not known category is <b>",
             top_section_male_exclnk$SECTIONNAME, "</b> where the median earnings were <b>£", top_earnings_male_exclnk$Male, "</b>."
           )
@@ -450,7 +450,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           order_by = -crosstabs_earnings_data$abs
         )
         sex_prop_extra <- paste0(
-          "The industry with the biggest difference in proportions after excluding the Not known category is <b>",
+          " The industry with the biggest difference in proportions after excluding the Not known category is <b>",
           extra_industry, "</b> where ",
           sex_prop_text(crosstabs_data, position = extra_industry)
         )
