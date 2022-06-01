@@ -383,7 +383,7 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
       sep = ""
     )
   )
-  
+
   if (first(yag_table_final$`1 YAG`) == 0 & first(five_yag_table_subject$`5 YAG`) == 0) {
     sankeytext1 <- "There is no data for this selection."
   }

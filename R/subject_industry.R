@@ -1130,32 +1130,33 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .)))
-      
+
       qualfirst <- function(qualification_TR) {
         data <- crosstabs_data %>%
           select(SECTIONNAME, qualification_TR) %>%
           arrange(qualification_TR)
-        
+
         datafirst <- data %>%
           filter(data[qualification_TR] == max(data[qualification_TR], na.rm = TRUE))
 
         return(paste0(format_filtervalues(datafirst$SECTIONNAME)))
-        
       }
-      
+
       pluralquals <- function(qualification_TR) {
         data <- crosstabs_data %>%
           select(SECTIONNAME, qualification_TR) %>%
           arrange(qualification_TR)
-        
+
         datafirst <- data %>%
           filter(data[qualification_TR] == max(data[qualification_TR], na.rm = TRUE))
-        
-        if(nrow(datafirst)==1){
+
+        if (nrow(datafirst) == 1) {
           return("the most common industry was")
-        } else if (nrow(datafirst)>1) {
+        } else if (nrow(datafirst) > 1) {
           return("the most common industries were")
-        } else return("")
+        } else {
+          return("")
+        }
       }
 
       qualfirstdata <- c(
@@ -1179,7 +1180,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       }
 
       if (length(uniquequal) == 1) {
-        qualtext <- paste(qualfirstdata$industry[1],"<b>", uniquequal, "</b> for all qualification levels.")
+        qualtext <- paste(qualfirstdata$industry[1], "<b>", uniquequal, "</b> for all qualification levels.")
       } else if (length(uniquequal) == 2) {
         data1 <- qualfirstdata %>%
           filter(qualfirstdata == uniquequal[1])
@@ -1187,7 +1188,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           filter(qualfirstdata == uniquequal[2])
 
         qualtext <- paste(data1$industry[1], uniquequal[1], " for ", textprod(data1), " graduates,
-                      and ",data2$industry[1], uniquequal[2], " for ", textprod(data2), " graduates.")
+                      and ", data2$industry[1], uniquequal[2], " for ", textprod(data2), " graduates.")
       } else if (length(uniquequal) == 3) {
         data1 <- qualfirstdata %>%
           filter(qualfirstdata == uniquequal[1])
@@ -1196,9 +1197,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         data3 <- qualfirstdata %>%
           filter(qualfirstdata == uniquequal[3])
 
-        qualtext <- paste(data1$industry[1], uniquequal[1], " for ", textprod(data1), " graduates, ",
-                          data2$industry[1], uniquequal[2], " for ", textprod(data2), " graduates, and ",
-                          data3$industry[1], uniquequal[3], " for ", textprod(data3), " graduates."
+        qualtext <- paste(
+          data1$industry[1], uniquequal[1], " for ", textprod(data1), " graduates, ",
+          data2$industry[1], uniquequal[2], " for ", textprod(data2), " graduates, and ",
+          data3$industry[1], uniquequal[3], " for ", textprod(data3), " graduates."
         )
       } else if (length(uniquequal) == 4) {
         data1 <- qualfirstdata %>%
