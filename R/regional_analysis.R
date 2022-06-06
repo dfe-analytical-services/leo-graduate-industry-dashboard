@@ -255,7 +255,13 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
     fewest_current <- paste0(".")
   }
 
-  map_text <- paste0(highest_studied, fewest_studied, highest_current, fewest_current,
+  if (paste0(highest_studied, fewest_studied, highest_current, fewest_current) == ".") {
+    nosummary <- "There is no summary for this selection"
+  } else {
+    nosummary <- ""
+  }
+
+  map_text <- paste0(highest_studied, fewest_studied, highest_current, nosummary, fewest_current,
     sep = ""
   )
 
