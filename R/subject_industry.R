@@ -66,11 +66,11 @@ topIndustries <- function(data, filter_value) {
 }
 
 format_filtervalues <- function(filtervalues) {
-  filtervalues <- sort(unique(filtervalues))
+  filtervalues <- unique(filtervalues)
   if (length(filtervalues) == 1) {
-    return(paste("<b>", filtervalues, "</b>"))
+    return(paste("<b>", filtervalues, "</b>", sep = ""))
   } else if (length(filtervalues) > 1) {
-    return(paste0("<b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b></b> and <b>", filtervalues[length(filtervalues)], "</b>"))
+    return(paste0("<b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b></b> and <b>", filtervalues[length(filtervalues)], "</b>", sep = ""))
   } else if ((length(filtervalues) == 0)) {
     return(paste("there is no data"))
   }
@@ -372,9 +372,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             mutate_all(funs(gsub("£-10,000", "suppressed", .)))
 
           section_text_male <- paste0(
-            " The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>£",
+            " The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>",
             top_industry_male$Male, "</b>). The industry with the highest proportion of male graduates after excluding the not known category is <b>",
-            top_section_male_exclnk$SECTIONNAME, "</b> where the median earnings were <b>£", top_earnings_male_exclnk$Male, "</b>."
+            top_section_male_exclnk$SECTIONNAME, "</b> where the median earnings were <b>", top_earnings_male_exclnk$Male, "</b>."
           )
         }
         sectiontext <- paste(section_text_female, section_text_male)
@@ -1031,10 +1031,30 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       topindustry <- crosstabs_data %>%
         select(SECTIONNAME, first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
+      names(topindustry) <- c("SECTIONNAME", "prop")
+      topindustry <- topindustry %>%
+        arrange(-prop)
+      
+      topindustry_highest <- topindustry %>%
+        filter(prop == first(topindustry$prop))
+      
+      if (nrow(topindustry_highest) == 1) {
+        pluraltext <- "the most common industry was "
+        pluralearnings <- "this industry were "
+        respectively <- ""
+      } else if (nrow(topindustry_highest) > 1) {
+        pluraltext <- "the most common industries were "
+        pluralearnings <- "these industries were "
+        respectively <- " respectively"
+      }
 
       crosstabs_earnings_data2 <- crosstabs_earnings_data %>%
-        filter(SECTIONNAME == first(topindustry$SECTIONNAME, order_by = -topindustry[2])) %>%
-        select(first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
+        select(SECTIONNAME, first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
+      names(crosstabs_earnings_data2) <- c("SECTIONNAME","earnings")
+      
+      topindustry_highest <- topindustry_highest %>%
+        left_join(crosstabs_earnings_data2)
+      topindustry_highest$earnings <- paste("£",format(topindustry_highest$earnings, big.mark = ",", scientific = FALSE), sep = "")
 
       crosstabs_earnings_data3 <- crosstabs_earnings_data[, -1]
       crosstabs_earnings_data3 <- crosstabs_earnings_data3 %>%
@@ -1047,11 +1067,22 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         "BTEC", "Other", "Not known"
       )
 
-      crosstab_text <- paste("For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, the prior attainment band
+      if(is.na(first(topindustry_highest$prop)) == FALSE){
+      if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) > 0) {
+        prior_attainment_text <- paste0("For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, the prior attainment band
                            with the highest number of graduates was `", first(grad_numbers$prior_attainment, order_by = -grad_numbers$grad_numbers), "`.
-                           Within this prior attainment band, the most common industry was <b>",
-        first(topindustry$SECTIONNAME, order_by = -topindustry[2]), "</b>, and the median earnings for graduates with this prior
-                       attainment band working in this industry were <b>£", format(max(crosstabs_earnings_data2), big.mark = ",", scientific = FALSE),
+                           Within this prior attainment band, ",pluraltext,
+                                       format_filtervalues(topindustry_highest$SECTIONNAME), ", and the median earnings for graduates with this prior
+                       attainment band working in ",pluralearnings,"<b>", format_filtervalues(topindustry_highest$earnings), respectively, 
+                                       sep = "")
+      } else if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) == 0) {
+        prior_attainment_text <- "There is no summary for this selection"
+      }
+      } else {
+        prior_attainment_text <- "There is no summary for this selection"
+      }
+      
+      crosstab_text <- paste(prior_attainment_text,
         "</b>.", br(),
         funcHighestEarnings(
           tables_data_grouped %>%
