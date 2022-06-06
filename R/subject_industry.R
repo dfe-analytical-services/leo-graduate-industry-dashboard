@@ -1887,7 +1887,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       colorders(countinput)
     nested_table_earnings <- tables_data_nested %>%
       select(prior_attainment, SECTIONNAME, group_name, n = earnings_median) %>%
-      spread(prior_attainment, n)
+      spread(prior_attainment, n) %>%
+      colorders(countinput)
 
     if (buttoninput == "Proportions") {
       nested <- nested_table
