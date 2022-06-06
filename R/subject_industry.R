@@ -1034,10 +1034,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       names(topindustry) <- c("SECTIONNAME", "prop")
       topindustry <- topindustry %>%
         arrange(-prop)
-      
+
       topindustry_highest <- topindustry %>%
         filter(prop == first(topindustry$prop))
-      
+
       if (nrow(topindustry_highest) == 1) {
         pluraltext <- "the most common industry was "
         pluralearnings <- "this industry were "
@@ -1050,11 +1050,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       crosstabs_earnings_data2 <- crosstabs_earnings_data %>%
         select(SECTIONNAME, first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
-      names(crosstabs_earnings_data2) <- c("SECTIONNAME","earnings")
-      
+      names(crosstabs_earnings_data2) <- c("SECTIONNAME", "earnings")
+
       topindustry_highest <- topindustry_highest %>%
         left_join(crosstabs_earnings_data2)
-      topindustry_highest$earnings <- paste("£",format(topindustry_highest$earnings, big.mark = ",", scientific = FALSE), sep = "")
+      topindustry_highest$earnings <- paste("£", format(topindustry_highest$earnings, big.mark = ",", scientific = FALSE), sep = "")
 
       crosstabs_earnings_data3 <- crosstabs_earnings_data[, -1]
       crosstabs_earnings_data3 <- crosstabs_earnings_data3 %>%
@@ -1067,21 +1067,22 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         "BTEC", "Other", "Not known"
       )
 
-      if(is.na(first(topindustry_highest$prop)) == FALSE){
-      if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) > 0) {
-        prior_attainment_text <- paste0("For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, the prior attainment band
+      if (is.na(first(topindustry_highest$prop)) == FALSE) {
+        if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) > 0) {
+          prior_attainment_text <- paste0("For first degree graduates of ", subjecttext, ", ", YAGtext, " after graduation, the prior attainment band
                            with the highest number of graduates was `", first(grad_numbers$prior_attainment, order_by = -grad_numbers$grad_numbers), "`.
-                           Within this prior attainment band, ",pluraltext,
-                                       format_filtervalues(topindustry_highest$SECTIONNAME), ", and the median earnings for graduates with this prior
-                       attainment band working in ",pluralearnings,"<b>", format_filtervalues(topindustry_highest$earnings), respectively, 
-                                       sep = "")
-      } else if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) == 0) {
-        prior_attainment_text <- "There is no summary for this selection"
-      }
+                           Within this prior attainment band, ", pluraltext,
+            format_filtervalues(topindustry_highest$SECTIONNAME), ", and the median earnings for graduates with this prior
+                       attainment band working in ", pluralearnings, "<b>", format_filtervalues(topindustry_highest$earnings), respectively,
+            sep = ""
+          )
+        } else if (first(grad_numbers$grad_numbers, order_by = -grad_numbers$grad_numbers) == 0) {
+          prior_attainment_text <- "There is no summary for this selection"
+        }
       } else {
         prior_attainment_text <- "There is no summary for this selection"
       }
-      
+
       crosstab_text <- paste(prior_attainment_text,
         "</b>.", br(),
         funcHighestEarnings(
