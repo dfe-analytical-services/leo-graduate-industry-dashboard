@@ -1054,7 +1054,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       topindustry_highest <- topindustry_highest %>%
         left_join(crosstabs_earnings_data2)
-      topindustry_highest$earnings <- paste("£", format(topindustry_highest$earnings, big.mark = ",", scientific = FALSE), sep = "")
+      if (nrow(topindustry_highest) >= 1) {
+        topindustry_highest$earnings <- paste("£", format(topindustry_highest$earnings, big.mark = ",", scientific = FALSE), sep = "")
+      }
 
       crosstabs_earnings_data3 <- crosstabs_earnings_data[, -1]
       crosstabs_earnings_data3 <- crosstabs_earnings_data3 %>%
