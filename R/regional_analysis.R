@@ -27,7 +27,7 @@ regions <- function(regionsdata) {
   if (nrow(regionsdata) >= 1) {
     regions <- format_filtervalues_region(regionsdata$region)
     return(regions)
-  } 
+  }
 }
 pluralregion <- function(regionsdata) {
   if (nrow(regionsdata) == 1) {
