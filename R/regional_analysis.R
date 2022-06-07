@@ -77,9 +77,11 @@ create_maptabledata <- function(regional_data, regional_movement,
 
   mapdata <- mapdata %>%
     left_join(instregion, by = c("rgn19nm" = "InstRegion")) %>%
-    left_join(currentregion, by = c("rgn19nm" = "current_region")) %>%
-    mutate(difference2 = living_in_region2 - trained_in_region2) %>%
-    mutate(difference_prop2 = difference2 / trained_in_region2) %>%
+    left_join(currentregion, by = c("rgn19nm" = "current_region"))
+
+  mapdata <- mapdata %>%
+    mutate(difference2 = replace(mapdata$living_in_region2, is.na(mapdata$living_in_region2), 0) - replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
+    mutate(difference_prop2 = difference2 / replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
     rename(region = rgn19nm)
 
   mapdata$difference_prop2 <- readr::parse_number(
@@ -101,28 +103,28 @@ map_chart <- function(mapdata, countinput) {
 
   leafletmapdata <- st_transform(mapdata, crs = 4326)
   if (countinput == "trained_in_region") {
-    pal_fun <- colorNumeric("Blues", domain = leafletmapdata$trained_in_region2)
+    pal_fun <- colorNumeric("Blues", domain = c(0, max(leafletmapdata$trained_in_region2, na.rm = TRUE)))
     fill_fun <- ~ pal_fun(trained_in_region2)
     value_fun <- ~ leafletmapdata$trained_in_region2
     title_fun <- "studied in the region"
   }
 
   if (countinput == "living_in_region") {
-    pal_fun <- colorNumeric("Blues", domain = leafletmapdata$living_in_region2)
+    pal_fun <- colorNumeric("Blues", domain = c(0, max(leafletmapdata$living_in_region2, na.rm = TRUE)))
     fill_fun <- ~ pal_fun(living_in_region2)
     value_fun <- ~ leafletmapdata$living_in_region2
     title_fun <- "living in the region"
   }
 
   if (countinput == "difference") {
-    pal_fun <- colorNumeric("RdBu", domain = leafletmapdata$difference2)
+    pal_fun <- colorNumeric("RdBu", domain = c(-abs(max(leafletmapdata$difference2, na.rm = TRUE)), abs(max(leafletmapdata$difference2, na.rm = TRUE))))
     fill_fun <- ~ pal_fun(difference2)
     value_fun <- ~ leafletmapdata$difference2
     title_fun <- "Difference"
   }
 
   if (countinput == "difference_prop") {
-    pal_fun <- colorNumeric("RdBu", domain = leafletmapdata$difference_prop2)
+    pal_fun <- colorNumeric("RdBu", domain = c(-abs(max(leafletmapdata$difference_prop2, na.rm = TRUE)), abs(max(leafletmapdata$difference_prop2, na.rm = TRUE))))
     fill_fun <- ~ pal_fun(difference_prop2)
     value_fun <- ~ leafletmapdata$difference_prop2
     title_fun <- "Proportionate difference"
