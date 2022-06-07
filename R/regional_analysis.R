@@ -310,8 +310,8 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       )
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
-        "the ", pluralregion(clean_map_data_lowest), " with the smallest proportionate decrease in graduates who studied compared to living in the region ",
-        YAGtext, " after graduation ", regions(clean_map_data_lowest),
+        "the ", pluralregion(clean_map_data_highest), " with the smallest proportionate decrease in graduates who studied compared to living in the region ",
+        YAGtext, " after graduation ", regions(clean_map_data_highest),
         ", where the number of graduates decreased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
