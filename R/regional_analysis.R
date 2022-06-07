@@ -80,7 +80,7 @@ create_maptabledata <- function(regional_data, regional_movement,
     left_join(currentregion, by = c("rgn19nm" = "current_region"))
 
   mapdata <- mapdata %>%
-    mutate(difference2 = replace(mapdata$living_in_region2, is.na(mapdata$living_in_region2), 0) - replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
+    mutate(difference2 = ifelse(is.na(living_in_region2) == TRUE & is.na(trained_in_region2) == TRUE, NA, replace(mapdata$living_in_region2, is.na(mapdata$living_in_region2), 0) - replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0))) %>%
     mutate(difference_prop2 = difference2 / replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
     rename(region = rgn19nm)
 
