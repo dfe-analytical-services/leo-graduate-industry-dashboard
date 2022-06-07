@@ -102,6 +102,10 @@ map_chart <- function(mapdata, countinput) {
     )
 
   leafletmapdata <- st_transform(mapdata, crs = 4326)
+
+  domain_lim_difference <- max(c(abs(max(leafletmapdata$difference2, na.rm = TRUE)), abs(min(leafletmapdata$difference2, na.rm = TRUE))))
+  domain_lim_difference_prop <- max(c(abs(max(leafletmapdata$difference_prop2, na.rm = TRUE)), abs(min(leafletmapdata$difference_prop2, na.rm = TRUE))))
+
   if (countinput == "trained_in_region") {
     pal_fun <- colorNumeric("Blues", domain = c(0, max(leafletmapdata$trained_in_region2, na.rm = TRUE)))
     fill_fun <- ~ pal_fun(trained_in_region2)
@@ -117,14 +121,14 @@ map_chart <- function(mapdata, countinput) {
   }
 
   if (countinput == "difference") {
-    pal_fun <- colorNumeric("RdBu", domain = c(-abs(max(leafletmapdata$difference2, na.rm = TRUE)), abs(max(leafletmapdata$difference2, na.rm = TRUE))))
+    pal_fun <- colorNumeric("RdBu", domain = c(-domain_lim_difference, domain_lim_difference))
     fill_fun <- ~ pal_fun(difference2)
     value_fun <- ~ leafletmapdata$difference2
     title_fun <- "Difference"
   }
 
   if (countinput == "difference_prop") {
-    pal_fun <- colorNumeric("RdBu", domain = c(-abs(max(leafletmapdata$difference_prop2, na.rm = TRUE)), abs(max(leafletmapdata$difference_prop2, na.rm = TRUE))))
+    pal_fun <- colorNumeric("RdBu", domain = c(-domain_lim_difference_prop, domain_lim_difference_prop))
     fill_fun <- ~ pal_fun(difference_prop2)
     value_fun <- ~ leafletmapdata$difference_prop2
     title_fun <- "Proportionate difference"
