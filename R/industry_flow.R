@@ -384,6 +384,10 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
     )
   )
 
+  if (first(yag_table_final$`1 YAG`) == 0 & first(five_yag_table_subject$`5 YAG`) == 0) {
+    sankeytext1 <- "There is no data for this selection."
+  }
+
   return(sankeytext1)
 }
 
@@ -503,20 +507,24 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
-  if (first(cohort_sankey1_text$count) == 0) {
-    sankeytext2 <- ""
-  } else if (first(cohort_sankey2_text$count) == 0) {
-    sankeytext2 <- ""
-  } else if (!first(cohort_sankey1_text$count) %in% cohort_sankey1_text$count[duplicated(cohort_sankey1_text$count)] == TRUE & !first(cohort_sankey2_text$count) %in% cohort_sankey2_text$count[duplicated(cohort_sankey2_text$count)] == TRUE) {
-    sankeytext2 <- paste(
-      "The most movement between one and three years after graduation is seen for <b>",
-      first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
-      " graduates move to <b>", first(cohort_sankey1_text$SECTIONNAME.y), "</b>. Between three and five
+  if (is.na(first(cohort_sankey1_text$count)) == FALSE) {
+    if (first(cohort_sankey1_text$count) == 0) {
+      sankeytext2 <- ""
+    } else if (first(cohort_sankey2_text$count) == 0) {
+      sankeytext2 <- ""
+    } else if (!first(cohort_sankey1_text$count) %in% cohort_sankey1_text$count[duplicated(cohort_sankey1_text$count)] == TRUE & !first(cohort_sankey2_text$count) %in% cohort_sankey2_text$count[duplicated(cohort_sankey2_text$count)] == TRUE) {
+      sankeytext2 <- paste(
+        "The most movement between one and three years after graduation is seen for <b>",
+        first(cohort_sankey1_text$SECTIONNAME.x), "</b>, where </b>", first(cohort_sankey1_text$count),
+        " graduates move to <b>", first(cohort_sankey1_text$SECTIONNAME.y), "</b>. Between three and five
                        years after graduation it's seen for <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> where <b>",
-      first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
-      "</b>."
-    )
-  } else {
+        first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
+        "</b>."
+      )
+    } else {
+      sankeytext2 <- ""
+    }
+  } else if (is.na(first(cohort_sankey1_text$count)) == TRUE) {
     sankeytext2 <- ""
   }
 

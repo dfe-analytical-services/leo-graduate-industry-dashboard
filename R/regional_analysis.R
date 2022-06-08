@@ -13,6 +13,30 @@ ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire
 data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
 regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))
 
+format_filtervalues_region <- function(filtervalues) {
+  filtervalues <- sort(unique(filtervalues))
+  if (length(filtervalues) == 1) {
+    return(paste("was <b>", filtervalues, "</b>", sep = ""))
+  } else if (length(filtervalues) > 1) {
+    return(paste0("were <b>", paste0(filtervalues[1:length(filtervalues) - 1], collapse = ", "), "</b> and <b>", filtervalues[length(filtervalues)], "</b>", sep = ""))
+  } else if ((length(filtervalues) == 0)) {
+    return(paste("there is no data"))
+  }
+}
+regions <- function(regionsdata) {
+  if (nrow(regionsdata) >= 1) {
+    regions <- format_filtervalues_region(regionsdata$region)
+    return(regions)
+  }
+}
+pluralregion <- function(regionsdata) {
+  if (nrow(regionsdata) == 1) {
+    return(paste0("region"))
+  } else if (nrow(regionsdata) > 1) {
+    return(paste0("regions"))
+  }
+}
+
 # Create the map
 
 create_maptabledata <- function(regional_data, regional_movement,
@@ -53,9 +77,11 @@ create_maptabledata <- function(regional_data, regional_movement,
 
   mapdata <- mapdata %>%
     left_join(instregion, by = c("rgn19nm" = "InstRegion")) %>%
-    left_join(currentregion, by = c("rgn19nm" = "current_region")) %>%
-    mutate(difference2 = living_in_region2 - trained_in_region2) %>%
-    mutate(difference_prop2 = difference2 / trained_in_region2) %>%
+    left_join(currentregion, by = c("rgn19nm" = "current_region"))
+
+  mapdata <- mapdata %>%
+    mutate(difference2 = ifelse(is.na(living_in_region2) == TRUE & is.na(trained_in_region2) == TRUE, NA, replace(mapdata$living_in_region2, is.na(mapdata$living_in_region2), 0) - replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0))) %>%
+    mutate(difference_prop2 = difference2 / replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
     rename(region = rgn19nm)
 
   mapdata$difference_prop2 <- readr::parse_number(
@@ -76,29 +102,33 @@ map_chart <- function(mapdata, countinput) {
     )
 
   leafletmapdata <- st_transform(mapdata, crs = 4326)
+
+  domain_lim_difference <- max(c(abs(max(leafletmapdata$difference2, na.rm = TRUE)), abs(min(leafletmapdata$difference2, na.rm = TRUE))))
+  domain_lim_difference_prop <- max(c(abs(max(leafletmapdata$difference_prop2, na.rm = TRUE)), abs(min(leafletmapdata$difference_prop2, na.rm = TRUE))))
+
   if (countinput == "trained_in_region") {
-    pal_fun <- colorNumeric("Blues", domain = leafletmapdata$trained_in_region2)
+    pal_fun <- colorNumeric("Blues", domain = c(0, max(leafletmapdata$trained_in_region2, na.rm = TRUE)))
     fill_fun <- ~ pal_fun(trained_in_region2)
     value_fun <- ~ leafletmapdata$trained_in_region2
     title_fun <- "studied in the region"
   }
 
   if (countinput == "living_in_region") {
-    pal_fun <- colorNumeric("Blues", domain = leafletmapdata$living_in_region2)
+    pal_fun <- colorNumeric("Blues", domain = c(0, max(leafletmapdata$living_in_region2, na.rm = TRUE)))
     fill_fun <- ~ pal_fun(living_in_region2)
     value_fun <- ~ leafletmapdata$living_in_region2
     title_fun <- "living in the region"
   }
 
   if (countinput == "difference") {
-    pal_fun <- colorNumeric("RdBu", domain = leafletmapdata$difference2)
+    pal_fun <- colorNumeric("RdBu", domain = c(-domain_lim_difference, domain_lim_difference))
     fill_fun <- ~ pal_fun(difference2)
     value_fun <- ~ leafletmapdata$difference2
     title_fun <- "Difference"
   }
 
   if (countinput == "difference_prop") {
-    pal_fun <- colorNumeric("RdBu", domain = leafletmapdata$difference_prop2)
+    pal_fun <- colorNumeric("RdBu", domain = c(-domain_lim_difference_prop, domain_lim_difference_prop))
     fill_fun <- ~ pal_fun(difference_prop2)
     value_fun <- ~ leafletmapdata$difference_prop2
     title_fun <- "Proportionate difference"
@@ -188,24 +218,53 @@ map_text <- function(mapdata, sectionnameinput, subjectinput,
 
   mapdata_trained <- mapdata %>%
     arrange(-trained_in_region2)
+  mapdata_trained_highest <- mapdata_trained %>%
+    filter(trained_in_region2 == first(mapdata_trained$trained_in_region2))
+  mapdata_trained_lowest <- mapdata_trained %>%
+    filter(trained_in_region2 == last(mapdata_trained$trained_in_region2))
 
   mapdata_current <- mapdata %>%
     arrange(-living_in_region2)
+  mapdata_current_highest <- mapdata_current %>%
+    filter(living_in_region2 == first(mapdata_current$living_in_region2))
+  mapdata_current_lowest <- mapdata_current %>%
+    filter(living_in_region2 == last(mapdata_current$living_in_region2))
 
-  mapdata_earnings <- mapdata %>%
-    arrange(-earnings_median)
+  if (first(is.na(mapdata_trained$trained_in_region2)) == FALSE & first(mapdata_trained$trained_in_region2) > 0) {
+    highest_studied <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the ", pluralregion(mapdata_trained_highest), " where
+                    the most graduates had studied ", regions(mapdata_trained_highest), ".", sep = "")
+  } else if (first(mapdata_trained$trained_in_region2) == 0 | is.na(first(mapdata_trained$trained_in_region2)) == TRUE) {
+    highest_studied <- ""
+  }
 
-  mapdata_difference <- mapdata %>%
-    arrange(-difference2)
+  if (last(is.na(mapdata_trained$trained_in_region2)) == FALSE) {
+    fewest_studied <- paste0(" The ", pluralregion(mapdata_trained_lowest), " where the fewest graduates
+                    had studied ", regions(mapdata_trained_lowest), ".", sep = "")
+  } else if (is.na(last(mapdata_trained$trained_in_region2)) == TRUE) {
+    fewest_studied <- ""
+  }
 
-  mapdata_diff_prop <- mapdata %>%
-    arrange(-difference_prop2)
+  if (first(is.na(mapdata_current$living_in_region2)) == FALSE & first(mapdata_current$living_in_region2) > 0) {
+    highest_current <- paste0(" The ", pluralregion(mapdata_current_highest), " where the highest number of graduates lived
+                    ", YAGtext, " after graduation ", regions(mapdata_current_highest), sep = "")
+  } else if (first(mapdata_current$living_in_region2) == 0 | is.na(first(mapdata_current$living_in_region2)) == TRUE) {
+    highest_current <- ""
+  }
 
-  map_text <- paste0(subjecttext, " in the ", sectionnameinput, " industry ", YAGtext, " after graduation, the region where
-                    the most graduates had studied was <b>", first(mapdata_trained$region), "</b>. The region where the fewest graduates
-                    had studied was <b>", last(mapdata_trained$region), "</b>. The region where the highest number of graduates lived
-                    ", YAGtext, " after graduation was <b>", first(mapdata_current$region), "</b> and the region with the
-                    fewest graduates lived was <b>", last(mapdata_current$region), "</b>.",
+  if (last(is.na(mapdata_current$living_in_region2)) == FALSE) {
+    fewest_current <- paste0(" and the ", pluralregion(mapdata_current_lowest), " where the
+                    fewest graduates lived ", regions(mapdata_current_lowest), ".", sep = "")
+  } else if (is.na(last(mapdata_current$living_in_region2)) == TRUE) {
+    fewest_current <- paste0(".")
+  }
+
+  if (paste0(highest_studied, fewest_studied, highest_current, fewest_current) == ".") {
+    nosummary <- "There is no summary for this selection"
+  } else {
+    nosummary <- ""
+  }
+
+  map_text <- paste0(highest_studied, fewest_studied, highest_current, nosummary, fewest_current,
     sep = ""
   )
 
@@ -231,68 +290,63 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     subjecttext <- paste("For", tolower(qualinput), "graduates of", subjectinput)
   )
 
-  mapdata_trained <- mapdata %>%
-    arrange(-trained_in_region2)
-
-  mapdata_current <- mapdata %>%
-    arrange(-living_in_region2)
-
-  mapdata_earnings <- mapdata %>%
-    arrange(-earnings_median)
-
-  mapdata_difference <- mapdata %>%
-    arrange(-difference2)
-
   mapdata_diff_prop <- mapdata %>%
     arrange(-difference_prop2)
+
 
   clean_map_data <- mapdata_diff_prop %>%
     filter(!is.na(difference_prop2)) %>%
     select(region, difference_prop2)
-  if (nrow(clean_map_data) >= 1) {
+  clean_map_data_highest <- clean_map_data %>%
+    filter(difference_prop2 == first(clean_map_data$difference_prop2))
+  clean_map_data_lowest <- clean_map_data %>%
+    filter(difference_prop2 == last(clean_map_data$difference_prop2))
+
+
+  if (nrow(clean_map_data) > 1) {
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
-        "the region with the highest proportionate increase in graduates who studied compared to living in the region ",
-        YAGtext, " after graduation was <b>", first(clean_map_data$region),
-        "</b>, where the number of graduates increased by <b>",
+        "the ", pluralregion(clean_map_data_highest), " with the highest proportionate increase in graduates who studied compared to living in the region ",
+        YAGtext, " after graduation ", regions(clean_map_data_highest),
+        ", where the number of graduates increased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
       )
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
-        "the region with the smallest proportionate decrease in graduates who studied compared to living in the region ",
-        YAGtext, " after graduation was <b>", first(clean_map_data$region),
-        "</b>, where the number of graduates decreased by <b>",
+        "the ", pluralregion(clean_map_data_highest), " with the smallest proportionate decrease in graduates who studied compared to living in the region ",
+        YAGtext, " after graduation ", regions(clean_map_data_highest),
+        ", where the number of graduates decreased by <b>",
         first(clean_map_data$difference_prop2),
         "%</b>. "
       )
     } else {
       max_text <- paste0(
-        "the region with the most graduates living there ",
-        YAGtext, " after graduation, compared to the number having studied in the region was <b>",
-        first(clean_map_data$region),
-        "</b>, where the number of graduates was the same as the number of students."
+        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there ",
+        YAGtext, " after graduation, compared to the number having studied in the region ",
+        regions(clean_map_data_highest),
+        ", where the number of graduates was the same as the number of students."
       )
     }
 
     if (last(clean_map_data$difference_prop2) > 0) {
       min_text <- paste0(
-        "The region with the smallest increase is <b>",
-        last(clean_map_data$region), "</b> where the number of graduates increased by <b>",
+        "The ", pluralregion(clean_map_data_lowest), " with the smallest increase ",
+        regions(clean_map_data_lowest), " where the number of graduates increased by <b>",
         last(clean_map_data$difference_prop2), "%</b>."
       )
     } else if (last(clean_map_data$difference_prop2) < 0) {
       min_text <- paste0(
-        "The region with the largest decrease is <b>",
-        last(clean_map_data$region), "</b> where the number of graduates decreased by <b>",
+        "The ", pluralregion(clean_map_data_lowest), " with the largest decrease ",
+        regions(clean_map_data_lowest), " where the number of graduates decreased by <b>",
         last(clean_map_data$difference_prop2), "%</b>."
       )
     } else {
       min_text <- paste0(
-        "The region with the fewest graduates living there ",
-        YAGtext, " after graduation, compared to the number having studied there was <b>",
-        first(clean_map_data$region),
-        "</b>, where the number of graduates was the same as the number of students."
+        "The ", pluralregion(clean_map_data_lowest), " with the fewest graduates living there ",
+        YAGtext, " after graduation, compared to the number having studied there ",
+        regions(clean_map_data_highest),
+        ", where the number of graduates was the same as the number of students."
       )
     }
 
@@ -302,7 +356,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       " industry, ", max_text, min_text
     )
   } else {
-    # If the data is a full tranch of NAs, then return a blank.
+    # If the data is a full tranch of NAs or only has 1 row, then return a blank.
     map_text <- ""
   }
 
@@ -351,7 +405,7 @@ create_regions_table <- function(maptabledata, regioninput) {
   return(map_table)
 }
 
-regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput) {
+create_regionalsankeyframe <- function(sectionnameinput, subjectinput, YAGinput, qualinput) {
   sankey_data <- regional_movement_data %>%
     filter(
       SECTIONNAME == sectionnameinput, subject_name == subjectinput, YAG == YAGinput,
@@ -363,11 +417,6 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
     unique(sankey_data$InstRegion),
     unique(sankey_data$current_region)
   ))
-
-  nodes$ID <- 0:(nrow(nodes) - 1)
-  nodes1 <- nodes[1:length(unique(sankey_data$InstRegion)), ]
-  nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
-
   links <- as.data.frame(
     sankey_data[, c(3, 4, 6)],
     byrow = TRUE, ncol = 3
@@ -377,26 +426,34 @@ regional_sankey <- function(sectionnameinput, subjectinput, YAGinput, qualinput)
 
   # Change names in links to numbers
 
-  links <- links %>%
-    left_join(nodes1, by = c("source" = "name"))
-  links$source <- links$ID
-  links <- links[, -4]
+  if (nrow(nodes) >= 1) {
+    nodes$ID <- 0:(nrow(nodes) - 1)
+    nodes1 <- nodes[1:length(unique(sankey_data$InstRegion)), ]
+    nodes2 <- nodes[(length(unique(sankey_data$InstRegion)) + 1):nrow(nodes), ]
+    links <- links %>%
+      left_join(nodes1, by = c("source" = "name"))
+    links$source <- links$ID
+    links <- links[, -4]
 
-  links <- links %>%
-    left_join(nodes2, by = c("target" = "name"))
-  links$target <- links$ID
-  links <- links[, -4]
+    links <- links %>%
+      left_join(nodes2, by = c("target" = "name"))
+    links$target <- links$ID
+    links <- links[, -4]
 
-  links <- links %>%
-    mutate_at(
-      "value",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    ) %>%
-    filter(value != 0)
+    links <- links %>%
+      mutate_at(
+        "value",
+        funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+      ) %>%
+      filter(value != 0)
 
-  # Force a space between node names and values
-  nodes$name <- paste(nodes$name, " ")
+    # Force a space between node names and values
+    nodes$name <- paste(nodes$name, " ")
+  }
+  list(links = links, nodes = nodes)
+}
 
+regional_sankey <- function(links, nodes) {
   plot <- sankeyNetwork(
     Links = links, Nodes = nodes,
     Source = "source", Target = "target",
