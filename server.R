@@ -277,9 +277,10 @@ server <- function(input, output, session) {
       dfDownload <- dfDownload %>%
         mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
         mutate_all(list(~ gsub("-10000", "c", .))) %>%
-        mutate_all(list(~ ifelse(. == "NA", "x", .))) %>%
+        mutate_all(list(~ ifelse(. %in% c("NA","NaN"), "x", .))) %>%
         arrange(SECTIONNAME, group_name) %>%
         rbind(footsum)
+      print(dfDownload)
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )
