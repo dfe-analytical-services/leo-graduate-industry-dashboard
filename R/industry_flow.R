@@ -250,6 +250,11 @@ sankey_table <- function(subjectinput, sexinput, qualinput) {
 
   names(yag_table_final) <- c("INDUSTRY", "1 YAG", "3 YAG", "5 YAG")
 
+  # Ensure Not known starts at bottom of table
+  yag_table_final <- yag_table_final %>%
+    filter(INDUSTRY != "Not known") %>%
+    full_join(yag_table_final %>%
+      filter(INDUSTRY == "Not known"))
 
   orange_pal <- function(x) {
     if (!is.na(x)) {
