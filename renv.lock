@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.3",
+    "Version": "4.2.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -974,10 +974,10 @@
     },
     "metathis": {
       "Package": "metathis",
-      "Version": "1.1.1",
+      "Version": "1.1.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4298036cc76c4164741fdd2ab5b6f57b",
+      "Hash": "12abc0ff44a291420f77574d792ff12d",
       "Requirements": [
         "htmltools",
         "knitr",
