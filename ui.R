@@ -7,15 +7,16 @@ fluidPage(
   # Set metadata for browser ==================================================
 
   tags$html(lang = "en"),
-  meta_general(
-    application_name = "LEO Graduate Industry dashboard",
-    description = "Longitudinal Education Outcomes for graduates by industry",
-    robots = "index,follow",
-    generator = "R-Shiny",
-    subject = "Outcomes for graduates",
-    rating = "General",
-    referrer = "no-referrer"
-  ),
+  meta() %>%
+    meta_general(
+      application_name = "LEO Graduate Industry dashboard",
+      description = "Longitudinal Education Outcomes for graduates by industry",
+      robots = "index,follow",
+      generator = "R-Shiny",
+      subject = "Outcomes for graduates",
+      rating = "General",
+      referrer = "no-referrer"
+    ),
   # Set title for search engines
   HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</title>"),
 
