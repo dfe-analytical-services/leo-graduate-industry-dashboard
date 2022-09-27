@@ -22,19 +22,23 @@ fluidPage(
 
   # Navbar ====================================================================
 
-  # This CSS sets the 7th item on the navbar to the right
-  tagList(
-    tags$head(tags$style(HTML("
-                           .navbar-nav {
-                           float: none !important;
-                           }
-                           .navbar-nav > li:nth-child(7) {
-                           float: right;
-                           }
-                           ")))
+  tags$head(
+    tags$link(
+      rel = "stylesheet",
+      type = "text/css",
+      href = "dfe_shiny_gov_style.css"
+    )
   ),
-  navbarPage("",
+  shinyGovstyle::header(
+    main_text = "DfE",
+    main_link = "https://www.gov.uk/government/organisations/department-for-education",
+    secondary_text = "Longitudinal Education Outcomes (LEO): Graduate Industry",
+    logo = "images/DfE_logo.png"
+  ),
+  navlistPanel("",
     id = "navbar",
+    widths = c(2, 8),
+    well = FALSE,
     tags$head(includeHTML(("google-analytics.html"))),
 
     # Homepage tab ============================================================
