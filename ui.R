@@ -134,7 +134,7 @@ fluidPage(
       value = "industryFlow",
       tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.", "Industry flow"),
 
-      ## Side bar =============================================================
+      ## input boxes =============================================================
 
       gov_row(
         div(
@@ -275,12 +275,13 @@ fluidPage(
       value = "regional",
       tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.", "Regional"),
 
-      ## Side bar =============================================================
+      ## input boxes =============================================================
 
-      sidebarLayout(
-        sidebarPanel(
-          width = 2,
-
+      gov_row(
+        div(
+          class = "well",
+          style = "min-height: 100%; height: 100%; overflow-y: visible",
+          fluidRow(
           ### Help text -------------------------------------------------------
 
           helpText("Create a map and Sankey chart to show graduate movement between study region and current region
@@ -288,6 +289,8 @@ fluidPage(
 
           ### Degree input ----------------------------------------------------
 
+          column(
+          width = 6,
           selectInput("qualinput2",
             label = "Choose graduate qualification level",
             choices = list(
@@ -295,18 +298,22 @@ fluidPage(
               "Level 7 (taught)"
             ),
             selected = "First degree"
-          ),
+          )),
 
           ### YAG input -------------------------------------------------------
 
+          column(
+          width = 6,
           selectInput("YAGinput",
             label = "Select year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
-          ),
+          )),
 
           ### Industry input --------------------------------------------------
 
+          column(
+          width = 6,
           selectInput("sectionnameinput",
             label = "Choose an industry area",
             choices = list(
@@ -333,22 +340,21 @@ fluidPage(
               "Wholesale and retail trade - repair of motor vehicles and motorcycles"
             ),
             selected = "Education"
-          ),
+          )),
 
           ### Subject input ---------------------------------------------------
 
+          column(
+          width = 6,
           selectInput("regions.subjectinput",
             label = "Select a subject area",
             choices = unique(c("All", sort(qual_subjects$subject_name))),
             selected = "All"
-          ),
-        ),
+          ))))),
 
         ## Main panel =========================================================
 
-        mainPanel(
-          width = 10,
-          style = "height: 90vh; overflow-y: auto;",
+        gov_row(
 
           ### Summary text ----------------------------------------------------
 
@@ -489,7 +495,6 @@ fluidPage(
 
           caveats_box_regional() # defined in R/caveats.R
         ) # end of main panel
-      ), # end of sidebar layout
     ), # end of regional tab
 
     # Subject by industry tab =================================================
