@@ -136,52 +136,53 @@ fluidPage(
 
       ## Side bar =============================================================
 
-      sidebarLayout(
-        sidebarPanel(
-          width = 2,
+      gov_row(
+        div(
+          class = "well",
+          style = "min-height: 100%; height: 100%; overflow-y: visible",
+          fluidRow(
+            ### Help text -------------------------------------------------------
+            helpText("Create a Sankey chart using the dropdowns below."),
+            helpText("Switch between the Sankey and the proportions table using the tabs beneath the summary text."),
+            column(
+              width=4,
+              ### Degree input ----------------------------------------------------
+              selectInput("qualinput",
+                          label = "Choose graduate qualification level",
+                          choices = list(
+                            "First degree",
+                            "Level 7 (taught)"
+                          ),
+                          selected = "First degree"
+              )
+              ),
+            column(
+              width=4,
+              ### Subject input ---------------------------------------------------
+              selectizeInput("indflow.subjectinput",
+                             label = "Select a subject area",
+                             choices = unique(c("All", sort(qual_subjects$subject_name))),
+                             selected = "All"
+              ),
+            ), 
+            column(
+              width = 4,
+              ### Sex input -------------------------------------------------------
+              selectInput("sexinput",
+                          label = "View by graduate sex",
+                          choices = list(
+                            "Female & Male" = "F+M",
+                            "Female" = "F",
+                            "Male" = "M"
+                          ),
+                          selected = "F+M"
+              )
+            ))
+        )
+      ),
+     
 
-          ### Help text -------------------------------------------------------
-
-          helpText("Create a Sankey chart using the dropdowns below."),
-          helpText("Switch between the Sankey and the proportions table using the tabs on the right."),
-
-          ### Degree input ----------------------------------------------------
-
-          selectInput("qualinput",
-            label = "Choose graduate qualification level",
-            choices = list(
-              "First degree",
-              "Level 7 (taught)"
-            ),
-            selected = "First degree"
-          ),
-
-          ### Subject input ---------------------------------------------------
-
-          selectizeInput("indflow.subjectinput",
-            label = "Select a subject area",
-            choices = unique(c("All", sort(qual_subjects$subject_name))),
-            selected = "All"
-          ),
-
-          ### Sex input -------------------------------------------------------
-
-          selectInput("sexinput",
-            label = "View by graduate sex",
-            choices = list(
-              "Female & Male" = "F+M",
-              "Female" = "F",
-              "Male" = "M"
-            ),
-            selected = "F+M"
-          )
-        ), # end of sidebar
-
-        ## Main panel =========================================================
-
-        mainPanel(
-          width = 10,
-          style = "height: 90vh; overflow-y: auto;",
+        gov_row(
 
           ### Title  ----------------------------------------------------------
 
@@ -266,7 +267,6 @@ fluidPage(
 
           caveats_box_flow() # defined in R/caveats.R
         ),
-      ),
     ),
 
     # Regional analysis tab ===================================================
