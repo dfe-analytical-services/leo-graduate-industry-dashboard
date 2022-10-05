@@ -142,8 +142,11 @@ fluidPage(
           style = "min-height: 100%; height: 100%; overflow-y: visible",
           fluidRow(
             ### Help text -------------------------------------------------------
-            helpText("Create a Sankey chart using the dropdowns below."),
-            helpText("Switch between the Sankey and the proportions table using the tabs beneath the summary text."),
+            
+            "Create a Sankey chart using the dropdowns below.",
+            br(),
+            "Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
+            br(),br(),
             column(
               width=4,
               ### Degree input ----------------------------------------------------
@@ -284,8 +287,8 @@ fluidPage(
           fluidRow(
           ### Help text -------------------------------------------------------
 
-          helpText("Create a map and Sankey chart to show graduate movement between study region and current region
-                   using the dropdowns below."),
+          "Create a map and Sankey chart to show graduate movement between study region and current region
+                   using the dropdowns below.",br(),br(),
 
           ### Degree input ----------------------------------------------------
 
@@ -505,25 +508,27 @@ fluidPage(
 
       ## Side bar =============================================================
 
-      sidebarLayout(
-        sidebarPanel(
-          width = 2,
-
+      gov_row(
+        div(
+          class = "well",
+          style = "min-height: 100%; height: 100%; overflow-y: visible",
           ### Helptext --------------------------------------------------------
 
-          helpText("Create your own table by selecting from the drop down boxes below."),
+          "Create your own table by selecting from the drop down boxes below.",
+          br(),br(),
 
           ### Proportions / earnings input ------------------------------------
 
-          selectInput("earningsbutton",
-            label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
-            choices = list("Proportions", "Median earnings"),
-            selected = "Proportions"
-          ),
+          # selectInput("earningsbutton",
+          #   label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
+          #   choices = list("Proportions", "Median earnings"),
+          #   selected = "Proportions"
+          # ),
 
           ### Degree input ----------------------------------------------------
 
-
+column(
+  width = 6,
           selectInput("qualinput3",
             label = "Select qualification level",
             choices = list(
@@ -541,11 +546,12 @@ fluidPage(
             label = "Select a year after graduation",
             choices = list(1, 3, 5, 10),
             selected = 5
-          ),
+          )),
 
           ### Subject input ---------------------------------------------------
 
-
+column(
+  width = 6, 
           selectInput("crosstabs.subjectinput",
             label = "Select a subject area",
             choices = unique(c("All", sort(qual_subjects$subject_name))),
@@ -566,20 +572,18 @@ fluidPage(
               "Qualification level" = "qualification_TR"
             ),
             selected = "sex"
-          ),
+          )),
 
           ### Download data ---------------------------------------------------
 
-          helpText("Download the current table as a csv"),
-          downloadButton("downloadData", "Download table"),
-          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry."),
-        ),
+          "Download the current table as a csv",br(),
+          downloadButton("downloadData", "Download table"),br(),
+          "Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry.",
+        )),
 
         ## Main panel =========================================================
 
-        mainPanel(
-          width = 10,
-          style = "height: 90vh; overflow-y: auto; overflow-x: auto;",
+        gov_row(
 
           ### Crosstab table --------------------------------------------------
 
@@ -590,7 +594,10 @@ fluidPage(
           div(
             "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.", br(),
             htmlOutput("crosstab_text")
-          ),
+          ,
+          radioGroupButtons('earningsbutton',
+                            label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
+                            choices = list("Proportions", "Median earnings"))),
           withSpinner(reactableOutput("crosstab")),
 
           ### Caveats ---------------------------------------------------------
@@ -606,7 +613,6 @@ fluidPage(
           paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
           caveats_box() # defined in R/caveats.R
         )
-      ),
     ), # end of subject by industry tab
 
     # Industry by subject tab =================================================
@@ -622,7 +628,7 @@ fluidPage(
 
           ### Help text -------------------------------------------------------
 
-          helpText("Create your own table by selecting from the drop down boxes below."),
+          p("Create your own table by selecting from the drop down boxes below."),
 
           ### Proportions / earnings input ------------------------------------
 
@@ -710,9 +716,9 @@ fluidPage(
 
           ### Download data ---------------------------------------------------
 
-          helpText("Download the current table as a csv"),
+          p("Download the current table as a csv"),
           downloadButton("IndSubjDownload", "Download table"),
-          helpText("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject.")
+          p("Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject.")
         ), # end of sidebar
 
         ## Main panel =========================================================
