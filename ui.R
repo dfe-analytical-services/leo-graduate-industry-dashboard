@@ -29,12 +29,26 @@ fluidPage(
       href = "dfe_shiny_gov_style.css"
     )
   ),
-  shinyGovstyle::header(
-    main_text = "DfE",
-    main_link = "https://www.gov.uk/government/organisations/department-for-education",
-    secondary_text = "Longitudinal Education Outcomes (LEO): Graduate Industry",
-    logo = "images/DfE_logo.png"
-  ),
+  # shinyGovstyle::header(
+  #   main_text = "DfE",
+  #   main_link = "https://www.gov.uk/government/organisations/department-for-education",
+  #   secondary_text = "Longitudinal Education Outcomes (LEO): Graduate Industry",
+  #   logo = "images/DfE_logo.png"
+  # ),
+  # Force the top nav bar to left allign and centre the title
+  HTML('<header class="govuk-header" role="banner">
+    <div class="govuk-header__container">
+    <div class="govuk-header__logo" style="width: 15%; margin-left: 15px;float:left;">
+    <a href="https://www.gov.uk/government/organisations/department-for-education" class="govuk-header__link govuk-header__link--homepage">
+    <span class="govuk-header__logotype">
+    <img src="images/DfE_logo.png" class="govuk-header__logotype-crown-fallback-image"/>
+    <span class="govuk-header__logotype-text">DfE</span>
+    </span>
+    </a>
+    </div>
+    <div class="govuk-header__content" style="width: 70%; text-align: center;float:left;">
+    <a href="https://www.gov.uk/government/collections/statistics-higher-education-graduate-employment-and-earnings" class="govuk-header__link govuk-header__link--service-name" style="font-size: 24px;">Longitudinal Education Outcomes (LEO)</a>
+    </header>'),
   navlistPanel("",
     id = "navbar",
     widths = c(2, 8),
@@ -140,13 +154,14 @@ fluidPage(
         div(
           class = "well",
           style = "min-height: 100%; height: 100%; overflow-y: visible",
-          fluidRow(
+        
             ### Help text -------------------------------------------------------
 
             "Create a Sankey chart using the dropdowns below.",
             br(),
             "Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
             br(), br(),
+          gov_row(
             column(
               width = 4,
               ### Degree input ----------------------------------------------------
@@ -283,14 +298,14 @@ fluidPage(
         div(
           class = "well",
           style = "min-height: 100%; height: 100%; overflow-y: visible",
-          fluidRow(
+         
             ### Help text -------------------------------------------------------
 
             "Create a map and Sankey chart to show graduate movement between study region and current region
                    using the dropdowns below.", br(), br(),
 
             ### Degree input ----------------------------------------------------
-
+gov_row(
             column(
               width = 6,
               selectInput("qualinput2",
@@ -312,10 +327,10 @@ fluidPage(
                 choices = list(1, 3, 5, 10),
                 selected = 5
               )
-            ),
+            )),
 
             ### Industry input --------------------------------------------------
-
+gov_row(
             column(
               width = 6,
               selectInput("sectionnameinput",
@@ -355,10 +370,10 @@ fluidPage(
                 label = "Select a subject area",
                 choices = unique(c("All", sort(qual_subjects$subject_name))),
                 selected = "All"
-              )
+              ))
             )
           )
-        )
+        
       ),
 
       ## Main panel =========================================================
@@ -534,7 +549,7 @@ fluidPage(
           # ),
 
           ### Degree input ----------------------------------------------------
-
+gov_row(
           column(
             width = 6,
             selectInput("qualinput3",
@@ -582,7 +597,7 @@ fluidPage(
               ),
               selected = "sex"
             )
-          ),
+          )),
 
           ### Download data ---------------------------------------------------
 
