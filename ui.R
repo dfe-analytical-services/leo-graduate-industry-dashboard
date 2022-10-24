@@ -47,7 +47,7 @@ fluidPage(
     </a>
     </div>
     <div class="govuk-header__content" style="width: 70%; text-align: center;float:left;">
-    <a href="https://www.gov.uk/government/collections/statistics-higher-education-graduate-employment-and-earnings" class="govuk-header__link govuk-header__link--service-name" style="font-size: 24px;">Longitudinal Education Outcomes (LEO)</a>
+    <a href="https://www.gov.uk/government/collections/statistics-higher-education-graduate-employment-and-earnings" class="govuk-header__link govuk-header__link--service-name" style="font-size: 24px;">Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</a>
     </header>'),
   navlistPanel("",
     id = "navbar",
@@ -72,7 +72,7 @@ fluidPage(
         fluidRow(
           column(
             12,
-            h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
+            #h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
             welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
