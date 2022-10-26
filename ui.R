@@ -49,12 +49,12 @@ fluidPage(
     <div class="govuk-header__content" style="width: 70%; text-align: center;float:left;">
     <a href="https://www.gov.uk/government/collections/statistics-higher-education-graduate-employment-and-earnings" class="govuk-header__link govuk-header__link--service-name" style="font-size: 24px;">Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</a>
     </header>'),
+  tags$head(includeHTML(("google-analytics.html"))),
   navlistPanel("",
     id = "navbar",
     widths = c(2, 8),
     well = FALSE,
-    tags$head(includeHTML(("google-analytics.html"))),
-
+    
     # Homepage tab ============================================================
 
     tabPanel(
@@ -307,7 +307,7 @@ fluidPage(
             ### Degree input ----------------------------------------------------
 gov_row(
             column(
-              width = 6,
+              width = 3,
               selectInput("qualinput2",
                 label = "Choose graduate qualification level",
                 choices = list(
@@ -321,18 +321,18 @@ gov_row(
             ### YAG input -------------------------------------------------------
 
             column(
-              width = 6,
+              width = 3,
               selectInput("YAGinput",
                 label = "Select year after graduation",
                 choices = list(1, 3, 5, 10),
                 selected = 5
               )
-            )),
+            ),
 
             ### Industry input --------------------------------------------------
-gov_row(
+
             column(
-              width = 6,
+              width = 3,
               selectInput("sectionnameinput",
                 label = "Choose an industry area",
                 choices = list(
@@ -365,7 +365,7 @@ gov_row(
             ### Subject input ---------------------------------------------------
 
             column(
-              width = 6,
+              width = 3,
               selectInput("regions.subjectinput",
                 label = "Select a subject area",
                 choices = unique(c("All", sort(qual_subjects$subject_name))),
@@ -551,7 +551,7 @@ gov_row(
           ### Degree input ----------------------------------------------------
 gov_row(
           column(
-            width = 6,
+            width = 3,
             selectInput("qualinput3",
               label = "Select qualification level",
               choices = list(
@@ -561,10 +561,11 @@ gov_row(
                 "Level 8"
               ),
               selected = "First degree"
-            ),
+            )),
 
             ### YAG input -------------------------------------------------------
-
+          column(
+            width = 3,
             selectInput("YAGinput2",
               label = "Select a year after graduation",
               choices = list(1, 3, 5, 10),
@@ -575,15 +576,17 @@ gov_row(
           ### Subject input ---------------------------------------------------
 
           column(
-            width = 6,
+            width = 3,
             selectInput("crosstabs.subjectinput",
               label = "Select a subject area",
               choices = unique(c("All", sort(qual_subjects$subject_name))),
               selected = "All"
-            ),
+            )),
 
             ### Breakdown input -------------------------------------------------
 
+          column(
+            width = 3,
             selectInput("countinput2",
               label = "Choose a breakdown",
               choices = list(
@@ -600,10 +603,10 @@ gov_row(
           )),
 
           ### Download data ---------------------------------------------------
-
-          "Download the current table as a csv", br(),
-          downloadButton("downloadData", "Download table"), br(),
-          "Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry.",
+# 
+#           "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry)", br(),
+#           downloadButton("downloadData", "Download table")
+         
         )
       ),
 
@@ -626,6 +629,8 @@ gov_row(
           )
         ),
         withSpinner(reactableOutput("crosstab")),
+        "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry)", br(),
+        downloadButton("downloadData", "Download table"),br(),
 
         ### Caveats ---------------------------------------------------------
         br(),
@@ -656,7 +661,7 @@ gov_row(
 
           ### Help text -------------------------------------------------------
 
-          "Create your own table by selecting from the drop down boxes below.", br(), br(),
+          "Create your own table by selecting from the drop down boxes below.",
 
           ### Proportions / earnings input ------------------------------------
 
@@ -667,9 +672,8 @@ gov_row(
           # ),
 
           ### Degree input ----------------------------------------------------
-          gov_row(
-            column(
-              width = 4,
+          splitLayout(
+ 
               selectInput("qualinput4",
                 label = "Select qualification level",
                 choices = list(
@@ -679,21 +683,16 @@ gov_row(
                   "Level 8"
                 ),
                 selected = "First degree"
-              )
-            ),
+              ),
             ### YAG input -------------------------------------------------------
 
-            column(
-              width = 4,
               selectInput("YAGinput3",
                 label = "Select a year after graduation",
                 choices = list(1, 3, 5, 10),
                 selected = 5
-              )
-            ),
+              ),
             ### Industry input -----------------------------------------------
-            column(
-              width = 4,
+     
               selectInput("countinput3",
                 label = "Choose a breakdown",
                 choices = list(
@@ -706,16 +705,11 @@ gov_row(
                   "Qualification level" = "qualification_TR"
                 ),
                 selected = "sex"
-              )
-            )
-          ),
+              ),
 
 
           ### Group input -----------------------------------------------------
 
-          gov_row(
-            column(
-              width = 6,
               selectInput("sectionnameinput2",
                 label = "Choose an industry area",
                 choices = list(
@@ -742,26 +736,22 @@ gov_row(
                   "Wholesale and retail trade - repair of motor vehicles and motorcycles"
                 ),
                 selected = "Education"
-              )
-            ),
+              ),
 
 
             ### Breakdown input -------------------------------------------------
-            column(
-              width = 6,
+          
               selectizeInput("groupinput",
                 label = "View 3 digit SIC groups within the selected industry",
                 choices = unique(c("All", sort(industry_groups$group_name))),
                 selected = "All", multiple = FALSE
-              )
-            )
+              ), cellWidths = "20%"
           ),
 
           ### Download data ---------------------------------------------------
 
-          "Download the current table as a csv", br(),
-          downloadButton("IndSubjDownload", "Download table"), br(),
-          "Note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject."
+          # "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject)", br(),
+          # downloadButton("IndSubjDownload", "Download table")
         ), # end of sidebar
 
         ## Main panel =========================================================
@@ -776,6 +766,8 @@ gov_row(
             choices = list("Proportions", "Median earnings")
           ),
           withSpinner(reactableOutput("crosstab_backwards")),
+          "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject)", br(),
+          downloadButton("IndSubjDownload", "Download table"),br(),
 
           ### Caveats ---------------------------------------------------------
           br(),
