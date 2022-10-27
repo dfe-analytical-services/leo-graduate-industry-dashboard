@@ -678,8 +678,9 @@ gov_row(
           # ),
 
           ### Degree input ----------------------------------------------------
-          splitLayout(
- 
+         gov_row(
+           column(
+            width = 4,
               selectInput("qualinput4",
                 label = "Select qualification level",
                 choices = list(
@@ -689,16 +690,20 @@ gov_row(
                   "Level 8"
                 ),
                 selected = "First degree"
-              ),
+              )),
             ### YAG input -------------------------------------------------------
 
+          column(
+            width = 4,
               selectInput("YAGinput3",
                 label = "Select a year after graduation",
                 choices = list(1, 3, 5, 10),
                 selected = 5
-              ),
+              )),
             ### Industry input -----------------------------------------------
      
+          column(
+            width = 4,
               selectInput("countinput3",
                 label = "Choose a breakdown",
                 choices = list(
@@ -711,11 +716,13 @@ gov_row(
                   "Qualification level" = "qualification_TR"
                 ),
                 selected = "sex"
-              ),
+              )),
 
 
           ### Group input -----------------------------------------------------
 
+          column(
+            width = 6,
               selectInput("sectionnameinput2",
                 label = "Choose an industry area",
                 choices = list(
@@ -742,17 +749,18 @@ gov_row(
                   "Wholesale and retail trade - repair of motor vehicles and motorcycles"
                 ),
                 selected = "Education"
-              ),
+              )),
 
 
             ### Breakdown input -------------------------------------------------
           
+          column(
+            width = 6,
               selectizeInput("groupinput",
                 label = "View 3 digit SIC groups within the selected industry",
                 choices = unique(c("All", sort(industry_groups$group_name))),
                 selected = "All", multiple = FALSE
-              ), cellWidths = "20%"
-          ),
+              )))
 
           ### Download data ---------------------------------------------------
 
