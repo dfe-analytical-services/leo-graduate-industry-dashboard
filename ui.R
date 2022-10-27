@@ -49,7 +49,7 @@ fluidPage(
     "beta banner",
     "beta",
     paste0(
-      "This Dashboard is in beta phase and we are still reviewing performance and reliability. "#,
+      "This Dashboard is in beta phase and we are still reviewing performance and reliability. " # ,
       # "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
       # "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
       # "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
@@ -60,7 +60,7 @@ fluidPage(
     id = "navbar",
     widths = c(2, 8),
     well = FALSE,
-    
+
     # Homepage tab ============================================================
 
     tabPanel(
@@ -78,7 +78,7 @@ fluidPage(
         fluidRow(
           column(
             12,
-            #h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
+            # h1("Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19"),
             welcome_text(), # defined in R/dashboard_text.R
             br(),
             br()
@@ -160,13 +160,13 @@ fluidPage(
         div(
           class = "well",
           style = "min-height: 100%; height: 100%; overflow-y: visible",
-        
-            ### Help text -------------------------------------------------------
 
-            "Create a Sankey chart using the dropdowns below.",
-            br(),
-            "Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
-            br(), br(),
+          ### Help text -------------------------------------------------------
+
+          "Create a Sankey chart using the dropdowns below.",
+          br(),
+          "Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
+          br(), br(),
           gov_row(
             column(
               width = 4,
@@ -304,14 +304,14 @@ fluidPage(
         div(
           class = "well",
           style = "min-height: 100%; height: 100%; overflow-y: visible",
-         
-            ### Help text -------------------------------------------------------
 
-            "Create a map and Sankey chart to show graduate movement between study region and current region
+          ### Help text -------------------------------------------------------
+
+          "Create a map and Sankey chart to show graduate movement between study region and current region
                    using the dropdowns below.", br(), br(),
 
-            ### Degree input ----------------------------------------------------
-gov_row(
+          ### Degree input ----------------------------------------------------
+          gov_row(
             column(
               width = 3,
               selectInput("qualinput2",
@@ -376,10 +376,10 @@ gov_row(
                 label = "Select a subject area",
                 choices = unique(c("All", sort(qual_subjects$subject_name))),
                 selected = "All"
-              ))
+              )
             )
           )
-        
+        )
       ),
 
       ## Main panel =========================================================
@@ -555,64 +555,66 @@ gov_row(
           # ),
 
           ### Degree input ----------------------------------------------------
-gov_row(
-          column(
-            width = 3,
-            selectInput("qualinput3",
-              label = "Select qualification level",
-              choices = list(
-                "First degree",
-                "Level 7 (taught)",
-                "Level 7 (research)",
-                "Level 8"
-              ),
-              selected = "First degree"
-            )),
+          gov_row(
+            column(
+              width = 3,
+              selectInput("qualinput3",
+                label = "Select qualification level",
+                choices = list(
+                  "First degree",
+                  "Level 7 (taught)",
+                  "Level 7 (research)",
+                  "Level 8"
+                ),
+                selected = "First degree"
+              )
+            ),
 
             ### YAG input -------------------------------------------------------
-          column(
-            width = 3,
-            selectInput("YAGinput2",
-              label = "Select a year after graduation",
-              choices = list(1, 3, 5, 10),
-              selected = 5
-            )
-          ),
+            column(
+              width = 3,
+              selectInput("YAGinput2",
+                label = "Select a year after graduation",
+                choices = list(1, 3, 5, 10),
+                selected = 5
+              )
+            ),
 
-          ### Subject input ---------------------------------------------------
+            ### Subject input ---------------------------------------------------
 
-          column(
-            width = 3,
-            selectInput("crosstabs.subjectinput",
-              label = "Select a subject area",
-              choices = unique(c("All", sort(qual_subjects$subject_name))),
-              selected = "All"
-            )),
+            column(
+              width = 3,
+              selectInput("crosstabs.subjectinput",
+                label = "Select a subject area",
+                choices = unique(c("All", sort(qual_subjects$subject_name))),
+                selected = "All"
+              )
+            ),
 
             ### Breakdown input -------------------------------------------------
 
-          column(
-            width = 3,
-            selectInput("countinput2",
-              label = "Choose a breakdown",
-              choices = list(
-                "Sex" = "sex",
-                "Ethnicity" = "ethnicity",
-                "Current region" = "current_region",
-                "Free school meals (FSM)" = "FSM",
-                "Prior attainment" = "prior_attainment",
-                "Subject" = "subject_name",
-                "Qualification level" = "qualification_TR"
-              ),
-              selected = "sex"
+            column(
+              width = 3,
+              selectInput("countinput2",
+                label = "Choose a breakdown",
+                choices = list(
+                  "Sex" = "sex",
+                  "Ethnicity" = "ethnicity",
+                  "Current region" = "current_region",
+                  "Free school meals (FSM)" = "FSM",
+                  "Prior attainment" = "prior_attainment",
+                  "Subject" = "subject_name",
+                  "Qualification level" = "qualification_TR"
+                ),
+                selected = "sex"
+              )
             )
-          )),
+          ),
 
           ### Download data ---------------------------------------------------
-# 
-#           "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry)", br(),
-#           downloadButton("downloadData", "Download table")
-         
+          #
+          #           "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry)", br(),
+          #           downloadButton("downloadData", "Download table")
         )
       ),
 
@@ -636,7 +638,7 @@ gov_row(
         ),
         withSpinner(reactableOutput("crosstab")),
         "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by industry and sub-industry)", br(),
-        downloadButton("downloadData", "Download table"),br(),
+        downloadButton("downloadData", "Download table"), br(),
 
         ### Caveats ---------------------------------------------------------
         br(),
@@ -678,9 +680,9 @@ gov_row(
           # ),
 
           ### Degree input ----------------------------------------------------
-         gov_row(
-           column(
-            width = 4,
+          gov_row(
+            column(
+              width = 4,
               selectInput("qualinput4",
                 label = "Select qualification level",
                 choices = list(
@@ -690,20 +692,22 @@ gov_row(
                   "Level 8"
                 ),
                 selected = "First degree"
-              )),
+              )
+            ),
             ### YAG input -------------------------------------------------------
 
-          column(
-            width = 4,
+            column(
+              width = 4,
               selectInput("YAGinput3",
                 label = "Select a year after graduation",
                 choices = list(1, 3, 5, 10),
                 selected = 5
-              )),
+              )
+            ),
             ### Industry input -----------------------------------------------
-     
-          column(
-            width = 4,
+
+            column(
+              width = 4,
               selectInput("countinput3",
                 label = "Choose a breakdown",
                 choices = list(
@@ -716,13 +720,14 @@ gov_row(
                   "Qualification level" = "qualification_TR"
                 ),
                 selected = "sex"
-              )),
+              )
+            ),
 
 
-          ### Group input -----------------------------------------------------
+            ### Group input -----------------------------------------------------
 
-          column(
-            width = 6,
+            column(
+              width = 6,
               selectInput("sectionnameinput2",
                 label = "Choose an industry area",
                 choices = list(
@@ -749,18 +754,21 @@ gov_row(
                   "Wholesale and retail trade - repair of motor vehicles and motorcycles"
                 ),
                 selected = "Education"
-              )),
+              )
+            ),
 
 
             ### Breakdown input -------------------------------------------------
-          
-          column(
-            width = 6,
+
+            column(
+              width = 6,
               selectizeInput("groupinput",
                 label = "View 3 digit SIC groups within the selected industry",
                 choices = unique(c("All", sort(industry_groups$group_name))),
                 selected = "All", multiple = FALSE
-              )))
+              )
+            )
+          )
 
           ### Download data ---------------------------------------------------
 
@@ -781,7 +789,7 @@ gov_row(
           ),
           withSpinner(reactableOutput("crosstab_backwards")),
           "Download the current table as a csv (note that the downloaded data will not retain the ordering in the displayed table and will instead order the data alphabetically by subject)", br(),
-          downloadButton("IndSubjDownload", "Download table"),br(),
+          downloadButton("IndSubjDownload", "Download table"), br(),
 
           ### Caveats ---------------------------------------------------------
           br(),
