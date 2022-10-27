@@ -36,19 +36,25 @@ fluidPage(
   #   logo = "images/DfE_logo.png"
   # ),
   # Force the top nav bar to left allign and centre the title
-  HTML('<header class="govuk-header" role="banner">
-    <div class="govuk-header__container">
-    <div class="govuk-header__logo" style="width: 15%; margin-left: 15px;float:left;">
-    <a href="https://www.gov.uk/government/organisations/department-for-education" class="govuk-header__link govuk-header__link--homepage">
-    <span class="govuk-header__logotype">
-    <img src="images/DfE_logo.png" class="govuk-header__logotype-crown-fallback-image"/>
-    <span class="govuk-header__logotype-text">DfE</span>
-    </span>
-    </a>
-    </div>
-    <div class="govuk-header__content" style="width: 70%; text-align: center;float:left;">
-    <a href="https://www.gov.uk/government/collections/statistics-higher-education-graduate-employment-and-earnings" class="govuk-header__link govuk-header__link--service-name" style="font-size: 24px;">Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19</a>
-    </header>'),
+
+  shinyGovstyle::header(
+    main_text = "",
+    main_link = "https://www.gov.uk/government/organisations/department-for-education",
+    secondary_text = "Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2018-19",
+    logo = "images/DfE_logo_landscape.png",
+    logo_width = 150,
+    logo_height = 32
+  ),
+  shinyGovstyle::banner(
+    "beta banner",
+    "beta",
+    paste0(
+      "This Dashboard is in beta phase and we are still reviewing performance and reliability. "#,
+      # "In case of slowdown or connection issues due to high demand, we have produced two instances of this site which can be accessed at the following links: ",
+      # "<a href=", site_primary, " id='link_site_1'>Site 1</a> and ",
+      # "<a href=", site_overflow, " id='link_site_2'>Site 2</a>."
+    )
+  ),
   tags$head(includeHTML(("google-analytics.html"))),
   navlistPanel("",
     id = "navbar",
