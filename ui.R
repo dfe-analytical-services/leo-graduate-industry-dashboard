@@ -164,9 +164,7 @@ fluidPage(
           ### Help text -------------------------------------------------------
 
           "Create a Sankey chart using the dropdowns below.",
-          br(),
-          "Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
-          br(), br(),
+          #"Switch between the Sankey and the proportions table using the tabs beneath the summary text.",
           gov_row(
             column(
               width = 4,
@@ -308,7 +306,7 @@ fluidPage(
           ### Help text -------------------------------------------------------
 
           "Create a map and Sankey chart to show graduate movement between study region and current region
-                   using the dropdowns below.", br(), br(),
+                   using the dropdowns below.",
 
           ### Degree input ----------------------------------------------------
           gov_row(
@@ -544,7 +542,6 @@ fluidPage(
           ### Helptext --------------------------------------------------------
 
           "Create your own table by selecting from the drop down boxes below.",
-          br(), br(),
 
           ### Proportions / earnings input ------------------------------------
 

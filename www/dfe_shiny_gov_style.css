@@ -126,6 +126,8 @@ a:active {
 .well {
     min-height: 90vh;
     padding: 19px;
+    padding-top: 5px;
+    padding-bottom: 1px;
     margin-bottom: 20px;
     background-color: #1d70b8;
     border: 1px solid #e3e3e3;
