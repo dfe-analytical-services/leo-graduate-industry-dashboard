@@ -1,9 +1,9 @@
 # REGIONAL ---------------------------------------------------------------------
 
 
-data <- read.csv("data/regional_data_all.csv")
+data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/19 - Spring 2022/Industry dashboard/CSVs/regional_data_FD_PG.csv")
 
-regional_movement_data <- read.csv("data/regional_movement_with_PG_rounded.csv")
+regional_movement_data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/19 - Spring 2022/Industry dashboard/CSVs/regional_movement_FD_PG.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
 
