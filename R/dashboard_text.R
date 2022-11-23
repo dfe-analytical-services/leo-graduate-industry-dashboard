@@ -11,7 +11,7 @@ welcome_text <- function() {
     at these points in time. For more detail see our ",
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2019-20",
-      "official statistics publication on Graduate and Postgraduate Outcomes",
+      "official statistics publication on Graduate Outcomes",
       .noWS = c("after")
     ),
     ".", br(), br(),
