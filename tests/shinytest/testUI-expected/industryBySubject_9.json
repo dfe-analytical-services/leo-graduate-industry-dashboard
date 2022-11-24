@@ -8,7 +8,7 @@
     "YAGinput3": "1"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2019/20 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -21,138 +21,142 @@
                 "Business and management",
                 "Creative arts and design",
                 "Geography, earth and environmental studies",
-                "Sport and exercise sciences",
                 "Computing",
-                "Performing arts",
+                "Sport and exercise sciences",
                 "Sociology, social policy and anthropology",
-                "English studies",
-                "Law",
                 "Media, journalism and communications",
-                "Psychology",
+                "English studies",
                 "History and archaeology",
-                "Education and teaching",
-                "Mathematical sciences",
-                "Combined and general studies",
-                "Economics",
-                "Allied health",
+                "Law",
+                "Performing arts",
+                "Psychology",
                 "Biosciences",
-                "Agriculture, food and related studies",
-                "Materials and technology",
+                "Economics",
+                "Education and teaching",
+                "Combined and general studies",
+                "Mathematical sciences",
                 "Politics",
-                "Chemistry",
+                "Allied health",
+                "Agriculture, food and related studies",
                 "Languages and area studies",
-                "Nursing and midwifery",
-                "Philosophy and religious studies",
+                "Physics and astronomy",
+                "Chemistry",
                 "General, applied and forensic sciences",
                 "Health and social care",
+                "Materials and technology",
                 "Medical sciences",
-                "Physics and astronomy",
+                "Nursing and midwifery",
+                "Philosophy and religious studies",
+                "Medicine and dentistry",
                 "Pharmacology, toxicology and pharmacy",
                 "Veterinary sciences"
               ],
               "non-FSM": [
-                0.241,
-                0.193,
-                0.136,
-                0.068,
-                0.054,
-                0.037,
-                0.031,
+                0.225,
+                0.212,
+                0.15,
+                0.051,
+                0.055,
                 0.027,
-                0.02,
-                0.02,
+                0.044,
+                0.027,
+                0.027,
                 0.017,
                 0.02,
-                0.02,
+                0.017,
+                0.017,
                 0.02,
                 0.014,
-                0.014,
+                0.017,
+                0.007,
                 0.003,
                 0.01,
-                0.003,
-                0.01,
-                0.007,
-                0.007,
                 0.007,
                 0.003,
-                0.007,
-                0,
                 0.003,
+                0.003,
+                0.007,
                 0.003,
                 0,
                 0,
                 0.003,
                 0,
-                0
+                0.003,
+                0.003,
+                "NA",
+                "NA",
+                "NA"
               ],
               "FSM": [
-                0.243,
-                0.243,
-                0.189,
-                0.054,
-                0.027,
-                0.027,
-                0.027,
-                0.027,
-                0.027,
+                0.182,
+                0.212,
+                0.242,
+                0.061,
+                0.03,
+                0.061,
+                0.03,
+                0.03,
+                0.03,
+                0.03,
                 0,
-                0.027,
-                0.027,
+                0.03,
                 0,
-                0.027,
-                0.027,
-                0,
-                "NA",
-                0.027,
+                0.03,
                 0,
                 0,
-                0,
-                0,
-                0,
-                "NA",
-                "NA",
+                0.03,
                 "NA",
                 0,
                 0,
                 0,
+                "NA",
                 0,
+                "NA",
+                0,
+                "NA",
+                0,
+                "NA",
+                0,
+                0,
+                "NA",
                 "NA",
                 "NA",
                 "NA"
               ],
               "Not known": [
-                0.268,
-                0.22,
-                0.195,
-                0.049,
-                0.049,
-                0.024,
-                0.024,
+                0.207,
+                0.276,
+                0.207,
+                0.069,
+                0.103,
+                0.034,
                 0,
-                0.024,
                 0,
-                0.024,
-                0.024,
+                0.034,
                 0,
-                0.024,
+                0.034,
                 0,
-                "NA",
                 0,
-                0.024,
                 0,
-                0.024,
-                0,
+                0.034,
                 0,
                 "NA",
                 0,
-                0.024,
-                "NA",
-                "NA",
-                "NA",
+                0,
+                0,
                 0,
                 0,
                 "NA",
                 "NA",
+                "NA",
+                "NA",
+                "NA",
+                0,
+                "NA",
+                "NA",
+                "NA",
+                0,
+                0,
                 "NA"
               ]
             },
@@ -176,58 +180,59 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "24.1%",
-                  "19.3%",
-                  "13.6%",
-                  "6.8%",
-                  "5.4%",
-                  "3.7%",
-                  "3.1%",
+                  "22.5%",
+                  "21.2%",
+                  "15.0%",
+                  "5.1%",
+                  "5.5%",
                   "2.7%",
-                  "2.0%",
-                  "2.0%",
+                  "4.4%",
+                  "2.7%",
+                  "2.7%",
                   "1.7%",
                   "2.0%",
-                  "2.0%",
+                  "1.7%",
+                  "1.7%",
                   "2.0%",
                   "1.4%",
-                  "1.4%",
+                  "1.7%",
+                  "0.7%",
                   "0.3%",
                   "1.0%",
-                  "0.3%",
-                  "1.0%",
-                  "0.7%",
-                  "0.7%",
                   "0.7%",
                   "0.3%",
-                  "0.7%",
-                  "0.0%",
                   "0.3%",
+                  "0.3%",
+                  "0.7%",
                   "0.3%",
                   "0.0%",
                   "0.0%",
                   "0.3%",
                   "0.0%",
-                  "0.0%"
+                  "0.3%",
+                  "0.3%",
+                  "x",
+                  "x",
+                  "x"
                 ],
-                "footer": "1,475",
+                "footer": "1,465",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#4486C5"
+                    "background": "#5591CA"
                   },
                   {
                     "color": "#000000",
-                    "background": "#689ED0"
+                    "background": "#5E97CD"
                   },
                   {
                     "color": "#000000",
-                    "background": "#92B9DE"
+                    "background": "#8BB4DC"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C4DAEE"
+                    "background": "#D2E3F3"
                   },
                   {
                     "color": "#000000",
@@ -235,11 +240,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#DBE9F6"
+                    "background": "#E3EEF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E0ECF7"
+                    "background": "#D7E6F4"
                   },
                   {
                     "color": "#000000",
@@ -247,7 +252,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E8F1FA"
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF3FB"
                   },
                   {
                     "color": "#000000",
@@ -255,15 +264,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#EAF2FA"
+                    "background": "#EAF3FB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E8F1FA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E8F1FA"
+                    "background": "#EAF3FB"
                   },
                   {
                     "color": "#000000",
@@ -275,7 +280,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#ECF4FB"
+                    "background": "#EAF3FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F1F7FD"
                   },
                   {
                     "color": "#000000",
@@ -287,23 +296,15 @@
                   },
                   {
                     "color": "#000000",
+                    "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
                     "background": "#F4F9FE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#EFF6FC"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F1F7FD"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F1F7FD"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F1F7FD"
+                    "background": "#F4F9FE"
                   },
                   {
                     "color": "#000000",
@@ -315,14 +316,6 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
                     "background": "#F4F9FE"
                   },
                   {
@@ -343,8 +336,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
-                  }
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  null,
+                  null,
+                  null
                 ]
               },
               {
@@ -355,90 +355,83 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "24.3%",
-                  "24.3%",
-                  "18.9%",
-                  "5.4%",
-                  "2.7%",
-                  "2.7%",
-                  "2.7%",
-                  "2.7%",
-                  "2.7%",
+                  "18.2%",
+                  "21.2%",
+                  "24.2%",
+                  "6.1%",
+                  "3.0%",
+                  "6.1%",
+                  "3.0%",
+                  "3.0%",
+                  "3.0%",
+                  "3.0%",
                   "0.0%",
-                  "2.7%",
-                  "2.7%",
+                  "3.0%",
                   "0.0%",
-                  "2.7%",
-                  "2.7%",
-                  "0.0%",
-                  "x",
-                  "2.7%",
+                  "3.0%",
                   "0.0%",
                   "0.0%",
-                  "0.0%",
-                  "0.0%",
-                  "0.0%",
-                  "x",
-                  "x",
+                  "3.0%",
                   "x",
                   "0.0%",
                   "0.0%",
                   "0.0%",
+                  "x",
                   "0.0%",
+                  "x",
+                  "0.0%",
+                  "x",
+                  "0.0%",
+                  "x",
+                  "0.0%",
+                  "0.0%",
+                  "x",
                   "x",
                   "x",
                   "x"
                 ],
-                "footer": "185",
+                "footer": "165",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#4386C4"
+                    "background": "#74A5D4"
                   },
                   {
                     "color": "#000000",
-                    "background": "#4386C4"
+                    "background": "#5E97CD"
                   },
                   {
                     "color": "#000000",
-                    "background": "#6BA0D1"
+                    "background": "#4989C6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CFE1F2"
+                    "background": "#CBDEF0"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#CBDEF0"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E3EEF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
@@ -446,20 +439,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
                     "background": "#F7FBFF"
                   },
-                  null,
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
@@ -471,18 +459,8 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
+                    "background": "#E1ECF8"
                   },
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
-                  },
-                  null,
-                  null,
                   null,
                   {
                     "color": "#000000",
@@ -496,10 +474,31 @@
                     "color": "#000000",
                     "background": "#F7FBFF"
                   },
+                  null,
                   {
                     "color": "#000000",
                     "background": "#F7FBFF"
                   },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
                   null,
                   null,
                   null
@@ -513,70 +512,67 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "26.8%",
-                  "22.0%",
-                  "19.5%",
-                  "4.9%",
-                  "4.9%",
-                  "2.4%",
-                  "2.4%",
+                  "20.7%",
+                  "27.6%",
+                  "20.7%",
+                  "6.9%",
+                  "10.3%",
+                  "3.4%",
                   "0.0%",
-                  "2.4%",
                   "0.0%",
-                  "2.4%",
-                  "2.4%",
+                  "3.4%",
                   "0.0%",
-                  "2.4%",
+                  "3.4%",
                   "0.0%",
-                  "x",
                   "0.0%",
-                  "2.4%",
                   "0.0%",
-                  "2.4%",
-                  "0.0%",
+                  "3.4%",
                   "0.0%",
                   "x",
                   "0.0%",
-                  "2.4%",
-                  "x",
-                  "x",
-                  "x",
+                  "0.0%",
+                  "0.0%",
                   "0.0%",
                   "0.0%",
                   "x",
                   "x",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "x",
+                  "x",
+                  "x",
+                  "0.0%",
+                  "0.0%",
                   "x"
                 ],
-                "footer": "205",
+                "footer": "145",
                 "na": "x",
                 "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#629ACF"
+                  },
                   {
                     "color": "#000000",
                     "background": "#317ABF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#5491CA"
+                    "background": "#629ACF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#669DD0"
+                    "background": "#C5DAEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D2E3F3"
+                    "background": "#ADCAE7"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D2E3F3"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#DEEBF7"
                   },
                   {
                     "color": "#000000",
@@ -584,7 +580,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DEEBF7"
                   },
                   {
                     "color": "#000000",
@@ -592,11 +592,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#DEEBF7"
                   },
                   {
                     "color": "#000000",
@@ -604,20 +600,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
                     "background": "#F7FBFF"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
                   },
                   {
                     "color": "#000000",
@@ -625,11 +608,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
+                    "background": "#DEEBF7"
                   },
                   {
                     "color": "#000000",
@@ -642,7 +621,28 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  },
+                  null,
+                  null,
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
                   },
                   null,
                   null,
@@ -655,8 +655,6 @@
                     "color": "#000000",
                     "background": "#F7FBFF"
                   },
-                  null,
-                  null,
                   null
                 ]
               }
@@ -667,8 +665,7 @@
             "minRows": 1,
             "showSortable": true,
             "height": "800px",
-            "dataKey": "random_key",
-            "key": "random_key"
+            "dataKey": "random_key"
           },
           "children": [
 

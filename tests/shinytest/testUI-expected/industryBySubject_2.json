@@ -8,7 +8,7 @@
     "YAGinput3": "5"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Graduates working in the Education industry five years after\n                            graduation by the subject they studied and ethnicity, male and female first degree graduates from\n                            English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the Education industry five years after\n                            graduation by the subject they studied and ethnicity, male and female first degree graduates from\n                            English HEIs, APs and FECs, 2019/20 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -17,8 +17,8 @@
             "data": {
               "subject_name": [
                 "Education and teaching",
-                "English studies",
                 "Health and social care",
+                "English studies",
                 "Sport and exercise sciences",
                 "Performing arts",
                 "Psychology",
@@ -28,19 +28,19 @@
                 "Sociology, social policy and anthropology",
                 "Biosciences",
                 "Combined and general studies",
-                "Mathematical sciences",
                 "Geography, earth and environmental studies",
+                "Mathematical sciences",
                 "Languages and area studies",
                 "Media, journalism and communications",
                 "Allied health",
-                "Computing",
                 "Law",
+                "Computing",
                 "Philosophy and religious studies",
                 "Politics",
-                "Engineering",
                 "Chemistry",
-                "Physics and astronomy",
+                "Engineering",
                 "Nursing and midwifery",
+                "Physics and astronomy",
                 "Agriculture, food and related studies",
                 "Architecture, building and planning",
                 "General, applied and forensic sciences",
@@ -54,140 +54,137 @@
               ],
               "White": [
                 27400,
-                25900,
-                27000,
-                25600,
-                24100,
+                28200,
+                26400,
+                26700,
+                24200,
+                25300,
+                26000,
+                23100,
+                26700,
+                25300,
+                26700,
+                24900,
+                28200,
+                30000,
+                27800,
                 24500,
-                25600,
-                21900,
-                26300,
-                23700,
-                26600,
+                26700,
+                26700,
+                27800,
+                27800,
+                27800,
+                28900,
+                29300,
                 24500,
-                28800,
-                27000,
-                26300,
-                23000,
-                25600,
-                25900,
-                24800,
-                26600,
-                26600,
-                29200,
-                28500,
-                28800,
-                27900,
+                29600,
                 23400,
-                29200,
-                25600,
-                28800,
-                27700,
-                24100,
-                46000,
-                29900,
-                25700,
+                28900,
+                26000,
+                31800,
+                29300,
+                23100,
+                48000,
+                30700,
+                25400,
                 -10000
               ],
               "Black": [
-                24100,
-                24100,
-                28800,
-                24800,
-                18600,
                 25600,
-                24800,
-                21500,
-                -10000,
-                25200,
-                26600,
+                30400,
+                27800,
+                25300,
+                21200,
+                28200,
+                25300,
+                22000,
+                27100,
+                26700,
                 28500,
-                29200,
+                30000,
                 -10000,
-                23400,
-                21500,
-                28500,
-                29200,
-                25900,
-                31000,
-                25900,
-                26800,
+                31500,
+                28900,
+                23100,
+                30000,
+                27800,
+                28900,
                 -10000,
-                -10000,
-                36500,
-                -10000,
-                27000,
-                -10000,
+                26400,
+                26700,
+                29300,
+                31100,
+                "NA",
                 -10000,
                 -10000,
                 -10000,
+                27100,
                 -10000,
                 -10000,
                 -10000,
+                -10000,
+                "NA",
                 "NA"
               ],
               "Asian": [
-                22300,
-                24800,
-                24100,
-                23900,
-                -10000,
-                23700,
-                24100,
+                23100,
+                23100,
+                26400,
                 23400,
-                28800,
-                25200,
+                20900,
+                25600,
+                26700,
+                20500,
+                28900,
+                23800,
                 27400,
-                23200,
-                28800,
+                25300,
                 30700,
-                28100,
-                24500,
-                23400,
-                26300,
-                24500,
-                28100,
+                29300,
+                27100,
+                23100,
+                27800,
+                26700,
                 27400,
+                27100,
+                28500,
+                27800,
                 30700,
-                28500,
+                -10000,
+                34400,
                 -10000,
                 -10000,
+                24900,
+                32200,
+                24200,
                 -10000,
-                28300,
-                -10000,
-                30300,
-                28800,
-                -10000,
-                39400,
-                28500,
+                40600,
+                26700,
                 "NA",
                 "NA"
               ],
               "Mixed": [
-                25600,
-                24800,
-                27700,
-                24800,
-                21500,
-                26600,
-                25200,
-                22600,
-                27000,
-                22600,
-                25200,
-                17200,
-                28100,
-                29200,
-                26300,
-                20800,
-                25200,
-                26600,
-                27000,
-                -10000,
-                26600,
-                -10000,
-                -10000,
-                -10000,
+                26700,
+                26700,
+                24900,
+                26700,
+                26700,
+                26400,
+                24900,
+                24200,
+                29300,
+                24500,
+                27800,
+                22000,
+                28200,
+                28200,
+                27100,
+                19800,
+                26700,
+                27100,
+                27800,
+                31100,
+                26900,
                 -10000,
                 -10000,
                 -10000,
@@ -198,24 +195,25 @@
                 -10000,
                 -10000,
                 "NA",
+                -10000,
+                "NA",
+                -10000,
                 "NA"
               ],
               "Other": [
-                24100,
-                26600,
-                26600,
-                -10000,
-                20100,
-                27000,
-                25200,
-                23400,
-                -10000,
-                21200,
+                24500,
                 -10000,
                 -10000,
                 -10000,
                 -10000,
-                28100,
+                23800,
+                26000,
+                -10000,
+                -10000,
+                24900,
+                20500,
+                -10000,
+                -10000,
                 -10000,
                 -10000,
                 -10000,
@@ -227,7 +225,9 @@
                 -10000,
                 -10000,
                 "NA",
+                -10000,
                 "NA",
+                -10000,
                 -10000,
                 -10000,
                 -10000,
@@ -238,37 +238,37 @@
                 "NA"
               ],
               "Not known": [
-                24800,
-                23700,
-                28800,
-                20100,
+                23100,
+                29300,
+                24200,
+                24300,
+                -10000,
+                17600,
+                24200,
+                25600,
+                23800,
+                26400,
+                25600,
+                -10000,
+                -10000,
+                31800,
+                -10000,
+                24200,
+                22700,
                 22300,
-                26300,
-                25900,
-                22300,
-                24100,
-                21900,
-                27700,
-                22600,
-                24100,
-                23900,
-                25900,
+                30000,
                 -10000,
-                22600,
-                28800,
-                20800,
-                23000,
+                28500,
                 -10000,
                 -10000,
-                -10000,
-                -10000,
-                24800,
+                20900,
                 -10000,
                 -10000,
                 -10000,
                 -10000,
                 -10000,
                 -10000,
+                "NA",
                 -10000,
                 -10000,
                 "NA",
@@ -295,47 +295,55 @@
                 },
                 "cell": [
                   "£27,400",
-                  "£25,900",
-                  "£27,000",
-                  "£25,600",
-                  "£24,100",
+                  "£28,200",
+                  "£26,400",
+                  "£26,700",
+                  "£24,200",
+                  "£25,300",
+                  "£26,000",
+                  "£23,100",
+                  "£26,700",
+                  "£25,300",
+                  "£26,700",
+                  "£24,900",
+                  "£28,200",
+                  "£30,000",
+                  "£27,800",
                   "£24,500",
-                  "£25,600",
-                  "£21,900",
-                  "£26,300",
-                  "£23,700",
-                  "£26,600",
+                  "£26,700",
+                  "£26,700",
+                  "£27,800",
+                  "£27,800",
+                  "£27,800",
+                  "£28,900",
+                  "£29,300",
                   "£24,500",
-                  "£28,800",
-                  "£27,000",
-                  "£26,300",
-                  "£23,000",
-                  "£25,600",
-                  "£25,900",
-                  "£24,800",
-                  "£26,600",
-                  "£26,600",
-                  "£29,200",
-                  "£28,500",
-                  "£28,800",
-                  "£27,900",
+                  "£29,600",
                   "£23,400",
-                  "£29,200",
-                  "£25,600",
-                  "£28,800",
-                  "£27,700",
-                  "£24,100",
-                  "£46,000",
-                  "£29,900",
-                  "£25,700",
+                  "£28,900",
+                  "£26,000",
+                  "£31,800",
+                  "£29,300",
+                  "£23,100",
+                  "£48,000",
+                  "£30,700",
+                  "£25,400",
                   "c"
                 ],
-                "footer": "56,910",
+                "footer": "56,605",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#B0CDE8"
+                    "background": "#B7D1EA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B1CEE8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BDD5EC"
                   },
                   {
                     "color": "#000000",
@@ -343,15 +351,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#B3CFE9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#BDD5EC"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#CCDEF1"
                   },
                   {
                     "color": "#000000",
@@ -359,15 +359,39 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#BDD5EC"
+                    "background": "#C0D7ED"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D6E5F4"
+                    "background": "#D3E3F3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B8D2EA"
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C4DAEE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C7DCEF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B1CEE8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A6C6E4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
@@ -375,31 +399,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C4DAEE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A7C7E5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B3CFE9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B8D2EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#CFE1F2"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#BDD5EC"
+                    "background": "#BBD4EB"
                   },
                   {
                     "color": "#000000",
@@ -407,27 +407,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B6D0EA"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A4C5E4"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A9C8E5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
@@ -435,27 +423,39 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#CCDFF1"
+                    "background": "#AAC9E6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A4C5E4"
+                    "background": "#CADDF0"
                   },
                   {
                     "color": "#000000",
-                    "background": "#BDD5EC"
+                    "background": "#A8C8E5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#D1E2F2"
                   },
                   {
                     "color": "#000000",
-                    "background": "#AECBE7"
+                    "background": "#ADCBE7"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#C0D7ED"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#9ABEE1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#AAC9E6"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D3E3F3"
                   },
                   {
                     "color": "#000000",
@@ -463,11 +463,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#9FC2E2"
+                    "background": "#A1C3E3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#BCD4EC"
+                    "background": "#C4D9EE"
                   },
                   null
                 ]
@@ -480,140 +480,143 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£24,100",
-                  "£24,100",
-                  "£28,800",
-                  "£24,800",
-                  "£18,600",
                   "£25,600",
-                  "£24,800",
-                  "£21,500",
-                  "c",
-                  "£25,200",
-                  "£26,600",
+                  "£30,400",
+                  "£27,800",
+                  "£25,300",
+                  "£21,200",
+                  "£28,200",
+                  "£25,300",
+                  "£22,000",
+                  "£27,100",
+                  "£26,700",
                   "£28,500",
-                  "£29,200",
+                  "£30,000",
                   "c",
-                  "£23,400",
-                  "£21,500",
-                  "£28,500",
-                  "£29,200",
-                  "£25,900",
-                  "£31,000",
-                  "£25,900",
-                  "£26,800",
+                  "£31,500",
+                  "£28,900",
+                  "£23,100",
+                  "£30,000",
+                  "£27,800",
+                  "£28,900",
                   "c",
-                  "c",
-                  "£36,500",
-                  "c",
-                  "£27,000",
-                  "c",
+                  "£26,400",
+                  "£26,700",
+                  "£29,300",
+                  "£31,100",
+                  "x",
                   "c",
                   "c",
                   "c",
+                  "£27,100",
                   "c",
                   "c",
                   "c",
+                  "c",
+                  "x",
                   "x"
                 ],
-                "footer": "2,610",
+                "footer": "2,875",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#C2D9EE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#A3C4E4"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#C4DAEE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#EDF4FB"
+                    "background": "#DFEBF7"
                   },
+                  {
+                    "color": "#000000",
+                    "background": "#B1CEE8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C4DAEE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DAE8F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B9D2EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B0CCE8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A6C6E4"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#9CC0E1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ADCBE7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D3E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A6C6E4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B4CFE9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ADCBE7"
+                  },
+                  null,
                   {
                     "color": "#000000",
                     "background": "#BDD5EC"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D9E7F5"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#C0D7ED"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A9C8E5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A4C5E4"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#CCDFF1"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D9E7F5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A9C8E5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A4C5E4"
-                  },
-                  {
-                    "color": "#000000",
                     "background": "#BBD4EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#98BDE0"
+                    "background": "#AAC9E6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#BBD4EB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B5D0E9"
+                    "background": "#9FC1E2"
                   },
                   null,
                   null,
-                  {
-                    "color": "#000000",
-                    "background": "#72A4D4"
-                  },
+                  null,
                   null,
                   {
                     "color": "#000000",
-                    "background": "#B3CFE9"
+                    "background": "#B9D2EB"
                   },
-                  null,
-                  null,
                   null,
                   null,
                   null,
@@ -630,101 +633,88 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£22,300",
-                  "£24,800",
-                  "£24,100",
-                  "£23,900",
-                  "c",
-                  "£23,700",
-                  "£24,100",
+                  "£23,100",
+                  "£23,100",
+                  "£26,400",
                   "£23,400",
-                  "£28,800",
-                  "£25,200",
+                  "£20,900",
+                  "£25,600",
+                  "£26,700",
+                  "£20,500",
+                  "£28,900",
+                  "£23,800",
                   "£27,400",
-                  "£23,200",
-                  "£28,800",
+                  "£25,300",
                   "£30,700",
-                  "£28,100",
-                  "£24,500",
-                  "£23,400",
-                  "£26,300",
-                  "£24,500",
-                  "£28,100",
+                  "£29,300",
+                  "£27,100",
+                  "£23,100",
+                  "£27,800",
+                  "£26,700",
                   "£27,400",
+                  "£27,100",
+                  "£28,500",
+                  "£27,800",
                   "£30,700",
-                  "£28,500",
+                  "c",
+                  "£34,400",
                   "c",
                   "c",
+                  "£24,900",
+                  "£32,200",
+                  "£24,200",
                   "c",
-                  "£28,300",
-                  "c",
-                  "£30,300",
-                  "£28,800",
-                  "c",
-                  "£39,400",
-                  "£28,500",
+                  "£40,600",
+                  "£26,700",
                   "x",
                   "x"
                 ],
-                "footer": "4,770",
+                "footer": "4,825",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#D3E4F3"
+                    "background": "#D3E3F3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#D3E3F3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#BDD5EC"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C8DCF0"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#CADDF0"
+                    "background": "#D1E2F2"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C7DCEF"
+                    "background": "#E1ECF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CCDFF1"
+                    "background": "#C2D9EE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#BBD4EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C0D7ED"
+                    "background": "#E4EEF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B0CDE8"
+                    "background": "#ADCBE7"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CDE0F1"
+                    "background": "#CEE0F1"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#9ABEE1"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#ACCAE6"
+                    "background": "#B7D1EA"
                   },
                   {
                     "color": "#000000",
@@ -732,56 +722,75 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#CCDFF1"
+                    "background": "#A1C3E3"
                   },
-                  {
-                    "color": "#000000",
-                    "background": "#B8D2EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C4DAEE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#ACCAE6"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B0CDE8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#9ABEE1"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A9C8E5"
-                  },
-                  null,
-                  null,
-                  null,
                   {
                     "color": "#000000",
                     "background": "#AAC9E6"
                   },
+                  {
+                    "color": "#000000",
+                    "background": "#B9D2EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D3E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B4CFE9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B7D1EA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B9D2EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B0CCE8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#B4CFE9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A1C3E3"
+                  },
                   null,
                   {
                     "color": "#000000",
-                    "background": "#9CC0E1"
+                    "background": "#89B3DB"
+                  },
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#C7DCEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#97BDE0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CCDEF1"
                   },
                   null,
                   {
                     "color": "#000000",
-                    "background": "#5E97CD"
+                    "background": "#6199CE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A9C8E5"
+                    "background": "#BBD4EB"
                   },
                   null,
                   null
@@ -795,30 +804,27 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£25,600",
-                  "£24,800",
-                  "£27,700",
-                  "£24,800",
-                  "£21,500",
-                  "£26,600",
-                  "£25,200",
-                  "£22,600",
-                  "£27,000",
-                  "£22,600",
-                  "£25,200",
-                  "£17,200",
-                  "£28,100",
-                  "£29,200",
-                  "£26,300",
-                  "£20,800",
-                  "£25,200",
-                  "£26,600",
-                  "£27,000",
-                  "c",
-                  "£26,600",
-                  "c",
-                  "c",
-                  "c",
+                  "£26,700",
+                  "£26,700",
+                  "£24,900",
+                  "£26,700",
+                  "£26,700",
+                  "£26,400",
+                  "£24,900",
+                  "£24,200",
+                  "£29,300",
+                  "£24,500",
+                  "£27,800",
+                  "£22,000",
+                  "£28,200",
+                  "£28,200",
+                  "£27,100",
+                  "£19,800",
+                  "£26,700",
+                  "£27,100",
+                  "£27,800",
+                  "£31,100",
+                  "£26,900",
                   "c",
                   "c",
                   "c",
@@ -829,91 +835,97 @@
                   "c",
                   "c",
                   "x",
+                  "c",
+                  "x",
+                  "c",
                   "x"
                 ],
-                "footer": "1,785",
+                "footer": "1,895",
                 "na": "x",
                 "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C7DCEF"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BBD4EB"
+                  },
                   {
                     "color": "#000000",
                     "background": "#BDD5EC"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#C7DCEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#AECBE7"
+                    "background": "#CCDEF1"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#AAC9E6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D9E7F5"
+                    "background": "#CADDF0"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B6D0EA"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C0D7ED"
+                    "background": "#DAE8F5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D1E2F3"
+                    "background": "#B1CEE8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B3CFE9"
+                    "background": "#B1CEE8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D1E2F3"
+                    "background": "#B9D2EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C0D7ED"
+                    "background": "#E8F1FA"
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
+                    "background": "#BBD4EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#ACCAE6"
+                    "background": "#B9D2EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A4C5E4"
+                    "background": "#B4CFE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B8D2EA"
+                    "background": "#9FC1E2"
                   },
                   {
                     "color": "#000000",
-                    "background": "#DEEAF7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C0D7ED"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B3CFE9"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#B6D0EA"
+                    "background": "#BAD3EB"
                   },
                   null,
                   null,
@@ -939,21 +951,19 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£24,100",
-                  "£26,600",
-                  "£26,600",
-                  "c",
-                  "£20,100",
-                  "£27,000",
-                  "£25,200",
-                  "£23,400",
-                  "c",
-                  "£21,200",
+                  "£24,500",
                   "c",
                   "c",
                   "c",
                   "c",
-                  "£28,100",
+                  "£23,800",
+                  "£26,000",
+                  "c",
+                  "c",
+                  "£24,900",
+                  "£20,500",
+                  "c",
+                  "c",
                   "c",
                   "c",
                   "c",
@@ -965,7 +975,9 @@
                   "c",
                   "c",
                   "x",
+                  "c",
                   "x",
+                  "c",
                   "c",
                   "c",
                   "c",
@@ -975,51 +987,39 @@
                   "x",
                   "x"
                 ],
-                "footer": "445",
+                "footer": "400",
                 "na": "x",
                 "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#CADDF0"
+                  },
+                  null,
+                  null,
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#CEE0F1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C0D7ED"
+                  },
+                  null,
+                  null,
                   {
                     "color": "#000000",
                     "background": "#C7DCEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B6D0EA"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#E3EEF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B3CFE9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C0D7ED"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#CCDFF1"
-                  },
-                  null,
-                  {
-                    "color": "#000000",
-                    "background": "#DBE9F6"
+                    "background": "#E4EEF8"
                   },
                   null,
                   null,
                   null,
                   null,
-                  {
-                    "color": "#000000",
-                    "background": "#ACCAE6"
-                  },
                   null,
                   null,
                   null,
@@ -1050,33 +1050,30 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£24,800",
-                  "£23,700",
-                  "£28,800",
-                  "£20,100",
+                  "£23,100",
+                  "£29,300",
+                  "£24,200",
+                  "£24,300",
+                  "c",
+                  "£17,600",
+                  "£24,200",
+                  "£25,600",
+                  "£23,800",
+                  "£26,400",
+                  "£25,600",
+                  "c",
+                  "c",
+                  "£31,800",
+                  "c",
+                  "£24,200",
+                  "£22,700",
                   "£22,300",
-                  "£26,300",
-                  "£25,900",
-                  "£22,300",
-                  "£24,100",
-                  "£21,900",
-                  "£27,700",
-                  "£22,600",
-                  "£24,100",
-                  "£23,900",
-                  "£25,900",
+                  "£30,000",
                   "c",
-                  "£22,600",
-                  "£28,800",
-                  "£20,800",
-                  "£23,000",
+                  "£28,500",
                   "c",
                   "c",
-                  "c",
-                  "c",
-                  "£24,800",
-                  "c",
-                  "c",
+                  "£20,900",
                   "c",
                   "c",
                   "c",
@@ -1084,96 +1081,90 @@
                   "c",
                   "c",
                   "x",
+                  "c",
+                  "c",
+                  "x",
                   "x"
                 ],
-                "footer": "1,290",
+                "footer": "1,445",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#D3E3F3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CADDF0"
+                    "background": "#AAC9E6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#CCDEF1"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E3EEF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D3E4F3"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#B8D2EA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#BBD4EB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D3E4F3"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C7DCEF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D6E5F4"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#AECBE7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D1E2F3"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C7DCEF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C8DCF0"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#BBD4EB"
+                    "background": "#CBDEF0"
                   },
                   null,
                   {
                     "color": "#000000",
-                    "background": "#D1E2F3"
+                    "background": "#F7FBFF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#A7C7E5"
+                    "background": "#CCDEF1"
                   },
                   {
                     "color": "#000000",
-                    "background": "#DEEAF7"
+                    "background": "#C2D9EE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CFE1F2"
+                    "background": "#CEE0F1"
                   },
-                  null,
-                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#BDD5EC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C2D9EE"
+                  },
                   null,
                   null,
                   {
                     "color": "#000000",
-                    "background": "#C2D8EE"
+                    "background": "#9ABEE1"
                   },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#CCDEF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D5E5F4"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D8E7F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#A6C6E4"
+                  },
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#B0CCE8"
+                  },
+                  null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#E1ECF8"
+                  },
+                  null,
                   null,
                   null,
                   null,
@@ -1193,8 +1184,7 @@
             "minRows": 1,
             "showSortable": true,
             "height": "800px",
-            "dataKey": "random_key",
-            "key": "random_key"
+            "dataKey": "random_key"
           },
           "children": [
 
