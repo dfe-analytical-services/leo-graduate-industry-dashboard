@@ -1,9 +1,9 @@
 # REGIONAL ---------------------------------------------------------------------
 
 
-data <- read.csv("data/regional_data_all.csv")
+data <- read.csv("data/regional_data_FD_PG.csv")
 
-regional_movement_data <- read.csv("data/regional_movement_with_PG_rounded.csv")
+regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
 
 ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
 
@@ -194,7 +194,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
   }
   map_title <- paste("<h4> Map to show the ", counttext, YAGtext, " after
                           graduation, male and female", tolower(qualinput), "graduates from English HEIs, APs and FECs,
-                            2018/19 tax year.</h4>")
+                            2019/20 tax year.</h4>")
   return(map_title)
 }
 

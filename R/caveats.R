@@ -27,7 +27,7 @@ caveats_box <- function() {
       br(),
       "\U2022 Please note there are a small number of cases where there are conflicting section names and group names – see the data quality section of ",
       a(
-        href = "https://explore-education-statistics.service.gov.uk/methodology/graduate-outcomes-leo-methodology",
+        href = "https://explore-education-statistics.service.gov.uk/methodology/leo-graduate-and-postgraduate-outcomes",
         "the methodology"
       ), " for further details"
     )
