@@ -195,7 +195,6 @@ fluidPage(
           tabsetPanel(
 
             #### Sankey plot --------------------------------------------------
-
             tabPanel(
               "Industry flow sankey plot",
               br(),
@@ -361,7 +360,6 @@ fluidPage(
           tabsetPanel(
 
             #### Map ----------------------------------------------------------
-
             tabPanel(
               "Map and sankey",
               column(
