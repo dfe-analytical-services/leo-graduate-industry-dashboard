@@ -52,6 +52,66 @@ server <- function(input, output, session) {
   output$sankey <- renderSankeyNetwork({
     reactiveSankey()
   })
+  
+  
+  reactiveSankeyTable <- reactive({
+    cohort_sankey1 <- cohort1 %>%
+      filter(subject_name == input$indflow.subjectinput, sex.x == input$sexinput, qualification_TR.x == input$qualinput)
+    
+    cohort_sankey2 <- cohort2 %>%
+      filter(subject_name == input$indflow.subjectinput, sex.x == input$sexinput, qualification_TR.x == input$qualinput)
+    
+    cohort_sankey1 <- na.omit(cohort_sankey1)
+    cohort_sankey2 <- na.omit(cohort_sankey2)
+    
+    # quick table code
+    # 1 YAG
+    one_yag_table <- cohort_sankey1 %>%
+      group_by(YAG.x, SECTIONNAME.x) %>%
+      dplyr::summarise(count = sum(count))
+    one_yag_table <- one_yag_table %>%
+      mutate("1 YAG" = count / sum(count))
+    
+    # 3 YAG
+    three_yag_table <- cohort_sankey2 %>%
+      group_by(YAG.x, SECTIONNAME.x) %>%
+      dplyr::summarise(count = sum(count))
+    three_yag_table <- three_yag_table %>%
+      mutate("3 YAG" = count / sum(count))
+    
+    # 5 YAG
+    five_yag_table <- cohort_sankey2 %>%
+      group_by(YAG.y, SECTIONNAME.y) %>%
+      dplyr::summarise(count = sum(count))
+    five_yag_table <- five_yag_table %>%
+      mutate("5 YAG" = count / sum(count))
+    
+    
+    # create table
+    # join
+    yag_table <- one_yag_table %>%
+      left_join(three_yag_table, by = c("SECTIONNAME.x" = "SECTIONNAME.x"))
+    
+    yag_table <- yag_table %>%
+      left_join(five_yag_table, by = c("SECTIONNAME.x" = "SECTIONNAME.y"))
+    
+    yag_table[is.na(yag_table)] <- 0
+    
+    # quick check - should all be one
+    sum(yag_table$`1 YAG`)
+    sum(yag_table$`3 YAG`)
+    sum(yag_table$`5 YAG`)
+    
+    # remove columns
+    yag_table_final <- yag_table[, c("SECTIONNAME.x", "1 YAG", "3 YAG", "5 YAG")]
+    
+    yag_table_final <- yag_table_final %>%
+      arrange(., -`1 YAG`)
+    
+    names(yag_table_final) <- c("INDUSTRY", "1 YAG", "3 YAG", "5 YAG")
+    return(yag_table_final)
+  })
+  
 
   output$sankey_flag <- renderUI({
     if (!type_sum(reactiveSankey()) == "snkyNtwr") {
