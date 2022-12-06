@@ -1,16 +1,14 @@
 cohort_sankey1 <- cohort1 %>%
-  filter(subject_name == 'Economics', sex.x == 'F+M', qualification_TR.x == 'First degree') %>%
+  filter(subject_name == 'Education and teaching', sex.x == 'F+M', qualification_TR.x == 'First degree') %>%
   filter(count != 0)
 
 cohort_sankey2 <- cohort2 %>%
-  filter(subject_name == 'Economics', sex.x == 'F+M', qualification_TR.x == 'First degree') %>%
+  filter(subject_name == 'Education and teaching', sex.x == 'F+M', qualification_TR.x == 'First degree') %>%
   filter(count != 0)
 
 cohort_sankey1 <- na.omit(cohort_sankey1)
 cohort_sankey2 <- na.omit(cohort_sankey2)
-if (all(cohort_sankey1$count == 0) | all(is.na(cohort_sankey1$count))) {
-  return(NULL)
-} else {
+
   # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
   
   section_names1 <- cohort_sankey1 %>%
@@ -157,4 +155,3 @@ if (all(cohort_sankey1$count == 0) | all(is.na(cohort_sankey1$count))) {
   )
   
   plot
-}
