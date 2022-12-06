@@ -66,3 +66,17 @@ qual_subjects <- tables_data %>%
 industry_groups <- tables_data %>%
   select(SECTIONNAME, group_name) %>%
   distinct()
+
+
+# regional data
+data <- read.csv("data/regional_data_FD_PG.csv")
+
+regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
+
+ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
+
+ukRegions <- ukRegions[order(ukRegions$rgn19nm), ]
+ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
+
+data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
+regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))

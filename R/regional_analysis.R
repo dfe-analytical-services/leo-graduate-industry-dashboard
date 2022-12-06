@@ -1,17 +1,7 @@
 # REGIONAL ---------------------------------------------------------------------
 
 
-data <- read.csv("data/regional_data_FD_PG.csv")
 
-regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
-
-ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
-
-ukRegions <- ukRegions[order(ukRegions$rgn19nm), ]
-ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
-
-data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
-regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))
 
 format_filtervalues_region <- function(filtervalues) {
   filtervalues <- sort(unique(filtervalues))

@@ -634,11 +634,6 @@ server <- function(input, output, session) {
     }
   })
 
-  # output$subjecttable <- renderReactable({
-  #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)
-  # })
-  #
-  # output$subjecttable_title <- renderText({
-  #   subjecttable_title(input$sectionnameinput2, input$YAGinput3, input$countinput3)
-  # })
+  
+
 }
