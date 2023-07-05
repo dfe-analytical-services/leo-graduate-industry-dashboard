@@ -185,8 +185,8 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
   }
 
 
-  sankey_title <- paste("<h3>Industry of graduate employment for 2013/14 academic year graduates of", subjecttext, "one, three and five years after
-                          graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HEIs, APs and FECs</h3>")
+  sankey_title <- paste("<h3>Industry of graduate employment for 2014/15 academic year graduates of", subjecttext, "one, three and five years after
+                          graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HE providers</h3>")
 
   return(sankey_title)
 }

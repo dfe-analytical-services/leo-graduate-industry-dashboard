@@ -193,8 +193,8 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
                        studied in and are current living in each region")
   }
   map_title <- paste("<h4> Map to show the ", counttext, YAGtext, " after
-                          graduation, male and female", tolower(qualinput), "graduates from English HEIs, APs and FECs,
-                            2019/20 tax year.</h4>")
+                          graduation, male and female", tolower(qualinput), "graduates from English HE providers,
+                            2020/21 tax year.</h4>")
   return(map_title)
 }
 
