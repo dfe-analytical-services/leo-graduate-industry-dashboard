@@ -53,9 +53,9 @@ tidy_code_function <- function() {
 }
 
 source("R/read_data.R")
-cohort1 <- read_cohort("data/sankey data 1-3 YAG_FD_PG.csv")
-cohort2 <- read_cohort("data/sankey data 3-5 YAG_FD_PG.csv")
-cohort3 <- read_cohort("data/sankey data 1-5 YAG_FD_PG.csv")
+cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
+cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
+cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
 
 tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
 
