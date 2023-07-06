@@ -17,7 +17,6 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
   if (all(cohort_sankey1$count == 0) | all(is.na(cohort_sankey1$count))) {
     return(NULL)
   } else {
-
     # Choose top 9 SIC section names and label all others as 'OTHER' based on counts for 1 YAG
 
     section_names1 <- cohort_sankey1 %>%

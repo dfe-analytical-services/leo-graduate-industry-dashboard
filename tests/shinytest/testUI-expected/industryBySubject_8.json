@@ -8,7 +8,7 @@
     "YAGinput3": "1"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2018/19 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the Construction industry one year after\n                            graduation by the subject they studied and FSM status, young (under 21 at start of course)\n                            male and female first degree graduates from English HEIs, APs and FECs, 2019/20 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -21,56 +21,56 @@
                 "Business and management",
                 "Creative arts and design",
                 "Geography, earth and environmental studies",
-                "Sport and exercise sciences",
                 "Computing",
-                "Performing arts",
+                "Sport and exercise sciences",
                 "Sociology, social policy and anthropology",
-                "English studies",
-                "Law",
                 "Media, journalism and communications",
-                "Psychology",
+                "English studies",
                 "History and archaeology",
-                "Education and teaching",
-                "Mathematical sciences",
-                "Combined and general studies",
-                "Economics",
-                "Allied health",
+                "Law",
+                "Performing arts",
+                "Psychology",
                 "Biosciences",
-                "Agriculture, food and related studies",
-                "Materials and technology",
+                "Economics",
+                "Education and teaching",
+                "Combined and general studies",
+                "Mathematical sciences",
                 "Politics",
-                "Chemistry",
+                "Allied health",
+                "Agriculture, food and related studies",
                 "Languages and area studies",
-                "Nursing and midwifery",
-                "Philosophy and religious studies",
+                "Physics and astronomy",
+                "Chemistry",
                 "General, applied and forensic sciences",
                 "Health and social care",
+                "Materials and technology",
                 "Medical sciences",
-                "Physics and astronomy",
+                "Nursing and midwifery",
+                "Philosophy and religious studies",
+                "Medicine and dentistry",
                 "Pharmacology, toxicology and pharmacy",
                 "Veterinary sciences"
               ],
               "non-FSM": [
-                29900,
-                27700,
-                22300,
-                18200,
-                24100,
-                19300,
-                21500,
-                17900,
+                30400,
+                28900,
+                23100,
+                19800,
+                23800,
+                21600,
+                18100,
+                18300,
+                19400,
+                18700,
                 21200,
-                18200,
-                20800,
-                18600,
-                18600,
+                24900,
+                18700,
+                20100,
+                21800,
+                22700,
                 17900,
-                18400,
-                23000,
                 -10000,
-                24800,
-                -10000,
-                18200,
+                20500,
                 -10000,
                 -10000,
                 -10000,
@@ -79,39 +79,6 @@
                 -10000,
                 -10000,
                 -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000
-              ],
-              "FSM": [
-                24100,
-                26600,
-                21500,
-                17200,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                "NA",
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                "NA",
-                "NA",
-                "NA",
                 -10000,
                 -10000,
                 -10000,
@@ -120,11 +87,48 @@
                 "NA",
                 "NA"
               ],
+              "FSM": [
+                27400,
+                30000,
+                22000,
+                -10000,
+                -10000,
+                20100,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                -10000,
+                -10000,
+                -10000,
+                "NA",
+                -10000,
+                "NA",
+                -10000,
+                "NA",
+                -10000,
+                "NA",
+                -10000,
+                -10000,
+                "NA",
+                "NA",
+                "NA",
+                "NA"
+              ],
               "Not known": [
-                31000,
-                28300,
-                24500,
-                18600,
+                30400,
+                29600,
+                22000,
+                -10000,
+                24900,
                 -10000,
                 -10000,
                 -10000,
@@ -142,17 +146,17 @@
                 -10000,
                 -10000,
                 -10000,
-                -10000,
                 "NA",
-                -10000,
-                -10000,
+                "NA",
                 "NA",
                 "NA",
                 "NA",
                 -10000,
+                "NA",
+                "NA",
+                "NA",
                 -10000,
-                "NA",
-                "NA",
+                -10000,
                 "NA"
               ]
             },
@@ -176,26 +180,25 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£29,900",
-                  "£27,700",
-                  "£22,300",
-                  "£18,200",
-                  "£24,100",
-                  "£19,300",
-                  "£21,500",
-                  "£17,900",
+                  "£30,400",
+                  "£28,900",
+                  "£23,100",
+                  "£19,800",
+                  "£23,800",
+                  "£21,600",
+                  "£18,100",
+                  "£18,300",
+                  "£19,400",
+                  "£18,700",
                   "£21,200",
-                  "£18,200",
-                  "£20,800",
-                  "£18,600",
-                  "£18,600",
+                  "£24,900",
+                  "£18,700",
+                  "£20,100",
+                  "£21,800",
+                  "£22,700",
                   "£17,900",
-                  "£18,400",
-                  "£23,000",
                   "c",
-                  "£24,800",
-                  "c",
-                  "£18,200",
+                  "£20,500",
                   "c",
                   "c",
                   "c",
@@ -208,30 +211,24 @@
                   "c",
                   "c",
                   "c",
-                  "c"
+                  "x",
+                  "x",
+                  "x"
                 ],
-                "footer": "1,475",
+                "footer": "1,465",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#4084C4"
+                    "background": "#317ABF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#6098CE"
+                    "background": "#4889C6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#ADCBE7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E8F1FA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#93BADF"
+                    "background": "#A4C5E4"
                   },
                   {
                     "color": "#000000",
@@ -239,54 +236,63 @@
                   },
                   {
                     "color": "#000000",
+                    "background": "#99BEE0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#BCD4EC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F0F6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DFEBF7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#C2D8EE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#88B2DB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
+                  {
+                    "color": "#000000",
                     "background": "#B9D2EB"
                   },
                   {
                     "color": "#000000",
-                    "background": "#ECF4FB"
+                    "background": "#AAC9E6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#BDD5EC"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E8F1FA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C3D9EE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E2EDF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E2EDF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#ECF4FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#A3C4E4"
+                    "background": "#F7FBFF"
                   },
                   null,
                   {
                     "color": "#000000",
-                    "background": "#89B3DB"
+                    "background": "#CDE0F1"
                   },
                   null,
-                  {
-                    "color": "#000000",
-                    "background": "#E8F1FA"
-                  },
+                  null,
                   null,
                   null,
                   null,
@@ -310,11 +316,12 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£24,100",
-                  "£26,600",
-                  "£21,500",
-                  "£17,200",
+                  "£27,400",
+                  "£30,000",
+                  "£22,000",
                   "c",
+                  "c",
+                  "£20,100",
                   "c",
                   "c",
                   "c",
@@ -330,40 +337,41 @@
                   "c",
                   "c",
                   "c",
+                  "x",
                   "c",
+                  "x",
+                  "c",
+                  "x",
+                  "c",
+                  "x",
                   "c",
                   "c",
                   "x",
-                  "x",
-                  "x",
-                  "c",
-                  "c",
-                  "c",
-                  "c",
                   "x",
                   "x",
                   "x"
                 ],
-                "footer": "185",
+                "footer": "165",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#93BADF"
+                    "background": "#6098CE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#70A3D3"
+                    "background": "#377EC1"
                   },
                   {
                     "color": "#000000",
-                    "background": "#B9D2EB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
+                    "background": "#B6D0EA"
                   },
                   null,
+                  null,
+                  {
+                    "color": "#000000",
+                    "background": "#D4E4F3"
+                  },
                   null,
                   null,
                   null,
@@ -402,10 +410,11 @@
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£31,000",
-                  "£28,300",
-                  "£24,500",
-                  "£18,600",
+                  "£30,400",
+                  "£29,600",
+                  "£22,000",
+                  "c",
+                  "£24,900",
                   "c",
                   "c",
                   "c",
@@ -423,20 +432,20 @@
                   "c",
                   "c",
                   "c",
-                  "c",
                   "x",
-                  "c",
-                  "c",
+                  "x",
                   "x",
                   "x",
                   "x",
                   "c",
+                  "x",
+                  "x",
+                  "x",
                   "c",
-                  "x",
-                  "x",
+                  "c",
                   "x"
                 ],
-                "footer": "205",
+                "footer": "145",
                 "na": "x",
                 "style": [
                   {
@@ -445,15 +454,16 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#5793CB"
+                    "background": "#3D82C3"
                   },
                   {
                     "color": "#000000",
-                    "background": "#8EB6DD"
+                    "background": "#B6D0EA"
                   },
+                  null,
                   {
                     "color": "#000000",
-                    "background": "#E2EDF8"
+                    "background": "#88B2DB"
                   },
                   null,
                   null,
@@ -493,8 +503,7 @@
             "minRows": 1,
             "showSortable": true,
             "height": "800px",
-            "dataKey": "random_key",
-            "key": "random_key"
+            "dataKey": "random_key"
           },
           "children": [
 
