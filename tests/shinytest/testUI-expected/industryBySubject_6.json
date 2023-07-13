@@ -8,7 +8,7 @@
     "YAGinput3": "1"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Graduates working in the Mining and quarrying industry one year after\n                            graduation by the subject they studied and ethnicity, male and female first degree graduates from\n                            English HEIs, APs and FECs, 2019/20 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the Mining and quarrying industry one year after\n                            graduation by the subject they studied and ethnicity, male and female first degree graduates from\n                            English HE providers, 2020/21 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -16,34 +16,30 @@
           "attribs": {
             "data": {
               "subject_name": [
-                "Engineering",
+                "Biosciences",
                 "Business and management",
-                "Computing",
-                "Architecture, building and planning",
                 "Combined and general studies",
+                "Computing",
+                "Engineering",
                 "Geography, earth and environmental studies",
                 "Materials and technology",
+                "Agriculture, food and related studies",
                 "Allied health",
-                "Biosciences",
+                "Architecture, building and planning",
                 "Chemistry",
-                "Creative arts and design",
                 "Economics",
-                "Education and teaching",
-                "English studies",
                 "General, applied and forensic sciences",
-                "History and archaeology",
                 "Law",
                 "Mathematical sciences",
                 "Media, journalism and communications",
                 "Performing arts",
-                "Philosophy and religious studies",
                 "Physics and astronomy",
                 "Politics",
+                "Psychology",
                 "Sociology, social policy and anthropology",
                 "Sport and exercise sciences"
               ],
               "White": [
-                43200,
                 -10000,
                 -10000,
                 -10000,
@@ -59,20 +55,15 @@
                 "NA",
                 -10000,
                 -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
+                -10000,
                 "NA",
-                -10000,
-                "NA",
-                -10000,
-                -10000,
-                -10000,
-                -10000,
-                -10000,
                 -10000
               ],
               "Black": [
-                -10000,
-                "NA",
-                "NA",
                 "NA",
                 "NA",
                 "NA",
@@ -100,6 +91,8 @@
                 -10000,
                 "NA",
                 "NA",
+                "NA",
+                -10000,
                 -10000,
                 "NA",
                 "NA",
@@ -109,11 +102,6 @@
                 "NA",
                 "NA",
                 "NA",
-                "NA",
-                "NA",
-                "NA",
-                "NA",
-                -10000,
                 "NA",
                 "NA",
                 "NA",
@@ -124,9 +112,6 @@
                 "NA"
               ],
               "Mixed": [
-                -10000,
-                -10000,
-                -10000,
                 "NA",
                 "NA",
                 "NA",
@@ -135,9 +120,6 @@
                 "NA",
                 "NA",
                 "NA",
-                -10000,
-                "NA",
-                -10000,
                 "NA",
                 "NA",
                 "NA",
@@ -148,12 +130,12 @@
                 "NA",
                 "NA",
                 "NA",
+                "NA",
+                "NA",
+                -10000,
                 "NA"
               ],
               "Other": [
-                "NA",
-                "NA",
-                "NA",
                 "NA",
                 "NA",
                 "NA",
@@ -199,15 +181,12 @@
                 "NA",
                 "NA",
                 "NA",
-                "NA",
-                "NA",
-                "NA",
                 "NA"
               ]
             },
             "columns": [
               {
-                "accessor": "subject_name",
+                "id": "subject_name",
                 "name": "Subject area",
                 "type": "character",
                 "footerStyle": {
@@ -217,14 +196,13 @@
                 "width": 600
               },
               {
-                "accessor": "White",
+                "id": "White",
                 "name": "White",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "£43,200",
                   "c",
                   "c",
                   "c",
@@ -240,25 +218,17 @@
                   "x",
                   "c",
                   "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
+                  "c",
                   "x",
-                  "c",
-                  "x",
-                  "c",
-                  "c",
-                  "c",
-                  "c",
-                  "c",
                   "c"
                 ],
-                "footer": "105",
+                "footer": "70",
                 "na": "x",
                 "style": [
-                  {
-                    "color": "#000000",
-                    "background": "#e9e9e9"
-                  },
-                  null,
-                  null,
                   null,
                   null,
                   null,
@@ -284,16 +254,13 @@
                 ]
               },
               {
-                "accessor": "Black",
+                "id": "Black",
                 "name": "Black",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "c",
-                  "x",
-                  "x",
                   "x",
                   "x",
                   "x",
@@ -341,14 +308,11 @@
                   null,
                   null,
                   null,
-                  null,
-                  null,
-                  null,
                   null
                 ]
               },
               {
-                "accessor": "Asian",
+                "id": "Asian",
                 "name": "Asian",
                 "type": "numeric",
                 "footerStyle": {
@@ -358,6 +322,8 @@
                   "c",
                   "x",
                   "x",
+                  "x",
+                  "c",
                   "c",
                   "x",
                   "x",
@@ -367,11 +333,6 @@
                   "x",
                   "x",
                   "x",
-                  "x",
-                  "x",
-                  "x",
-                  "x",
-                  "c",
                   "x",
                   "x",
                   "x",
@@ -405,23 +366,17 @@
                   null,
                   null,
                   null,
-                  null,
-                  null,
-                  null,
                   null
                 ]
               },
               {
-                "accessor": "Mixed",
+                "id": "Mixed",
                 "name": "Mixed",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "c",
-                  "c",
-                  "c",
                   "x",
                   "x",
                   "x",
@@ -430,9 +385,6 @@
                   "x",
                   "x",
                   "x",
-                  "c",
-                  "x",
-                  "c",
                   "x",
                   "x",
                   "x",
@@ -443,14 +395,14 @@
                   "x",
                   "x",
                   "x",
+                  "x",
+                  "x",
+                  "c",
                   "x"
                 ],
-                "footer": "5",
+                "footer": "0",
                 "na": "x",
                 "style": [
-                  null,
-                  null,
-                  null,
                   null,
                   null,
                   null,
@@ -476,7 +428,7 @@
                 ]
               },
               {
-                "accessor": "Other",
+                "id": "Other",
                 "name": "Other",
                 "type": "numeric",
                 "footerStyle": {
@@ -504,9 +456,6 @@
                   "x",
                   "x",
                   "x",
-                  "x",
-                  "x",
-                  "x",
                   "x"
                 ],
                 "footer": "0",
@@ -533,14 +482,11 @@
                   null,
                   null,
                   null,
-                  null,
-                  null,
-                  null,
                   null
                 ]
               },
               {
-                "accessor": "Not known",
+                "id": "Not known",
                 "name": "Not known",
                 "type": "numeric",
                 "footerStyle": {
@@ -568,9 +514,6 @@
                   "x",
                   "x",
                   "x",
-                  "x",
-                  "x",
-                  "x",
                   "x"
                 ],
                 "footer": "0",
@@ -597,20 +540,15 @@
                   null,
                   null,
                   null,
-                  null,
-                  null,
-                  null,
                   null
                 ]
               }
             ],
             "defaultPageSize": 37,
-            "paginationType": "numbers",
-            "showPageInfo": true,
-            "minRows": 1,
             "showSortable": true,
             "height": "800px",
-            "dataKey": "random_key"
+            "dataKey": "random_key",
+            "static": false
           },
           "children": [
 
