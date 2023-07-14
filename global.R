@@ -27,7 +27,7 @@ shhh(library(matrixStats))
 shhh(library(sourcetools))
 shhh(library(shinyBS))
 shhh(library(readr))
-shhh(library(metathis))
+shhh(library(metathis))run
 shhh(library(DescTools))
 shhh(library(networkD3))
 shhh(library(styler))

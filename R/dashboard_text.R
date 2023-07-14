@@ -29,10 +29,10 @@ welcome_text <- function() {
 
 industry_flow_text <- function() {
   div(paste(
-    "This tab takes a longitudinal view of the five year after graduation cohort (",fiveyag_cohort_year," academic year of graduation
+    "This tab takes a longitudinal view of the five year after graduation cohort (", fiveyag_cohort_year, " academic year of graduation
     cohort), as it shows the industry sections they worked in and flowed between at one, three and five years after
-    graduation. You can filter this analysis to look at graduates of a specific subject area, or filter by graduate sex."
-    , sep = ""
+    graduation. You can filter this analysis to look at graduates of a specific subject area, or filter by graduate sex.",
+    sep = ""
   ))
 }
 
@@ -41,7 +41,7 @@ industry_flow_text <- function() {
 regional_text <- function() {
   div(
     "This tab compares where graduates studied to where they lived at one, three, five and ten years after
-   graduation, for each industry, and uses the ",tax_year_slash," tax year data (so does not follow the same cohort
+   graduation, for each industry, and uses the ", tax_year_slash, " tax year data (so does not follow the same cohort
    as the industry flow analysis). It can be filtered to look at graduates of a specific subject area, and provides
    context on the number of providers and median earnings for the selected options for each region."
   )
@@ -52,7 +52,7 @@ regional_text <- function() {
 sub_by_ind_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
-    ",tax_year_slash," tax year. The tables show which industries graduates of the selected subject area go on to work in.
+    ", tax_year_slash, " tax year. The tables show which industries graduates of the selected subject area go on to work in.
     You can expand the industry sections in these tables to view a more detailed breakdown of the 3 digit SIC groups
     within that industry. The following breakdowns are currently available:",
     br(),
@@ -73,7 +73,7 @@ sub_by_ind_text <- function() {
 ind_by_sub_text <- function() {
   div(
     "These tables look at the one, three, five and ten year after graduation cohorts from the
-    ",tax_year_slash," tax year. The tables show which subjects graduates working in a selected industry area previously studied.
+    ", tax_year_slash, " tax year. The tables show which subjects graduates working in a selected industry area previously studied.
     You can view this at the 3 digit SIC group level and may select multiple SIC groups within an industry area at one time.
     The following breakdowns are currently available:",
     br(),
