@@ -8,7 +8,7 @@
     "YAGinput3": "5"
   },
   "output": {
-    "backwards_crosstab_title": "<h4>Graduates working in the Education industry five years after\n                            graduation by the subject they studied and sex, first degree graduates from English HEIs,\n                            APs and FECs, 2019/20 tax year.<\/h4>",
+    "backwards_crosstab_title": "<h4>Graduates working in the Education industry five years after\n                            graduation by the subject they studied and sex, first degree graduates from English HE providers, 2020/21 tax year.<\/h4>",
     "crosstab_backwards": {
       "x": {
         "tag": {
@@ -17,8 +17,8 @@
             "data": {
               "subject_name": [
                 "Education and teaching",
-                "Health and social care",
                 "English studies",
+                "Health and social care",
                 "Sport and exercise sciences",
                 "Performing arts",
                 "Psychology",
@@ -27,18 +27,18 @@
                 "History and archaeology",
                 "Sociology, social policy and anthropology",
                 "Biosciences",
-                "Combined and general studies",
+                "Languages and area studies",
                 "Geography, earth and environmental studies",
                 "Mathematical sciences",
-                "Languages and area studies",
-                "Media, journalism and communications",
+                "Combined and general studies",
                 "Allied health",
-                "Law",
+                "Media, journalism and communications",
                 "Computing",
+                "Law",
                 "Philosophy and religious studies",
+                "Engineering",
                 "Politics",
                 "Chemistry",
-                "Engineering",
                 "Nursing and midwifery",
                 "Physics and astronomy",
                 "Agriculture, food and related studies",
@@ -46,127 +46,127 @@
                 "General, applied and forensic sciences",
                 "Economics",
                 "Medical sciences",
-                "Materials and technology",
                 "Medicine and dentistry",
+                "Materials and technology",
                 "Pharmacology, toxicology and pharmacy",
                 "Veterinary sciences",
                 "Celtic studies"
               ],
               "Female": [
-                0.277,
-                0.08,
-                0.074,
-                0.034,
-                0.052,
-                0.063,
+                0.304,
+                0.075,
+                0.076,
+                0.032,
+                0.049,
+                0.059,
+                0.041,
                 0.045,
-                0.05,
-                0.039,
-                0.047,
-                0.026,
-                0.025,
-                0.02,
-                0.018,
-                0.023,
+                0.038,
+                0.045,
+                0.027,
+                0.024,
+                0.021,
                 0.016,
-                0.02,
-                0.017,
+                0.022,
+                0.019,
+                0.015,
                 0.006,
+                0.016,
                 0.013,
+                0.003,
                 0.008,
+                0.007,
+                0.011,
+                0.003,
                 0.006,
                 0.003,
-                0.01,
+                0.004,
                 0.002,
-                0.006,
-                0.003,
                 0.004,
-                0.003,
-                0.004,
+                0.002,
                 0.001,
-                0.002,
                 0.002,
                 0.001,
                 0
               ],
               "Male": [
-                0.101,
-                0.033,
-                0.048,
-                0.142,
-                0.066,
-                0.024,
-                0.066,
-                0.039,
-                0.063,
-                0.029,
-                0.04,
-                0.023,
-                0.033,
-                0.033,
-                0.015,
-                0.026,
-                0.012,
-                0.014,
-                0.043,
-                0.016,
-                0.022,
-                0.018,
+                0.104,
+                0.046,
                 0.028,
-                0.002,
-                0.017,
+                0.136,
+                0.072,
+                0.023,
+                0.064,
+                0.036,
+                0.056,
+                0.025,
+                0.041,
+                0.02,
+                0.03,
+                0.042,
+                0.023,
+                0.014,
+                0.023,
+                0.044,
+                0.014,
+                0.016,
+                0.034,
+                0.02,
+                0.019,
+                0.003,
+                0.02,
                 0.004,
-                0.009,
+                0.011,
                 0.007,
-                0.01,
+                0.011,
                 0.004,
-                0.007,
                 0.004,
+                0.005,
                 0.002,
                 0.001,
                 0
               ],
               "Female & Male": [
-                0.231,
-                0.068,
-                0.068,
-                0.062,
+                0.252,
+                0.067,
+                0.064,
+                0.06,
                 0.055,
-                0.053,
-                0.051,
+                0.05,
                 0.047,
-                0.045,
-                0.042,
-                0.03,
-                0.025,
-                0.024,
+                0.043,
+                0.043,
+                0.04,
+                0.031,
+                0.023,
+                0.023,
+                0.023,
                 0.022,
-                0.021,
                 0.018,
-                0.018,
+                0.017,
                 0.016,
                 0.016,
                 0.014,
                 0.011,
+                0.011,
                 0.01,
                 0.009,
-                0.008,
-                0.006,
+                0.007,
                 0.005,
                 0.005,
                 0.005,
                 0.004,
                 0.004,
+                0.003,
                 0.002,
                 0.002,
-                0.002,
-                0,
+                0.001,
                 0
               ]
             },
             "columns": [
               {
-                "accessor": "subject_name",
+                "id": "subject_name",
                 "name": "Subject area",
                 "type": "character",
                 "footerStyle": {
@@ -177,50 +177,50 @@
                 "width": 600
               },
               {
-                "accessor": "Female",
+                "id": "Female",
                 "name": "Female",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "27.7%",
-                  "8.0%",
-                  "7.4%",
-                  "3.4%",
-                  "5.2%",
-                  "6.3%",
+                  "30.4%",
+                  "7.5%",
+                  "7.6%",
+                  "3.2%",
+                  "4.9%",
+                  "5.9%",
+                  "4.1%",
                   "4.5%",
-                  "5.0%",
-                  "3.9%",
-                  "4.7%",
-                  "2.6%",
-                  "2.5%",
-                  "2.0%",
-                  "1.8%",
-                  "2.3%",
+                  "3.8%",
+                  "4.5%",
+                  "2.7%",
+                  "2.4%",
+                  "2.1%",
                   "1.6%",
-                  "2.0%",
-                  "1.7%",
+                  "2.2%",
+                  "1.9%",
+                  "1.5%",
                   "0.6%",
+                  "1.6%",
                   "1.3%",
+                  "0.3%",
                   "0.8%",
+                  "0.7%",
+                  "1.1%",
+                  "0.3%",
                   "0.6%",
                   "0.3%",
-                  "1.0%",
+                  "0.4%",
                   "0.2%",
-                  "0.6%",
-                  "0.3%",
                   "0.4%",
-                  "0.3%",
-                  "0.4%",
+                  "0.2%",
                   "0.1%",
-                  "0.2%",
                   "0.2%",
                   "0.1%",
                   "0.0%"
                 ],
-                "footer": "25,185",
+                "footer": "23,730",
                 "na": "x",
                 "style": [
                   {
@@ -229,43 +229,39 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#BDD5EC"
+                    "background": "#C6DBEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C2D8ED"
+                    "background": "#C5DAEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#DEEBF7"
+                    "background": "#E2EDF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D1E2F2"
+                    "background": "#D7E6F4"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C9DDF0"
+                    "background": "#D0E1F2"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D6E6F4"
+                    "background": "#DCE9F6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D3E3F3"
+                    "background": "#D9E7F5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#DBE8F5"
+                    "background": "#DEEAF7"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D5E5F4"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E4EEF8"
+                    "background": "#D9E7F5"
                   },
                   {
                     "color": "#000000",
@@ -273,19 +269,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E8F1FA"
+                    "background": "#E7F0F9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#EAF2FA"
+                    "background": "#E9F2FA"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E6F0F9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#EBF3FB"
+                    "background": "#ECF4FB"
                   },
                   {
                     "color": "#000000",
@@ -293,11 +285,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#EAF3FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F2F8FD"
+                    "background": "#EAF2FB"
                   },
                   {
                     "color": "#000000",
@@ -305,176 +293,11 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F1F7FD"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F2F8FD"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#EFF6FC"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F5FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F2F8FD"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F6FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F5FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F5FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F6FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F7FBFF"
-                  }
-                ]
-              },
-              {
-                "accessor": "Male",
-                "name": "Male",
-                "type": "numeric",
-                "footerStyle": {
-                  "fontWeight": "bold"
-                },
-                "cell": [
-                  "10.1%",
-                  "3.3%",
-                  "4.8%",
-                  "14.2%",
-                  "6.6%",
-                  "2.4%",
-                  "6.6%",
-                  "3.9%",
-                  "6.3%",
-                  "2.9%",
-                  "4.0%",
-                  "2.3%",
-                  "3.3%",
-                  "3.3%",
-                  "1.5%",
-                  "2.6%",
-                  "1.2%",
-                  "1.4%",
-                  "4.3%",
-                  "1.6%",
-                  "2.2%",
-                  "1.8%",
-                  "2.8%",
-                  "0.2%",
-                  "1.7%",
-                  "0.4%",
-                  "0.9%",
-                  "0.7%",
-                  "1.0%",
-                  "0.4%",
-                  "0.7%",
-                  "0.4%",
-                  "0.2%",
-                  "0.1%",
-                  "0.0%"
-                ],
-                "footer": "8,830",
-                "na": "x",
-                "style": [
-                  {
-                    "color": "#000000",
-                    "background": "#AECBE7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#DFEBF7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D4E4F3"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#91B8DE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C7DCEF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E5EFF9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C7DCEF"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#DBE8F5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#C9DDF0"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E2EDF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#DAE8F5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E6F0F9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#DFEBF7"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#DFEBF7"
+                    "background": "#F3F8FD"
                   },
                   {
                     "color": "#000000",
                     "background": "#ECF4FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E4EEF8"
                   },
                   {
                     "color": "#000000",
@@ -482,47 +305,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#ECF4FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#D8E6F5"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#EBF3FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E7F0F9"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#EAF2FA"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#E2EDF8"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F5FAFE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#EAF3FB"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F4F9FE"
-                  },
-                  {
-                    "color": "#000000",
-                    "background": "#F0F6FC"
+                    "background": "#F5F9FE"
                   },
                   {
                     "color": "#000000",
                     "background": "#F1F7FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
                   },
                   {
                     "color": "#000000",
@@ -530,15 +321,35 @@
                   },
                   {
                     "color": "#000000",
+                    "background": "#F5F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5F9FE"
+                  },
+                  {
+                    "color": "#000000",
                     "background": "#F4F9FE"
                   },
                   {
                     "color": "#000000",
-                    "background": "#F1F7FD"
+                    "background": "#F5FAFE"
                   },
                   {
                     "color": "#000000",
                     "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
                   },
                   {
                     "color": "#000000",
@@ -555,75 +366,83 @@
                 ]
               },
               {
-                "accessor": "Female & Male",
-                "name": "Female & Male",
+                "id": "Male",
+                "name": "Male",
                 "type": "numeric",
                 "footerStyle": {
                   "fontWeight": "bold"
                 },
                 "cell": [
-                  "23.1%",
-                  "6.8%",
-                  "6.8%",
-                  "6.2%",
-                  "5.5%",
-                  "5.3%",
-                  "5.1%",
-                  "4.7%",
-                  "4.5%",
-                  "4.2%",
-                  "3.0%",
+                  "10.4%",
+                  "4.6%",
+                  "2.8%",
+                  "13.6%",
+                  "7.2%",
+                  "2.3%",
+                  "6.4%",
+                  "3.6%",
+                  "5.6%",
                   "2.5%",
-                  "2.4%",
-                  "2.2%",
-                  "2.1%",
-                  "1.8%",
-                  "1.8%",
-                  "1.6%",
-                  "1.6%",
+                  "4.1%",
+                  "2.0%",
+                  "3.0%",
+                  "4.2%",
+                  "2.3%",
                   "1.4%",
+                  "2.3%",
+                  "4.4%",
+                  "1.4%",
+                  "1.6%",
+                  "3.4%",
+                  "2.0%",
+                  "1.9%",
+                  "0.3%",
+                  "2.0%",
+                  "0.4%",
                   "1.1%",
-                  "1.0%",
-                  "0.9%",
-                  "0.8%",
-                  "0.6%",
-                  "0.5%",
-                  "0.5%",
-                  "0.5%",
+                  "0.7%",
+                  "1.1%",
                   "0.4%",
                   "0.4%",
+                  "0.5%",
                   "0.2%",
-                  "0.2%",
-                  "0.2%",
-                  "0.0%",
+                  "0.1%",
                   "0.0%"
                 ],
-                "footer": "34,025",
+                "footer": "8,390",
                 "na": "x",
                 "style": [
                   {
                     "color": "#000000",
-                    "background": "#518FC9"
+                    "background": "#B3CEE9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C6DBEF"
+                    "background": "#D9E7F5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#C6DBEF"
+                    "background": "#E4EFF9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CADEF0"
+                    "background": "#9EC1E2"
                   },
                   {
                     "color": "#000000",
-                    "background": "#CFE1F2"
+                    "background": "#C8DCEF"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D1E2F2"
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CDDFF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DFEBF7"
                   },
                   {
                     "color": "#000000",
@@ -631,11 +450,180 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#D5E5F4"
+                    "background": "#E6F0F9"
                   },
                   {
                     "color": "#000000",
-                    "background": "#D6E6F4"
+                    "background": "#DCE9F6"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E3EEF8"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DBE9F6"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF5FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#DAE8F5"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF5FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E0ECF7"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EAF2FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E9F2FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F2F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F4F9FE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F3F8FD"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F5FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F6FAFE"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#F7FBFF"
+                  }
+                ]
+              },
+              {
+                "id": "Female & Male",
+                "name": "Female & Male",
+                "type": "numeric",
+                "footerStyle": {
+                  "fontWeight": "bold"
+                },
+                "cell": [
+                  "25.2%",
+                  "6.7%",
+                  "6.4%",
+                  "6.0%",
+                  "5.5%",
+                  "5.0%",
+                  "4.7%",
+                  "4.3%",
+                  "4.3%",
+                  "4.0%",
+                  "3.1%",
+                  "2.3%",
+                  "2.3%",
+                  "2.3%",
+                  "2.2%",
+                  "1.8%",
+                  "1.7%",
+                  "1.6%",
+                  "1.6%",
+                  "1.4%",
+                  "1.1%",
+                  "1.1%",
+                  "1.0%",
+                  "0.9%",
+                  "0.7%",
+                  "0.5%",
+                  "0.5%",
+                  "0.5%",
+                  "0.4%",
+                  "0.4%",
+                  "0.3%",
+                  "0.2%",
+                  "0.2%",
+                  "0.1%",
+                  "0.0%"
+                ],
+                "footer": "32,115",
+                "na": "x",
+                "style": [
+                  {
+                    "color": "#000000",
+                    "background": "#5290C9"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CBDEF0"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CDDFF1"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#CFE1F2"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D3E3F3"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#D6E5F4"
                   },
                   {
                     "color": "#000000",
@@ -643,31 +631,35 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#E1EDF8"
+                    "background": "#DAE8F5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#DAE8F5"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E5EFF9"
+                    "background": "#DCEAF6"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E7F0F9"
+                    "background": "#E2EDF8"
                   },
                   {
                     "color": "#000000",
-                    "background": "#E7F1FA"
+                    "background": "#E8F1FA"
                   },
                   {
                     "color": "#000000",
-                    "background": "#EAF2FA"
+                    "background": "#E8F1FA"
                   },
                   {
                     "color": "#000000",
-                    "background": "#EAF2FA"
+                    "background": "#E8F1FA"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#E8F1FA"
                   },
                   {
                     "color": "#000000",
@@ -683,7 +675,15 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#EFF5FC"
+                    "background": "#ECF4FB"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EDF5FC"
+                  },
+                  {
+                    "color": "#000000",
+                    "background": "#EFF6FC"
                   },
                   {
                     "color": "#000000",
@@ -723,7 +723,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F5FAFE"
+                    "background": "#F5F9FE"
                   },
                   {
                     "color": "#000000",
@@ -735,7 +735,7 @@
                   },
                   {
                     "color": "#000000",
-                    "background": "#F7FBFF"
+                    "background": "#F6FAFE"
                   },
                   {
                     "color": "#000000",
@@ -745,12 +745,10 @@
               }
             ],
             "defaultPageSize": 37,
-            "paginationType": "numbers",
-            "showPageInfo": true,
-            "minRows": 1,
             "showSortable": true,
             "height": "800px",
-            "dataKey": "random_key"
+            "dataKey": "random_key",
+            "static": false
           },
           "children": [
 

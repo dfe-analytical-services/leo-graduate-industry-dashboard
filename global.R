@@ -35,6 +35,12 @@ shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
 # shhh(library(shinya11y))
 
+# update years for text
+
+tax_year_dash <- "2020-21"
+tax_year_slash <- "2020/21"
+fiveyag_cohort_year <- "2014/15"
+
 # tidy_code_function -------------------------------------------------------------------------------
 
 tidy_code_function <- function() {
@@ -58,6 +64,10 @@ cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
 cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
 
 tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
+
+data <- read.csv("data/regional_data_FD_PG.csv")
+regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
+
 
 qual_subjects <- tables_data %>%
   select(qualification_TR, subject_name) %>%

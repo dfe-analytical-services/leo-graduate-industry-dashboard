@@ -184,7 +184,7 @@ sankey_title <- function(subjectinput, sexinput, qualinput) {
   }
 
 
-  sankey_title <- paste("<h3>Industry of graduate employment for 2014/15 academic year graduates of", subjecttext, "one, three and five years after
+  sankey_title <- paste("<h3>Industry of graduate employment for ", fiveyag_cohort_year, " academic year graduates of", subjecttext, "one, three and five years after
                           graduation (YAG), ", sextext, tolower(qualinput), "graduates from English HE providers</h3>")
 
   return(sankey_title)
@@ -523,7 +523,8 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
         " graduates move to <b>", first(cohort_sankey1_text$SECTIONNAME.y), "</b>. Between three and five
                        years after graduation it's seen for <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> where <b>",
         first(cohort_sankey2_text$count), "</b> graduates moved to <b>", first(cohort_sankey2_text$SECTIONNAME.y),
-        "</b>."
+        "</b>.",
+        sep = ""
       )
     } else {
       sankeytext2 <- ""

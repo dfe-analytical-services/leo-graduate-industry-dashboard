@@ -18,7 +18,7 @@ fluidPage(
       referrer = "no-referrer"
     ),
   # Set title for search engines
-  HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year 2020-21</title>"),
+  HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year ", tax_year_dash, "</title>"),
 
   # Navbar ====================================================================
 
@@ -46,7 +46,7 @@ fluidPage(
         "using our <a href='https://forms.office.com/e/ZjNxf10uuN'>user-testing volunteer form</a>.</b><br>"
       )
     ),
-    
+
     # Homepage tab ============================================================
 
     tabPanel(
