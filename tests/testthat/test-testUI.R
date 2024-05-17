@@ -67,8 +67,10 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(earningsbutton = "Proportions", wait_ = FALSE)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
 
-  app$set_inputs(crosstabs.subjectinput = "Physics and astronomy",
-    wait_ = FALSE)
+  app$set_inputs(
+    crosstabs.subjectinput = "Physics and astronomy",
+    wait_ = FALSE
+  )
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
 
 
@@ -84,8 +86,10 @@ test_that("Migrated shinytest test: testUI.R", {
 
   app$set_inputs(navbar = "regional", timeout_ = 10000)
   app$expect_values(input = regional_input, output = regional_output)
-  app$set_inputs(regioninput = c("London", "North East", "West Midlands"),
-    timeout_ = 20000)
+  app$set_inputs(
+    regioninput = c("London", "North East", "West Midlands"),
+    timeout_ = 20000
+  )
   app$expect_values(input = regional_input, output = regional_output)
   app$set_inputs(qualinput2 = "Level 7 (research)")
   app$expect_values(input = regional_input, output = regional_output)
