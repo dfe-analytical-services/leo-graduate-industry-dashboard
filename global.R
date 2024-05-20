@@ -32,6 +32,7 @@ shhh(library(networkD3))
 shhh(library(styler))
 shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
+shhh(library(dfeshiny))
 # shhh(library(shinya11y))
 
 # update years for text
