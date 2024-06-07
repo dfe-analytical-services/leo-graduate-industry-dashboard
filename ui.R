@@ -44,7 +44,7 @@ fluidPage(
   ),
   cookie_banner_ui(
     "cookie-banner",
-    "Your dashboard name"
+    "Longitudinal Education Outcomes - Graduate Industry"
   ),
   tags$head(includeHTML(("google-analytics.html"))),
   dfe_cookie_script(),
