@@ -24,18 +24,25 @@ fluidPage(
 
   # This CSS sets the 7th item on the navbar to the right
   tagList(
-    tags$head(tags$style(HTML("
-                           .navbar-nav {
-                           float: none !important;
-                           }
-                           .navbar-nav > li:nth-child(9) {
-                           float: right;
-                           }
-                           ")))
+    tags$head(
+      tags$style(
+        HTML(".navbar-nav {
+                 float: none !important;
+              }
+              .navbar-nav > li:nth-child(9) {
+                 float: right;
+              }")
+      )
+    )
+  ),
+  cookie_banner_ui(
+    "cookie-banner",
+    "Your dashboard name"
   ),
   navbarPage("",
     id = "navbar",
     tags$head(includeHTML(("google-analytics.html"))),
+    dfe_cookie_script(),
     shinyGovstyle::banner(
       "beta banner",
       "beta",

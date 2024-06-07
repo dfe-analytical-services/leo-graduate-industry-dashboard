@@ -3,6 +3,15 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp) # commenting out to test using lighthouse
 
+
+  output$cookie_status <- cookie_banner_server(
+    "cookie-banner",
+    input_cookies = shiny::reactive(input$cookies),
+    parent_session = session,
+    google_analytics_key = google_analytics_key,
+    cookie_link_panel = "cookies_panel_ui"
+  )
+
   # Links to tabs --------------------------------------------
 
   observeEvent(input$link_to_industryFlow_tab, {
