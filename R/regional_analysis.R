@@ -3,10 +3,10 @@
 
 
 
-ukRegions <- st_read("data/boundaries/Regions__December_2019__Boundaries_EN_BFE.shp", quiet = TRUE)
+ukRegions <- st_read("data/boundaries/RGN_DEC_2023_EN_BFE.shp", quiet = TRUE)
 
-ukRegions <- ukRegions[order(ukRegions$rgn19nm), ]
-ukRegions$rgn19nm[ukRegions$rgn19nm == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
+ukRegions <- ukRegions[order(ukRegions$RGN23NM), ]
+ukRegions$RGN23NM[ukRegions$RGN23NM == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
 
 data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
 regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))
@@ -47,7 +47,7 @@ create_maptabledata <- function(regional_data, regional_movement,
       SECTIONNAME == sectionnameinput, subject_name == subjectinput,
       YAG == YAGinput, qualification_TR == qualinput
     )
-  mapdata <- left_join(ukRegions, mapdata, by = c("rgn19nm" = "region"))
+  mapdata <- left_join(ukRegions, mapdata, by = c("RGN23NM" = "region"))
 
   mapdata2 <- regional_movement %>%
     filter(
@@ -74,13 +74,13 @@ create_maptabledata <- function(regional_data, regional_movement,
     select(current_region, living_in_region2)
 
   mapdata <- mapdata %>%
-    left_join(instregion, by = c("rgn19nm" = "InstRegion")) %>%
-    left_join(currentregion, by = c("rgn19nm" = "current_region"))
+    left_join(instregion, by = c("RGN23NM" = "InstRegion")) %>%
+    left_join(currentregion, by = c("RGN23NM" = "current_region"))
 
   mapdata <- mapdata %>%
     mutate(difference2 = ifelse(is.na(living_in_region2) == TRUE & is.na(trained_in_region2) == TRUE, NA, replace(mapdata$living_in_region2, is.na(mapdata$living_in_region2), 0) - replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0))) %>%
     mutate(difference_prop2 = difference2 / replace(mapdata$trained_in_region2, is.na(mapdata$trained_in_region2), 0)) %>%
-    rename(region = rgn19nm)
+    rename(region = RGN23NM)
 
   mapdata$difference_prop2 <- readr::parse_number(
     scales::percent(mapdata$difference_prop2, accuracy = 0.1)

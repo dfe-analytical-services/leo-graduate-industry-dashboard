@@ -601,11 +601,17 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
         mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        # mutate_at(
+        #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        #   funs(as.numeric(.))
+        # ) %>%
+        # select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
         mutate_at(
-          c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+          c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
           funs(as.numeric(.))
         ) %>%
-        select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
+        select(SECTIONNAME, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
 
       crosstabs_earnings_data <- tables_data_grouped %>%
         select(-count, n = earnings_median) %>%
@@ -613,21 +619,32 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         colorders(countinput) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        # mutate_at(
+        #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        #   funs(as.numeric(.))
+        # ) %>%
+        # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        # select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
         mutate_at(
-          c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+          c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
           funs(as.numeric(.))
         ) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-        select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
+        select(SECTIONNAME, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
 
       dfDataGrouped <- tables_data_grouped %>% rename(filter = ethnicity)
+      # ethnicityfirstdata <- c(
+      #   topIndustries(dfDataGrouped, "White"), topIndustries(dfDataGrouped, "Black"),
+      #   topIndustries(dfDataGrouped, "Asian"), topIndustries(dfDataGrouped, "Mixed"),
+      #   topIndustries(dfDataGrouped, "Other"), topIndustries(dfDataGrouped, "Not known")
       ethnicityfirstdata <- c(
-        topIndustries(dfDataGrouped, "White"), topIndustries(dfDataGrouped, "Black"),
-        topIndustries(dfDataGrouped, "Asian"), topIndustries(dfDataGrouped, "Mixed"),
-        topIndustries(dfDataGrouped, "Other"), topIndustries(dfDataGrouped, "Not known")
+        topIndustries(dfDataGrouped, "White"), topIndustries(dfDataGrouped, "Black / African / Caribbean / Black British"),
+        topIndustries(dfDataGrouped, "Asian / Asian British"), topIndustries(dfDataGrouped, "Mixed / Multiple ethnic groups"),
+        topIndustries(dfDataGrouped, "Other ethnic group"), topIndustries(dfDataGrouped, "Unknown")
       )
       ethnicityfirstdata <- data.frame(ethnicityfirstdata)
-      ethnicityfirstdata$ethnicity <- c("White", "Black", "Asian", "Mixed", "Other", "Not known")
+      ethnicityfirstdata$ethnicity <- c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown")
 
       uniqueethnicity <- unique(ethnicityfirstdata$ethnicityfirstdata)
 
@@ -782,14 +799,14 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c(
-            "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+            "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
             "East of England", "London", "South East", "South West"
           ),
           funs(as.numeric(.))
         ) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(
-          SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+          SECTIONNAME, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
           `East of England`, `London`, `South East`, `South West`
         )
 
@@ -802,7 +819,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(
           c(
-            "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+            "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
             "East of England", "London", "South East", "South West"
           ),
           funs(as.numeric(.))
@@ -810,7 +827,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(
-          SECTIONNAME, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+          SECTIONNAME, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
           `East of England`, `London`, `South East`, `South West`
         )
 
@@ -818,7 +835,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       regionfirstdata <- c(
         topIndustries(dfDataGrouped, "North East"),
         topIndustries(dfDataGrouped, "North West"),
-        topIndustries(dfDataGrouped, "Yorkshire and the Humber"),
+        topIndustries(dfDataGrouped, "Yorkshire and The Humber"),
         topIndustries(dfDataGrouped, "East Midlands"),
         topIndustries(dfDataGrouped, "West Midlands"),
         topIndustries(dfDataGrouped, "East of England"),
@@ -828,7 +845,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       )
       regionfirstdata <- data.frame(regionfirstdata)
       regionfirstdata$region <- c(
-        "the North East", "the North West", "Yorkshire and the Humber", "the East Midlands", "the West Midlands",
+        "the North East", "the North West", "Yorkshire and The Humber", "the East Midlands", "the West Midlands",
         "the East of England", "London", "the South East", "the South West"
       )
 
@@ -964,7 +981,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         funcHighestEarnings(
           tables_data_grouped %>%
             filter(current_region %in% c(
-              "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+              "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
               "East of England", "London", "South East", "South West"
             )) %>%
             mutate(filter = current_region),
@@ -1326,11 +1343,16 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         is.numeric,
         funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
       ) %>%
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
       mutate_at(
-        c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
         funs(as.numeric(.))
       ) %>%
-      select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
@@ -1343,12 +1365,19 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       select(ethnicity, SECTIONNAME, group_name, n = earnings_median) %>%
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      # select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`) %>%
+      # ungroup()
       mutate_at(
-        c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
         funs(as.numeric(.))
       ) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-      select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`) %>%
+      select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`) %>%
       ungroup()
 
 
@@ -1374,7 +1403,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
     column_defs <- col_formats(crosstabs_data, footer_data, cellfunc)
     numeric_cols_def <- column_defs$numeric_cols_def
@@ -1419,7 +1448,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     }
 
     nested <- nested %>%
-      select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
   }
 
   if (countinput == "current_region") {
@@ -1444,14 +1473,14 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       ) %>%
       mutate_at(
         c(
-          "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
           "East of England", "London", "South East", "South West"
         ),
         funs(as.numeric(.))
       ) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
 
@@ -1469,7 +1498,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(
         c(
-          "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
           "East of England", "London", "South East", "South West"
         ),
         funs(as.numeric(.))
@@ -1477,7 +1506,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
     if (buttoninput == "Proportions") {
@@ -1503,7 +1532,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
 
@@ -1547,7 +1576,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
 
     nested <- nested %>%
       select(
-        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
   }

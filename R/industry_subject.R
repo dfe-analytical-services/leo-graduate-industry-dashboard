@@ -129,11 +129,17 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         is.numeric,
         funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
       ) %>%
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
       mutate_at(
-        c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
         funs(as.numeric(.))
       ) %>%
-      select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
 
     crosstabs_earnings_data <- tables_data %>%
       filter(
@@ -145,12 +151,18 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       summarise(n = earnings_median, .groups = "drop") %>%
       spread(ethnicity, n) %>%
       colorders(countinput) %>%
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
       mutate_at(
-        c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
         funs(as.numeric(.))
       ) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-      select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
     order <- subset(crosstabs_data, select = subject_name)
     crosstabs_earnings_data2 <- order %>%
@@ -184,16 +196,27 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-      select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
+
+    # coldefs <- list(
+    #   subject_name = colDef(name = "Subject area", width = 600, footer = "TOTAL (N)"),
+    #   White = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
+    #   Black = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Black), 5), big.mark = ",", scientific = FALSE)),
+    #   Asian = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Asian), 5), big.mark = ",", scientific = FALSE)),
+    #   Mixed = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Mixed), 5), big.mark = ",", scientific = FALSE)),
+    #   Other = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Other), 5), big.mark = ",", scientific = FALSE)),
+    #   `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+    # )
     coldefs <- list(
       subject_name = colDef(name = "Subject area", width = 600, footer = "TOTAL (N)"),
       White = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
-      Black = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Black), 5), big.mark = ",", scientific = FALSE)),
-      Asian = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Asian), 5), big.mark = ",", scientific = FALSE)),
-      Mixed = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Mixed), 5), big.mark = ",", scientific = FALSE)),
-      Other = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Other), 5), big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+      `Black / African / Caribbean / Black British` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Black / African / Caribbean / Black British`), 5), big.mark = ",", scientific = FALSE)),
+      `Asian / Asian British` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Asian / Asian British`), 5), big.mark = ",", scientific = FALSE)),
+      `Mixed / Multiple ethnic groups` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Mixed / Multiple ethnic groups`), 5), big.mark = ",", scientific = FALSE)),
+      `Other ethnic group` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Other ethnic group`), 5), big.mark = ",", scientific = FALSE)),
+      Unknown = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Unknown`), 5), big.mark = ",", scientific = FALSE))
     )
   }
 
@@ -216,14 +239,14 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       ) %>%
       mutate_at(
         c(
-          "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
           "East of England", "London", "South East", "South West"
         ),
         funs(as.numeric(.))
       ) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        subject_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
 
@@ -241,7 +264,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       arrange(-All) %>%
       mutate_at(
         c(
-          "North East", "North West", "Yorkshire and the Humber", "East Midlands", "West Midlands",
+          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
           "East of England", "London", "South East", "South West"
         ),
         funs(as.numeric(.))
@@ -249,7 +272,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        subject_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
 
@@ -286,7 +309,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
-        subject_name, `North East`, `North West`, `Yorkshire and the Humber`, `East Midlands`, `West Midlands`,
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
         `East of England`, `London`, `South East`, `South West`
       )
 
@@ -299,7 +322,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       ),
       `North East` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North East`), 5), big.mark = ",", scientific = FALSE)),
       `North West` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North West`), 5), big.mark = ",", scientific = FALSE)),
-      `Yorkshire and the Humber` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Yorkshire and the Humber`), 5), big.mark = ",", scientific = FALSE)),
+      `Yorkshire and The Humber` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Yorkshire and The Humber`), 5), big.mark = ",", scientific = FALSE)),
       `East Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East Midlands`), 5), big.mark = ",", scientific = FALSE)),
       `West Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`West Midlands`), 5), big.mark = ",", scientific = FALSE)),
       `East of England` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East of England`), 5), big.mark = ",", scientific = FALSE)),
