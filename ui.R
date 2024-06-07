@@ -29,9 +29,16 @@ fluidPage(
         HTML(".navbar-nav {
                  float: none !important;
               }
-              .navbar-nav > li:nth-child(9) {
+                           .navbar-nav > li:nth-child(9) {
                  float: right;
-              }")
+              }
+                           .navbar-nav > li:nth-child(8) {
+                 float: right;
+              }
+                           .navbar-nav > li:nth-child(7) {
+                 float: right;
+              }
+")
       )
     )
   ),
@@ -39,18 +46,22 @@ fluidPage(
     "cookie-banner",
     "Your dashboard name"
   ),
+  tags$head(includeHTML(("google-analytics.html"))),
+  dfe_cookie_script(),
   navbarPage("",
     id = "navbar",
-    tags$head(includeHTML(("google-analytics.html"))),
-    dfe_cookie_script(),
     shinyGovstyle::banner(
       "beta banner",
       "beta",
       paste0(
-        "<b>We're looking for volunteers! We've developed several new dashboards ",
-        "in the last 12 months and we'd really like to know what you think of them. ",
-        "If you're interested in helping us improve our products, please sign up ",
-        "using our <a href='https://forms.office.com/e/ZjNxf10uuN'>user-testing volunteer form</a>.</b><br>"
+        "<b>This dashboard is a new service that we are developing. If you have
+        any feedback or suggestions for improvements, please submit them using
+        our ",
+        a(
+          href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
+          "feedback form", .noWS = c("after")
+        ),
+        ".</b><br>"
       )
     ),
 
@@ -748,18 +759,22 @@ fluidPage(
       ),
     ), # end of industry by subject tab
 
-    # Accessibility ===========================================================
-
-    tabPanel(
-      "Accessibility",
-      accessibility_statement() # defined in R/accessibility_statement.R
-    ),
-
     # Support links ===========================================================
 
     tabPanel(
       "Support and feedback",
       support_links() # defined in R/supporting_links.R
+    ),
+    cookies_panel_ui(
+      id = "cookies_panel",
+      google_analytics_key = google_analytics_key
+    ),
+
+    # Accessibility ===========================================================
+
+    tabPanel(
+      "Accessibility",
+      accessibility_statement() # defined in R/accessibility_statement.R
     )
   ), # end of navbar page
 

@@ -12,6 +12,12 @@ server <- function(input, output, session) {
     cookie_link_panel = "cookies_panel_ui"
   )
 
+  cookies_panel_server(
+    id = "cookies_panel",
+    input_cookies = shiny::reactive(input$cookies),
+    google_analytics_key = google_analytics_key # # nolint: [object_usage_linter]
+  )
+
   # Links to tabs --------------------------------------------
 
   observeEvent(input$link_to_industryFlow_tab, {
