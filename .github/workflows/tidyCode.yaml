@@ -10,7 +10,7 @@ jobs:
   tidyCode:
     runs-on: ${{ matrix.config.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: tidyCode
 
     strategy:
       fail-fast: false
@@ -25,11 +25,10 @@ jobs:
       RENV_PATHS_ROOT: ~/.local/share/renv
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: ${{matrix.config.r}}
           use-public-rspm: true
 
       - name: Cache R packages
@@ -59,7 +58,7 @@ jobs:
         run: |
             source("global.R")
         
-            codeChecks <- tidy_code_function()
+            codeChecks <- tidy_code()
             
             if(any(is.na(codeChecks))) {
               stop("There is a breaking error in the code.")

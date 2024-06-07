@@ -43,6 +43,8 @@ fiveyag_cohort_year <- "2014/15"
 
 # tidy_code_function -------------------------------------------------------------------------------
 
+google_analytics_key <- "Q08W0Y4G5C"
+
 tidy_code_function <- function() {
   message("----------------------------------------")
   message("App scripts")
