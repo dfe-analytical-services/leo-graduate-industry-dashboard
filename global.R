@@ -37,9 +37,9 @@ shhh(library(dfeshiny))
 
 # update years for text
 
-tax_year_dash <- "2020-21"
-tax_year_slash <- "2020/21"
-fiveyag_cohort_year <- "2014/15"
+tax_year_dash <- "2021-22"
+tax_year_slash <- "2021/22"
+fiveyag_cohort_year <- "2015/16"
 
 # tidy_code_function -------------------------------------------------------------------------------
 

@@ -10,7 +10,7 @@ welcome_text <- function() {
     five and ten years after graduation. This means we can now see what industry graduates were working in
     at these points in time. For more detail see our ",
     a(
-      href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2020-21",
+      href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
       "official statistics publication on LEO Graduate and Postgraduate Outcomes",
       .noWS = c("after")
     ),
