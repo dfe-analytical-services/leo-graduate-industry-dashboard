@@ -17,14 +17,19 @@ test_that("Migrated shinytest test: testUI.R", {
 
   app$set_inputs(navbar = "industryFlow", timeout_ = 10000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
+
   app$set_inputs(qualinput = "Level 7 (taught)", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
+
   app$set_inputs(qualinput = "Level 7 (research)", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
+
   app$set_inputs(qualinput = "Level 8", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
+
   app$set_inputs(sexinput = "F", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
+
   app$set_inputs(sexinput = "M", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
@@ -44,13 +49,11 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(earningsbutton = "Median earnings", wait_ = FALSE)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
 
-
   app$set_inputs(qualinput3 = "Level 8", wait_ = FALSE)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
 
   app$set_inputs(crosstabs.subjectinput = "Allied health", wait_ = FALSE)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
-
 
   app$set_inputs(countinput2 = "ethnicity", timeout_ = 10000)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
