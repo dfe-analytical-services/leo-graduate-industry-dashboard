@@ -35,6 +35,9 @@ shhh(library(shinyjs))
 shhh(library(dfeshiny))
 # shhh(library(shinya11y))
 
+#Source all files in the ui_panels folder
+lapply(list.files("R/ui_panels/", full.names = TRUE), source)
+
 # update years for text
 
 tax_year_dash <- "2021-22"
