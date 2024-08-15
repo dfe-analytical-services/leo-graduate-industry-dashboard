@@ -141,4 +141,3 @@ sic_groups_text <- function() {
     )
   )
 }
-

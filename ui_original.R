@@ -1,9 +1,9 @@
 fluidPage(
-# lines below added by Cathie  
-# tags$head(HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year ", tax_year_dash, "</title>")),
-# use_shiny_titls(),
-# tags$html(lang = "en"),
-  
+  # lines below added by Cathie
+  # tags$head(HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year ", tax_year_dash, "</title>")),
+  # use_shiny_titls(),
+  # tags$html(lang = "en"),
+
   shinyjs::useShinyjs(),
   includeCSS("www/dfe_shiny_gov_style.css"),
   title = "LEO Graduate Industry dashboard",
@@ -94,10 +94,10 @@ fluidPage(
           ),
 
           ## Left panel -------------------------------------------------------
-# Cathie - definitely need to change this bit so that it goes down the side
-#          sidebarLayout(
-#            sidebarPanel(
-# the above two rows added by Cathie
+          # Cathie - definitely need to change this bit so that it goes down the side
+          #          sidebarLayout(
+          #            sidebarPanel(
+          # the above two rows added by Cathie
           column(
             6,
             div(
@@ -161,7 +161,7 @@ fluidPage(
     ), # End of homepage tabPanel()
 
 
-industry_flow_panel(),
+    industry_flow_panel(),
 
 
     # Regional analysis tab ===================================================
@@ -633,21 +633,21 @@ industry_flow_panel(),
 
     # Support links ===========================================================
 
- #   tabPanel(
-  #    "Support and feedback",
-   #   support_links() # defined in R/supporting_links.R
-    #),
-    
-#    cookies_panel_ui(
- #     id = "cookies_panel",
-  #    google_analytics_key = google_analytics_key
-   # ),
+    #   tabPanel(
+    #    "Support and feedback",
+    #   support_links() # defined in R/supporting_links.R
+    # ),
+
+    #    cookies_panel_ui(
+    #     id = "cookies_panel",
+    #    google_analytics_key = google_analytics_key
+    # ),
 
     support_panel(
       team_email = "statistics.development@education.gov.uk",
       repo_name = "https://github.com/dfe-analytical-services/shiny-template",
       form_url = "https://forms.office.com"
-        ),
+    ),
 
 
     # Accessibility ===========================================================
