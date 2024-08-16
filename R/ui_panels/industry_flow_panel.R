@@ -38,28 +38,26 @@ industry_flow_page <- function() {
                     selected = "First degree"
                   )
                 ),
-                
                 column(
                   width = 6,
                   selectizeInput("indflow.subjectinput",
-                                 label = "Select subject area studied",
-                                 choices = unique(c("All", sort(qual_subjects$subject_name))),
-                                 selected = "All"
+                    label = "Select subject area studied",
+                    choices = unique(c("All", sort(qual_subjects$subject_name))),
+                    selected = "All"
                   )
                 ),
-                
                 column(
                   width = 6,
-                selectInput("sexinput",
-                            label = "Select graduate sex",
-                            choices = list(
-                              "Female & Male" = "F+M",
-                              "Female" = "F",
-                              "Male" = "M"),
-                            selected = "F+M"
-                )
-              ), 
-              
+                  selectInput("sexinput",
+                    label = "Select graduate sex",
+                    choices = list(
+                      "Female & Male" = "F+M",
+                      "Female" = "F",
+                      "Male" = "M"
+                    ),
+                    selected = "F+M"
+                  )
+                ),
               )
             )
         )
