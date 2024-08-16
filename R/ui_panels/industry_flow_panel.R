@@ -30,33 +30,40 @@ industry_flow_page <- function() {
                 column(
                   width = 6,
                   selectizeInput("qualinput",
-                    label = "Choose graduate level qualification",
+                    label = "Select qualification",
                     choices = list(
                       "First degree",
                       "Level 7 (taught)"
                     ),
                     selected = "First degree"
                   )
+                ),
+                
+                column(
+                  width = 6,
+                  selectizeInput("indflow.subjectinput",
+                                 label = "Select subject area studied",
+                                 choices = unique(c("All", sort(qual_subjects$subject_name))),
+                                 selected = "All"
+                  )
+                ),
+                
+                column(
+                  width = 6,
+                selectInput("sexinput",
+                            label = "Select graduate sex",
+                            choices = list(
+                              "Female & Male" = "F+M",
+                              "Female" = "F",
+                              "Male" = "M"),
+                            selected = "F+M"
                 )
+              ), 
+              
               )
             )
         )
       ),
-      #            ),
-      #         column(
-      #          width = 6,
-      #         selectizeInput(
-      #          inputId =
-      #       )
-      #    )
-      #   )
-      # )
-      #        )
-      #
-      #    )
-      # )
-
-
 
 
       ## Side bar =============================================================

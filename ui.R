@@ -40,9 +40,9 @@ fluidPage(
     main_text = "",
     main_link = "https://www.gov.uk/government/organisations/department-for-education",
     secondary_text = "Longitudinal Education Outcomes - Graduate Industry dashboard",
-    logo = "images/DfE_logo_landscape.png",
-    logo_width = 150,
-    logo_height = 32
+    logo = "images/DfE_logo.png",
+    logo_width = 85,
+    logo_height = 60
   ),
 
 
@@ -83,16 +83,7 @@ fluidPage(
       id = "cookie-panel",
       google_analytics_key = google_analytics_key
     )
-    #  accessibility_page(),
-    #  cookies_page(),
-    #  support_and_feedback_page(
-    #   team_email = "statistics.development@education.gov.uk",
-    #  repo_name = "https://github.com/dfe-analytical-services/shiny-template",
-    # form_url = "https://forms.office.com"
-    #  )
   ),
-
-
 
 
   # 6. Footer ====================================================================
