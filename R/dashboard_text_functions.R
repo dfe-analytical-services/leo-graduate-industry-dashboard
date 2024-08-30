@@ -5,10 +5,15 @@
 welcome_text <- function() {
   div(
     h2("Welcome"),
-    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
-    LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
-    five and ten years after graduation. This means we can now see what industry graduates were working in
-    at these points in time. For more detail see our ",
+    "This dashboard provides information about the industries that graduates were working in
+    one, three, five, and ten years after graduation. We are able to do this because we have joined
+    the LEO data with SIC (UK Standard Industrial Classification of economic activities) codes
+    using the Inter-Departmental Business Register data or IDBR. For more information, see our",
+
+    #    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
+    #   LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
+    #  five and ten years after graduation. This means we can now see what industry graduates were working in
+    # at these points in time. For more detail see our ",
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
       "official statistics publication on LEO Graduate and Postgraduate Outcomes",

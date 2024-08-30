@@ -5,7 +5,7 @@ industry_flow_page <- function() {
 
   tabPanel(
     value = "industryFlow",
-    tags$div(title = "This section is useful if you want to understand how well different industries retain graduates.", "Industry flow"),
+    tags$div(title = "This section shows how graduates of each subject move into different industries.", "Industry flow"),
 
     ## Heading ==================================================================
     gov_main_layout(
@@ -13,7 +13,8 @@ industry_flow_page <- function() {
         column(
           width = 12,
           h1("Industries in which graduates are employed one, three and five years after graduation"),
-          h2("by subject area studied and sex: graduates from 2015-16 academic year"),
+          #          h3("... by qualification, subject area studied, and sex."),
+          h3("Graduates from 2015-16 academic year"),
         )
       ),
 
@@ -29,8 +30,9 @@ industry_flow_page <- function() {
               gov_row(
                 column(
                   width = 6,
-                  selectizeInput("qualinput",
-                    label = "Select qualification",
+                  selectizeInput(
+                    "qualinput",
+                    label = "Select a qualification",
                     choices = list(
                       "First degree",
                       "Level 7 (taught)"
@@ -40,18 +42,20 @@ industry_flow_page <- function() {
                 ),
                 column(
                   width = 6,
-                  selectizeInput("indflow.subjectinput",
-                    label = "Select subject area studied",
+                  selectizeInput(
+                    "indflow.subjectinput",
+                    label = "Select a subject area studied",
                     choices = unique(c("All", sort(qual_subjects$subject_name))),
                     selected = "All"
                   )
                 ),
                 column(
                   width = 6,
-                  selectInput("sexinput",
+                  selectizeInput(
+                    inputId = "sexinput",
                     label = "Select graduate sex",
                     choices = list(
-                      "Female & Male" = "F+M",
+                      "Female & male" = "F+M",
                       "Female" = "F",
                       "Male" = "M"
                     ),
@@ -60,63 +64,64 @@ industry_flow_page <- function() {
                 ),
               )
             )
-        )
-      ),
+        ),
 
 
-      ## Side bar =============================================================
+        ## Side bar =============================================================
 
-      sidebarLayout(
-        sidebarPanel(
-          width = 2,
+        #     sidebarLayout(
+        #      sidebarPanel(
+        #       width = 2,
 
-          ### Help text -------------------------------------------------------
+        ### Help text -------------------------------------------------------
 
-          helpText("Create a Sankey chart using the dropdowns below."),
-          helpText("Switch between the Sankey and the proportions table using the tabs on the right."),
+        #          helpText("Create a Sankey chart using the dropdowns below."),
+        #         helpText("Switch between the Sankey and the proportions table using the tabs on the right."),
 
-          ### Degree input ----------------------------------------------------
+        ### Degree input ----------------------------------------------------
 
-          selectInput("qualinput",
-            label = "Choose graduate qualification level",
-            choices = list(
-              "First degree",
-              "Level 7 (taught)"
-            ),
-            selected = "First degree"
-          ),
+        #          selectInput("qualinput",
+        #           label = "Choose graduate qualification level",
+        #          choices = list(
+        #           "First degree",
+        #          "Level 7 (taught)"
+        #       ),
+        #      selected = "First degree"
+        #   ),
 
-          ### Subject input ---------------------------------------------------
+        ### Subject input ---------------------------------------------------
 
-          selectizeInput("indflow.subjectinput",
-            label = "Select a subject area",
-            choices = unique(c("All", sort(qual_subjects$subject_name))),
-            selected = "All"
-          ),
+        #          selectizeInput("indflow.subjectinput",
+        #           label = "Select a subject area",
+        #          choices = unique(c("All", sort(qual_subjects$subject_name))),
+        #         selected = "All"
+        #      ),
 
-          ### Sex input -------------------------------------------------------
+        ### Sex input -------------------------------------------------------
 
-          selectInput("sexinput",
-            label = "View by graduate sex",
-            choices = list(
-              "Female & Male" = "F+M",
-              "Female" = "F",
-              "Male" = "M"
-            ),
-            selected = "F+M"
-          )
-        ), # end of sidebar
+        #          selectInput("sexinput",
+        #           label = "View by graduate sex",
+        #          choices = list(
+        #           "Female & Male" = "F+M",
+        #          "Female" = "F",
+        #         "Male" = "M",
+        #      selected = "F+M"
+        #    ),
+        #   )
+        #        )
+        #       ), # end of sidebar
 
         ## Main panel =========================================================
 
         mainPanel(
-          width = 10,
+          #          width = 10,
+          width = 25,
           style = "height: 90vh; overflow-y: auto;",
 
           ### Title  ----------------------------------------------------------
 
-          htmlOutput("sankey_title"),
-          br(), # this makes a line break
+          #          htmlOutput("sankey_title"),
+          #         br(), # this makes a line break
           # strong("Most popular industry"),
           htmlOutput("sankeytext1"),
           br(),
@@ -135,15 +140,14 @@ industry_flow_page <- function() {
               details(
                 inputId = "sankeyhelp",
                 label = "How to read this sankey",
-                help_text = "The coloured bars represent graduates in that
-                industry at each year after graduation, and the grey flow lines
-                show the movement of these graduates from one year after
-                graduation on the left, to three years of graduation in the
-                middle, to five years after graduation on the right side. Hover
+                help_text = "The coloured bars represent numbers of graduates in each
+                industry one, three and five years after graduation. The grey flow lines
+                represent movement of graduates between industries between the same years
+                after graduation. You can hover
                 your mouse over a bar or flow line to see the number of
-                graduates it represents. Please note that this chart only displays the
-                top 9 industries and the rest are being grouped automatically into 'Other'. To see
-                the full breakdown of industries please view the Industry proportions table."
+                graduates it represents. Note that this chart displays the
+                nine industries that most graduates work in and the rest are grouped as 'Other'.
+                To see the full breakdown of industries please view the Industry proportions table."
               ),
               column(
                 4,

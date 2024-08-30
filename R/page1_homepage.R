@@ -35,7 +35,7 @@ homepage <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This section is useful if you want to understand how well different industries retain graduates.",
+                  title = "This section provides information about how graduates stay within or move between industries.",
                   h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
                 ),
                 industry_flow_text(), # defined in R/dashboard_text.R
@@ -47,7 +47,7 @@ homepage <- function() {
                 regional_text(), # defined in R/dashboard_text.R
                 br(),
                 tags$div(
-                  title = "This section is useful if you want to understand which industries your subject of study can lead to.",
+                  title = "This section provides information about the industries that graduates of different subjects have worked in.",
                   h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
                 ),
                 sub_by_ind_text(), # defined in R/dashboard_text.R

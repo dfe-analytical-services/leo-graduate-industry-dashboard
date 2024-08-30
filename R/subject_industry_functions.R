@@ -2198,72 +2198,74 @@ crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeri
   return(crosstab)
 }
 
-crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
-  ifelse(subjectinput == "All",
-    subjecttext <- "all subjects",
-    subjecttext <- subjectinput
-  )
-
-  if (YAGinput == 1) {
-    YAGtext <- "one year"
-  } else if (YAGinput == 3) {
-    YAGtext <- "three years"
-  } else if (YAGinput == 5) {
-    YAGtext <- "five years"
-  } else if (YAGinput == 10) {
-    YAGtext <- "ten years"
-  }
-
-  if (countinput == "FSM") {
-    counttext <- "FSM status"
-  } else if (countinput == "prior_attainment") {
-    counttext <- "prior attainment"
-  } else if (countinput == "current_region") {
-    counttext <- "current region"
-  } else if (countinput == "ethnicity") {
-    counttext <- "ethnicity"
-  }
 
 
-  if (countinput %in% c("FSM", "prior_attainment")) {
-    crosstab_title <- paste("<h4>Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
-                          graduation, young (under 21 at start of course) male and female first degree
-                          graduates from English HE providers, ", tax_year_slash, " tax year.</h4>",
-      sep = ""
-    )
-  }
+# crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {
+# ifelse(subjectinput == "All",
+#  subjecttext <- "all subjects",
+# subjecttext <- subjectinput
+#  )
 
-  if (countinput %in% c("sex")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
-                          graduation, male and female ", tolower(qualinput), " graduates from English HE providers,
-                            ", tax_year_slash, " tax year.</h4>",
-      sep = ""
-    )
-  }
+# if (YAGinput == 1) {
+#  YAGtext <- "one year"
+#  } else if (YAGinput == 3) {
+#   YAGtext <- "three years"
+# } else if (YAGinput == 5) {
+#    YAGtext <- "five years"
+# } else if (YAGinput == 10) {
+#  YAGtext <- "ten years"
+#  }
 
-  if (countinput %in% c("qualification_TR")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification, ", YAGtext, " after
-                          graduation, male and female graduates from English HE providers,
-                            ", tax_year_slash, " tax year.</h4>",
-      sep = ""
-    )
-  }
+#  if (countinput == "FSM") {
+# counttext <- "FSM status"
+# } else if (countinput == "prior_attainment") {
+#   counttext <- "prior attainment"
+#  } else if (countinput == "current_region") {
+# counttext <- "current region"
+# } else if (countinput == "ethnicity") {
+#   counttext <- "ethnicity"
+#  }
 
-  if (countinput %in% c("current_region", "ethnicity")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
-                          graduation, male and female first degree graduates from HE providers,
-                            ", tax_year_slash, " tax year.</h4>",
-      sep = ""
-    )
-  }
 
-  if (countinput %in% c("subject_name")) {
-    crosstab_title <- paste("<h4> Industry of graduate employment for graduates by subject, ", YAGtext, " after
-                          graduation, male and female ", tolower(qualinput), " graduates from English HE providers,
-                            ", tax_year_slash, " tax year.</h4>",
-      sep = ""
-    )
-  }
+#  if (countinput %in% c("FSM", "prior_attainment")) {
+#   crosstab_title <- paste("<h3> by of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
+#                        graduation, young (under 21 at start of course) male and female first degree
+#                       graduates from English HE providers, ", tax_year_slash, " tax year.</h3>",
+#  sep = ""
+#    )
+# }
 
-  return(crosstab_title)
-}
+#  if (countinput %in% c("sex")) {
+#   crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", countinput, ", ", YAGtext, " after
+#                        graduation, male and female ", tolower(qualinput), " graduates from English HE providers,
+#                         ", tax_year_slash, " tax year.</h4>",
+#  sep = ""
+#    )
+# }
+
+#  if (countinput %in% c("qualification_TR")) {
+#   crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by qualification, ", YAGtext, " after
+#                        graduation, male and female graduates from English HE providers,
+#                         ", tax_year_slash, " tax year.</h4>",
+#  sep = ""
+#    )
+# }
+
+#  if (countinput %in% c("current_region", "ethnicity")) {
+#   crosstab_title <- paste("<h4> Industry of graduate employment for graduates of ", subjecttext, " by ", counttext, ", ", YAGtext, " after
+#                        graduation, male and female first degree graduates from HE providers,
+#                         ", tax_year_slash, " tax year.</h4>",
+#  sep = ""
+#    )
+# }
+
+#  if (countinput %in% c("subject_name")) {
+#   crosstab_title <- paste("<h4> Industry of graduate employment for graduates by subject, ", YAGtext, " after
+#                        graduation, male and female ", tolower(qualinput), " graduates from English HE providers,
+#                         ", tax_year_slash, " tax year.</h4>",
+#  sep = ""
+#    )
+# }
+
+#  return(crosstab_title)
+# }

@@ -36,7 +36,56 @@ server <- function(input, output, session) {
     updateTabsetPanel(session, "navbar", selected = "industryBySubject")
   })
 
-  # Sankey functions --------------------------------------------------------
+  # Added by Cathie - makes the drop down in industry flow page have a reactive title
+  #  observe({
+  #   if(input$navlistPanel == "industryFlow") {
+  #    change_window_title(
+  #     session,
+  #    paste0(
+  #     site_title, " - ",
+  #    input$qualinput, ", ",
+  #   input$indflow.subjectinput, ", ",
+  #  input$sexinput))
+  #      }
+  #   else{
+  #    change_window_title(
+  #     session,
+  #    paste0(
+  #     site_title, " - ",
+  #    input$navlistPanel
+  # )
+  #      )
+  #   }})
+
+
+  # Industry flow page -----------------------------
+
+  ## Label for filters selected --------------------------------
+
+  ## First, create an object for male and female, as the values of input$sexinput are M,F,F&M
+
+  #  sexselection <- reactive(ifelse(input$sexinput == "F", "females",
+  #                           ifelse(input$sexinput == "M", "males",
+  #                                 "females and males")))
+
+  #  sexselection <- reactive(list(
+  #   "Female & male" = "F+M",
+  #  "Female" = "F",
+  # "Male" = "M"))
+
+  output$dropdown_label <- renderText({
+    paste0(
+      "Current selections: Qualification is ", input$qualinput,
+      ", Subject area is ", input$indflow.subjectinput,
+      ", Graduates incuded are ", input$sexinput
+    )
+  })
+
+
+
+
+
+  ## Sankey functions --------------------------------------------------------
 
   # Update the select input box in the Industry Flow analysis based on the
   # selected qualification.
@@ -118,15 +167,53 @@ server <- function(input, output, session) {
   # })
 
 
+  # Regional page =================================
+
+  output$regional_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Qualification is ", input$regional_input_qual,
+      ", Years after graduation: ", input$regional_input_YAG,
+      ", Industry is ", input$regional_input_industry,
+      ", Subject area studied is ", input$regional_input_subject
+    )
+  })
+
+
+  # Subject by industry page =======================
+
+  output$subject_by_industry_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Output is ", input$earningsbutton,
+      ", Qualification is ", input$qualinput3,
+      ", Years after graduation  is ", input$YAGinput2,
+      ", Subject area studied is ", input$crosstabs.subjectinput,
+      ", Breakdown is by ", input$countinput2
+    )
+  })
+
+
+  # Industry by subject page =======================
+
+  output$industry_by_subject_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Output is ", input$earningsbutton2,
+      ", Qualification is ", input$qualinput4,
+      ", Years after graduation  is ", input$YAGinput3,
+      ", Industry is ", input$sectionnameinput2, ", ", input$groupinput,
+      ", Breakdown is by ", input$countinput3
+    )
+  })
+
+
   # Map functions -----------------------------------------------------------
 
   observe({
     data_filtered <- regional_movement_data %>%
       filter(
-        qualification_TR == input$qualinput2,
-        SECTIONNAME == input$sectionnameinput,
+        qualification_TR == input$regional_input_qual,
+        SECTIONNAME == input$regional_input_industry,
         count >= 3,
-        YAG == input$YAGinput
+        YAG == input$regional_input_YAG
       ) %>%
       distinct()
     updateSelectizeInput(
@@ -138,8 +225,8 @@ server <- function(input, output, session) {
   reactiveRegionTable <- reactive({
     create_maptabledata(
       data, regional_movement_data,
-      input$sectionnameinput, input$regions.subjectinput, input$YAGinput,
-      input$qualinput2
+      input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG,
+      input$regional_input_qual
     )
   })
 
@@ -153,22 +240,22 @@ server <- function(input, output, session) {
 
   output$map_title <- renderText({
     map_title(
-      input$sectionnameinput, input$regions.subjectinput,
-      input$countinput, input$YAGinput, input$qualinput2
+      input$regional_input_industry, input$regional_input_subject,
+      input$countinput, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
   output$maptext <- renderText({
     map_text(
-      reactiveRegionTable(), input$sectionnameinput,
-      input$regions.subjectinput, input$YAGinput, input$qualinput2
+      reactiveRegionTable(), input$regional_input_industry,
+      input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
   output$maptext2 <- renderText({
     map_text2(
-      reactiveRegionTable(), input$sectionnameinput,
-      input$regions.subjectinput, input$YAGinput, input$qualinput2
+      reactiveRegionTable(), input$regional_input_industry,
+      input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
@@ -178,7 +265,7 @@ server <- function(input, output, session) {
 
   # Putting the regional sankey in a reactive as well as it's a bit intensive.
   reactiveRegionalSankey <- reactive({
-    data <- create_regionalsankeyframe(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    data <- create_regionalsankeyframe(input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual)
     validate(
       need(nrow(data$nodes) >= 1, "
            There is no data available.")
@@ -191,7 +278,7 @@ server <- function(input, output, session) {
   })
 
   output$regional_sankey_title <- renderText({
-    regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    regional_sankey_title(input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual)
   })
 
 
@@ -377,9 +464,14 @@ server <- function(input, output, session) {
   )
 
 
-  output$crosstab_title <- renderText({
-    crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
-  })
+  #  output$crosstab_title <- renderText({
+  #   crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
+  # })
+
+  # output$crosstab_title <- renderText(
+  # paste("<h2>Industries that graduates work in by the subject area they studied, ",
+  #        tax_year_slash, " tax year.</h2>")
+  # )
 
 
   output$backwards_crosstab_title <- renderText({
@@ -588,6 +680,9 @@ server <- function(input, output, session) {
       )
     }
   })
+
+
+
 
   # output$subjecttable <- renderReactable({
   #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)

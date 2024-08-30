@@ -35,15 +35,36 @@ shhh(library(shinyjs))
 shhh(library(dfeshiny))
 # shhh(library(shinya11y))
 
-# lapply(list.files("R/", full.names = TRUE), source)
-# Source all files in the ui_panels folder
-# lapply(list.files("R/ui_panels/", full.names = TRUE), source)
 
-# update years for text
+# update years for text -------------------------------------------------
 
 tax_year_dash <- "2021-22"
 tax_year_slash <- "2021/22"
 fiveyag_cohort_year <- "2015/16"
+
+
+# read the scripts in the correct order ---------------------------------
+
+# lapply(list.files("R/", full.names = TRUE), source)
+# Source all files in the ui_panels folder
+# lapply(list.files("R/ui_panels/", full.names = TRUE), source)
+
+source("R/read_data_functions.R")
+source("R/accessibility_statement_function.R")
+source("R/support_links_function.R")
+source("R/caveats_functions.R")
+source("R/dashboard_text_functions.R")
+source("R/general_functions.R")
+source("R/industry_flow_functions.R")
+source("R/regional_functions.R")
+source("R/subject_industry_functions.R")
+source("R/industry_subject_functions.R")
+source("R/page1_homepage.R")
+source("R/page2_industry_flow.R")
+source("R/page3_regional.R")
+source("R/page4_subject_industry.R")
+source("R/page5_industry_subject.R")
+
 
 # tidy_code_function -------------------------------------------------------------------------------
 
@@ -64,7 +85,7 @@ tidy_code_function <- function() {
   return(script_changes)
 }
 
-source("R/read_data.R")
+# source("R/read_data.R")
 cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
 cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
 cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
@@ -82,3 +103,21 @@ qual_subjects <- tables_data %>%
 industry_groups <- tables_data %>%
   select(SECTIONNAME, group_name) %>%
   distinct()
+
+
+# Changes for regional function
+# Cathie moved this to here.
+# It was originally at the beginning of the page3_regional.R script.
+
+ukRegions <- st_read("data/boundaries/RGN_DEC_2023_EN_BFE.shp", quiet = TRUE)
+
+ukRegions <- ukRegions[order(ukRegions$RGN23NM), ]
+ukRegions$RGN23NM[ukRegions$RGN23NM == "Yorkshire and The Humber"] <- "Yorkshire and the Humber"
+
+data$SECTIONNAME <- StrCap(tolower(data$SECTIONNAME))
+regional_movement_data$SECTIONNAME <- StrCap(tolower(regional_movement_data$SECTIONNAME))
+
+# Line below was added by Cathie, as the final page
+# (referred to in the script etc as industry by subject)
+# didn't produce any results
+# tables_data$SECTIONNAME <- StrCap(tolower(tables_data$SECTIONNAME))

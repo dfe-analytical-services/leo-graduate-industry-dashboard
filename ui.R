@@ -79,6 +79,11 @@ fluidPage(
       "Accessibility",
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
+    support_panel(
+      team_email = "explore.statistics@education.gov.uk",
+      repo_name  = "https://github.com/dfe-analytical-services/shiny-template",
+      form_url   = "https://forms.office.com"
+    ),
     dfeshiny::cookies_panel_ui(
       id = "cookie-panel",
       google_analytics_key = google_analytics_key

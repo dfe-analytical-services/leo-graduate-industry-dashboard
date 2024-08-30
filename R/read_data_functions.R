@@ -4,6 +4,8 @@
 
 # Read in a cohort file.
 read_cohort <- function(cohortfile = "data/pg_sankey_data_1_3_yag_dummy.csv") {
+  #  read_cohort <- function(cohortfile = "data/sankey data 1-3YAG_FD_PG.csv") {
+  # Cathie tried adding this line because I couldn't find the datafile in the original code
   cohort <- read.csv(cohortfile)
   cohort <- subset(cohort, select = -X)
   cohort$SECTIONNAME.x <- StrCap(tolower(cohort$SECTIONNAME.x))
