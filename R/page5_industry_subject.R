@@ -127,7 +127,7 @@ industry_by_subject_page <- function() {
                 downloadButton(
                   outputId = "downloadData",
                   label = "Download table",
-                  icon = shiny::icon("Download"),
+                  icon = shiny::icon("download"),
                   class = "downloadButton"
                 )
               )
@@ -253,8 +253,14 @@ industry_by_subject_page <- function() {
 
     ### Backwards crosstab ----------------------------------------------
 
-    htmlOutput("backwards_crosstab_title"),
-    withSpinner(reactableOutput("crosstab_backwards")),
+    #    htmlOutput("backwards_crosstab_title"),
+    # Cathie adds the next rows (fluidRow, column, and width to wrap around the original line of code)
+    fluidRow(
+      column(
+        width = 12,
+        withSpinner(reactableOutput("crosstab_backwards"))
+      )
+    ),
 
     ### Caveats ---------------------------------------------------------
     br(),

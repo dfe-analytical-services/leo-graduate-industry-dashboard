@@ -2,7 +2,7 @@
 
 # Subject by industry tab =================================================
 
-subject_by_industry_page <- function() {
+subject_by_industry_page2 <- function() { ## Cathie changed the name of the function to prevent confusion
   tabPanel(
     #  tags$div(title = "This section is useful if you want to understand which industries your subject of study can lead to.", "Subject by industry"),
     tags$div(title = "This section provides information about the industries that graduates of different subjects have worked in.", "Subject by industry"),

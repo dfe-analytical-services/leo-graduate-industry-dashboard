@@ -64,7 +64,7 @@ subject_by_industry_page <- function() {
               ),
               column(
                 width = 6,
-                selectInput("crosstabs.subjectinput",
+                selectizeInput("crosstabs.subjectinput",
                   label = "Select a subject area",
                   choices = unique(c("All", sort(qual_subjects$subject_name))),
                   selected = "All"
@@ -93,12 +93,12 @@ subject_by_industry_page <- function() {
                 width = 12,
                 paste("Download the current data as a csv file"),
                 br(),
-                paste("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
+                tags$p("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
                 br(),
                 downloadButton(
                   outputId = "downloadData",
                   label = "Download table",
-                  icon = shiny::icon("Download"),
+                  icon = shiny::icon("download"),
                   class = "downloadButton"
                 )
               )
@@ -197,7 +197,9 @@ subject_by_industry_page <- function() {
     ### Crosstab text ---------------------------------------------------
 
     div(
-      "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.", br(),
+      "Please note that summed figures in the following text may differ slightly from figures in the table due to rounding.",
+      br(),
+      br(),
       htmlOutput("crosstab_text")
     ),
     withSpinner(reactableOutput("crosstab")),

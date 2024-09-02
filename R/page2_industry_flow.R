@@ -174,7 +174,7 @@ industry_flow_page <- function() {
               ), br(),
               strong("Footnotes"),
               br(),
-              paste("1. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals.")
+              paste("1. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals. This reflects the level of precision in our data. It is also easier to read.")
               # )
             ),
 
@@ -184,11 +184,11 @@ industry_flow_page <- function() {
               "Industry proportions table",
               withSpinner(reactableOutput("sankey_table")),
               br(),
-              strong("Footnotes"),
+              strong("Footnotes"), ### defined
               br(),
               paste("1. Outcome percentages are rounded to the nearest 0.1%."),
               br(),
-              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals. This reflects the level of precision of our data and makes for easier reading."),
               br(),
               paste("3. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
               height = 1500
