@@ -326,12 +326,78 @@ server <- function(input, output, session) {
       table_data$script
     )
   })
-
+  # Cathie work on this bit
   # Download current Subject by Industry view
-  output$downloadData <- downloadHandler(
+  output$downloadData_p5 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
       suffix <- "IndustrybySubject.csv"
+      if (input$countinput2 == "subject_name") {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton2),
+          input$countinput3,
+          paste0(input$YAGinput3, "YAG"),
+          gsub(" ", "-", input$qualinput4),
+          suffix,
+          sep = "_"
+        )
+      } else if (input$countinput2 == "sex") {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton),
+          input$countinput2,
+          paste0(input$YAGinput2, "YAG"),
+          gsub(" ", "-", input$qualinput3),
+          input$crosstabs.subjectinput,
+          suffix,
+          sep = "_"
+        )
+      } else {
+        paste(prefix,
+          gsub(" ", "-", input$earningsbutton),
+          input$countinput2,
+          paste0(input$YAGinput2, "YAG"),
+          input$crosstabs.subjectinput,
+          suffix,
+          sep = "_"
+        )
+      }
+    },
+    content = function(file) {
+      table_data <- reactiveSubjIndTable()
+      out_columns <- colnames(table_data$crosstabs_data)
+
+      footsum <- table_data$footer_crosstabs %>%
+        select(-SECTIONNAME, -group_name) %>%
+        summarise_all(sum) %>%
+        mutate(SECTIONNAME = "TOTAL (N)", group_name = "TOTAL (N)") %>%
+        select(out_columns)
+      dfDownload <- rbind(
+        table_data$crosstabs_data,
+        table_data$nested_crosstabs %>%
+          select(out_columns)
+      )
+      if (input$earningsbutton == "Proportions") {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, list(~ (100.0 * .)))
+      }
+      dfDownload <- dfDownload %>%
+        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+        mutate_all(list(~ gsub("-10000", "c", .))) %>%
+        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        arrange(SECTIONNAME, group_name) %>%
+        rbind(footsum)
+      write.csv(dfDownload, file, row.names = FALSE)
+    }
+  )
+
+  ### IndSubj panel server code ============================
+  #############################
+
+  # Download current subject by industry view
+  output$downloadData_p4 <- downloadHandler(
+    filename = function() {
+      prefix <- "DfE_LEO-SIC"
+      suffix <- "SubjectbyIndustry.csv"
       if (input$countinput2 == "subject_name") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton),
@@ -390,8 +456,6 @@ server <- function(input, output, session) {
     }
   )
 
-  ### IndSubj panel server code
-  #############################
 
   # Create the reactive Industry by Subject data in a data frame
   reactiveIndSubjTable <- reactive({

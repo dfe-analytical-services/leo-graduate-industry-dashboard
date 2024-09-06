@@ -125,7 +125,7 @@ industry_by_subject_page <- function() {
                 tags$p("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
                 br(),
                 downloadButton(
-                  outputId = "downloadData",
+                  outputId = "downloadData_p5",
                   label = "Download table",
                   icon = shiny::icon("download"),
                   class = "downloadButton"
