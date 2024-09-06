@@ -21,19 +21,24 @@ server <- function(input, output, session) {
   # Links to tabs --------------------------------------------
 
   observeEvent(input$link_to_industryFlow_tab, {
-    updateTabsetPanel(session, "navbar", selected = "industryFlow")
+    #    updateTabsetPanel(session, "navbar", selected = "industryFlow")
+    #    Cathie changed navbar to navlistPanel for the four links
+    updateTabsetPanel(session, "navlistPanel", selected = "industryFlow")
   })
 
   observeEvent(input$link_to_regional_tab, {
-    updateTabsetPanel(session, "navbar", selected = "regional")
+    #    updateTabsetPanel(session, "navbar", selected = "regional")
+    updateTabsetPanel(session, "navlistPanel", selected = "regional")
   })
 
   observeEvent(input$link_to_subjectByIndustry_tab, {
-    updateTabsetPanel(session, "navbar", selected = "subjectByIndustry")
+    #    updateTabsetPanel(session, "navbar", selected = "subjectByIndustry")
+    updateTabsetPanel(session, "navlistPanel", selected = "subjectByIndustry")
   })
 
   observeEvent(input$link_to_industryBySubject_tab, {
-    updateTabsetPanel(session, "navbar", selected = "industryBySubject")
+    #    updateTabsetPanel(session, "navbar", selected = "industryBySubject")
+    updateTabsetPanel(session, "navlistPanel", selected = "industryBySubject")
   })
 
   # Added by Cathie - makes the drop down in industry flow page have a reactive title
@@ -326,7 +331,7 @@ server <- function(input, output, session) {
   output$downloadData <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "SubjectbyIndustry.csv"
+      suffix <- "IndustrybySubject.csv"
       if (input$countinput2 == "subject_name") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton),
@@ -406,7 +411,7 @@ server <- function(input, output, session) {
   output$IndSubjDownload <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "IndustrybySubject.csv"
+      suffix <- "SubjectbyIndustry.csv"
       if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton2),

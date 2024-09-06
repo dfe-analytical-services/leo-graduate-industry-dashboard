@@ -14,7 +14,8 @@ subject_by_industry_page <- function() {
       gov_row(
         column(
           width = 12,
-          h1("Industries that graduates work in by the subject area they studied, 2021-22 tax year")
+          h1("Industries that graduates work in by the subject area they studied, 2021-22 tax year"),
+          h3("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),
@@ -208,13 +209,15 @@ subject_by_industry_page <- function() {
     br(),
     strong("Footnotes"),
     br(),
-    paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+    paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflect the precision of our data, and makes it easier to read figures."),
     br(),
-    paste("2. Earnings figures are rounded to the nearest £100"),
+    paste("2. Earnings figures are rounded to the nearest £100."),
     br(),
     paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
     br(),
-    paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+    paste("4. c = data has been supressed due to small numbers."),
+    br(),
+    paste("5. x = there is no result available (N/A)."),
     caveats_box() # defined in R/caveats.R
   )
   #  ) # end of tabPanel

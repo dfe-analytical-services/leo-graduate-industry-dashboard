@@ -35,25 +35,25 @@ homepage <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This section provides information about how graduates stay within or move between industries.",
-                  h3(actionLink("link_to_industryFlow_tab", "Industry flow analysis"))
+                  title = "This page provides information about how graduates move between industries during the first five years after graduation.",
+                  h3(actionLink("link_to_industryFlow_tab", "Industry flow page", disabled = F))
                 ),
                 industry_flow_text(), # defined in R/dashboard_text.R
                 br(),
                 tags$div(
-                  title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.",
-                  h3(actionLink("link_to_regional_tab", "Regional analysis"))
+                  title = "This page provides information about where graduates studied and lived after graduating.",
+                  h3(actionLink("link_to_regional_tab", "Regional page"))
                 ),
                 regional_text(), # defined in R/dashboard_text.R
                 br(),
                 tags$div(
-                  title = "This section provides information about the industries that graduates of different subjects have worked in.",
-                  h3(actionLink("link_to_subjectByIndustry_tab", "Subject by industry tables"))
+                  title = "This page provides information about the industries that graduates of different subjects have worked in.",
+                  h3(actionLink("link_to_subjectByIndustry_tab", "Industry by subject page"))
                 ),
                 sub_by_ind_text(), # defined in R/dashboard_text.R
                 tags$div(
-                  title = "This section is useful if you want to understand which subject to study to access certain industries.",
-                  h3(actionLink("link_to_industryBySubject_tab", "Industry by subject tables"))
+                  title = "This page provides information about the subjects studied by graduates who subsequently worked in a particular industry.",
+                  h3(actionLink("link_to_industryBySubject_tab", "Subject by industry page"))
                 ),
                 ind_by_sub_text(), # defined in R/dashboard_text.R
               )

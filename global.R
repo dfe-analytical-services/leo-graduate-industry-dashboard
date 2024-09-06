@@ -59,11 +59,11 @@ source("R/industry_flow_functions.R")
 source("R/regional_functions.R")
 source("R/subject_industry_functions.R")
 source("R/industry_subject_functions.R")
-source("R/page1_homepage.R")
-source("R/page2_industry_flow.R")
-source("R/page3_regional.R")
-source("R/page4_subject_industry.R")
-source("R/page5_industry_subject.R")
+source("R/ui_panels/page1_homepage.R")
+source("R/ui_panels/page2_industry_flow.R")
+source("R/ui_panels/page3_regional.R")
+source("R/ui_panels/page4_subject_industry.R")
+source("R/ui_panels/page5_industry_subject.R")
 
 
 # tidy_code_function -------------------------------------------------------------------------------

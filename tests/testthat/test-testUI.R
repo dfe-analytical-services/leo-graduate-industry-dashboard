@@ -33,6 +33,7 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(sexinput = "M", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
+
   # Subject by industry tab =====================================================
 
   subjectByIndustry_input <- c(
@@ -110,4 +111,53 @@ test_that("Migrated shinytest test: testUI.R", {
   # tests above. This is both in shinytest and running the App in the browser.
   app$set_inputs(YAGinput = "3", timeout_ = 30000)
   app$expect_values(input = regional_input, output = regional_output)
+
+
+
+
+  # Industry by subject tab =====================================================
+
+  industryBySubject_input <- c(
+    "navbar", "countinput3", "YAGinput3", "sectionnameinput2", "groupinput", "earningsbutton2", "qualinput4"
+  )
+  # Cathie... what's this about?
+  # Note that I've excluded the crosstab_backwards tabulated output here as it
+  # has a datakey that changes across different runs.
+  industryBySubject_output <- c("crosstab_backwards")
+
+  app$set_inputs(navbar = "industryBySubject", timeout_ = 20000)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(earningsbutton2 = "Median earnings", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(qualinput4 = "Level 8", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(sectionnameinput2 = "Construction", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(groupinput = "All", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(countinput3 = "ethnicity", timeout_ = 10000)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(YAGinput3 = "5", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(YAGinput3 = "1", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(sectionnameinput2 = "Real estate activities", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(earningsbutton2 = "Proportions", wait_ = FALSE)
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+
+  app$set_inputs(
+    sectionname2 = "Arts, entertainment and recreation",
+    wait_ = FALSE
+  )
+  app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
 })

@@ -6,14 +6,16 @@
 regional_page <- function() {
   tabPanel(
     value = "regional",
-    tags$div(title = "This section is useful if you want to understand which parts of the country graduates move to in order to find roles in particular industries.", "Regional"),
+    tags$div(title = "This page provides information about where graduates studied and lived after graduating.", "Regional"),
 
     ## Heading ==================================================================
     gov_main_layout(
       gov_row(
         column(
           width = 12,
-          h1("Regional summary")
+          h1("Regions in which graduates studied and lived after graduating."),
+          br(),
+          h3("Coverage is graduates who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),
@@ -185,7 +187,6 @@ regional_page <- function() {
       ### Summary text ----------------------------------------------------
 
       div(
-        h3("Regional summary"),
         htmlOutput("maptext"),
         br(),
         htmlOutput("maptext2"),
@@ -227,15 +228,24 @@ regional_page <- function() {
             # ),
 
             withSpinner(leafletOutput(outputId = "map", height = 470)),
+            #          div(
+            #            # Set as well but override sidebar defaults
+            #            class = "well",
+            #            style = "min-height: 100%; height: 100%; overflow-y: visible",
             strong("Footnotes"),
             br(),
-            paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+            paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data and makes it easier to read figures."),
             br(),
-            paste("2. Earnings figures are rounded to the nearest £100"),
+            paste("2. Earnings figures are rounded to the nearest £100."),
             br(),
             paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
             br(),
-            paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"), br(), br()
+            paste("4. c = data has been supressed due to small numbers."),
+            br(),
+            paste("5. x = there is no result available (N/A)"),
+            br(),
+            br()
+            #          )
           ),
           column(
             6,
@@ -306,13 +316,15 @@ regional_page <- function() {
           br(), br(),
           strong("Footnotes"),
           br(),
-          paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data and makes figures easier to read"),
           br(),
-          paste("2. Earnings figures are rounded to the nearest £100"),
+          paste("2. Earnings figures are rounded to the nearest £100."),
           br(),
           paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
           br(),
-          paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+          paste("4. c = data has been supressed due to small numbers."),
+          br(),
+          paste("5. x = there is no result available (N/A)")
         )
       ),
 

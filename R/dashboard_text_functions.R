@@ -34,9 +34,10 @@ welcome_text <- function() {
 
 industry_flow_text <- function() {
   div(paste(
-    "This tab takes a longitudinal view of the five year after graduation cohort (", fiveyag_cohort_year, " academic year of graduation
-    cohort), as it shows the industry sections they worked in and flowed between at one, three and five years after
-    graduation. You can filter this analysis to look at graduates of a specific subject area, or filter by graduate sex.",
+    "This page provides information about the industries that graduates worked in one, three and five years
+    after graduation. The cohort graduated during the academic year of ", fiveyag_cohort_year, ".
+    The page allows you to filter for graduates who studied a particular subject area, at a particular qualification
+    level, and by graduate sex.",
     sep = ""
   ))
 }
@@ -45,10 +46,14 @@ industry_flow_text <- function() {
 
 regional_text <- function() {
   div(
-    "This tab compares where graduates studied to where they lived at one, three, five and ten years after
-   graduation, for each industry, and uses the ", tax_year_slash, " tax year data (so does not follow the same cohort
-   as the industry flow analysis). It can be filtered to look at graduates of a specific subject area, and provides
-   context on the number of providers and median earnings for the selected options for each region."
+    "This page provides information about the regions in which graduates studied and subsequently
+    lived one, three, five and ten years after graduation. A table provides additional contextual information
+    about the number of providers in each region and median earnings of graduates living in that region.
+    You can filter for graduates who studied a particular subject area, at a particular qualification
+    level, who subsequently worked in a particular industry, for specific numbers of years after graduation.
+    Information applies to different cohorts of graduates depending upon the number of years after graduation
+    selected, as we use the most recent tax year, ", tax_year_slash, " to ascertain the region where graduates
+    'currently' live."
   )
 }
 
@@ -56,10 +61,11 @@ regional_text <- function() {
 
 sub_by_ind_text <- function() {
   div(
-    "These tables look at the one, three, five and ten year after graduation cohorts from the
-    ", tax_year_slash, " tax year. The tables show which industries graduates of the selected subject area go on to work in.
-    You can expand the industry sections in these tables to view a more detailed breakdown of the 3 digit SIC groups
-    within that industry. The following breakdowns are currently available:",
+    "This page presents tables with information about the industries that graduates worked in up to ten years
+    after graduation. This information applies to different cohorts of graduates depending upon the number of years after graduation
+    selected, as we use the most recent tax year, ", tax_year_slash, " to ascertain the industry in which graduates
+    are currently working. You can expand the industry sections in these tables to view a more detailed breakdown
+    of the 3 digit SIC groups within that industry, and can filter the results by:",
     br(),
     tags$ul(
       tags$li("Sex"),
@@ -77,10 +83,9 @@ sub_by_ind_text <- function() {
 
 ind_by_sub_text <- function() {
   div(
-    "These tables look at the one, three, five and ten year after graduation cohorts from the
-    ", tax_year_slash, " tax year. The tables show which subjects graduates working in a selected industry area previously studied.
-    You can view this at the 3 digit SIC group level and may select multiple SIC groups within an industry area at one time.
-    The following breakdowns are currently available:",
+    "This page presents tables with information about the subject areas studied by graduates who are currently working
+    in a particular industry. Information is avaialable for cohorts currently working during the most recent tax year, ",
+    tax_year_slash, ", one, three, five and ten year after graduation. You can filter the results by:",
     br(),
     tags$ul(
       tags$li("Sex"),
@@ -101,8 +106,9 @@ sic_groups_text <- function() {
     h3("IDBR (Inter-Departmental Business Register)"),
     "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
     h3("UK SIC (Standard Industrial Classification) code"),
-    "The UK Standard Industrial Classification (SIC) of economic activities is used to classify
-    businesses by the type of activity they do.",
+    "The UK Standard Industrial Classification (SIC) of Economic Activities, abbreviated as SIC,
+    is published by the Office for National Statistics (ONS). It provides a framework to classify
+    economic activity.",
     h3("Useful links"),
     a(
       href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
@@ -113,12 +119,12 @@ sic_groups_text <- function() {
       href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
       "Office for National Statistics interactive SIC hierarchy"
     ),
-    h3("SIC Groups and sections"),
-    "Using the Office for National Statistics (ONS) Standard Industrial Classification (SIC) of economic activities, there are over 700 detailed industry codes
-    at the 5 digit level, which are then grouped hierarchically at the 4, 3 and 2 digit level before being grouped into
-    21 broad industry sections (see the above link to the ONS interactive hierarchy). In this dashboard, the industry flow and regional analysis
-    are both available only at the broadest level of the 21 industry sections. The tables go into more detail, with almost 250
-    SIC groups available to view at the 3 digit level by expanding the broad sections which consist of the following:",
+    h3("SIC groups and sections"),
+    "The SIC framework includes over 700 detailed industry codes, which are grouped hierarchically
+    into 615 classes, 272 groups, 88 divisions, and 21 sections. See the link above to the ONS interactive
+    SIC hierarchy. In this dashboard, the industry flow and regional pages provide breakdowns
+    by the 21 broad industry sections, while the industry by subject andsSubject by industry pages provide additional
+    breakdowns by the SIC (3-digit code) groups. The 21 broad industry sections are as follows:",
     br(),
     br(),
     tags$ol(

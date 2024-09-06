@@ -14,7 +14,8 @@ industry_flow_page <- function() {
           width = 12,
           h1("Industries in which graduates are employed one, three and five years after graduation"),
           #          h3("... by qualification, subject area studied, and sex."),
-          h3("Graduates from 2015-16 academic year"),
+          h3("Coverage is graduates from the 2015-16 academic year
+             who were in sustained employment one and three, or three and five years after graduation."),
         )
       ),
 
@@ -184,19 +185,22 @@ industry_flow_page <- function() {
               "Industry proportions table",
               withSpinner(reactableOutput("sankey_table")),
               br(),
-              strong("Footnotes"), ### defined
+              strong("Footnotes"),
               br(),
-              paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+              paste("1. Outcome percentages are rounded to the nearest 0.1%.
+                    Rounding reflects the level of precision of our data, and makes it easier to read the information."),
               br(),
-              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals. This reflects the level of precision of our data and makes for easier reading."),
+              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
               br(),
-              paste("3. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+              paste("3. c = data has been supressed due to small numbers."),
+              br(),
+              paste("4. x = there is no result available (N/A)"),
               height = 1500
             )
           ),
 
-          ### Caveats ---------------------------------------------------------
 
+          ### Caveats ---------------------------------------------------------
           caveats_box_flow() # defined in R/caveats.R
         ),
       ),

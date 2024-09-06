@@ -14,7 +14,7 @@ industry_by_subject_page <- function() {
         column(
           width = 12,
           h1("Subject areas that graduates studied before working in a particular industry."),
-          h3("Coverage is all graduates from English HE providers, 2021-22 tax year.")
+          h3("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),
@@ -122,7 +122,7 @@ industry_by_subject_page <- function() {
                 width = 12,
                 paste("Download the current data as a csv file"),
                 br(),
-                paste("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
+                tags$p("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
                 br(),
                 downloadButton(
                   outputId = "downloadData",
@@ -266,13 +266,15 @@ industry_by_subject_page <- function() {
     br(),
     strong("Footnotes"),
     br(),
-    paste("1. Outcome percentages are rounded to the nearest 0.1%."),
+    paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data, and makes it easier to read figures."),
     br(),
-    paste("2. Earnings figures are rounded to the nearest £100"),
+    paste("2. Earnings figures are rounded to the nearest £100."),
     br(),
     paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
     br(),
-    paste("4. c = data has been supressed due to small numbers. x = there is no result available (N/A)"),
+    paste("4. c = data has been supressed due to small numbers."),
+    br(),
+    paste("5. x = there is no result available (N/A)."),
     caveats_box() # defined in R/caveats.R
   )
 }

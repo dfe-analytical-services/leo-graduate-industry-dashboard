@@ -6,7 +6,9 @@ caveats_box_flow <- function() {
       br(),
       "\U2022 Data for Level 7 (research) and Level 8 graduates are available in the underlying data files.",
       br(),
-      "\U2022 The sankey plots and tables include graduates who were in sustained employment in the associated tax year, and a graduate's industry is recorded as the industry in which they earnt the most in the associated tax year.",
+      "\U2022 The sankey plots and tables include graduates who were in sustained employment in the associated tax year.",
+      br(),
+      "\U2022 Each graduate's industry is recorded as the industry in which they earned the most in the particular tax year.",
       br(),
       "\U2022 SIC codes provide information about the industry that each graduate worked in, but not their role or occupation within that industry.",
       br(),
@@ -21,15 +23,18 @@ caveats_box <- function() {
     text = paste0(
       strong("Caveats"),
       br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated tax year, and each graduate's industry is recorded as the one in which they earned the most in the particular tax year.",
+      "\U2022 Coverage is graduates who were in sustained employment during the 2021-22 tax year.",
       br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us about the graduates occupation within that company.",
+      "\U2022 Each graduate's recorded industry is the industry in which they earned the most during the tax year.",
       br(),
-      "\U2022 Please note there are a small number of cases where there are conflicting section names and group names – see the data quality section of ",
+      "\U2022 SIC codes provide information about the industry the graduate works in, but not their occupation or role within that industry.",
+      br(),
+      "\U2022 Please note that for a few cases, SIC section and group names conflict with one another. See the data quality section of ",
       a(
         href = "https://explore-education-statistics.service.gov.uk/methodology/leo-graduate-and-postgraduate-outcomes",
+        #       target = "_blank", # Cathie trying to get it to open on a new page - didn't work! as it tries to open in RStudio
         "the methodology"
-      ), " for further details"
+      ), " for further details."
     )
   )
 }
@@ -42,9 +47,11 @@ caveats_box_regional <- function() {
       br(),
       "\U2022 Data for Level 7 (research) and Level 8 graduates are available in the underlying data files.",
       br(),
-      "\U2022 Data only includes graduates who were in sustained employment in the associated tax year, and a graduate's industry is recorded as the industry in which they earnt the most in the associated tax year.",
+      "\U2022 Data only include graduates who were in sustained employment in the associated tax year.",
       br(),
-      "\U2022 SIC codes tell us the industry of the company that the graduate works for, and does NOT tell us about the graduates occupation within that company."
+      "\u2022 Each graduate's industry is recorded as the industry in which they earned most during the associated tax year.",
+      br(),
+      "\U2022 SIC codes tell us which industry section that the graduate worked in, but not their occupation or role in that industry."
     )
   )
 }
