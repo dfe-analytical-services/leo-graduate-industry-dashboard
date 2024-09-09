@@ -118,7 +118,8 @@ test_that("Migrated shinytest test: testUI.R", {
   # Industry by subject tab =====================================================
 
   industryBySubject_input <- c(
-    "navlistPanel", "countinput3", "YAGinput3", "sectionnameinput2", "groupinput", "earningsbutton2", "qualinput4"
+    "navlistPanel", "countinput3", "YAGinput3", "sectionnameinput2",
+    "groupinput", "earningsbutton2", "qualinput4"
   )
   # Cathie... what's this about?
   # Note that I've excluded the crosstab_backwards tabulated output here as it
