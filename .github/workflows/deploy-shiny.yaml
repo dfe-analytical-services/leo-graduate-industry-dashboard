@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - development
 
 name: deploy-shiny
 
@@ -10,6 +11,9 @@ jobs:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     strategy:
       fail-fast: false
@@ -31,6 +35,14 @@ jobs:
           r-version: 4.4.0
           use-public-rspm: true
 
+      - name: Set env vars (dev)
+        if: endsWith(github.ref, '/development')
+        run: |
+          echo "SHINYAPP_NAME='dev-leo-graduate-industry-dashboard'" >> $GITHUB_ENV
+      - name: Set env vars (prod)
+        if: endsWith(github.ref, '/main')
+        run: |
+          echo "SHINYAPP_NAME='leo-graduate-industry-dashboard'">> $GITHUB_ENV
       - name: Cache R packages
         if: runner.os != 'Windows'
         uses: actions/cache@v1
@@ -62,4 +74,4 @@ jobs:
         run: >
           Rscript
           -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
-          -e "rsconnect::deployApp(forceUpdate=TRUE)"
+          -e "rsconnect::deployApp(appName=${{env.SHINYAPP_NAME}}, forceUpdate = TRUE)"
