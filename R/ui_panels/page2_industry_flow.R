@@ -5,7 +5,7 @@ industry_flow_page <- function() {
 
   tabPanel(
     value = "industryFlow",
-    tags$div(title = "This section shows how graduates of each subject move into different industries.", "Industry flow"),
+    tags$div(title = "This page provides information about the industries that graduates work in one, three and five years after graduation.", "Industry flow"),
 
     ## Heading ==================================================================
     gov_main_layout(
@@ -192,9 +192,9 @@ industry_flow_page <- function() {
               br(),
               paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
               br(),
-              paste("3. c = data has been supressed due to small numbers."),
+              paste("3. c = data have been supressed due to small numbers."),
               br(),
-              paste("4. x = there is no result available (N/A)"),
+              paste("4. x = there is no result available (N/A)."),
               height = 1500
             )
           ),

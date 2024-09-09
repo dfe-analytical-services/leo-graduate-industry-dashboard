@@ -3,6 +3,7 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp) # commenting out to test using lighthouse
 
+  # Cookies ====================================================
 
   output$cookie_status <- cookie_banner_server(
     "cookie-banner",
@@ -63,9 +64,9 @@ server <- function(input, output, session) {
   #   }})
 
 
-  # Industry flow page -----------------------------
+  # p2: Industry flow page -----------------------------
 
-  ## Label for filters selected --------------------------------
+  ### Label for filters selected --------------------------------
 
   ## First, create an object for male and female, as the values of input$sexinput are M,F,F&M
 
@@ -90,7 +91,7 @@ server <- function(input, output, session) {
 
 
 
-  ## Sankey functions --------------------------------------------------------
+  ### Sankey functions --------------------------------------------------------
 
   # Update the select input box in the Industry Flow analysis based on the
   # selected qualification.
@@ -172,7 +173,9 @@ server <- function(input, output, session) {
   # })
 
 
-  # Regional page =================================
+  # p3: Regional page =================================
+
+  ### Dropdown filters ===============================
 
   output$regional_dropdown_label <- renderText({
     paste0(
@@ -184,7 +187,16 @@ server <- function(input, output, session) {
   })
 
 
-  # Subject by industry page =======================
+  # p4: Subject by industry page (Industry by subject on the updated dashboard) =======================
+
+  ### Cathie, August/Sept 2024.
+  ### The names of subject by industry and industry by subject are potentially very confusing.
+  ### The original code presented page 4 as Subject by industry, and page 5 as Industry by subject.
+  ### All the code is written this way.
+  ### However, the breakdowns in the dashboard are actually the other way around and so
+  ### on the dashboard, the names of these pages have been switched. The code remains as it was.
+
+  ### Dropdown filters ------------------------
 
   output$subject_by_industry_dropdown_label <- renderText({
     paste0(
@@ -197,7 +209,9 @@ server <- function(input, output, session) {
   })
 
 
-  # Industry by subject page =======================
+  # p5: Industry by subject page =======================
+
+  ### Dropdown filters ------------------------
 
   output$industry_by_subject_dropdown_label <- renderText({
     paste0(
@@ -327,11 +341,14 @@ server <- function(input, output, session) {
     )
   })
 
-  # Download current Subject by Industry view
-  output$downloadData <- downloadHandler(
+  # Downloads of data from p4 and p5 ----------------------------
+
+  # Cathie work on this bit
+  # Download p4 data with current selections from the dropdown menu
+  output$downloadData_p4 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "IndustrybySubject.csv"
+      suffix <- "IndustryBySubject.csv"
       if (input$countinput2 == "subject_name") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton),
@@ -390,10 +407,9 @@ server <- function(input, output, session) {
     }
   )
 
-  ### IndSubj panel server code
-  #############################
+  # p5: IndSubj panel server code ============================
 
-  # Create the reactive Industry by Subject data in a data frame
+  ### Create the reactive Industry by Subject data in a data frame ===================
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)
   })
@@ -407,11 +423,12 @@ server <- function(input, output, session) {
     )
   })
 
-  # Download the reactive industry by subject data.
-  output$IndSubjDownload <- downloadHandler(
+  ### Download the reactive industry by subject data.=========================
+  #  output$IndSubjDownload <- downloadHandler(
+  output$downloadData_p5 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "SubjectbyIndustry.csv"
+      suffix <- "IndustryBySubject.csv"
       if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton2),

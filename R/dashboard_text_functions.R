@@ -17,13 +17,16 @@ welcome_text <- function() {
     a(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
       "official statistics publication on LEO Graduate and Postgraduate Outcomes",
-      .noWS = c("after")
+      #      .noWS = c("after")  This was the original code before Cathie changed it to be equivalent to the template code
+      .noWS = "after" # no white space after the link text in the rendered HTML.
     ),
     ".", br(), br(),
     "This dashboard has been produced by the Department for Education to support the aims of the",
     a(
       href = "https://www.gov.uk/government/groups/unit-for-future-skills",
-      "Unit for Future Skills.", .noWS = c("after")
+      "Unit for Future Skills.",
+      #      .noWS = c("after")   This was the original code before Cathie changed it to be equivalent to the template code
+      .noWS = "after" # no white space after the link text in the rendered HTML.
     ),
   )
 }
@@ -113,11 +116,17 @@ sic_groups_text <- function() {
     a(
       href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
       "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
+      # Added by Cathie below
+      , .noWS = "after"
+      # End of what Cathie added
     ),
     br(),
     a(
       href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
       "Office for National Statistics interactive SIC hierarchy"
+      # Added by Cathie below
+      , .noWS = "after"
+      # End of what Cathie added
     ),
     h3("SIC groups and sections"),
     "The SIC framework includes over 700 detailed industry codes, which are grouped hierarchically

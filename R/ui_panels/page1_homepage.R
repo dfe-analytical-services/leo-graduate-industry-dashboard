@@ -35,7 +35,7 @@ homepage <- function() {
               div(
                 class = "panel-body",
                 tags$div(
-                  title = "This page provides information about how graduates move between industries during the first five years after graduation.",
+                  title = "This page provides information about the industries that graduates work in one, three and five years after graduation.",
                   h3(actionLink("link_to_industryFlow_tab", "Industry flow page", disabled = F))
                 ),
                 industry_flow_text(), # defined in R/dashboard_text.R

@@ -316,7 +316,7 @@ regional_page <- function() {
           br(), br(),
           strong("Footnotes"),
           br(),
-          paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data and makes figures easier to read"),
+          paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data and makes figures easier to read."),
           br(),
           paste("2. Earnings figures are rounded to the nearest £100."),
           br(),
@@ -324,7 +324,7 @@ regional_page <- function() {
           br(),
           paste("4. c = data has been supressed due to small numbers."),
           br(),
-          paste("5. x = there is no result available (N/A)")
+          paste("5. x = there is no result available (N/A).")
         )
       ),
 
