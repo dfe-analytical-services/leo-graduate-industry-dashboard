@@ -9,13 +9,13 @@ test_that("Migrated shinytest test: testUI.R", {
 
   # Industry flow tab ===========================================================
 
-  industryFlow_input <- c("navbar", "qualinput", "sexinput", "indflow.subjectinput")
+  industryFlow_input <- c("navlistPanel", "qualinput", "sexinput", "indflow.subjectinput")
   industryFlow_output <- c(
     "sankey", "sankey_title", "sankeyhelp", "sankeysubjectlist",
     "sankeytext1", "sankeytext2"
   )
 
-  app$set_inputs(navbar = "industryFlow", timeout_ = 10000)
+  app$set_inputs(navlistPanel = "industryFlow", timeout_ = 10000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
   app$set_inputs(qualinput = "Level 7 (taught)", timeout_ = 40000)
@@ -37,14 +37,14 @@ test_that("Migrated shinytest test: testUI.R", {
   # Subject by industry tab =====================================================
 
   subjectByIndustry_input <- c(
-    "navbar", "countinput2", "YAGinput2", "crosstabs.subjectinput", "earningsbutton", "qualinput3"
+    "navlistPanel", "countinput2", "YAGinput2", "crosstabs.subjectinput", "earningsbutton", "qualinput3"
   )
 
   # Note that I've excluded the crosstab_backwards tabulated output here as it
   # has a datakey that changes across different runs.
   subjectByIndustry_output <- c("crosstab_title", "crosstab", "crosstab_text")
 
-  app$set_inputs(navbar = "subjectByIndustry", timeout_ = 20000)
+  app$set_inputs(navlistPanel = "subjectByIndustry", timeout_ = 20000)
   app$expect_values(input = subjectByIndustry_input, output = subjectByIndustry_output)
 
   app$set_inputs(earningsbutton = "Median earnings", wait_ = FALSE)
@@ -83,12 +83,12 @@ test_that("Migrated shinytest test: testUI.R", {
   # Run tests for regional tab - note: excluding the map output as it makes the
   # json files massive.
   regional_input <- c(
-    "navbar", "regions.subjectinput", "YAGinput", "qualinput2",
+    "navlistPanel", "regions.subjectinput", "YAGinput", "qualinput2",
     "sectionnameinput"
   )
   regional_output <- c("map_title", "mapsubjectlist", "maptext", "maptext2")
 
-  app$set_inputs(navbar = "regional", timeout_ = 10000)
+  app$set_inputs(navlistPanel = "regional", timeout_ = 10000)
   app$expect_values(input = regional_input, output = regional_output)
   app$set_inputs(
     regioninput = c("London", "North East", "West Midlands"),
@@ -118,14 +118,14 @@ test_that("Migrated shinytest test: testUI.R", {
   # Industry by subject tab =====================================================
 
   industryBySubject_input <- c(
-    "navbar", "countinput3", "YAGinput3", "sectionnameinput2", "groupinput", "earningsbutton2", "qualinput4"
+    "navlistPanel", "countinput3", "YAGinput3", "sectionnameinput2", "groupinput", "earningsbutton2", "qualinput4"
   )
   # Cathie... what's this about?
   # Note that I've excluded the crosstab_backwards tabulated output here as it
   # has a datakey that changes across different runs.
   industryBySubject_output <- c("crosstab_backwards")
 
-  app$set_inputs(navbar = "industryBySubject", timeout_ = 20000)
+  app$set_inputs(navlistPanel = "industryBySubject", timeout_ = 20000)
   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
 
   app$set_inputs(earningsbutton2 = "Median earnings", wait_ = FALSE)
