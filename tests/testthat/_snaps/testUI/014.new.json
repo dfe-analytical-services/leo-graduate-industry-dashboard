@@ -1,0 +1,12 @@
+{
+  "input": {
+    "YAGinput2": "1",
+    "countinput2": "ethnicity",
+    "crosstabs.subjectinput": "English studies",
+    "earningsbutton": "Median earnings",
+    "qualinput3": "First degree"
+  },
+  "output": {
+
+  }
+}

@@ -63,7 +63,8 @@ industry_by_subject_page <- function() {
               ),
               column(
                 width = 6,
-                selectizeInput("sectionnameinput2",
+                selectizeInput(
+                  "sectionnameinput2",
                   label = "Choose an industry area",
                   choices = list(
                     "Accommodation and food service activities",
@@ -272,7 +273,7 @@ industry_by_subject_page <- function() {
     br(),
     paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
     br(),
-    paste("4. c = data has been supressed due to small numbers."),
+    paste("4. c = data have been supressed due to small numbers."),
     br(),
     paste("5. x = there is no result available (N/A)."),
     caveats_box() # defined in R/caveats.R

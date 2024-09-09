@@ -215,7 +215,7 @@ subject_by_industry_page <- function() {
     br(),
     paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
     br(),
-    paste("4. c = data has been supressed due to small numbers."),
+    paste("4. c = data have been supressed due to small numbers."),
     br(),
     paste("5. x = there is no result available (N/A)."),
     caveats_box() # defined in R/caveats.R
