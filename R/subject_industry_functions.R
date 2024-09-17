@@ -2,7 +2,10 @@ col_formats <- function(data, footer_data, cellfunc, minWidth = NULL) {
   max <- data %>%
     ungroup() %>%
     select(-c(group_name, SECTIONNAME)) %>%
-    mutate_all(funs(ifelse(. < 0, NA, .)))
+# Cathie changes all the mutate_ functions to mutate(across()) as this is more up to date
+#    mutate_all(funs(ifelse(. < 0, NA, .)))
+    mutate(across(everything(), ~ ifelse(. < 0, NA, .)))
+  
   numeric_cols <- names(max)
   numeric_cols_def <- list()
   numeric_cols_def_nested <- list()
@@ -272,14 +275,24 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(sex, n) %>%
         colorders(countinput) %>%
         arrange(-`F+M`) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+
+#        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%   
+# throws an error if I use mutate(across(-c(group_cols...))) as it doesn't recognise which group_cols refers to
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
         # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("F", "M", "F+M"),
-          funs(as.numeric(.))
-        ) %>%
+#        mutate_at(
+ #         c("F", "M", "F+M"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+        
         select(SECTIONNAME, `F`, `M`, `F+M`) %>%
         mutate(
           diff = `M` - `F`,
@@ -292,13 +305,20 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(sex, n) %>%
         colorders(countinput) %>%
         arrange(-`F+M`) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        
         # mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("F", "M", "F+M"),
-          funs(as.numeric(.))
-        ) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+#        mutate_at(
+ #         c("F", "M", "F+M"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+        
         select(SECTIONNAME, `F`, `M`, `F+M`) %>%
         mutate(
           diff = `M` - `F`,
@@ -311,20 +331,32 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       top_industry <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME)) %>%
-        mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+#        mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+        mutate(across(where(is.numeric), ~ format(., big.mark = ",", scientific = FALSE)))
 
       top_industry_female <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female)) %>%
-        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
-        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        
+#        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        
+#        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+        mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .))) %>%
+        
+#        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        mutate(across(everything(), ~ ifelse(is.na(.), "not available", .)))
 
       top_industry_male <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) %>%
-        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
-        mutate_all(funs(ifelse(is.na(.), "not available", .)))
-
+        
+#        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        
+#        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+        mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .))) %>%
+        
+#        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        mutate(across(everything(), ~ ifelse(is.na(.), "not available", .)))
 
       if (first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Female) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$Male)) {
         sectiontext <- paste("the industry with the highest proportion of graduates is the same for both female and male graduates (<b>",
@@ -345,8 +377,12 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           top_section_female_exclnk <- (crosstabs_data %>% filter(SECTIONNAME != "Not known") %>% arrange(-Female))[1, ]
           top_earnings_female_exclnk <- crosstabs_earnings_data %>%
             filter(SECTIONNAME == top_section_female_exclnk$SECTIONNAME) %>%
-            mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-            mutate_all(funs(gsub("£-10,000", "suppressed", .)))
+            
+#            mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+            mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+          
+#            mutate_all(funs(gsub("£-10,000", "suppressed", .)))
+            mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .)))
 
           section_text_female <- paste0(
             "the group with the highest proportion of female graduates is where the <b>industry is not known</b> and the median earnings of females in this group was <b>",
@@ -368,8 +404,12 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             arrange(-Male))[1, ]
           top_earnings_male_exclnk <- crosstabs_earnings_data %>%
             filter(SECTIONNAME == top_section_male_exclnk$SECTIONNAME) %>%
-            mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-            mutate_all(funs(gsub("£-10,000", "suppressed", .)))
+            
+#            mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+            mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+            
+#            mutate_all(funs(gsub("£-10,000", "suppressed", .)))
+            mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .)))
 
           section_text_male <- paste0(
             " The group with the highest proportion of male graduates is where the <b>industry is not known</b> (the median earnings of males in which was <b>",
@@ -483,14 +523,25 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(FSM, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("non-FSM", "FSM", "Not known"),
-          funs(as.numeric(.))
-        ) %>%
+       
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+#        mutate_at(
+ #         c("non-FSM", "FSM", "Not known"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+        
         select(SECTIONNAME, `non-FSM`, FSM, `Not known`) %>%
         mutate(
           diff = `non-FSM` - FSM,
@@ -502,13 +553,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(FSM, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("non-FSM", "FSM", "Not known"),
-          funs(as.numeric(.))
-        ) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        
+# Cathie moved this up        
+        mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric),~ ifelse(is.na(.), 0, .))) %>%
+        
+#       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+
+### Cathie: this code was here originally, but it makes more sense to have it before the transformations to the numeric values       
+#        mutate_at(
+ #         c("non-FSM", "FSM", "Not known"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+#        mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+        
         select(SECTIONNAME, `non-FSM`, FSM, `Not known`) %>%
         mutate(
           diff = `non-FSM` - FSM,
@@ -517,19 +581,33 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       top_industry <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME)) %>%
-        mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+        
+#        mutate_if(is.numeric, funs(format(., big.mark = ",", scientific = FALSE)))
+        mutate(across(where(is.numeric), ~ format(., big.mark = ",", scientific = FALSE)))
 
       top_industry_nonFSM <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`)) %>%
-        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
-        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        
+#        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        
+#        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+        mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .))) %>%
+        
+#        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        mutate(across(everything(), ~ ifelse(is.na(.), "not available", .)))
 
       top_industry_FSM <- crosstabs_earnings_data %>%
         filter(SECTIONNAME == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM)) %>%
-        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
-        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
-        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        
+#        mutate_if(is.numeric, funs(paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        mutate(across(where(is.numeric), ~ paste0("£", format(., big.mark = ",", scientific = FALSE)))) %>%
+        
+#        mutate_all(funs(gsub("£-10,000", "suppressed", .))) %>%
+        mutate(across(everything(), ~ gsub("£-10,000", "suppressed", .))) %>%
+     
+#        mutate_all(funs(ifelse(is.na(.), "not available", .)))
+        mutate(across(everything(), ~ ifelse(is.na(.), "not available", .))) 
 
       ifelse(first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$`non-FSM`) == first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$FSM),
         sectiontext <- paste0(
@@ -597,19 +675,33 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(ethnicity, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+        
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+        
         # mutate_at(
         #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         #   funs(as.numeric(.))
         # ) %>%
         # select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
-        mutate_at(
-          c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
-          funs(as.numeric(.))
-        ) %>%
+        
+#        mutate_at(
+ #         c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+                      ~ as.numeric(.))) %>%
+        
         select(SECTIONNAME, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
 
@@ -617,19 +709,31 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         select(-count, n = earnings_median) %>%
         spread(ethnicity, n) %>%
         colorders(countinput) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+        
         # mutate_at(
         #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
         #   funs(as.numeric(.))
         # ) %>%
         # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         # select(SECTIONNAME, White, Black, Asian, Mixed, Other, `Not known`)
-        mutate_at(
-          c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
-          funs(as.numeric(.))
-        ) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        
+#        mutate_at(
+ #         c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(where(c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+                             ~ as.numeric(.)))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+        
         select(SECTIONNAME, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
 
@@ -793,17 +897,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(current_region, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c(
-            "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
-            "East of England", "London", "South East", "South West"
-          ),
-          funs(as.numeric(.))
-        ) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+#        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.) | . <= 2, 0, .))) %>%
+        
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
+        mutate_at(where(is.numeric), ~ ifelse(. == 0, NA, .)) %>%
+        
+#        mutate_at(
+ #         c(
+  #          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+   #         "East of England", "London", "South East", "South West"
+    #      ),
+     #     funs(as.numeric(.))
+      #  ) %>%
+        mutate(across(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+          "East of England", "London", "South East", "South West"), ~ as.numeric(.))) %>%
+        
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(
           SECTIONNAME, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
@@ -815,16 +928,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(current_region, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c(
-            "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
-            "East of England", "London", "South East", "South West"
-          ),
-          funs(as.numeric(.))
-        ) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+ #       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%   ### Cathie: Not sure why this line is included
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+        
+#        mutate_at(
+ #         c(
+  #          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+   #         "East of England", "London", "South East", "South West"
+    #      ),
+     #     funs(as.numeric(.))
+      #  ) %>%
+        mutate(across(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+                        "East of England", "London", "South East", "South West"), ~ as.numeric(.))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+        
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(
           SECTIONNAME, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
@@ -970,7 +1093,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       crosstabs_earnings_data2 <- crosstabs_earnings_data[, -1]
       crosstabs_earnings_data2 <- crosstabs_earnings_data2 %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .)))
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .)))
+        mutate(across(where(is.numeric),~ ifelse(is.na(.), 0, .)))
 
       result <- which(crosstabs_earnings_data2 == max(crosstabs_earnings_data2), arr.ind = TRUE)
 
@@ -997,15 +1122,26 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(prior_attainment, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
-          funs(as.numeric(.))
-        ) %>%
-        # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+#        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+        
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+#        mutate_at(
+ #         c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+                      ~ as.numeric(.))) %>%
+        
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
 
       crosstabs_earnings_data <- tables_data_grouped %>%
@@ -1013,13 +1149,23 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(prior_attainment, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
-        mutate_at(
-          c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
-          funs(as.numeric(.))
-        ) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+ #       mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, NA, .))) %>%
+        
+        
+#        mutate_at(
+ #         c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+  #        funs(as.numeric(.))
+   #     ) %>%
+        mutate(across( c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+                       ~ as.numeric(.))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+        
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
 
@@ -1028,8 +1174,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(prior_attainment, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+ #       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+        
+        
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
         select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
 
@@ -1077,7 +1228,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       crosstabs_earnings_data3 <- crosstabs_earnings_data[, -1]
       crosstabs_earnings_data3 <- crosstabs_earnings_data3 %>%
-        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        
+#        mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+
         select(-All)
 
       result <- which(crosstabs_earnings_data3 == max(crosstabs_earnings_data3), arr.ind = TRUE)
@@ -1132,9 +1286,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         spread(subject_name, n) %>%
         colorders(countinput) %>%
         arrange(-All) %>%
+        
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+        
         select(-All)
 
       crosstabs_earnings_data2 <- crosstabs_earnings_data[, -1]
@@ -1165,7 +1321,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         arrange(-`First degree`) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
         mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
-        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
+#        mutate_if(is.numeric, funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+        
         mutate_at(vars(-group_cols()), funs(ifelse(. == 0, NA, .)))
 
       crosstabs_earnings_data <- tables_data %>%
@@ -1301,10 +1460,11 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
   stylefunc <- function(value, index, name) {
     if (value >= 0 && !is.na(value)) {
       data <- crosstabs_data %>%
-        mutate_if(
-          is.numeric,
-          funs(ifelse(. < 0, NA, .))
-        )
+#        mutate_if(
+ #         is.numeric,
+  #        funs(ifelse(. < 0, NA, .))
+   #     )
+        mutate(across(where(is.numeric), ~ ifelse(. < 0, NA, .)))
 
       normalized <- (value - min(data %>%
         select(-SECTIONNAME), na.rm = T)) /
@@ -1339,19 +1499,26 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
       # mutate_at(
       #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
       #   funs(as.numeric(.))
       # ) %>%
       # select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`)
-      mutate_at(
-        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_at(
+ #       c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+                     ~ as.numeric(.))) %>%
+      
       select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
 
     # Ensure Not known is always at the bottom
@@ -1372,10 +1539,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # select(SECTIONNAME, group_name, White, Black, Asian, Mixed, Other, `Not known`) %>%
       # ungroup()
-      mutate_at(
-        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
-        funs(as.numeric(.))
-      ) %>%
+#      mutate_at(
+ #       c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across( c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+                     ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`) %>%
       ungroup()
@@ -1467,17 +1637,23 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
-      mutate_at(
-        c(
-          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
-          "East of England", "London", "South East", "South West"
-        ),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
+#      mutate_at(
+ #       c(
+  #        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+   #       "East of England", "London", "South East", "South West"
+    #    ),
+     #   funs(as.numeric(.))
+      #) %>%
+      mutate(across(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+                      "East of England", "London", "South East", "South West"), ~ as.numeric(.))) %>%
+      
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
         SECTIONNAME, group_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
@@ -1496,13 +1672,16 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(current_region, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(
-        c(
-          "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
-          "East of England", "London", "South East", "South West"
-        ),
-        funs(as.numeric(.))
-      ) %>%
+#      mutate_at(
+ #       c(
+  #        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+   #       "East of England", "London", "South East", "South West"
+    #    ),
+     #   funs(as.numeric(.))
+      #) %>%
+      mutate(across(c("North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+                      "East of England", "London", "South East", "South West"), ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(
@@ -1597,14 +1776,19 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
-      mutate_at(
-        c("non-FSM", "FSM", "Not known"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
+#      mutate_at(
+ #       c("non-FSM", "FSM", "Not known"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+      
       select(SECTIONNAME, group_name, `non-FSM`, FSM, `Not known`)
 
     # Ensure Not known is always at the bottom
@@ -1619,10 +1803,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(FSM, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(
-        c("non-FSM", "FSM", "Not known"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_at(
+ #       c("non-FSM", "FSM", "Not known"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       select(SECTIONNAME, group_name, `non-FSM`, FSM, `Not known`)
 
@@ -1714,14 +1901,20 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-`F+M`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
-      mutate_at(
-        c("F", "M", "F+M"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
+#      mutate_at(
+ #       c("F", "M", "F+M"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+      
+      
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(crosstabs_data_table) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
 
@@ -1737,10 +1930,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(
-        c("F", "M", "F+M"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_at(
+ #       c("F", "M", "F+M"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(crosstabs_earnings_data) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
@@ -1788,10 +1984,14 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(
-        c("F", "M", "F+M"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_at(
+ #       c("F", "M", "F+M"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+      
+      
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(nested_table) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
     nested_table_earnings <- table_group_proportions %>%
@@ -1799,10 +1999,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(sex, n) %>%
       colorders(countinput) %>%
       arrange(-`F+M`) %>%
-      mutate_at(
-        c("F", "M", "F+M"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_at(
+ #       c("F", "M", "F+M"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(nested_table_earnings) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
@@ -1830,14 +2033,20 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
-      mutate_at(
-        c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
-        funs(as.numeric(.))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
+#      mutate_at(
+ #       c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+  #      funs(as.numeric(.))
+   #   ) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+                    ~ as.numeric(.))) %>%
+      
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
       rename(
@@ -1858,10 +2067,14 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(prior_attainment, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(
-        c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
-        funs(as.numeric(.))
-      ) %>%
+      
+ #     mutate_at(
+  #      c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+   #     funs(as.numeric(.))
+    #  ) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"), 
+                    ~ as.numeric(.))) %>%
+      
       mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
@@ -1965,11 +2178,15 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-All) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
       select(-All)
+    
 
     # Ensure Not known is always at the bottom
     crosstabs_data_table <- crosstabs_data_table %>%
@@ -2065,10 +2282,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       arrange(-`First degree`) %>%
       mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
-      mutate_if(
-        is.numeric,
-        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
-      ) %>%
+      
+#      mutate_if(
+ #       is.numeric,
+  #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+   #   ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
 
     # Ensure Not known is always at the bottom
@@ -2154,8 +2374,12 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
   }
   if (buttoninput == "Proportions") {
-    crosstabs_data <- crosstabs_data %>% mutate_if(is.numeric, funs(round(., digits = 3)))
-    nested <- nested %>% mutate_if(is.numeric, funs(round(., digits = 3)))
+    crosstabs_data <- crosstabs_data %>% 
+ #     mutate_if(is.numeric, funs(round(., digits = 3)))
+      mutate(across(where(is.numeric), ~ (round(., digits = 3))))
+    nested <- nested %>% 
+#      mutate_if(is.numeric, funs(round(., digits = 3)))
+      mutate(across(where(is.numeric), ~ round(., digits = 3)))
   }
   return(list(
     crosstabs_data = crosstabs_data,

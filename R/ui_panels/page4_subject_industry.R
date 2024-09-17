@@ -209,7 +209,7 @@ subject_by_industry_page <- function() {
     br(),
     strong("Footnotes"),
     br(),
-    paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflect the precision of our data, and makes it easier to read figures."),
+    paste("1. Outcome percentages are rounded to the nearest 0.1%. Rounding reflects the precision of our data, and makes it easier to read figures."),
     br(),
     paste("2. Earnings figures are rounded to the nearest £100."),
     br(),

@@ -4,7 +4,7 @@
     "countinput2": "ethnicity",
     "crosstabs.subjectinput": "All",
     "earningsbutton": "Median earnings",
-    "navbar": "subjectByIndustry",
+    "navlistPanel": "subjectByIndustry",
     "qualinput3": "First degree"
   },
   "output": {
@@ -6527,7 +6527,7 @@
             "defaultPageSize": 22,
             "showSortable": true,
             "height": "600px",
-            "dataKey": "1f54af2e8bf67b22fd2a8ebd5d0ca89a",
+            "dataKey": "381370bec34decf4bd52733c92cf42c9",
             "static": false
           },
           "children": [
@@ -6683,7 +6683,6 @@
 
       ]
     },
-    "crosstab_text": "For first degree graduates of all subjects, five years after graduation, <b> <b>Human health and social work activities<\/b> <\/b> was the most common industry  for all ethnicities.<br/><br/>The industry with the largest range in proportions was <b>Human health and social work activities<\/b> where <b>Black / African / Caribbean / Black British<\/b> ethnicity graduates had the highest proportion and <b>Mixed / Multiple ethnic groups<\/b> ethnicity graduates had the lowest proportion. The industry with the largest range in median earnings was <b>Electricity, gas, steam and air conditioning supply<\/b> where <b>Unknown<\/b> ethnicity graduates had the highest median earnings (<b><b>£45,800<\/b><\/b>) and <b>Mixed / Multiple ethnic groups<\/b> ethnicity graduates had the lowest median earnings (<b><b>£28,800<\/b><\/b>).  The group with the highest earnings was  <b>White<\/b> ethnicity graduates who worked in the <b>Mining and quarrying<\/b> industry (median earnings of <b>£46,500<\/b>). <br/><br/>",
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by ethnicity, five years after\n                          graduation, male and female first degree graduates from HE providers,\n                            2021/22 tax year.<\/h4>"
+    "crosstab_text": "For first degree graduates of all subjects, five years after graduation, <b> <b>Human health and social work activities<\/b> <\/b> was the most common industry  for all ethnicities.<br/><br/>The industry with the largest range in proportions was <b>Human health and social work activities<\/b> where <b>Black / African / Caribbean / Black British<\/b> ethnicity graduates had the highest proportion and <b>Mixed / Multiple ethnic groups<\/b> ethnicity graduates had the lowest proportion. The industry with the largest range in median earnings was <b>Electricity, gas, steam and air conditioning supply<\/b> where <b>Unknown<\/b> ethnicity graduates had the highest median earnings (<b><b>£45,800<\/b><\/b>) and <b>Mixed / Multiple ethnic groups<\/b> ethnicity graduates had the lowest median earnings (<b><b>£28,800<\/b><\/b>).  The group with the highest earnings was  <b>White<\/b> ethnicity graduates who worked in the <b>Mining and quarrying<\/b> industry (median earnings of <b>£46,500<\/b>). <br/><br/>"
   }
 }
