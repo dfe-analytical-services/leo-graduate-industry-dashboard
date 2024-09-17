@@ -22,5 +22,3 @@ Shiny.addCustomMessageHandler('analytics-consent', function(msg){
     'analytics_storage': msg.value
   });
 })
-
-
