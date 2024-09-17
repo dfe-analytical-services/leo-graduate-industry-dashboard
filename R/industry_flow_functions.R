@@ -152,10 +152,10 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
       full_join(links2)
 
     links <- links %>%
-# Cathie got rid of the mutate_at() function as it's no longer used within dplyr
-#      mutate_at(
-#      mutate(across(
-      mutate_at(     ## reverted to previous for now as the mutate(across()) code didn't work!
+      # Cathie got rid of the mutate_at() function as it's no longer used within dplyr
+      #      mutate_at(
+      #      mutate(across(
+      mutate_at( ## reverted to previous for now as the mutate(across()) code didn't work!
         "value",
         funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
       )
@@ -498,9 +498,9 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey1_text <- cohort_sankey1 %>%
     filter(SECTIONNAME.x != SECTIONNAME.y) %>%
-#    mutate_at(
-#    mutate(across(
-    mutate_at(     ## revert to mutate_at because the mutate(across()) code didn't work
+    #    mutate_at(
+    #    mutate(across(
+    mutate_at( ## revert to mutate_at because the mutate(across()) code didn't work
       "count",
       funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
     )
@@ -510,7 +510,7 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
   cohort_sankey2_text <- cohort_sankey2 %>%
     filter(SECTIONNAME.x != SECTIONNAME.y) %>%
     mutate_at(
-#    mutate(across(   ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(   ## revert to mutate_at as the alternative code didn't work
       "count",
       funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
     )
@@ -653,22 +653,22 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
   )] %>%
     arrange(., -count) %>%
     mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
       c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
       funs(ifelse(count < 10.9999, NA, .))
     ) %>%
     mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
       "count",
       funs(ifelse(count < 10.9999, NA, .))
     ) %>%
     mutate_at(
-#    mutate(across(     ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(     ## revert to mutate_at as the alternative code didn't work
       c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
       funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
     ) %>%
     mutate_at(
-#    mutate(across(     ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(     ## revert to mutate_at as the alternative code didn't work
       "count",
       funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
     )
@@ -739,7 +739,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     filter(YAG == 1) %>%
     dplyr::select(earnings_median) %>%
     mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
       "earnings_median",
       funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
     )
@@ -748,7 +748,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     filter(YAG == 5) %>%
     dplyr::select(earnings_median) %>%
     mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+      #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
       "earnings_median",
       funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
     )

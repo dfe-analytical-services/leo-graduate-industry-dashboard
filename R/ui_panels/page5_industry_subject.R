@@ -110,7 +110,7 @@ industry_by_subject_page <- function() {
                     "Current region" = "current_region",
                     "Free school meals (FSM)" = "FSM",
                     "Prior attainment" = "prior_attainment",
- #                   "Industry" = "SECTIONNAME",
+                    #                   "Industry" = "SECTIONNAME",
                     "Qualification level" = "qualification_TR"
                   ),
                   selected = "sex"

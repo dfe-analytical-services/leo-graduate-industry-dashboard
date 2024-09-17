@@ -55,12 +55,12 @@ create_maptabledata <- function(regional_data, regional_movement,
       SECTIONNAME == sectionnameinput, subject_name == subjectinput,
       YAG == YAGinput, qualification_TR == qualinput
     ) %>%
-# Cathie changed mutate_at to mutate(across())
-#    mutate_at(
- #     "count",
-  #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-   # )
-  mutate(across(c("count"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
+    # Cathie changed mutate_at to mutate(across())
+    #    mutate_at(
+    #     "count",
+    #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+    # )
+    mutate(across(c("count"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
 
 
   instregion <- mapdata2 %>%
@@ -94,20 +94,20 @@ create_maptabledata <- function(regional_data, regional_movement,
 
 map_chart <- function(mapdata, countinput) {
   mapdata <- mapdata %>%
-    
-# Cathie changed mutate_at to mutate(across())    
-#    mutate_at(
- #     "earnings_median",
-  #    funs(ifelse(. < 0, "c", .))
-   # ) %>%
-    mutate(across(c("earnings_median"), ~ifelse(. < 0, "c", .))) %>%
-    
-#    mutate_at(
- #     c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
-  #    funs(ifelse(is.na(.), "x", .))
-   # )
-    mutate(across(c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
-                  ~ ifelse(is.na(.), "x", .)))
+    # Cathie changed mutate_at to mutate(across())
+    #    mutate_at(
+    #     "earnings_median",
+    #    funs(ifelse(. < 0, "c", .))
+    # ) %>%
+    mutate(across(c("earnings_median"), ~ ifelse(. < 0, "c", .))) %>%
+    #    mutate_at(
+    #     c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+    #    funs(ifelse(is.na(.), "x", .))
+    # )
+    mutate(across(
+      c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+      ~ ifelse(is.na(.), "x", .)
+    ))
 
   leafletmapdata <- st_transform(mapdata, crs = 4326)
 
@@ -466,12 +466,11 @@ create_regionalsankeyframe <- function(sectionnameinput, subjectinput, YAGinput,
     links <- links[, -4]
 
     links <- links %>%
-      
-# Cathie changed mutate_at() to mutate(across)      
-#      mutate_at(
- #       "value",
-  #      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-   #   ) %>%
+      # Cathie changed mutate_at() to mutate(across)
+      #      mutate_at(
+      #       "value",
+      #      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+      #   ) %>%
       mutate(across(c("value"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))) %>%
       filter(value != 0)
 

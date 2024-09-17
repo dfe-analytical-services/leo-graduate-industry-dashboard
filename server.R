@@ -395,16 +395,16 @@ server <- function(input, output, session) {
       )
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
-#  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr          
-#          mutate_if(is.numeric, list(~ (100.0 * .)))
-          mutate(across(where(is.numeric), ~ if_else(.==0, 0, . / sum(., na.rm = TRUE))))
+          #  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+          #          mutate_if(is.numeric, list(~ (100.0 * .)))
+          mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
       }
       dfDownload <- dfDownload %>%
-#  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr          
-#        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+        #  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+        #        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
         mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
-#        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-#        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
+        #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
         mutate(across(list(~ gsub("-10000", "c", .)))) %>%
         mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
         arrange(SECTIONNAME, group_name) %>%
@@ -479,13 +479,13 @@ server <- function(input, output, session) {
       dfDownload <- table_data$data
       if (input$earningsbutton2 == "Proportions") {
         dfDownload <- dfDownload %>%
-    #    mutate_if(is.numeric, list(~ (100.0 * .)))
-        mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+          #    mutate_if(is.numeric, list(~ (100.0 * .)))
+          mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
       }
       dfDownload <- dfDownload %>%
-#        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
-#        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-#        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        #        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+        #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
+        #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
         mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
         mutate(across(list(~ gsub("-10000", "c", .)))) %>%
         mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%

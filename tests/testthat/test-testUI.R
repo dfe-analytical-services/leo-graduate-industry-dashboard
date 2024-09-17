@@ -21,12 +21,12 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(qualinput = "Level 7 (taught)", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
-### Commented out by Cathie because L7 research and L8 aren't options you can select on this page
-#  app$set_inputs(qualinput = "Level 7 (research)", timeout_ = 40000)
-#  app$expect_values(input = industryFlow_input, output = industryFlow_output)
+  ### Commented out by Cathie because L7 research and L8 aren't options you can select on this page
+  #  app$set_inputs(qualinput = "Level 7 (research)", timeout_ = 40000)
+  #  app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
-#  app$set_inputs(qualinput = "Level 8", timeout_ = 40000)
-#  app$expect_values(input = industryFlow_input, output = industryFlow_output)
+  #  app$set_inputs(qualinput = "Level 8", timeout_ = 40000)
+  #  app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
   app$set_inputs(sexinput = "F", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
@@ -34,10 +34,10 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(sexinput = "M", timeout_ = 40000)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
 
-### Added by Cathie    
+  ### Added by Cathie
   app$set_inputs(indflow.subjectinput = "English studies", wait_ = FALSE)
   app$expect_values(input = industryFlow_input, output = industryFlow_output)
-  
+
 
 
   # Subject by industry tab =====================================================
@@ -102,17 +102,17 @@ test_that("Migrated shinytest test: testUI.R", {
   )
   app$expect_values(input = regional_input, output = regional_output)
 
-### Cathie commented the following line out because L7 research isn't an option for the regional page
-#  app$set_inputs(qualinput2 = "Level 7 (research)")
+  ### Cathie commented the following line out because L7 research isn't an option for the regional page
+  #  app$set_inputs(qualinput2 = "Level 7 (research)")
   app$set_inputs(qualinput2 = "Level 7 (taught)")
   app$expect_values(input = regional_input, output = regional_output)
-  
+
   app$set_inputs(sectionnameinput = "TRANSPORTATION AND STORAGE")
   app$expect_values(input = regional_input, output = regional_output)
-  
+
   app$set_inputs(regions.subjectinput = "Medicine and dentistry")
   app$expect_values(input = regional_input, output = regional_output)
-  
+
   app$set_inputs(sectionnameinput = "EDUCATION", countinput = "living_in_region")
   app$expect_values(input = regional_input, output = regional_output)
 
