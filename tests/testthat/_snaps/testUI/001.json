@@ -1,7 +1,7 @@
 {
   "input": {
     "indflow.subjectinput": "All",
-    "navbar": "industryFlow",
+    "navlistPanel": "industryFlow",
     "qualinput": "First degree",
     "sexinput": "F+M"
   },
@@ -712,8 +712,7 @@
 
       ]
     },
-    "sankey_title": "<h3>Industry of graduate employment for  2015/16  academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male and female first degree graduates from English HE providers<\/h3>",
-    "sankeytext1": "For both female and male, first degree graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Human health and social work activities (18.3%)<\/b>, and at five years after graduation it is <b>the same (17.9%)<\/b>.",
-    "sankeytext2": "The most movement between one and three years after graduation is seen for <b>Wholesale and retail trade - repair of motor vehicles and motorcycles<\/b>, where <\/b>1,595 graduates move to <b>Other<\/b>. Between three and five\n                       years after graduation it's seen for <b>Education<\/b> where <b>1,520<\/b> graduates moved to <b>Other<\/b>."
+    "sankeytext1": "For female and male first degree graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation was <b>Human health and social work activities (18.3%)<\/b>, and five years after graduation it was <b>the same (17.9%)<\/b>.",
+    "sankeytext2": "The greatest movement between industries during the period one to three years after graduation was the movement of <b> 1,595 <\/b> graduates from <b> Wholesale and retail trade - repair of motor vehicles and motorcycles <\/b> to <b> Other . <\/b> During the period three to five years after graduation, the greatest movement was of <b> 1,520 <\/b> graduates from <b> Education <\/b> to <b> Other ."
   }
 }

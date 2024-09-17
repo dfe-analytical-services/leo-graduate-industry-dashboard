@@ -14,12 +14,16 @@ welcome_text <- function() {
     #   LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
     #  five and ten years after graduation. This means we can now see what industry graduates were working in
     # at these points in time. For more detail see our ",
-    a(
-      href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
-      "official statistics publication on LEO Graduate and Postgraduate Outcomes",
-      #      .noWS = c("after")  This was the original code before Cathie changed it to be equivalent to the template code
-      .noWS = "after" # no white space after the link text in the rendered HTML.
-    ),
+#    a(
+ #     href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
+  #    "official statistics publication on LEO Graduate and Postgraduate Outcomes",
+   #   #      .noWS = c("after")  This was the original code before Cathie changed it to be equivalent to the template code
+    #  .noWS = "after" # no white space after the link text in the rendered HTML.
+    #),
+# Cathie: Revamped the external link
+    external_link(href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
+                  link_text = "official statistics publication on LEO Graduate and Postgraduate Outcomes", 
+                  add_warning = TRUE),
     ".", br(), br(),
     "This dashboard has been produced by the Department for Education to support the aims of the",
     a(
