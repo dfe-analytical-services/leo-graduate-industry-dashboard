@@ -5,12 +5,15 @@ server <- function(input, output, session) {
 
   # Cookies ====================================================
 
-  output$cookies_status <- cookies_banner_server(
+  output$cookies_status <- cookie_banner_server(
     "cookies-banner",
     input_cookies = shiny::reactive(input$cookies),
     parent_session = session,
-    google_analytics_key = google_analytics_key,
-    cookies_link_panel = "cookies_panel_ui"
+#    google_analytics_key = google_analytics_key,
+  #  cookies_link_panel = "cookies_panel_ui"
+#    Cathie tried getting rid of cookies_link_panel line of code because when I run the app, it throws an error of
+#    "unused argument (cookies_link_panel = "cookies_panel_ui")
+    google_analytics_key = google_analytics_key
   )
 
   cookies_panel_server(

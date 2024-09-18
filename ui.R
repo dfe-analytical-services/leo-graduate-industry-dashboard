@@ -28,8 +28,8 @@ fluidPage(
 
   # 2. Cookie banner ==================================================
   #    copied over from template
-  dfeshiny::dfe_cookies_script(),
-  dfeshiny::cookies_banner_ui(
+  dfeshiny::dfe_cookie_script(),
+  dfeshiny::cookie_banner_ui(
     "cookies-banner",
     "Longitudinal Education Outcomes - Graduate Industry dashboard"
   ),

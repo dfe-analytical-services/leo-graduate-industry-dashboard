@@ -683,10 +683,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         #         c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
         #        funs(as.numeric(.))
         #     ) %>%
-        mutate(across(where(
-          c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
-          ~ as.numeric(.)
-        ))) %>%
+        mutate(across(c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+          as.numeric(.))) %>%
         #        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
         select(SECTIONNAME, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
@@ -1481,7 +1479,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         ~ as.numeric(.)
       )) %>%
       #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
       select(SECTIONNAME, group_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`) %>%
       ungroup()
 
@@ -1870,7 +1868,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       #   ) %>%
       mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
       #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(crosstabs_earnings_data) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
 
@@ -1936,7 +1934,7 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       #   ) %>%
       mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
       #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
-      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
       select(SECTIONNAME, group_name, `F`, `M`, `F+M`)
     names(nested_table_earnings) <- c("SECTIONNAME", "group_name", "Female", "Male", "Female & Male")
     if (buttoninput == "Proportions") {
@@ -1961,7 +1959,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(prior_attainment, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
       #      mutate_if(
       #       is.numeric,
@@ -2004,7 +2003,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
         c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
         ~ as.numeric(.)
       )) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
       rename(
@@ -2032,8 +2032,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(prior_attainment, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      #     mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.na(.) | . <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
       rename(
@@ -2105,7 +2106,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(subject_name, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
       #      mutate_if(
       #       is.numeric,
@@ -2127,7 +2129,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(subject_name, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
       select(-All)
     if (buttoninput == "Proportions") {
       cellformat <- function(value) {
@@ -2148,8 +2151,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(subject_name, n) %>%
       colorders(countinput) %>%
       arrange(-All) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      #     mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.) | . <= 2, 0, .))) %>%
       select(-All)
 
     column_defs <- col_formats(crosstabs_data, footer_data, cellfunc, minWidth = 320)
@@ -2207,7 +2211,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(qualification_TR, n) %>%
       colorders(countinput) %>%
       arrange(-`First degree`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
       ungroup() %>%
       #      mutate_if(
       #       is.numeric,
@@ -2233,7 +2238,8 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       spread(qualification_TR, n) %>%
       colorders(countinput) %>%
       arrange(-`First degree`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(.), -2), .)) %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
     if (buttoninput == "Proportions") {
       cellformat <- function(value) {
@@ -2258,8 +2264,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       colorders(countinput) %>%
       as.data.frame() %>%
       arrange(-`First degree`) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
-      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      #     mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.) | . <= 2, 0, .))) %>%
       select(SECTIONNAME, group_name, `First degree`, `Level 7 (taught)`, `Level 7 (research)`, `Level 8`)
 
 

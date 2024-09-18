@@ -509,12 +509,11 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey2_text <- cohort_sankey2 %>%
     filter(SECTIONNAME.x != SECTIONNAME.y) %>%
-    mutate_at(
-      #    mutate(across(   ## revert to mutate_at as the alternative code didn't work
-      "count",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    )
-
+#    mutate_at(
+ #     "count",
+  #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+   # )
+     mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., digits = 5), .)))
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
   if (is.na(first(cohort_sankey1_text$count)) == FALSE) {
