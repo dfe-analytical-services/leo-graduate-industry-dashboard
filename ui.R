@@ -28,9 +28,9 @@ fluidPage(
 
   # 2. Cookie banner ==================================================
   #    copied over from template
-  dfeshiny::dfe_cookie_script(),
-  dfeshiny::cookie_banner_ui(
-    "cookie-banner",
+  dfeshiny::dfe_cookies_script(),
+  dfeshiny::cookies_banner_ui(
+    "cookies-banner",
     "Longitudinal Education Outcomes - Graduate Industry dashboard"
   ),
 
@@ -79,14 +79,23 @@ fluidPage(
       "Accessibility",
       accessibility_statement() # defined in R/accessibility_statement.R
     ),
-    support_panel(
-      team_email = "explore.statistics@education.gov.uk",
-      repo_name  = "https://github.com/dfe-analytical-services/shiny-template",
-      form_url   = "https://forms.office.com"
+    tabPanel(
+      "Support and feedback",
+      support_panel(
+        team_email = "he.leo@education.gov.uk",
+        repo_name = "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard",
+        form_url = paste0(
+          "https://forms.office.com/Pages/ResponsePage.aspx?id=",
+          "yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu"
+        )
+      )
     ),
-    dfeshiny::cookies_panel_ui(
-      id = "cookie-panel",
-      google_analytics_key = google_analytics_key
+    tabPanel(
+      "Cookies",
+      dfeshiny::cookies_panel_ui(
+        id = "cookies-panel",
+        google_analytics_key = google_analytics_key
+      )
     )
   ),
 
