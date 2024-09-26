@@ -98,6 +98,11 @@ regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
 
 
 qual_subjects <- tables_data %>%
+  # filter line added by Cathie, so that only subject-qualification level combinations are available where
+  # at least ten graduates have this combination
+  #  filter(sex == "F+M" & ethnicity == "All" & current_region == "All" & FSM == "All" & prior_attainment == "All" & group_name == "All") %>%
+  #  filter(as.numeric(count) >= 10) %>%
+  # end of Cathie's addition
   select(qualification_TR, subject_name) %>%
   distinct()
 

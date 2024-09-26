@@ -28,8 +28,8 @@ fluidPage(
 
   # 2. Cookie banner ==================================================
   #    copied over from template
-  dfeshiny::dfe_cookie_script(),
-  dfeshiny::cookie_banner_ui(
+  dfeshiny::dfe_cookies_script(),
+  dfeshiny::cookies_banner_ui(
     "cookies-banner",
     "Longitudinal Education Outcomes - Graduate Industry dashboard"
   ),
@@ -54,9 +54,14 @@ fluidPage(
     paste0(
       "This dashboard is a new service that we are developing. If you have any feedback or
     suggestions for improvements, please submit them using our ",
-      a(
+      #    a(
+      #       href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
+      #      "feedback form", .noWS = c("after")
+      #   ),
+      external_link(
         href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
-        "feedback form", .noWS = c("after")
+        link_text = "feedback form",
+        add_warning = TRUE
       ),
       ".</b><br>"
     )

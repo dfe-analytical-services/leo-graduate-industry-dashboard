@@ -6,11 +6,31 @@ accessibility_statement <- function() {
             and have actively developed this application with accessibilty in mind.",
     br(),
     br(),
-    "We follow the reccomendations of the ", a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements", .noWS = c("after")),
-    ". This application has been checked using the ", a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool", .noWS = c("after")),
+    "We follow the reccomendations of the ",
+    #    a(href = "https://www.w3.org/TR/WCAG21/", "WCAG 2.1 requirements", .noWS = c("after")),
+    # Cathie adding the external_link() function
+    external_link(
+      href = "https://www.w3.org/TR/WCAG21/",
+      link_text = "WCAG 2.1 requirements",
+      add_warning = TRUE
+    ),
+    ". This application has been checked using the ",
+    #        a(href = "https://github.com/ewenme/shinya11y", "Shinya11y tool", .noWS = c("after")),
+    # Cathie adding the external_link() function
+    external_link(
+      href = "https://github.com/ewenme/shinya11y",
+      link_text = "Shinya11y tool",
+      add_warning = TRUE
+    ),
     ", which did not detect accessibility issues.",
     "This application also fully passes the accessibility audits checked by DfE analysts using the ",
-    a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool", .noWS = c("after")),
+    #    a(href = "https://developers.google.com/web/tools/lighthouse", "Google Developer Lighthouse tool", .noWS = c("after")),
+    # Cathie adding the external_link() function
+    external_link(
+      href = "https://developers.google.com/web/tools/lighthouse",
+      link_text = "Google Developer Lighthouse tool",
+      add_warning = TRUE
+    ),
     ". This means that this application:",
     br(),
     tags$div(tags$ul(
@@ -19,8 +39,14 @@ accessibility_statement <- function() {
       tags$li("navigate most of the website using just a keyboard"),
       tags$li("has its performance regularly monitored, with a team working on any feedback to improve accessibility for all users")
     )),
-    "We've also made the website text as simple as possible to understand.",
-    a(href = "https://mcmw.abilitynet.org.uk/", "AbilityNet", .noWS = c("after")),
+    "We've also made the website text as simple as possible to understand. ",
+    #    a(href = "https://mcmw.abilitynet.org.uk/", "AbilityNet", .noWS = c("after")),
+    # Cathie adding the external_link() function
+    external_link(
+      href = "https://mcmw.abilitynet.org.uk/",
+      link_text = "AbilityNet",
+      add_warning = TRUE
+    ),
     " has advice on making your device easier to use if you have a disability.",
     h3("How accessible this website is"),
     "We recognise that there are still potential issues with accessibility in this application, but we will continue
@@ -33,7 +59,13 @@ accessibility_statement <- function() {
     h3("Feedback and contact information"),
     "If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille or
       if you have any feedback on how we could further improve the accessibility of this application, please contact us at ",
-    a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")),
+    #    a(href = "mailto:he.leo@education.gov.uk", "he.leo@education.gov.uk", .noWS = c("after")),
+    # Cathie adding the external_link() function
+    external_link(
+      href = "mailto:he.leo@education.gov.uk",
+      link_text = "he.leo@education.gov.uk",
+      add_warning = TRUE
+    ),
     ".",
     h3("Technical information about this website’s accessibility"),
     "Department for Education is committed to making its website accessible, in accordance with the Public Sector Bodies

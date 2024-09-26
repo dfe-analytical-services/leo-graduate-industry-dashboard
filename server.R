@@ -5,14 +5,12 @@ server <- function(input, output, session) {
 
   # Cookies ====================================================
 
-  output$cookies_status <- cookie_banner_server(
+  output$cookies_status <- cookies_banner_server(
     "cookies-banner",
     input_cookies = shiny::reactive(input$cookies),
     parent_session = session,
-#    google_analytics_key = google_analytics_key,
-  #  cookies_link_panel = "cookies_panel_ui"
-#    Cathie tried getting rid of cookies_link_panel line of code because when I run the app, it throws an error of
-#    "unused argument (cookies_link_panel = "cookies_panel_ui")
+    #      google_analytics_key = google_analytics_key,
+    #     cookies_link_panel = "cookies_panel_ui")
     google_analytics_key = google_analytics_key
   )
 
@@ -408,9 +406,12 @@ server <- function(input, output, session) {
         mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
         #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
         #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
-        mutate(across(list(~ gsub("-10000", "c", .)))) %>%
-        mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
         arrange(SECTIONNAME, group_name) %>%
+        # added by Cathie
+        select(out_columns) %>%
+        # end of addition by Cathie
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
@@ -437,7 +438,7 @@ server <- function(input, output, session) {
   output$downloadData_p5 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "IndustryBySubject.csv"
+      suffix <- "SubjectByIndustry.csv"
       if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton2),
@@ -479,21 +480,23 @@ server <- function(input, output, session) {
         summarise_all(sum) %>%
         mutate(subject_name = "TOTAL (N)") %>%
         select(out_columns)
+
       dfDownload <- table_data$data
-      if (input$earningsbutton2 == "Proportions") {
+      if (as.character(input$earningsbutton2) == "Proportions") { ## Cathie added as.character()
         dfDownload <- dfDownload %>%
-          #    mutate_if(is.numeric, list(~ (100.0 * .)))
-          mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+          mutate_if(is.numeric, list(~ (100.0 * .)))
+        #          mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+      } else {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+          #                mutate_all(list(~ gsub("-10000", "c", .))) %>%
+          #               mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+          #        mutate(across(where(is.numeric), ~ list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
+          arrange(subject_name) %>%
+          rbind(footsum)
       }
-      dfDownload <- dfDownload %>%
-        #        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
-        #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-        #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
-        mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
-        mutate(across(list(~ gsub("-10000", "c", .)))) %>%
-        mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
-        arrange(subject_name) %>%
-        rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )

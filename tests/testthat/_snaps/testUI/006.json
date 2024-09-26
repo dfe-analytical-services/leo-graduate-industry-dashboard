@@ -1,0 +1,22 @@
+{
+  "input": {
+    "indflow.subjectinput": "Celtic studies",
+    "navlistPanel": "industryFlow",
+    "qualinput": "Level 7 (taught)",
+    "sexinput": "M"
+  },
+  "output": {
+    "sankey": {
+      "x": null,
+      "evals": [
+
+      ],
+      "jsHooks": null,
+      "deps": [
+
+      ]
+    },
+    "sankeytext1": "Numbers are very low for this selection and the outputs are suppressed.",
+    "sankeytext2": ""
+  }
+}

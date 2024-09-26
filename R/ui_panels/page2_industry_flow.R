@@ -15,7 +15,7 @@ industry_flow_page <- function() {
           h1("Industries in which graduates are employed one, three and five years after graduation"),
           #          h3("... by qualification, subject area studied, and sex."),
           h3("Coverage is graduates from the 2015-16 academic year
-             who were in sustained employment one and three, or three and five years after graduation."),
+             who were in sustained employment one and three, and/or three and five years after graduation."),
         )
       ),
 
@@ -143,12 +143,13 @@ industry_flow_page <- function() {
                 label = "How to read this sankey",
                 help_text = "The coloured bars represent numbers of graduates in each
                 industry one, three and five years after graduation. The grey flow lines
-                represent movement of graduates between industries between the same years
-                after graduation. You can hover
+                represent movement of graduates between industries over the same numbers
+                of years after graduation. Hover
                 your mouse over a bar or flow line to see the number of
                 graduates it represents. Note that this chart displays the
                 nine industries that most graduates work in and the rest are grouped as 'Other'.
-                To see the full breakdown of industries please view the Industry proportions table."
+                The industry proportions table presents proportions of graduates in the 21
+                industry sections."
               ),
               column(
                 4,

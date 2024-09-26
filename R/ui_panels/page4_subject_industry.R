@@ -14,7 +14,7 @@ subject_by_industry_page <- function() {
       gov_row(
         column(
           width = 12,
-          h1("Industries that graduates work in by the subject area they studied, 2021-22 tax year"),
+          h1("Industries that graduates worked in during the 2021-22 tax year by subject area studied in HE"),
           h3("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
         )
       )
@@ -78,7 +78,7 @@ subject_by_industry_page <- function() {
                   choices = list(
                     "Sex" = "sex",
                     "Ethnicity" = "ethnicity",
-                    "Current region" = "current_region",
+                    "Region of residence 2021-22 tax year" = "current_region",
                     "Free school meals (FSM)" = "FSM",
                     "Prior attainment" = "prior_attainment",
                     "Subject" = "subject_name",
@@ -97,6 +97,7 @@ subject_by_industry_page <- function() {
                 tags$p("Note that the downloaded data is ordered alphabetically by subject area studied, whereas the table below can be ordered by any column."),
                 br(),
                 downloadButton(
+                  #                  outputId = "downloadData",
                   outputId = "downloadData_p4",
                   label = "Download table",
                   icon = shiny::icon("download"),
@@ -215,7 +216,7 @@ subject_by_industry_page <- function() {
     br(),
     paste("3. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
     br(),
-    paste("4. c = data have been supressed due to small numbers."),
+    paste("4. c = data have been suppressed due to small numbers."),
     br(),
     paste("5. x = there is no result available (N/A)."),
     caveats_box() # defined in R/caveats.R

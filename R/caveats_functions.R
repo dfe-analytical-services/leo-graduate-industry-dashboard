@@ -4,15 +4,19 @@ caveats_box_flow <- function() {
     text = paste0(
       strong("Caveats"),
       br(),
-      "\U2022 Data for Level 7 (research) and Level 8 graduates are available in the underlying data files.",
+      "\U2022 Data for Level 7 (research) and Level 8 graduates are not provided in the sankey plot or
+      table on this page, but are available in the underlying data files.",
       br(),
-      "\U2022 The sankey plots and tables include graduates who were in sustained employment in the associated tax year.",
+      "\U2022 The sankey plots and tables include only those graduates who were in sustained employment
+      one and three years after graduation, and/or three and five years after graduation. Consequently,
+      these figures are not comparable to the five year after graduation cohort in the 'Subject by
+      industry' or 'Industry by subject' sections of this dashboard.",
       br(),
-      "\U2022 Each graduate's industry is recorded as the industry in which they earned the most in the particular tax year.",
+      "\U2022 Each graduate's industry is recorded as the industry in which they earned the most in the
+      particular tax year.",
       br(),
-      "\U2022 SIC codes provide information about the industry that each graduate worked in, but not their role or occupation within that industry.",
-      br(),
-      "\U2022 Graduates included in this page are those who were in sustained employment at either one and three years after graduation, or three and five years after graduation. Consequently, these figures are not comparable to the five year after graduation cohort in the 'Subject by industry' or 'Industry by subject' sections of this dashboard."
+      "\U2022 SIC codes provide information about the industry that each graduate worked in, but not
+      their role or occupation within that industry."
     )
   )
 }
@@ -45,7 +49,8 @@ caveats_box_regional <- function() {
     text = paste0(
       strong("Caveats"),
       br(),
-      "\U2022 Data for Level 7 (research) and Level 8 graduates are available in the underlying data files.",
+      "\U2022 Data for Level 7 (research) and Level 8 graduates are not provided in the map, sankey plot or
+      table on this page, but are available in the underlying data files.",
       br(),
       "\U2022 Data only include graduates who were in sustained employment in the associated tax year.",
       br(),

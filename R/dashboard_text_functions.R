@@ -8,34 +8,39 @@ welcome_text <- function() {
     "This dashboard provides information about the industries that graduates were working in
     one, three, five, and ten years after graduation. We are able to do this because we have joined
     the LEO data with SIC (UK Standard Industrial Classification of economic activities) codes
-    using the Inter-Departmental Business Register data or IDBR. For more information, see our",
+    using the Inter-Departmental Business Register data or IDBR. For more information, see our ",
 
     #    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
     #   LEO data using the IDBR (Inter-Departmental Business Register data) at one, three,
     #  five and ten years after graduation. This means we can now see what industry graduates were working in
     # at these points in time. For more detail see our ",
-    
+
     # Cathie: Revamped the external link
-#        a(
- #        href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
-  #      "official statistics publication on LEO Graduate and Postgraduate Outcomes",
-   #    #      .noWS = c("after")  This was the original code before Cathie changed it to be equivalent to the template code
+    #        a(
+    #        href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
+    #      "official statistics publication on LEO Graduate and Postgraduate Outcomes",
+    #    #      .noWS = c("after")  This was the original code before Cathie changed it to be equivalent to the template code
     #  .noWS = "after" # no white space after the link text in the rendered HTML.
-     #),
+    # ),
     # Cathie: Revamped the external link
     external_link(
       href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
       link_text = "official statistics publication on LEO Graduate and Postgraduate Outcomes",
       add_warning = TRUE
     ),
-
     ".", br(), br(),
-    "This dashboard has been produced by the Department for Education to support the aims of the",
-    a(
+    "This dashboard has been produced by the Department for Education to support the aims of the ",
+    #    a(
+    #     href = "https://www.gov.uk/government/groups/unit-for-future-skills",
+    #    "Unit for Future Skills.",
+    #   #      .noWS = c("after")   This was the original code before Cathie changed it to be equivalent to the template code
+    #  .noWS = "after" # no white space after the link text in the rendered HTML.
+    # ),
+    # Cathie: Revamped the external link
+    external_link(
       href = "https://www.gov.uk/government/groups/unit-for-future-skills",
-      "Unit for Future Skills.",
-      #      .noWS = c("after")   This was the original code before Cathie changed it to be equivalent to the template code
-      .noWS = "after" # no white space after the link text in the rendered HTML.
+      link_text = "Unit for Future Skills",
+      add_warning = TRUE
     ),
   )
 }
@@ -76,7 +81,7 @@ sub_by_ind_text <- function() {
     "This page presents tables with information about the industries that graduates worked in up to ten years
     after graduation. This information applies to different cohorts of graduates depending upon the number of years after graduation
     selected, as we use the most recent tax year, ", tax_year_slash, " to ascertain the industry in which graduates
-    are currently working. You can expand the industry sections in these tables to view a more detailed breakdown
+    are 'currently' working. You can expand the industry sections in these tables to view a more detailed breakdown
     of the 3 digit SIC groups within that industry, and can filter the results by:",
     br(),
     tags$ul(
@@ -95,7 +100,7 @@ sub_by_ind_text <- function() {
 
 ind_by_sub_text <- function() {
   div(
-    "This page presents tables with information about the subject areas studied by graduates who are currently working
+    "This page presents tables with information about the subject areas studied by graduates who are 'currently' working
     in a particular industry. Information is avaialable for cohorts currently working during the most recent tax year, ",
     tax_year_slash, ", one, three, five and ten year after graduation. You can filter the results by:",
     br(),
@@ -105,7 +110,7 @@ ind_by_sub_text <- function() {
       tags$li("Free School Meal (FSM) status"),
       tags$li("Current region"),
       tags$li("Prior attainment"),
-      tags$li("Industry section"),
+      #      tags$li("Industry section"),
       tags$li("Qualification level")
     )
   )
@@ -122,27 +127,44 @@ sic_groups_text <- function() {
     is published by the Office for National Statistics (ONS). It provides a framework to classify
     economic activity.",
     h3("Useful links"),
-    a(
+    #    a(
+    #     href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
+    #    "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
+    #   # Added by Cathie below
+    #  , .noWS = "after"
+    # # End of what Cathie added
+    # ),
+
+    # Cathie: Revamped the external link
+    external_link(
       href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
-      "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
-      # Added by Cathie below
-      , .noWS = "after"
-      # End of what Cathie added
+      link_text = "Gov.uk guidance about SIC",
+      add_warning = TRUE
     ),
     br(),
-    a(
+    #    a(
+    #     href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
+    #    "Office for National Statistics interactive SIC hierarchy"
+    #   # Added by Cathie below
+    #  , .noWS = "after"
+    # # End of what Cathie added
+    # ),
+
+    # Cathie: Revamped the external link
+    external_link(
       href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
-      "Office for National Statistics interactive SIC hierarchy"
-      # Added by Cathie below
-      , .noWS = "after"
-      # End of what Cathie added
+      link_text = "Office for National Statistics interactive SIC hierarchy",
+      add_warning = TRUE
     ),
     h3("SIC groups and sections"),
     "The SIC framework includes over 700 detailed industry codes, which are grouped hierarchically
     into 615 classes, 272 groups, 88 divisions, and 21 sections. See the link above to the ONS interactive
     SIC hierarchy. In this dashboard, the industry flow and regional pages provide breakdowns
-    by the 21 broad industry sections, while the industry by subject andsSubject by industry pages provide additional
-    breakdowns by the SIC (3-digit code) groups. The 21 broad industry sections are as follows:",
+    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
+    breakdowns by the SIC (3-digit code) groups.",
+    br(),
+    br(),
+    "The 21 industry sections are as follows:",
     br(),
     br(),
     tags$ol(
