@@ -187,7 +187,7 @@ test_that("Migrated shinytest test: testUI.R", {
   # tests above. This is both in shinytest and running the App in the browser.
   ### Cathie - the above no longer happens
   # 42.
-  app$set_inputs(sectionnameinput = "Celtic Studies", countinput = "current_region", timeout_ = 40000)
+  app$set_inputs(sectionnameinput = "Celtic Studies", timeout_ = 20000)
   app$expect_values(input = regional_input, output = regional_output)
 
 
