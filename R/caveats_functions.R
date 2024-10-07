@@ -34,11 +34,18 @@ caveats_box <- function() {
       "\U2022 SIC codes provide information about the industry the graduate works in, but not their occupation or role within that industry.",
       br(),
       "\U2022 Please note that for a few cases, SIC section and group names conflict with one another. See the data quality section of ",
-      a(
+# Cathie revamped the link
+      external_link(
         href = "https://explore-education-statistics.service.gov.uk/methodology/leo-graduate-and-postgraduate-outcomes",
-        #       target = "_blank", # Cathie trying to get it to open on a new page - didn't work! as it tries to open in RStudio
-        "the methodology"
+        link_text = "the methodology",
+        add_warning = TRUE
       ), " for further details."
+#      ".", br(), br(),      
+#      a(
+ #       href = "https://explore-education-statistics.service.gov.uk/methodology/leo-graduate-and-postgraduate-outcomes",
+  #      #       target = "_blank", # Cathie trying to get it to open on a new page - didn't work! as it tries to open in RStudio
+   #     "the methodology"
+#      ), " for further details."
     )
   )
 }

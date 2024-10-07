@@ -32,16 +32,35 @@ subject_by_industry_page <- function() {
             ### User selection dropdowns ========================================
             gov_row(
               column(
-                width = 6,
+                width = 4,
                 selectizeInput(
                   "earningsbutton",
-                  label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
+                  label = "Proportions or median earnings",
                   choices = list("Proportions", "Median earnings"),
                   selected = "Proportions"
                 )
               ),
               column(
-                width = 6,
+                width = 4,
+                selectizeInput("countinput2",
+                               label = "Choose a breakdown",
+                               choices = list(
+                                 "Sex" = "sex",
+                                 "Ethnicity" = "ethnicity",
+                                 "Region of residence 2021-22 tax year" = "current_region",
+                                 "Free school meals (FSM)" = "FSM",
+                                 "Prior attainment" = "prior_attainment",
+                                 "Subject" = "subject_name",
+                                 "Qualification level" = "qualification_TR"
+                               ),
+                               selected = "sex"
+                )
+              )
+              ),
+            br(),
+            gov_row(
+              column(
+                width = 4,
                 selectizeInput(
                   "qualinput3",
                   label = "Select a qualification",
@@ -55,36 +74,21 @@ subject_by_industry_page <- function() {
                 )
               ),
               column(
-                width = 6,
+                width = 4,
+                selectizeInput("crosstabs.subjectinput",
+                               label = "Select a subject area",
+                               choices = unique(c("All", sort(qual_subjects$subject_name))),
+                               selected = "All"
+                )
+              ),
+
+              column(
+                width = 4,
                 selectizeInput(
                   "YAGinput2",
                   label = "Select year after graduation",
                   choices = list(1, 3, 5, 10),
                   selected = 5
-                )
-              ),
-              column(
-                width = 6,
-                selectizeInput("crosstabs.subjectinput",
-                  label = "Select a subject area",
-                  choices = unique(c("All", sort(qual_subjects$subject_name))),
-                  selected = "All"
-                )
-              ),
-              column(
-                width = 6,
-                selectizeInput("countinput2",
-                  label = "Choose a breakdown",
-                  choices = list(
-                    "Sex" = "sex",
-                    "Ethnicity" = "ethnicity",
-                    "Region of residence 2021-22 tax year" = "current_region",
-                    "Free school meals (FSM)" = "FSM",
-                    "Prior attainment" = "prior_attainment",
-                    "Subject" = "subject_name",
-                    "Qualification level" = "qualification_TR"
-                  ),
-                  selected = "sex"
                 )
               ),
 
@@ -136,7 +140,7 @@ subject_by_industry_page <- function() {
     ### Proportions / earnings input ------------------------------------
 
     #      selectInput("earningsbutton",
-    #       label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
+    #       label = "View proportions of graduates, or their median earnings",
     #      choices = list("Proportions", "Median earnings"),
     #     selected = "Proportions"
     #  ),

@@ -50,11 +50,16 @@ regional_page <- function() {
                   choices = list(1, 3, 5, 10),
                   selected = 5
                 )
-              ),
+              )
+              #,
+              # Cathie added this bit to make the expandable section look better
+            ),
+              br(),
+            gov_row(
               column(
                 width = 6,
                 selectizeInput("regional_input_industry",
-                  label = "Choose an industry area",
+                  label = "Select an industry",
                   list(
                     "Accommodation and food service activities",
                     "Activities of extraterritorial organisations and bodies",
@@ -79,18 +84,18 @@ regional_page <- function() {
                     "Wholesale and retail trade - repair of motor vehicles and motorcycles"
                   ),
                   selected = "Education"
+                )
                 ),
                 column(
                   width = 6,
                   selectizeInput(
                     "regional_input_subject",
-                    label = "Select a subject area studied",
+                    label = "Select subject area studied",
                     choices = unique(c("All", sort(qual_subjects$subject_name))),
                     selected = "All"
                   )
                 ),
               )
-            )
           )
       )
     ),
@@ -312,7 +317,8 @@ regional_page <- function() {
           br(),
           withSpinner(reactableOutput("maptable")),
           br(),
-          strong("Please note that the table shows results for graduates from the selected
+          strong("Median earnings refer to the earnings of graduates who lived in the region during the 2021-22 tax year.
+                  All values in the table are for graduates from the selected
                  level of qualification in the selected subject area, working in the
                  selected industry the selected number of years after graduation."),
           br(), br(),

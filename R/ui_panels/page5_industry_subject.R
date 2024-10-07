@@ -30,42 +30,19 @@ industry_by_subject_page <- function() {
             ### User selection dropdowns ========================================
             gov_row(
               column(
-                width = 6,
+                width = 4,
                 selectizeInput(
                   "earningsbutton2",
-                  label = "View the proportion of graduates in each industry, or the median earnings of these graduates",
+                  label = "Proportions or median earnings",
                   choices = list("Proportions", "Median earnings"),
                   selected = "Proportions"
                 )
               ),
               column(
-                width = 6,
-                selectizeInput(
-                  "qualinput4",
-                  label = "Select a qualification",
-                  choices = list(
-                    "First degree",
-                    "Level 7 (taught)",
-                    "Level 7 (research)",
-                    "Level 8"
-                  ),
-                  selected = "First degree"
-                )
-              ),
-              column(
-                width = 6,
-                selectizeInput(
-                  "YAGinput3",
-                  label = "Select year after graduation",
-                  choices = list(1, 3, 5, 10),
-                  selected = 5
-                )
-              ),
-              column(
-                width = 6,
+                width = 4,
                 selectizeInput(
                   "sectionnameinput2",
-                  label = "Choose an industry area",
+                  label = "Select an industry section",
                   choices = list(
                     "Accommodation and food service activities",
                     "Activities of extraterritorial organisations and bodies",
@@ -93,15 +70,42 @@ industry_by_subject_page <- function() {
                 )
               ),
               column(
-                width = 6,
+                width = 4,
                 selectizeInput("groupinput",
-                  label = "Select area within industry (3 digit SIC group)",
-                  choices = unique(c("All", sort(industry_groups$group_name))),
-                  selected = "All"
+                               label = "Select group within industry",
+                               choices = unique(c("All", sort(industry_groups$group_name))),
+                               selected = "All"
+                )
+              )
+              ),
+            br(),
+            gov_row(
+              column(
+                width = 4,
+                selectizeInput(
+                  "qualinput4",
+                  label = "Select a qualification",
+                  choices = list(
+                    "First degree",
+                    "Level 7 (taught)",
+                    "Level 7 (research)",
+                    "Level 8"
+                  ),
+                  selected = "First degree"
                 )
               ),
               column(
-                width = 6,
+                width = 4,
+                selectizeInput(
+                  "YAGinput3",
+                  label = "Select year after graduation",
+                  choices = list(1, 3, 5, 10),
+                  selected = 5
+                )
+              ),
+
+              column(
+                width = 4,
                 selectizeInput("countinput3",
                   label = "Choose a breakdown",
                   choices = list(
@@ -259,7 +263,7 @@ industry_by_subject_page <- function() {
     fluidRow(
       column(
         width = 12,
-        withSpinner(reactableOutput("crosstab_backwards"))
+         withSpinner(reactableOutput("crosstab_backwards"))
       )
     ),
 

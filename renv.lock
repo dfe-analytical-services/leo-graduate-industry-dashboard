@@ -605,13 +605,13 @@
     },
     "dfeshiny": {
       "Package": "dfeshiny",
-      "Version": "0.4.1.9000",
+      "Version": "0.4.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "dfe-analytical-services",
       "RemoteRepo": "dfeshiny",
       "RemoteRef": "main",
-      "RemoteSha": "0de4922658c293ea31048a2e63a49c6111162c16",
+      "RemoteSha": "a97980297b9d45afd5100c424a39c0e180e63524",
       "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
@@ -626,7 +626,7 @@
         "stringr",
         "styler"
       ],
-      "Hash": "f6a1fd4632a0a75d84b24a77cc098602"
+      "Hash": "26a470de138bb9d64abb9f93b6c4b0ec"
     },
     "diffobj": {
       "Package": "diffobj",
@@ -838,14 +838,14 @@
     },
     "glue": {
       "Package": "glue",
-      "Version": "1.7.0",
+      "Version": "1.8.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
         "methods"
       ],
-      "Hash": "e0b3a53876554bd45879e596cdb10a52"
+      "Hash": "5899f1eaa825580172bb56c08266f37c"
     },
     "gridExtra": {
       "Package": "gridExtra",
@@ -1148,7 +1148,7 @@
     },
     "lmom": {
       "Package": "lmom",
-      "Version": "3.0",
+      "Version": "3.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1156,7 +1156,7 @@
         "graphics",
         "stats"
       ],
-      "Hash": "a69348cee0766082223f1c7e2a545505"
+      "Hash": "a75d2dd42af9b4cb291815889cdcff77"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -1574,7 +1574,7 @@
     },
     "raster": {
       "Package": "raster",
-      "Version": "3.6-26",
+      "Version": "3.6-30",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1584,7 +1584,7 @@
         "sp",
         "terra"
       ],
-      "Hash": "7d6eda494f34a644420ac1bfd2a8023a"
+      "Hash": "0e2829df8cb74a98179c886b023ffea8"
     },
     "reactR": {
       "Package": "reactR",

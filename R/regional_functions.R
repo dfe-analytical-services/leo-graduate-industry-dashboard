@@ -323,9 +323,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the highest proportionate increase in the number of graduates living in the region during the 2021-22 tax year (",
-        tax_year_slash,
-        ") ",
+        " with the highest proportionate increase in the number of graduates living in the region during the 2021-22 tax year ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ", </b> where the number of graduates increased by <b>",
@@ -335,9 +333,9 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the 2021-22 tax year (",
-        tax_year_slash,
-        ") ",
+        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the 2021-22 tax year ",
+#        tax_year_slash,
+ #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ".</b> In this region, the change in the number of graduates was </b>",
@@ -346,9 +344,9 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       )
     } else {
       max_text <- paste0(
-        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the 2021-22 tax year (",
-        tax_year_slash,
-        ") ",
+        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the 2021-22 tax year ",
+#        tax_year_slash,
+ #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ",</b> where the numbers of graduates at the two time points is the same."

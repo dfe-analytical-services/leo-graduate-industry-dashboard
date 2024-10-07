@@ -38,8 +38,8 @@ welcome_text <- function() {
     # ),
     # Cathie: Revamped the external link
     external_link(
-      href = "https://www.gov.uk/government/groups/unit-for-future-skills",
-      link_text = "Unit for Future Skills",
+      href = "https://www.gov.uk/government/collections/skills-england",
+      link_text = "Skills England",
       add_warning = TRUE
     ),
   )
@@ -51,9 +51,9 @@ welcome_text <- function() {
 
 industry_flow_text <- function() {
   div(paste(
-    "This page provides information about the industries that graduates worked in one, three and five years
-    after graduation. The cohort graduated during the academic year of ", fiveyag_cohort_year, ".
-    The page allows you to filter for graduates who studied a particular subject area, at a particular qualification
+    "This page provides information about which industries graduates worked in one, three and five years
+    after graduation. It tracks individuals who graduated during the academic year of 2021-22. You can 
+    filter to select graduates who studied in a particular subject area, at a particular qualification
     level, and by graduate sex.",
     sep = ""
   ))
@@ -67,9 +67,9 @@ regional_text <- function() {
     lived one, three, five and ten years after graduation. A table provides additional contextual information
     about the number of providers in each region and median earnings of graduates living in that region.
     You can filter for graduates who studied a particular subject area, at a particular qualification
-    level, who subsequently worked in a particular industry, for specific numbers of years after graduation.
+    level, who subsequently worked in a particular industry, and for specific numbers of years after graduation.
     Information applies to different cohorts of graduates depending upon the number of years after graduation
-    selected, as we use the most recent tax year, ", tax_year_slash, " to ascertain the region where graduates
+    selected, as we use the most recent tax year, 2021-22, to ascertain the region where graduates
     'currently' live."
   )
 }
@@ -79,16 +79,16 @@ regional_text <- function() {
 sub_by_ind_text <- function() {
   div(
     "This page presents tables with information about the industries that graduates worked in up to ten years
-    after graduation. This information applies to different cohorts of graduates depending upon the number of years after graduation
-    selected, as we use the most recent tax year, ", tax_year_slash, " to ascertain the industry in which graduates
+    after graduation. The information applies to different cohorts of graduates depending upon the number of years after graduation
+    selected, as we use the most recent tax year, 2021-22, to ascertain the industry in which graduates
     are 'currently' working. You can expand the industry sections in these tables to view a more detailed breakdown
-    of the 3 digit SIC groups within that industry, and can filter the results by:",
+    of the 272 (3 digit) SIC groups within that industry, and can filter the results by:",
     br(),
     tags$ul(
       tags$li("Sex"),
       tags$li("Ethnicity"),
       tags$li("Free School Meal (FSM) status"),
-      tags$li("Current region"),
+      tags$li("Region of residence during 2021-22 tax year"),
       tags$li("Prior attainment"),
       tags$li("Subject"),
       tags$li("Qualification level")
@@ -100,17 +100,17 @@ sub_by_ind_text <- function() {
 
 ind_by_sub_text <- function() {
   div(
-    "This page presents tables with information about the subject areas studied by graduates who are 'currently' working
-    in a particular industry. Information is avaialable for cohorts currently working during the most recent tax year, ",
-    tax_year_slash, ", one, three, five and ten year after graduation. You can filter the results by:",
+    "This page presents tables with information about the subject areas studied by graduates who were working
+    in each broad industry section during the 2021-22 tax year. Information is available for cohorts that graduated 
+    one, three, five and ten years earlier, in 2020, 2018, 2016, and 2011, respectively. You can filter the results by:",
     br(),
     tags$ul(
       tags$li("Sex"),
       tags$li("Ethnicity"),
       tags$li("Free School Meal (FSM) status"),
-      tags$li("Current region"),
+      tags$li("Region of residence during 2021-22 tax year"),
       tags$li("Prior attainment"),
-      #      tags$li("Industry section"),
+      tags$li("Industry section"),
       tags$li("Qualification level")
     )
   )
@@ -152,8 +152,8 @@ sic_groups_text <- function() {
 
     # Cathie: Revamped the external link
     external_link(
-      href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
-      link_text = "Office for National Statistics interactive SIC hierarchy",
+      href = "https://www.ons.gov.uk/methodology/classificationsandstandards/ukstandardindustrialclassificationofeconomicactivities/uksic2007",
+      link_text = "Office for National Statistics information about SIC",
       add_warning = TRUE
     ),
     h3("SIC groups and sections"),
@@ -161,7 +161,7 @@ sic_groups_text <- function() {
     into 615 classes, 272 groups, 88 divisions, and 21 sections. See the link above to the ONS interactive
     SIC hierarchy. In this dashboard, the industry flow and regional pages provide breakdowns
     by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
-    breakdowns by the SIC (3-digit code) groups.",
+    breakdowns by the 272 SIC (3-digit code) groups.",
     br(),
     br(),
     "The 21 industry sections are as follows:",

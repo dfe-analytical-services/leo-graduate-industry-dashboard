@@ -423,11 +423,15 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         ifelse(line$diff > 0,
           sextext <- paste(
             "the proportion of male graduates was <b>", round(line$abs * 100, digits = 1),
-            "% points higher</b> than the proportion of female graduates."
+            "% points higher</b> than the proportion of female graduates.",
+# Cathie added the next line
+            sep = ""
           ),
           sextext <- paste(
             "the proportion of female graduates was <b>", round(line$abs * 100, digits = 1),
-            "% points higher</b> than the proportion of male graduates."
+            "% points higher</b> than the proportion of male graduates.",
+# Cathie added the next line
+          sep = ""
           )
         )
       }
@@ -621,12 +625,16 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             FSMtext <- paste(
               "The biggest difference in proportions was in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
               "</b>, where the proportion of non-FSM graduates was <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-              "% points higher </b> than the proportion of FSM graduates."
+              "% points higher </b> than the proportion of FSM graduates.",
+# Cathie added the next line
+              sep = ""
             ),
             FSMtext <- paste(
               "The biggest difference in proportions was in <b>", first(crosstabs_data$SECTIONNAME, order_by = -crosstabs_data$abs),
               "</b>, where the proportion of FSM graduates was <b>", round(first(crosstabs_data$abs, order_by = -crosstabs_data$abs) * 100, digits = 1),
-              "% points higher </b> than the proportion of non-FSM graduates."
+              "% points higher </b> than the proportion of non-FSM graduates.",
+# Cathie added the next line
+              sep = ""
             )
           )
         }

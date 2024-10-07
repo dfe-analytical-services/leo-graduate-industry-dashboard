@@ -30,7 +30,7 @@ industry_flow_page <- function() {
               ### User selection dropdowns ========================================
               gov_row(
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     "qualinput",
                     label = "Select a qualification",
@@ -42,7 +42,7 @@ industry_flow_page <- function() {
                   )
                 ),
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     "indflow.subjectinput",
                     label = "Select a subject area studied",
@@ -51,7 +51,7 @@ industry_flow_page <- function() {
                   )
                 ),
                 column(
-                  width = 6,
+                  width = 4,
                   selectizeInput(
                     inputId = "sexinput",
                     label = "Select graduate sex",
