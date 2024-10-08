@@ -126,12 +126,12 @@ sic_groups_text <- function() {
     br(),
     h3("UK Standard Industrial Classification (SIC) code"),
     "The UK Standard Industrial Classification, abbreviated to SIC,
-    is a hierarchical framework used to classify business establishments and other statistical units 
-    by the type of economic activity in which they are engaged. 
-    At the broadest level of classification, the SIC consists of 
+    is a hierarchical framework used to classify business establishments and other statistical units
+    by the type of economic activity in which they are engaged.
+    At the broadest level of classification, the SIC consists of
     21 sections, which are broken down into 88 divisions. These are then broken down into
-    272 groups, 615 classes, and some of these 615 classes are further broken down into an additional 191 sub-classes. 
-    The UK SIC is published by the Office for National Statistics.", 
+    272 groups, 615 classes, and some of these 615 classes are further broken down into an additional 191 sub-classes.
+    The UK SIC is published by the Office for National Statistics.",
     br(),
     br(),
     "Here are some useful links:",
