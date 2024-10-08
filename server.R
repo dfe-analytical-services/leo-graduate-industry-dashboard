@@ -71,14 +71,16 @@ server <- function(input, output, session) {
 
   # First, create an object for male and female, as the values of input$sexinput are M,F,F&M
 
-    sexselection <- reactive(ifelse(input$sexinput == "F", "females",
-                             ifelse(input$sexinput == "M", "males",
-                                   "females and males")))
+  sexselection <- reactive(ifelse(input$sexinput == "F", "Females",
+    ifelse(input$sexinput == "M", "Males",
+      "Females and Males"
+    )
+  ))
 
-#    sexselection <- reactive(list(
- #    "Female & male" = "F+M",
+  #    sexselection <- reactive(list(
+  #    "Female & male" = "F+M",
   #  "Female" = "F",
-   #"Male" = "M"))
+  # "Male" = "M"))
 
   output$dropdown_label <- renderText({
     paste0(
@@ -205,12 +207,16 @@ server <- function(input, output, session) {
       ", Qualification is ", input$qualinput3,
       ", Years after graduation  is ", input$YAGinput2,
       ", Subject area studied is ", input$crosstabs.subjectinput,
-      ", Breakdown is by ", 
+      ", Breakdown is by ",
       ifelse(input$countinput2 == "current_region", "region of residence 2021-22 tax year",
-       ifelse(input$countinput2 =="FSM", "free school meals status",
-        ifelse(input$countinput2 == "prior_attainment", "prior attainment",
-          ifelse(input$countinput2 == "subject_name", "subject area studied",
-            ifelse(input$countinput2 == "qualification_TR", "qualification level", input$countinput2)))))
+        ifelse(input$countinput2 == "FSM", "free school meals status",
+          ifelse(input$countinput2 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput2 == "subject_name", "subject area studied",
+              ifelse(input$countinput2 == "qualification_TR", "qualification level", input$countinput2)
+            )
+          )
+        )
+      )
     )
   })
 
@@ -225,12 +231,15 @@ server <- function(input, output, session) {
       ", Qualification is ", input$qualinput4,
       ", Years after graduation  is ", input$YAGinput3,
       ", Industry is ", input$sectionnameinput2, ", ", input$groupinput,
-      ", Breakdown is by ", 
+      ", Breakdown is by ",
       ifelse(input$countinput3 == "current_region", "region of residence 2021-22 tax year",
-       ifelse(input$countinput3 =="FSM", "free school meals status",
-        ifelse(input$countinput3 == "prior_attainment", "prior attainment",
-          ifelse(input$countinput3 == "qualification_TR", "qualification level", input$countinput3))))
+        ifelse(input$countinput3 == "FSM", "free school meals status",
+          ifelse(input$countinput3 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput3 == "qualification_TR", "qualification level", input$countinput3)
           )
+        )
+      )
+    )
   })
 
 
@@ -437,11 +446,12 @@ server <- function(input, output, session) {
   # Cathie adding this clause that gives warning message if low numbers instead of table
 
   output$crosstab_backwards <- renderReactable({
-    table_data <- reactiveIndSubjTable() 
+    table_data <- reactiveIndSubjTable()
     indsubj_reactable(
       table_data$data,
-      table_data$coldefs)
-    })
+      table_data$coldefs
+    )
+  })
 
   ### Download the reactive industry by subject data.=========================
   #  output$IndSubjDownload <- downloadHandler(

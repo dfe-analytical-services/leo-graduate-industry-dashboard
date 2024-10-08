@@ -535,7 +535,8 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
         first(cohort_sankey1_text$count), "</b> graduates from <b>", first(cohort_sankey1_text$SECTIONNAME.x), "</b> to <b>",
         first(cohort_sankey1_text$SECTIONNAME.y), "</b>. During the period three to five years after graduation, the greatest movement was of <b>",
         first(cohort_sankey2_text$count), "</b> graduates from <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> to <b>",
-        first(cohort_sankey2_text$SECTIONNAME.y), "</b>.", sep = ""
+        first(cohort_sankey2_text$SECTIONNAME.y), "</b>.",
+        sep = ""
       )
     } else {
       sankeytext2 <- ""

@@ -29,7 +29,7 @@ welcome_text <- function() {
       add_warning = TRUE
     ),
     ".", br(), br(),
-    "This dashboard has been produced by the Department for Education to support the aims of the ",
+    "This dashboard has been produced by the Department for Education to support the aims of ",
     #    a(
     #     href = "https://www.gov.uk/government/groups/unit-for-future-skills",
     #    "Unit for Future Skills.",
@@ -52,7 +52,7 @@ welcome_text <- function() {
 industry_flow_text <- function() {
   div(paste(
     "This page provides information about which industries graduates worked in one, three and five years
-    after graduation. It tracks individuals who graduated during the academic year of 2021-22. You can 
+    after graduation. It tracks individuals who graduated during the academic year of 2015-16. You can
     filter to select graduates who studied in a particular subject area, at a particular qualification
     level, and by graduate sex.",
     sep = ""
@@ -101,7 +101,7 @@ sub_by_ind_text <- function() {
 ind_by_sub_text <- function() {
   div(
     "This page presents tables with information about the subject areas studied by graduates who were working
-    in each broad industry section during the 2021-22 tax year. Information is available for cohorts that graduated 
+    in each broad industry section during the 2021-22 tax year. Information is available for cohorts that graduated
     one, three, five and ten years earlier, in 2020, 2018, 2016, and 2011, respectively. You can filter the results by:",
     br(),
     tags$ul(
@@ -122,10 +122,12 @@ sic_groups_text <- function() {
   div(
     h3("IDBR (Inter-Departmental Business Register)"),
     "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
-    h3("UK SIC (Standard Industrial Classification) code"),
-    "The UK Standard Industrial Classification (SIC) of Economic Activities, abbreviated as SIC,
-    is published by the Office for National Statistics (ONS). It provides a framework to classify
-    economic activity.",
+    h3("UK Standard Industrial Classification (SIC) code"),
+    "The UK Standard Industrial Classification of Economic Activities, abbreviated as SIC,
+    is a hierarchical framework used to classify economic activity. At the broadest level of classification, the SIC consists of 21 sections, which are broken down into 88 divisions. These are then broken down into
+    272 groups, 615 classes, and over 700 sub-classes. In this dashboard, the industry flow and regional pages provide breakdowns
+    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
+    breakdowns by the 272 groups. The UK SIC is published by the Office for National Statistics (ONS).",
     h3("Useful links"),
     #    a(
     #     href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
@@ -156,12 +158,11 @@ sic_groups_text <- function() {
       link_text = "Office for National Statistics information about SIC",
       add_warning = TRUE
     ),
-    h3("SIC groups and sections"),
-    "The SIC framework includes over 700 detailed industry codes, which are grouped hierarchically
-    into 615 classes, 272 groups, 88 divisions, and 21 sections. See the link above to the ONS interactive
-    SIC hierarchy. In this dashboard, the industry flow and regional pages provide breakdowns
-    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
-    breakdowns by the 272 SIC (3-digit code) groups.",
+    #    h3("SIC groups and sections"),
+    #    "At the broadest level of classification, the SIC consists of 21 sections, which are broken down into 88 divisions. These are then broken down into
+    #    272 groups, 615 classes, and over 700 sub-classes. In this dashboard, the industry flow and regional pages provide breakdowns
+    #    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
+    #    breakdowns by the 272 groups.",
     br(),
     br(),
     "The 21 industry sections are as follows:",

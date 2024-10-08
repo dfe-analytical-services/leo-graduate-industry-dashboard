@@ -43,20 +43,20 @@ subject_by_industry_page <- function() {
               column(
                 width = 4,
                 selectizeInput("countinput2",
-                               label = "Choose a breakdown",
-                               choices = list(
-                                 "Sex" = "sex",
-                                 "Ethnicity" = "ethnicity",
-                                 "Region of residence 2021-22 tax year" = "current_region",
-                                 "Free school meals (FSM)" = "FSM",
-                                 "Prior attainment" = "prior_attainment",
-                                 "Subject" = "subject_name",
-                                 "Qualification level" = "qualification_TR"
-                               ),
-                               selected = "sex"
+                  label = "Choose a breakdown",
+                  choices = list(
+                    "Sex" = "sex",
+                    "Ethnicity" = "ethnicity",
+                    "Region of residence 2021-22 tax year" = "current_region",
+                    "Free school meals (FSM)" = "FSM",
+                    "Prior attainment" = "prior_attainment",
+                    "Subject" = "subject_name",
+                    "Qualification level" = "qualification_TR"
+                  ),
+                  selected = "sex"
                 )
               )
-              ),
+            ),
             br(),
             gov_row(
               column(
@@ -76,12 +76,11 @@ subject_by_industry_page <- function() {
               column(
                 width = 4,
                 selectizeInput("crosstabs.subjectinput",
-                               label = "Select a subject area",
-                               choices = unique(c("All", sort(qual_subjects$subject_name))),
-                               selected = "All"
+                  label = "Select a subject area",
+                  choices = unique(c("All", sort(qual_subjects$subject_name))),
+                  selected = "All"
                 )
               ),
-
               column(
                 width = 4,
                 selectizeInput(

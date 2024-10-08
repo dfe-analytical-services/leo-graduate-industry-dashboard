@@ -72,12 +72,12 @@ industry_by_subject_page <- function() {
               column(
                 width = 4,
                 selectizeInput("groupinput",
-                               label = "Select group within industry",
-                               choices = unique(c("All", sort(industry_groups$group_name))),
-                               selected = "All"
+                  label = "Select group within industry",
+                  choices = unique(c("All", sort(industry_groups$group_name))),
+                  selected = "All"
                 )
               )
-              ),
+            ),
             br(),
             gov_row(
               column(
@@ -103,7 +103,6 @@ industry_by_subject_page <- function() {
                   selected = 5
                 )
               ),
-
               column(
                 width = 4,
                 selectizeInput("countinput3",
@@ -263,7 +262,7 @@ industry_by_subject_page <- function() {
     fluidRow(
       column(
         width = 12,
-         withSpinner(reactableOutput("crosstab_backwards"))
+        withSpinner(reactableOutput("crosstab_backwards"))
       )
     ),
 

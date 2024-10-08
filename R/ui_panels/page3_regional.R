@@ -51,10 +51,10 @@ regional_page <- function() {
                   selected = 5
                 )
               )
-              #,
+              # ,
               # Cathie added this bit to make the expandable section look better
             ),
-              br(),
+            br(),
             gov_row(
               column(
                 width = 6,
@@ -85,17 +85,17 @@ regional_page <- function() {
                   ),
                   selected = "Education"
                 )
-                ),
-                column(
-                  width = 6,
-                  selectizeInput(
-                    "regional_input_subject",
-                    label = "Select subject area studied",
-                    choices = unique(c("All", sort(qual_subjects$subject_name))),
-                    selected = "All"
-                  )
-                ),
-              )
+              ),
+              column(
+                width = 6,
+                selectizeInput(
+                  "regional_input_subject",
+                  label = "Select subject area studied",
+                  choices = unique(c("All", sort(qual_subjects$subject_name))),
+                  selected = "All"
+                )
+              ),
+            )
           )
       )
     ),
