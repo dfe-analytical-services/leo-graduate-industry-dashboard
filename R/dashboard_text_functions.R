@@ -7,7 +7,7 @@ welcome_text <- function() {
     h2("Welcome"),
     "This dashboard provides information about the industries that graduates were working in
     one, three, five, and ten years after graduation. We are able to do this because we have joined
-    the LEO data with SIC (UK Standard Industrial Classification of economic activities) codes
+    the LEO data with the UK Standard Industrial Classification (SIC) of businesses
     using the Inter-Departmental Business Register data or IDBR. For more information, see our ",
 
     #    "For the first time, SIC (UK Standard Industrial Classification of economic activities) codes have been joined to
@@ -120,29 +120,21 @@ ind_by_sub_text <- function() {
 
 sic_groups_text <- function() {
   div(
-    h3("IDBR (Inter-Departmental Business Register)"),
+    h3("Inter-Departmental Business Register (IDBR)"),
     "IDBR data is a comprehensive list of UK businesses used by government for statistical purposes.",
+    br(),
+    br(),
     h3("UK Standard Industrial Classification (SIC) code"),
-    "The UK Standard Industrial Classification of Economic Activities, abbreviated as SIC,
-    is a hierarchical framework used to classify economic activity. At the broadest level of classification, the SIC consists of 21 sections, which are broken down into 88 divisions. These are then broken down into
-    272 groups, 615 classes, and over 700 sub-classes. In this dashboard, the industry flow and regional pages provide breakdowns
-    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
-    breakdowns by the 272 groups. The UK SIC is published by the Office for National Statistics (ONS).",
-    h3("Useful links"),
-    #    a(
-    #     href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
-    #    "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
-    #   # Added by Cathie below
-    #  , .noWS = "after"
-    # # End of what Cathie added
-    # ),
-
-    # Cathie: Revamped the external link
-    external_link(
-      href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
-      link_text = "Gov.uk guidance about SIC",
-      add_warning = TRUE
-    ),
+    "The UK Standard Industrial Classification, abbreviated to SIC,
+    is a hierarchical framework used to classify business establishments and other statistical units 
+    by the type of economic activity in which they are engaged. 
+    At the broadest level of classification, the SIC consists of 
+    21 sections, which are broken down into 88 divisions. These are then broken down into
+    272 groups, 615 classes, and some of these 615 classes are further broken down into an additional 191 sub-classes. 
+    The UK SIC is published by the Office for National Statistics.", 
+    br(),
+    br(),
+    "Here are some useful links:",
     br(),
     #    a(
     #     href = "https://onsdigital.github.io/dp-classification-tools/standard-industrial-classification/ONS_SIC_hierarchy_view.html",
@@ -151,11 +143,25 @@ sic_groups_text <- function() {
     #  , .noWS = "after"
     # # End of what Cathie added
     # ),
-
     # Cathie: Revamped the external link
     external_link(
       href = "https://www.ons.gov.uk/methodology/classificationsandstandards/ukstandardindustrialclassificationofeconomicactivities/uksic2007",
       link_text = "Office for National Statistics information about SIC",
+      add_warning = TRUE
+    ),
+    br(),
+    #    h3("Useful links"),
+    #    a(
+    #     href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
+    #    "Standard industrial classification of economic activities (SIC) - GOV.UK.(www.gov.uk)"
+    #   # Added by Cathie below
+    #  , .noWS = "after"
+    # # End of what Cathie added
+    # ),
+    # Cathie: Revamped the external link
+    external_link(
+      href = "https://www.gov.uk/government/publications/standard-industrial-classification-of-economic-activities-sic",
+      link_text = "Gov.uk guidance about SIC",
       add_warning = TRUE
     ),
     #    h3("SIC groups and sections"),
@@ -163,6 +169,11 @@ sic_groups_text <- function() {
     #    272 groups, 615 classes, and over 700 sub-classes. In this dashboard, the industry flow and regional pages provide breakdowns
     #    by the 21 broad industry sections, while the industry by subject and subject by industry pages provide additional
     #    breakdowns by the 272 groups.",
+    br(),
+    br(),
+    "In this dashboard, the industry flow and regional pages provide breakdowns
+    by the 21 broad industry sections, and the industry by subject and subject by industry pages provide additional
+    breakdowns by the 272 groups.",
     br(),
     br(),
     "The 21 industry sections are as follows:",

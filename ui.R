@@ -42,7 +42,7 @@ fluidPage(
     secondary_text = "Longitudinal Education Outcomes - Graduate Industry dashboard",
     logo = "images/DfE_logo.png",
     logo_width = 85,
-    logo_height = 60
+    logo_height = 80
   ),
 
 
@@ -92,7 +92,9 @@ fluidPage(
         form_url = paste0(
           "https://forms.office.com/Pages/ResponsePage.aspx?id=",
           "yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu"
-        )
+        ),
+        publication_name = "LEO Graduate and Postgraduate Outcomes",
+        publication_slug = "leo-graduate-and-postgraduate-outcomes"
       )
     ),
     tabPanel(
