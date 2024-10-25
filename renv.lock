@@ -605,13 +605,13 @@
     },
     "dfeshiny": {
       "Package": "dfeshiny",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteUsername": "dfe-analytical-services",
       "RemoteRepo": "dfeshiny",
       "RemoteRef": "main",
-      "RemoteSha": "e8cb976962129c1a2bb4ca71a852617bb81c35a8",
+      "RemoteSha": "bff6fef6be5049c7a4a41b350244dba6320ecd7c",
       "RemoteHost": "api.github.com",
       "Requirements": [
         "R",
@@ -626,7 +626,7 @@
         "stringr",
         "styler"
       ],
-      "Hash": "1e63c1514d6dc5b2b065e49a1fd08500"
+      "Hash": "f875b7df5b4b75e24fd6cf38e94bccf0"
     },
     "diffobj": {
       "Package": "diffobj",
