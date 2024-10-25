@@ -197,7 +197,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
     counttext <- paste("percentage difference between the numbers of graduates who lived in each region during the 2021-22 tax year and the numbers who studied there:")
   }
   map_title <- paste(
-    "<h4> Map showing the ",
+    "Map showing the ",
     counttext,
     " among ",
     tolower(qualinput),
@@ -207,9 +207,9 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
     sectionnameinput,
     " during the 2021-22 tax year, ",
     YAGtext,
-    " after graduation.</h4>"
+    " after graduation."
     #    after graduation during the ",
-    #    tax_year_slash, " tax year.</h4>"
+    #    tax_year_slash, " tax year."
   )
   return(map_title)
 }
@@ -504,8 +504,8 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
     YAGtext <- "ten years"
   }
 
-  regional_sankey_title <- paste("<h4> Number of graduates working in the", sectionnameinput, " industry who
-                      studied in each region, and where they lived during the 2021-22 tax year, ", YAGtext, " after graduation.</h4>")
+  regional_sankey_title <- paste("Number of graduates working in the", sectionnameinput, " industry who
+                      studied in each region, and where they lived during the 2021-22 tax year, ", YAGtext, " after graduation.")
 
   return(regional_sankey_title)
 }

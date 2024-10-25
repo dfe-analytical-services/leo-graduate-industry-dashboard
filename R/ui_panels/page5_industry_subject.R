@@ -14,7 +14,7 @@ industry_by_subject_page <- function() {
         column(
           width = 12,
           h1("Subject areas that graduates studied before they worked in a particular industry."),
-          h3("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
+          tags$b("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),

@@ -6,8 +6,17 @@ fluidPage(
 
   shinyjs::useShinyjs(),
   includeCSS("www/dfe_shiny_gov_style.css"),
-  title = "LEO Graduate Industry dashboard",
-  # use_tota11y(), # accessibility layer for local testing
+  title = dashboard_title,
+  # shinya11y::use_tota11y(), # accessibility layer for local testing
+
+  dfeshiny::custom_disconnect_message(
+    links = "https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/",
+    publication_name = ees_pub_name,
+    publication_link = paste0(
+      "https://explore-education-statistics.service.gov.uk/find-statistics/",
+      ees_pub_slug
+    )
+  ),
 
   # 1. Set metadata for browser ==================================================
 
@@ -30,8 +39,7 @@ fluidPage(
   #    copied over from template
   dfeshiny::dfe_cookies_script(),
   dfeshiny::cookies_banner_ui(
-    "cookies-banner",
-    "Longitudinal Education Outcomes - Graduate Industry dashboard"
+    name = "Longitudinal Education Outcomes - Graduate Industry dashboard"
   ),
 
 
@@ -54,10 +62,6 @@ fluidPage(
     paste0(
       "This dashboard is a new service that we are developing. If you have any feedback or
     suggestions for improvements, please submit them using our ",
-      #    a(
-      #       href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
-      #      "feedback form", .noWS = c("after")
-      #   ),
       external_link(
         href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
         link_text = "feedback form",
@@ -71,7 +75,6 @@ fluidPage(
   # 5. Navbar ====================================================================
 
   shiny::navlistPanel(
-    "",
     id = "navlistPanel",
     widths = c(2, 8),
     well = FALSE,
@@ -82,7 +85,7 @@ fluidPage(
     industry_by_subject_page(),
     tabPanel(
       "Accessibility",
-      accessibility_statement() # defined in R/accessibility_statement.R
+      a11y_panel()
     ),
     tabPanel(
       "Support and feedback",
@@ -93,14 +96,14 @@ fluidPage(
           "https://forms.office.com/Pages/ResponsePage.aspx?id=",
           "yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu"
         ),
-        publication_name = "LEO Graduate and Postgraduate Outcomes",
-        publication_slug = "leo-graduate-and-postgraduate-outcomes"
+        publication_name = ees_pub_name,
+        publication_slug = ees_pub_slug
       )
     ),
     tabPanel(
+      value = "cookies_panel_ui",
       "Cookies",
       dfeshiny::cookies_panel_ui(
-        id = "cookies-panel",
         google_analytics_key = google_analytics_key
       )
     )

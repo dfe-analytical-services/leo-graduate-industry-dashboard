@@ -15,7 +15,7 @@ subject_by_industry_page <- function() {
         column(
           width = 12,
           h1("Industries that graduates worked in during the 2021-22 tax year by subject area studied in HE"),
-          h3("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
+          tags$b("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),
