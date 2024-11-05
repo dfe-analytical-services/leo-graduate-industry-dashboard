@@ -34,6 +34,7 @@ shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
 shhh(library(dfeshiny))
 # shhh(library(shinya11y))
+# shhh(library(chromote)) Cathie tried adding this when getting an error for running local tests, but it didn't help
 
 
 # update years for text -------------------------------------------------
@@ -51,7 +52,6 @@ fiveyag_cohort_year <- "2015/16"
 
 source("R/read_data_functions.R")
 source("R/accessibility_statement_function.R")
-source("R/support_links_function.R")
 source("R/caveats_functions.R")
 source("R/dashboard_text_functions.R")
 source("R/general_functions.R")
@@ -65,25 +65,18 @@ source("R/ui_panels/page3_regional.R")
 source("R/ui_panels/page4_subject_industry.R")
 source("R/ui_panels/page5_industry_subject.R")
 
-
 # tidy_code_function -------------------------------------------------------------------------------
 
 google_analytics_key <- "Q08W0Y4G5C"
+dashboard_title <- "LEO Graduate Industry dashboard"
+dashboard_link <- paste0(
+  "https://department-for-education.shinyapps.io/",
+  "leo-graduate-industry-dashboard/"
+)
+ees_pub_name <- "LEO Graduate and Postgraduate Outcomes"
+ees_pub_slug <- "leo-graduate-and-postgraduate-outcomes"
+public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard"
 
-tidy_code_function <- function() {
-  message("----------------------------------------")
-  message("App scripts")
-  message("----------------------------------------")
-  app_scripts <- eval(styler::style_dir(recursive = FALSE)$changed)
-  message("R scripts")
-  message("----------------------------------------")
-  r_scripts <- eval(styler::style_dir("R/")$changed)
-  message("Test scripts")
-  message("----------------------------------------")
-  test_scripts <- eval(styler::style_dir("tests/", filetype = "r")$changed)
-  script_changes <- c(app_scripts, r_scripts, test_scripts)
-  return(script_changes)
-}
 
 # source("R/read_data.R")
 cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
@@ -97,6 +90,11 @@ regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
 
 
 qual_subjects <- tables_data %>%
+  # filter line added by Cathie, so that only subject-qualification level combinations are available where
+  # at least ten graduates have this combination
+  #  filter(sex == "F+M" & ethnicity == "All" & current_region == "All" & FSM == "All" & prior_attainment == "All" & group_name == "All") %>%
+  #  filter(as.numeric(count) >= 10) %>%
+  # end of Cathie's addition
   select(qualification_TR, subject_name) %>%
   distinct()
 

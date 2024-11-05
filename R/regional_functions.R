@@ -55,12 +55,12 @@ create_maptabledata <- function(regional_data, regional_movement,
       SECTIONNAME == sectionnameinput, subject_name == subjectinput,
       YAG == YAGinput, qualification_TR == qualinput
     ) %>%
-# Cathie changed mutate_at to mutate(across())
-#    mutate_at(
- #     "count",
-  #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-   # )
-  mutate(across(c("count"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
+    # Cathie changed mutate_at to mutate(across())
+    #    mutate_at(
+    #     "count",
+    #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+    # )
+    mutate(across(c("count"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
 
 
   instregion <- mapdata2 %>%
@@ -94,20 +94,20 @@ create_maptabledata <- function(regional_data, regional_movement,
 
 map_chart <- function(mapdata, countinput) {
   mapdata <- mapdata %>%
-    
-# Cathie changed mutate_at to mutate(across())    
-#    mutate_at(
- #     "earnings_median",
-  #    funs(ifelse(. < 0, "c", .))
-   # ) %>%
-    mutate(across(c("earnings_median"), ~ifelse(. < 0, "c", .))) %>%
-    
-#    mutate_at(
- #     c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
-  #    funs(ifelse(is.na(.), "x", .))
-   # )
-    mutate(across(c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
-                  ~ ifelse(is.na(.), "x", .)))
+    # Cathie changed mutate_at to mutate(across())
+    #    mutate_at(
+    #     "earnings_median",
+    #    funs(ifelse(. < 0, "c", .))
+    # ) %>%
+    mutate(across(c("earnings_median"), ~ ifelse(. < 0, "c", .))) %>%
+    #    mutate_at(
+    #     c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+    #    funs(ifelse(is.na(.), "x", .))
+    # )
+    mutate(across(
+      c("trained_in_region", "living_in_region", "difference", "difference_prop", "number_of_providers", "earnings_median"),
+      ~ ifelse(is.na(.), "x", .)
+    ))
 
   leafletmapdata <- st_transform(mapdata, crs = 4326)
 
@@ -145,7 +145,7 @@ map_chart <- function(mapdata, countinput) {
   p_popup <- paste(
     "<B>", leafletmapdata$region, "</B>", br(), br(),
     "Number who studied in region:        ", prettyNum(leafletmapdata$trained_in_region2, big.mark = ",", scientific = FALSE), br(),
-    "Number who currently live in region: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
+    "Number who lived in region in 2021-22 tax year: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Difference in graduate numbers:      ", prettyNum(leafletmapdata$difference2, big.mark = ",", scientific = FALSE), br(),
     "Difference in proportion:            ", round(leafletmapdata$difference_prop2, digits = 1), "%", br(),
     "Number of providers in region:       ", leafletmapdata$number_of_providers, br(),
@@ -190,25 +190,26 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
   if (countinput == "trained_in_region") {
     counttext <- paste("number of graduates who studied in each region:")
   } else if (countinput == "living_in_region") {
-    counttext <- paste("number of graduates who currently live in each region:")
+    counttext <- paste("number of graduates who lived in each region during the 2021-22 tax year:")
   } else if (countinput == "difference") {
-    counttext <- paste("difference in numbers of graduates who currently live in the region from the numbers who studied there:")
+    counttext <- paste("difference between the numbers of graduates who lived in each region during the 2021-22 tax year and the numbers who studied there:")
   } else if (countinput == "difference_prop") {
-    counttext <- paste("percentage difference in numbers of graduates who currently live in the region from the numbers who studied there:")
+    counttext <- paste("percentage difference between the numbers of graduates who lived in each region during the 2021-22 tax year and the numbers who studied there:")
   }
   map_title <- paste(
-    "<h4> Map showing the ",
+    "Map showing the ",
     counttext,
     " among ",
     tolower(qualinput),
     "graduates of all sexes from English HE providers who studied ",
     subjecttext,
-    " and work in ",
+    " and worked in ",
     sectionnameinput,
-    " ",
+    " during the 2021-22 tax year, ",
     YAGtext,
-    " after graduation during the ",
-    tax_year_slash, " tax year.</h4>"
+    " after graduation."
+    #    after graduation during the ",
+    #    tax_year_slash, " tax year."
   )
   return(map_title)
 }
@@ -322,9 +323,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the highest proportionate increase in the number of graduates living in the region during the current tax year (",
-        tax_year_slash,
-        ") ",
+        " with the highest proportionate increase in the number of graduates living in the region during the 2021-22 tax year ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ", </b> where the number of graduates increased by <b>",
@@ -334,9 +333,9 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the current tax year (",
-        tax_year_slash,
-        ") ",
+        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the 2021-22 tax year ",
+        #        tax_year_slash,
+        #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ".</b> In this region, the change in the number of graduates was </b>",
@@ -345,9 +344,9 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       )
     } else {
       max_text <- paste0(
-        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the current tax year (",
-        tax_year_slash,
-        ") ",
+        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the 2021-22 tax year ",
+        #        tax_year_slash,
+        #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ",</b> where the numbers of graduates at the two time points is the same."
@@ -371,7 +370,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
         "The ", pluralregion(clean_map_data_lowest), " with the fewest graduates living there ",
         YAGtext, " after graduation, compared to the number having studied there ",
         regions(clean_map_data_highest),
-        ", where the number of graduates currently living in the region was the same as the number who graduated from HE providers in the same region."
+        ", where the number of graduates living in the region during the 2021-22 tax year was the same as the number who graduated from HE providers in the same region."
       )
     }
 
@@ -423,7 +422,7 @@ create_regions_table <- function(maptabledata, regioninput) {
       )
     ),
     columnGroups = list(
-      colGroup(name = "Statistics", columns = c("living_in_region2", "trained_in_region2", "difference2", "difference_prop2")),
+      colGroup(name = "Outcomes of interest", columns = c("living_in_region2", "trained_in_region2", "difference2", "difference_prop2")),
       colGroup(name = "Context", columns = c("number_of_providers", "earnings_median"))
     )
   )
@@ -466,12 +465,11 @@ create_regionalsankeyframe <- function(sectionnameinput, subjectinput, YAGinput,
     links <- links[, -4]
 
     links <- links %>%
-      
-# Cathie changed mutate_at() to mutate(across)      
-#      mutate_at(
- #       "value",
-  #      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-   #   ) %>%
+      # Cathie changed mutate_at() to mutate(across)
+      #      mutate_at(
+      #       "value",
+      #      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+      #   ) %>%
       mutate(across(c("value"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))) %>%
       filter(value != 0)
 
@@ -506,8 +504,8 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
     YAGtext <- "ten years"
   }
 
-  regional_sankey_title <- paste("<h4> Number of graduates working in the", sectionnameinput, " industry who
-                      studied in each region, and where they currently live", YAGtext, " after graduation.</h4>")
+  regional_sankey_title <- paste("Number of graduates working in the", sectionnameinput, " industry who
+                      studied in each region, and where they lived during the 2021-22 tax year, ", YAGtext, " after graduation.")
 
   return(regional_sankey_title)
 }

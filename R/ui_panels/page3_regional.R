@@ -15,7 +15,7 @@ regional_page <- function() {
           width = 12,
           h1("Regions in which graduates studied and lived after graduating."),
           br(),
-          h3("Coverage is graduates who were in sustained employment during the 2021-22 tax year.")
+          tags$b("Coverage is graduates who were in sustained employment during the 2021-22 tax year.")
         )
       )
     ),
@@ -50,11 +50,16 @@ regional_page <- function() {
                   choices = list(1, 3, 5, 10),
                   selected = 5
                 )
-              ),
+              )
+              # ,
+              # Cathie added this bit to make the expandable section look better
+            ),
+            br(),
+            gov_row(
               column(
                 width = 6,
                 selectizeInput("regional_input_industry",
-                  label = "Choose an industry area",
+                  label = "Select an industry",
                   list(
                     "Accommodation and food service activities",
                     "Activities of extraterritorial organisations and bodies",
@@ -79,17 +84,17 @@ regional_page <- function() {
                     "Wholesale and retail trade - repair of motor vehicles and motorcycles"
                   ),
                   selected = "Education"
-                ),
-                column(
-                  width = 6,
-                  selectizeInput(
-                    "regional_input_subject",
-                    label = "Select a subject area studied",
-                    choices = unique(c("All", sort(qual_subjects$subject_name))),
-                    selected = "All"
-                  )
-                ),
-              )
+                )
+              ),
+              column(
+                width = 6,
+                selectizeInput(
+                  "regional_input_subject",
+                  label = "Select subject area studied",
+                  choices = unique(c("All", sort(qual_subjects$subject_name))),
+                  selected = "All"
+                )
+              ),
             )
           )
       )
@@ -202,7 +207,7 @@ regional_page <- function() {
           "Map and sankey",
           column(
             6,
-            h3(htmlOutput("map_title")),
+            h2(htmlOutput("map_title")),
             div(
               # Set as well but override sidebar defaults
               class = "well",
@@ -211,7 +216,7 @@ regional_page <- function() {
                 label = "Select statistic to view in the map below",
                 choices = list(
                   "Studied in region" = "trained_in_region",
-                  "Currently living in region" = "living_in_region",
+                  "Lived in region during 2021-22 tax year" = "living_in_region",
                   "Difference (n)" = "difference",
                   "Difference (%)" = "difference_prop"
                 ),
@@ -249,13 +254,13 @@ regional_page <- function() {
           ),
           column(
             6,
-            h3(htmlOutput("regional_sankey_title")),
+            h2(htmlOutput("regional_sankey_title")),
             details(
               inputId = "sankeyhelp",
               label = "How to read this sankey",
               help_text = "The coloured bars represent the numbers of graduates in each
                 region. The grey flow lines show the movement of graduates from the regions where they studied
-                (on the left) to the region where they are living in the current tax year (on the right).
+                (on the left) to the regions where lived during the 2021-22 tax year (on the right).
                 You can hover your mouse over a bar or flow line to see the number of
                 graduates it represents."
             ),
@@ -264,7 +269,7 @@ regional_page <- function() {
               "Region of study"
             ),
             column(6, div(
-              "Current region",
+              "Region during 2021-22 tax year",
               style = "text-align: right"
             )),
             withSpinner(sankeyNetworkOutput("regional_sankey")),
@@ -278,7 +283,7 @@ regional_page <- function() {
 
         tabPanel(
           "Regional table",
-          h3("Regional table"),
+          h2("Regional table for selected graduates"),
           div(
             # Set as well but override sidebar defaults
             class = "well",
@@ -312,7 +317,10 @@ regional_page <- function() {
           br(),
           withSpinner(reactableOutput("maptable")),
           br(),
-          strong("Please note that the table only shows results for the selected industry, subject and year after graduation."),
+          strong("Median earnings refer to the earnings of graduates who lived in the region during the 2021-22 tax year.
+                  All values in the table are for graduates from the selected
+                 level of qualification in the selected subject area, working in the
+                 selected industry the selected number of years after graduation."),
           br(), br(),
           strong("Footnotes"),
           br(),

@@ -152,14 +152,14 @@ sankey_chart <- function(subjectinput, sexinput, qualinput) {
       full_join(links2)
 
     links <- links %>%
-# Cathie got rid of the mutate_at() function as it's no longer used within dplyr
-#      mutate_at(
-#      mutate(across(
-      mutate_at(     ## reverted to previous for now as the mutate(across()) code didn't work!
-        "value",
-        funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-      )
-
+      # Cathie got rid of the mutate_at() function as it's no longer used within dplyr
+      #      mutate_at(
+      #      mutate(across(
+      #      mutate_at( ## reverted to previous for now as the mutate(across()) code didn't work!
+      #       "value",
+      #      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+      #   )
+      mutate(across(c("value"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
     # Force a space between node names and values
     nodes$name <- paste(nodes$name, " ")
 
@@ -392,7 +392,7 @@ sankeytext1 <- function(subjectinput, sexinput, qualinput) {
   )
 
   if (first(yag_table_final$`1 YAG`) == 0 & first(five_yag_table_subject$`5 YAG`) == 0) {
-    sankeytext1 <- "There is no data for this selection."
+    sankeytext1 <- "Numbers are very low for this selection and the outputs are suppressed."
   }
 
   return(sankeytext1)
@@ -498,23 +498,22 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
   cohort_sankey1_text <- cohort_sankey1 %>%
     filter(SECTIONNAME.x != SECTIONNAME.y) %>%
-#    mutate_at(
-#    mutate(across(
-    mutate_at(     ## revert to mutate_at because the mutate(across()) code didn't work
-      "count",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    )
-
+    #    mutate_at(
+    #    mutate(across(
+    #    mutate_at( ## revert to mutate_at because the mutate(across()) code didn't work
+    #     "count",
+    #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+    # )
+    mutate(across(c("count"), ~ ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .)))
   cohort_sankey1_text$count <- prettyNum(cohort_sankey1_text$count, big.mark = ",", scientific = FALSE)
 
   cohort_sankey2_text <- cohort_sankey2 %>%
     filter(SECTIONNAME.x != SECTIONNAME.y) %>%
-    mutate_at(
-#    mutate(across(   ## revert to mutate_at as the alternative code didn't work
-      "count",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    )
-
+    #    mutate_at(
+    #     "count",
+    #    funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+    # )
+    mutate(across(c("count"), ~ ifelse(!is.na(.), round(., digits = 5), .)))
   cohort_sankey2_text$count <- prettyNum(cohort_sankey2_text$count, big.mark = ",", scientific = FALSE)
 
   if (is.na(first(cohort_sankey1_text$count)) == FALSE) {
@@ -534,9 +533,10 @@ sankeytext2 <- function(subjectinput, sexinput, qualinput) {
 
         "The greatest movement between industries during the period one to three years after graduation was the movement of <b>",
         first(cohort_sankey1_text$count), "</b> graduates from <b>", first(cohort_sankey1_text$SECTIONNAME.x), "</b> to <b>",
-        first(cohort_sankey1_text$SECTIONNAME.y), ". </b> During the period three to five years after graduation, the greatest movement was of <b>",
+        first(cohort_sankey1_text$SECTIONNAME.y), "</b>. During the period three to five years after graduation, the greatest movement was of <b>",
         first(cohort_sankey2_text$count), "</b> graduates from <b>", first(cohort_sankey2_text$SECTIONNAME.x), "</b> to <b>",
-        first(cohort_sankey2_text$SECTIONNAME.y), "."
+        first(cohort_sankey2_text$SECTIONNAME.y), "</b>.",
+        sep = ""
       )
     } else {
       sankeytext2 <- ""
@@ -652,27 +652,34 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     "earnings_median_5YAG", "count", "earnings_change_average"
   )] %>%
     arrange(., -count) %>%
-    mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+    #    mutate_at(
+    #     c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
+    #    funs(ifelse(count < 10.9999, NA, .))
+    # ) %>%
+    mutate(across(
       c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
-      funs(ifelse(count < 10.9999, NA, .))
-    ) %>%
-    mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
-      "count",
-      funs(ifelse(count < 10.9999, NA, .))
-    ) %>%
-    mutate_at(
-#    mutate(across(     ## revert to mutate_at as the alternative code didn't work
+      ~ ifelse(count < 10.9999, NA, .)
+    )) %>%
+    #    mutate_at(
+    #     "count",
+    #    funs(ifelse(count < 10.9999, NA, .))
+    # ) %>%
+    mutate(across(c("count"), ~ ifelse(. < 10.9999, NA, .))) %>%
+    #    mutate_at(
+    #     #    mutate(across(     ## revert to mutate_at as the alternative code didn't work
+    #    c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
+    #   funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
+    # ) %>%
+    mutate(across(
       c("earnings_median_1YAG", "earnings_median_5YAG", "earnings_change_average"),
-      funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
-    ) %>%
-    mutate_at(
-#    mutate(across(     ## revert to mutate_at as the alternative code didn't work
-      "count",
-      funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
-    )
-
+      ~ ifelse(!is.na(.), round(., -2), .)
+    )) %>%
+    #    mutate_at(
+    #     #    mutate(across(     ## revert to mutate_at as the alternative code didn't work
+    #    "count",
+    #   funs(ifelse(!is.na(as.numeric(.)), round_any(as.numeric(.), 5), .))
+    # )
+    mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round_any(., 5), .)))
   yag_table_final2$earnings_change_average <- yag_table_final2$earnings_median_5YAG - yag_table_final2$earnings_median_1YAG
 
   # reactable
@@ -738,20 +745,22 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
   YAG1_total <- total_earnings %>%
     filter(YAG == 1) %>%
     dplyr::select(earnings_median) %>%
-    mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
-      "earnings_median",
-      funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
-    )
+    #    mutate_at(
+    #     #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+    #    "earnings_median",
+    #   funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
+    # )
+    mutate(across(c("earnings median"), ~ ifelse(!is.na(.), round(., -2))))
 
   YAG5_total <- total_earnings %>%
     filter(YAG == 5) %>%
     dplyr::select(earnings_median) %>%
-    mutate_at(
-#    mutate(across(       ## revert to mutate_at as the alternative code didn't work
-      "earnings_median",
-      funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
-    )
+    #    mutate_at(
+    #     #    mutate(across(       ## revert to mutate_at as the alternative code didn't work
+    #    "earnings_median",
+    #   funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))
+    # )
+    mutate(across(c("earnings_median"), ifelse(!is.na(.), round(., -2))))
 
   coldefs$earnings_median_1YAG$footer <- paste("£", format(YAG1_total, big.mark = ",", scientific = FALSE))
   coldefs$earnings_median_5YAG$footer <- paste("£", format(YAG5_total, big.mark = ",", scientific = FALSE))
@@ -766,3 +775,7 @@ earnings_table <- function(subjectinput, sexinput, earningsinput) {
     defaultColDef = colDef(footerStyle = list(color = "#000000", fontWeight = "bold"))
   )
 }
+
+# Cathie
+# indflow_suppression <- function()
+# if (first(yag_table_final$`1 YAG`) == 0 & first(five_yag_table_subject$`5 YAG`) == 0) {

@@ -1,0 +1,10 @@
+{
+  "input": {
+    "navlistPanel": "regional"
+  },
+  "output": {
+    "map_title": "Map showing the  number of graduates who studied in each region:  among  first degree graduates of all sexes from English HE providers who studied  all subjects  and worked in  Education  during the 2021-22 tax year,  five years  after graduation.",
+    "maptext": "For first degree graduates of all subjects in the Education industry five years after graduation, the region where\n                    the most graduates had studied was <b>South East<\/b>. The region where the fewest graduates\n                    had studied was <b>North East<\/b>. The region where the highest number of graduates lived\n                    five years after graduation was <b>London<\/b> and the region where the\n                    fewest graduates lived was <b>North East<\/b>.",
+    "maptext2": "For first degree graduates of all subjects in the Education industry, the region with the highest proportionate increase in the number of graduates living in the region during the 2021-22 tax year five years after graduation compared to the number who graduated from HE providers in the same region <b>was <b>East of England<\/b>, <\/b> where the number of graduates increased by <b>61%<\/b>. The region with the largest decrease was <b>South East<\/b> where the number of graduates changed by <b>-27.8%<\/b> (the negative number indicates a decrease)."
+  }
+}

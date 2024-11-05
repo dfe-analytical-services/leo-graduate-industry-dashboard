@@ -6,15 +6,12 @@ server <- function(input, output, session) {
   # Cookies ====================================================
 
   output$cookies_status <- cookies_banner_server(
-    "cookies-banner",
     input_cookies = shiny::reactive(input$cookies),
     parent_session = session,
-    google_analytics_key = google_analytics_key,
-    cookies_link_panel = "cookies_panel_ui"
+    google_analytics_key = google_analytics_key
   )
 
   cookies_panel_server(
-    id = "cookies-panel",
     input_cookies = shiny::reactive(input$cookies),
     google_analytics_key = google_analytics_key # # nolint: [object_usage_linter]
   )
@@ -68,14 +65,16 @@ server <- function(input, output, session) {
 
   ### Label for filters selected --------------------------------
 
-  ## First, create an object for male and female, as the values of input$sexinput are M,F,F&M
+  # First, create an object for male and female, as the values of input$sexinput are M,F,F&M
 
-  #  sexselection <- reactive(ifelse(input$sexinput == "F", "females",
-  #                           ifelse(input$sexinput == "M", "males",
-  #                                 "females and males")))
+  sexselection <- reactive(ifelse(input$sexinput == "F", "Females",
+    ifelse(input$sexinput == "M", "Males",
+      "Females and Males"
+    )
+  ))
 
-  #  sexselection <- reactive(list(
-  #   "Female & male" = "F+M",
+  #    sexselection <- reactive(list(
+  #    "Female & male" = "F+M",
   #  "Female" = "F",
   # "Male" = "M"))
 
@@ -83,7 +82,7 @@ server <- function(input, output, session) {
     paste0(
       "Current selections: Qualification is ", input$qualinput,
       ", Subject area is ", input$indflow.subjectinput,
-      ", Graduates incuded are ", input$sexinput
+      ", Graduates incuded are ", sexselection()
     )
   })
 
@@ -204,7 +203,16 @@ server <- function(input, output, session) {
       ", Qualification is ", input$qualinput3,
       ", Years after graduation  is ", input$YAGinput2,
       ", Subject area studied is ", input$crosstabs.subjectinput,
-      ", Breakdown is by ", input$countinput2
+      ", Breakdown is by ",
+      ifelse(input$countinput2 == "current_region", "region of residence 2021-22 tax year",
+        ifelse(input$countinput2 == "FSM", "free school meals status",
+          ifelse(input$countinput2 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput2 == "subject_name", "subject area studied",
+              ifelse(input$countinput2 == "qualification_TR", "qualification level", input$countinput2)
+            )
+          )
+        )
+      )
     )
   })
 
@@ -219,7 +227,14 @@ server <- function(input, output, session) {
       ", Qualification is ", input$qualinput4,
       ", Years after graduation  is ", input$YAGinput3,
       ", Industry is ", input$sectionnameinput2, ", ", input$groupinput,
-      ", Breakdown is by ", input$countinput3
+      ", Breakdown is by ",
+      ifelse(input$countinput3 == "current_region", "region of residence 2021-22 tax year",
+        ifelse(input$countinput3 == "FSM", "free school meals status",
+          ifelse(input$countinput3 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput3 == "qualification_TR", "qualification level", input$countinput3)
+          )
+        )
+      )
     )
   })
 
@@ -395,19 +410,22 @@ server <- function(input, output, session) {
       )
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
-#  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr          
-#          mutate_if(is.numeric, list(~ (100.0 * .)))
-          mutate(across(where(is.numeric), ~ if_else(.==0, 0, . / sum(., na.rm = TRUE))))
+          #  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+          #          mutate_if(is.numeric, list(~ (100.0 * .)))
+          mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
       }
       dfDownload <- dfDownload %>%
-#  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr          
-#        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+        #  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+        #        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
         mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
-#        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-#        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
-        mutate(across(list(~ gsub("-10000", "c", .)))) %>%
-        mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
+        #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
+        #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
         arrange(SECTIONNAME, group_name) %>%
+        # added by Cathie
+        select(out_columns) %>%
+        # end of addition by Cathie
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
@@ -421,6 +439,8 @@ server <- function(input, output, session) {
   })
 
   # Render the reactive industry by subject data frame into a ReacTable element.
+  # Cathie adding this clause that gives warning message if low numbers instead of table
+
   output$crosstab_backwards <- renderReactable({
     table_data <- reactiveIndSubjTable()
     indsubj_reactable(
@@ -434,7 +454,7 @@ server <- function(input, output, session) {
   output$downloadData_p5 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "IndustryBySubject.csv"
+      suffix <- "SubjectByIndustry.csv"
       if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton2),
@@ -476,21 +496,23 @@ server <- function(input, output, session) {
         summarise_all(sum) %>%
         mutate(subject_name = "TOTAL (N)") %>%
         select(out_columns)
+
       dfDownload <- table_data$data
-      if (input$earningsbutton2 == "Proportions") {
+      if (as.character(input$earningsbutton2) == "Proportions") { ## Cathie added as.character()
         dfDownload <- dfDownload %>%
-    #    mutate_if(is.numeric, list(~ (100.0 * .)))
-        mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+          mutate_if(is.numeric, list(~ (100.0 * .)))
+        #          mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+      } else {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+          #                mutate_all(list(~ gsub("-10000", "c", .))) %>%
+          #               mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+          #        mutate(across(where(is.numeric), ~ list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
+          arrange(subject_name) %>%
+          rbind(footsum)
       }
-      dfDownload <- dfDownload %>%
-#        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
-#        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-#        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
-        mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
-        mutate(across(list(~ gsub("-10000", "c", .)))) %>%
-        mutate(across(list(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
-        arrange(subject_name) %>%
-        rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )
@@ -629,7 +651,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "sectionnameinput2",
-        label = "Choose an industry area",
+        label = "Select industry section",
         choices = list(
           "Education"
         ),
@@ -639,7 +661,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "sectionnameinput2",
-        label = "Choose an industry area",
+        label = "Select industry section",
         choices = list(
           "Accommodation and food service activities",
           "Activities of extraterritorial organisations and bodies",
@@ -691,7 +713,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "groupinput",
-        label = "View 3 digit SIC groups within the selected industry",
+        label = "Select group within industry",
         choices = list(
           "All"
         ),
@@ -707,7 +729,7 @@ server <- function(input, output, session) {
       }
       updateSelectizeInput(
         session, "groupinput",
-        label = "View 3 digit SIC groups within the selected industry",
+        label = "Select group within industry",
         choices = na.exclude(unique(c("All", data_filtered$group_name)))
       )
     }
