@@ -3,7 +3,11 @@ on:
     branches:
       - main
       - development
-
+  pull_request:
+    branches: 
+      - main
+      - development
+    
 name: deploy-shiny
 
 jobs:
@@ -60,6 +64,7 @@ jobs:
           install.packages("rsconnect")
           
       - name: Push to shiny.io
+        if: github.event_name != 'pull_request'
         run: >
           Rscript
           -e "rsconnect::setAccountInfo(name = 'department-for-education', token = '${{secrets.SHINYAPPS_TOKEN}}', secret = '${{secrets.SHINYAPPS_SECRET}}')"
