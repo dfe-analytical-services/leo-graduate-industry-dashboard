@@ -1,7 +1,7 @@
 {
   "input": {
     "indflow.subjectinput": "All",
-    "navbar": "industryFlow",
+    "navlistPanel": "industryFlow",
     "qualinput": "Level 7 (taught)",
     "sexinput": "F+M"
   },
@@ -712,8 +712,7 @@
 
       ]
     },
-    "sankey_title": "<h3>Industry of graduate employment for  2015/16  academic year graduates of all subjects one, three and five years after\n                          graduation (YAG),  male and female level 7 (taught) graduates from English HE providers<\/h3>",
-    "sankeytext1": "For both female and male, level 7 (taught) graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation is <b>Education (39.4%)<\/b>, and at five years after graduation it is <b>the same (37.2%)<\/b>.",
-    "sankeytext2": "The most movement between one and three years after graduation is seen for <b>Education<\/b>, where <\/b>395 graduates move to <b>Human health and social work activities<\/b>. Between three and five\n                       years after graduation it's seen for <b>Education<\/b> where <b>820<\/b> graduates moved to <b>Public administration and defence - compulsory social security<\/b>."
+    "sankeytext1": "For female and male level 7 (taught) graduates of all subjects, the industry with the highest\n                      proportion of graduates one year after graduation was <b>Education (39.4%)<\/b>, and five years after graduation it was <b>the same (37.2%)<\/b>.",
+    "sankeytext2": "The greatest movement between industries during the period one to three years after graduation was the movement of <b>395<\/b> graduates from <b>Education<\/b> to <b>Human health and social work activities<\/b>. During the period three to five years after graduation, the greatest movement was of <b>820<\/b> graduates from <b>Education<\/b> to <b>Public administration and defence - compulsory social security<\/b>."
   }
 }

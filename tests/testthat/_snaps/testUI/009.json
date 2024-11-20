@@ -4,7 +4,7 @@
     "countinput2": "sex",
     "crosstabs.subjectinput": "All",
     "earningsbutton": "Median earnings",
-    "navbar": "subjectByIndustry",
+    "navlistPanel": "subjectByIndustry",
     "qualinput3": "Level 8"
   },
   "output": {
@@ -3312,7 +3312,7 @@
             "defaultPageSize": 22,
             "showSortable": true,
             "height": "600px",
-            "dataKey": "d30b3f15e14293144140c4bb48997a7b",
+            "dataKey": "af1384acf52529fc60b9706002226e25",
             "static": false
           },
           "children": [
@@ -3396,7 +3396,6 @@
 
       ]
     },
-    "crosstab_text": "For level 8 graduates of all subjects, five years after graduation, the industry with the highest proportion of graduates is the same for both female and male graduates (<b>Education<\/b>). The median\n                                earnings for females in this industry  were <b>£37,200<\/b> and for males were <b>£39,400<\/b>.<br/><br/> The biggest difference in proportions is seen in <b>Human health and social work activities<\/b> where the proportion of female graduates is <b> 10.5  percentage points higher<\/b> than the proportion of male graduates. The biggest difference in median earnings is seen in <b>Human health and social work activities<\/b> where the median earnings of male graduates were <b>£43,800  higher<\/b> than the median earnings of female graduates. The group with the highest earnings was  <b>Male<\/b> graduates who worked in the <b>Financial and insurance activities<\/b> industry (median earnings of <b>£88,500<\/b>). <b>66.4%<\/b> of female graduates are concentrated in the top 2\n                           industries (either <b>Education<\/b> or <b>Human health and social work activities<\/b>),\n                           whereas for male graduates this is 51.7%.<br/><br/>",
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex, five years after\n                          graduation, male and female level 8 graduates from English HE providers,\n                            2021/22 tax year.<\/h4>"
+    "crosstab_text": "Among those who graduated five years previously from level 8 courses in all subjects and who were working during the 2021-22 tax year, the industry with the highest proportion of graduates was the same for both female and male graduates (<b>Education<\/b>). The median\n                                earnings for females in this industry  were <b>£37,200<\/b> and for males were <b>£39,400<\/b>. The biggest difference in proportions was in <b>Human health and social work activities<\/b>, where the proportion of female graduates was <b>10.5% points higher<\/b> than the proportion of male graduates.<br/><br/> The biggest difference in median earnings was in <b>Human health and social work activities<\/b>, where the median earnings of male graduates were <b>£43,800  higher<\/b> than the median earnings of female graduates. The group with the highest earnings was  <b>Male<\/b> graduates who worked in the <b>Financial and insurance activities<\/b> industry (median earnings of <b>£88,500<\/b>). <b>66.4%<\/b> of female graduates worked in the top 2\n                           industries (either <b>Education<\/b> or <b>Human health and social work activities<\/b>);\n                            the equivalent figure for male graduates was <b>51.7%.<\/b><br/><br/>"
   }
 }

@@ -4,7 +4,7 @@
     "countinput2": "sex",
     "crosstabs.subjectinput": "All",
     "earningsbutton": "Proportions",
-    "navbar": "subjectByIndustry",
+    "navlistPanel": "subjectByIndustry",
     "qualinput3": "First degree"
   },
   "output": {
@@ -4070,7 +4070,7 @@
             "defaultPageSize": 22,
             "showSortable": true,
             "height": "600px",
-            "dataKey": "f8add68aef500f511189d86b60f2ca13",
+            "dataKey": "54ca20754706a45fb217e542594e2bb1",
             "static": false
           },
           "children": [
@@ -4157,7 +4157,6 @@
 
       ]
     },
-    "crosstab_text": "For first degree graduates of all subjects, five years after graduation, the industry with the highest proportion of female graduates is <b>Human health and social work activities<\/b>, and the median earnings of females in this industry were <b>£30,300<\/b>. The industry with the highest proportion of male graduates was <b>Professional, scientific and technical activities<\/b> and the median earnings of males in this industry were <b>£36,500<\/b>.<br/><br/> The biggest difference in proportions is seen in <b>Human health and social work activities<\/b> where the proportion of female graduates is <b> 15.3  percentage points higher<\/b> than the proportion of male graduates. The biggest difference in median earnings is seen in <b>Financial and insurance activities and Construction<\/b> where the median earnings of male graduates were <b>£10,600  higher<\/b> than the median earnings of female graduates. The group with the highest earnings was  <b>Male<\/b> graduates who worked in the <b>Mining and quarrying<\/b> industry (median earnings of <b>£45,100<\/b>). <b>43.9%<\/b> of female graduates are concentrated in the top 2\n                           industries (either <b>Human health and social work activities<\/b> or <b>Education<\/b>),\n                           whereas for male graduates this is 18.9%.<br/><br/>",
-    "crosstab_title": "<h4> Industry of graduate employment for graduates of all subjects by sex, five years after\n                          graduation, male and female first degree graduates from English HE providers,\n                            2021/22 tax year.<\/h4>"
+    "crosstab_text": "Among those who graduated five years previously from first degree courses in all subjects and who were working during the 2021-22 tax year, the industry with the highest proportion of female graduates was <b>Human health and social work activities<\/b>, and the median earnings of females in this industry was <b>£30,300<\/b>. The industry with the highest proportion of male graduates was <b>Professional, scientific and technical activities<\/b> and the median earnings of males in this industry was <b>£36,500<\/b>. The biggest difference in proportions was in <b>Human health and social work activities<\/b>, where the proportion of female graduates was <b>15.3% points higher<\/b> than the proportion of male graduates.<br/><br/> The biggest difference in median earnings was in <b>Financial and insurance activities and Construction<\/b>, where the median earnings of male graduates were <b>£10,600  higher<\/b> than the median earnings of female graduates. The group with the highest earnings was  <b>Male<\/b> graduates who worked in the <b>Mining and quarrying<\/b> industry (median earnings of <b>£45,100<\/b>). <b>43.9%<\/b> of female graduates worked in the top 2\n                           industries (either <b>Human health and social work activities<\/b> or <b>Education<\/b>);\n                            the equivalent figure for male graduates was <b>18.9%.<\/b><br/><br/>"
   }
 }

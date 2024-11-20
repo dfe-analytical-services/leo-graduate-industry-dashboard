@@ -1,0 +1,894 @@
+backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinput, groupinput) {
+  if (YAGinput == 1) {
+    YAGtext <- "one year"
+  } else if (YAGinput == 3) {
+    YAGtext <- "three years"
+  } else if (YAGinput == 5) {
+    YAGtext <- "five years"
+  } else if (YAGinput == 10) {
+    YAGtext <- "ten years"
+  }
+
+  if (countinput == "FSM") {
+    counttext <- "FSM status"
+  } else if (countinput == "prior_attainment") {
+    counttext <- "prior attainment"
+  } else if (countinput == "current_region") {
+    counttext <- "current region"
+  } else if (countinput == "ethnicity") {
+    counttext <- "ethnicity"
+  }
+
+  if (groupinput == "All") {
+    grouptext <- ""
+  } else {
+    grouptext <- paste(" in ", groupinput, ", ", sep = "")
+  }
+
+
+  if (countinput %in% c("FSM", "prior_attainment")) {
+    crosstab_title <- paste("Graduates working in the ", sectioninput, " industry ", grouptext, YAGtext, " after
+                            graduation by the subject they studied and ", counttext, ", young (under 21 at start of course)
+                            male and female first degree graduates from English HE providers, ", tax_year_slash, " tax year.",
+      sep = ""
+    )
+  }
+
+  if (countinput %in% c("sex")) {
+    crosstab_title <- paste("Graduates working in the ", sectioninput, " industry ", grouptext, YAGtext, " after
+                            graduation by the subject they studied and ", countinput, ", ", tolower(qualinput), " graduates from English HE providers, ", tax_year_slash, " tax year.",
+      sep = ""
+    )
+  }
+
+  if (countinput %in% c("qualification_TR")) {
+    crosstab_title <- paste("Graduates working in the ", sectioninput, " industry ", grouptext, YAGtext, " after
+                            graduation by the subject they studied and qualification level, male and female graduates from English HE providers, ", tax_year_slash, " tax year.")
+  }
+
+  if (countinput %in% c("current_region", "ethnicity")) {
+    crosstab_title <- paste("Graduates working in the ", sectioninput, " industry ", grouptext, YAGtext, " after
+                            graduation by the subject they studied and ", counttext, ", ", "male and female first degree graduates from
+                            English HE providers, ", tax_year_slash, " tax year.",
+      sep = ""
+    )
+  }
+
+  if (countinput %in% c("SECTIONNAME")) {
+    crosstab_title <- paste("Graduates working in each industry by subject studied, ", grouptext, YAGtext, " after
+                          graduation, male and female ", tolower(qualinput), " graduates from English HE providers,
+                            ", tax_year_slash, " tax year.")
+  }
+
+  return(crosstab_title)
+}
+
+
+
+backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput, groupinput) {
+  tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
+
+  orange_pal <- function(x) {
+    if (!is.na(x)) {
+      rgb(colorRamp(c("#F7FBFF", "#317ABF"))(x), maxColorValue = 255)
+    } else {
+      "#e9e9e9" # grey
+    }
+  }
+
+  # function which returns background colour based on cell value (using colour map)
+  # also takes column name as an input, which allows to get max and min
+  stylefunc <- function(value, index, name) {
+    if (value >= 0 && !is.na(value)) {
+      data <- crosstabs_data %>%
+        # Cathie changed mutate_if to mutate(across())
+        #        mutate_if(
+        mutate(across(where(is.numeric), ~ ifelse(. < 0, NA, .)))
+
+      normalized <- (value - min(data %>%
+        select(-subject_name), na.rm = T)) /
+        (max(data %>%
+          select(-subject_name), na.rm = T) - min(data %>%
+          select(-subject_name), na.rm = T))
+      color <- orange_pal(normalized)
+      list(color = "#000000", background = color)
+    }
+  }
+
+  # Cathie - I think this function replaces missing values with x, and values belwo zero with c
+  cellfunc <- function(value) {
+    if (is.na(value)) {
+      "x"
+    } else if (value < 0) "c" else cellformat(value)
+  }
+
+  # Cathie - I think this function is for the total numbers of graduates in each column of the table, rounded to nearest five
+  # footerfunc <- function(value, index, name) {
+  #   footer <- format(round_any(sum(footer_data[name]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+  #   return(footer)
+  # }
+  footerfunc <- function(footer_data) {
+    for (column in numcols) {
+      format(round_any(sum(footer_data[column]), 5), big.mark = ",", scientific = FALSE, na.m = T)
+    }
+  }
+
+  # Cathie - code for breakdowns by ethnicity ======================
+  if (countinput == "ethnicity") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(ethnicity, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(ethnicity, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at and mutate_if to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      #        is.numeric,
+      #       ~ funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE))))
+
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(
+      #       c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+      #      ~ funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+        ~ as.numeric(.)
+      )) %>%
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(ethnicity, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(ethnicity, n) %>%
+      colorders(countinput) %>%
+      # mutate_at(
+      #   c("White", "Black", "Asian", "Mixed", "Other", "Not known"),
+      #   funs(as.numeric(.))
+      # ) %>%
+      # mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(
+      #       c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(
+        c("White", "Black / African / Caribbean / Black British", "Asian / Asian British", "Mixed / Multiple ethnic groups", "Other ethnic group", "Unknown"),
+        ~ as.numeric(.)
+      )) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(
+      #       vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(as.numeric(.), -2), .))) %>%
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, FSM == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(ethnicity, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(ethnicity, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      # select(subject_name, White, Black, Asian, Mixed, Other, `Not known`)
+      select(subject_name, White, `Black / African / Caribbean / Black British`, `Asian / Asian British`, `Mixed / Multiple ethnic groups`, `Other ethnic group`, `Unknown`)
+
+
+    # coldefs <- list(
+    #   subject_name = colDef(name = "Subject area", width = 600, footer = "TOTAL (N)"),
+    #   White = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
+    #   Black = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Black), 5), big.mark = ",", scientific = FALSE)),
+    #   Asian = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Asian), 5), big.mark = ",", scientific = FALSE)),
+    #   Mixed = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Mixed), 5), big.mark = ",", scientific = FALSE)),
+    #   Other = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Other), 5), big.mark = ",", scientific = FALSE)),
+    #   `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+    # )
+    coldefs <- list(
+      subject_name = colDef(name = "Subject area", width = 600, footer = "TOTAL (N)"),
+      White = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$White), 5), big.mark = ",", scientific = FALSE)),
+      `Black / African / Caribbean / Black British` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Black / African / Caribbean / Black British`), 5), big.mark = ",", scientific = FALSE)),
+      `Asian / Asian British` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Asian / Asian British`), 5), big.mark = ",", scientific = FALSE)),
+      `Mixed / Multiple ethnic groups` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Mixed / Multiple ethnic groups`), 5), big.mark = ",", scientific = FALSE)),
+      `Other ethnic group` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Other ethnic group`), 5), big.mark = ",", scientific = FALSE)),
+      Unknown = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Unknown`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdowns by current region =================
+  if (countinput == "current_region") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(current_region, subject_name) %>%
+      summarise(n = count, .groups = "drop") %>%
+      spread(current_region, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at and mutate_if to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      mutate(
+        across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+        #       funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      ) %>%
+      #      mutate_at(
+      #       c(
+      #        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+      #       "East of England", "London", "South East", "South West"
+      #    ),
+      #   funs(as.numeric(.))
+      # ) %>%
+      mutate(across(c(
+        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+        "East of England", "London", "South East", "South West"
+      ), ~ as.numeric(.))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
+        `East of England`, `London`, `South East`, `South West`
+      )
+
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(current_region, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(current_region, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(
+      #       c(
+      #        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+      #       "East of England", "London", "South East", "South West"
+      #    ),
+      #   funs(as.numeric(.))
+      # ) %>%
+      mutate(across(c(
+        "North East", "North West", "Yorkshire and The Humber", "East Midlands", "West Midlands",
+        "East of England", "London", "South East", "South West"
+      ), ~ as.numeric(.))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
+        `East of England`, `London`, `South East`, `South West`
+      )
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(current_region, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(current_region, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(
+        subject_name, `North East`, `North West`, `Yorkshire and The Humber`, `East Midlands`, `West Midlands`,
+        `East of England`, `London`, `South East`, `South West`
+      )
+
+    coldefs <- list(
+      subject_name = colDef(
+        na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)",
+        style = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
+      ),
+      `North East` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North East`), 5), big.mark = ",", scientific = FALSE)),
+      `North West` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`North West`), 5), big.mark = ",", scientific = FALSE)),
+      `Yorkshire and The Humber` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Yorkshire and The Humber`), 5), big.mark = ",", scientific = FALSE)),
+      `East Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East Midlands`), 5), big.mark = ",", scientific = FALSE)),
+      `West Midlands` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`West Midlands`), 5), big.mark = ",", scientific = FALSE)),
+      `East of England` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`East of England`), 5), big.mark = ",", scientific = FALSE)),
+      `London` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`London`), 5), big.mark = ",", scientific = FALSE)),
+      `South East` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`South East`), 5), big.mark = ",", scientific = FALSE)),
+      `South West` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`South West`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdowns by FSM status =====================
+  if (countinput == "FSM") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(FSM, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(FSM, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at and mutate_if to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      #      mutate_at(
+      #       c("non-FSM", "FSM", "Not known"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+      select(subject_name, `non-FSM`, FSM, `Not known`)
+
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(FSM, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(FSM, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(
+      #       c("non-FSM", "FSM", "Not known"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("non-FSM", "FSM", "Not known"), ~ as.numeric(.))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+      select(subject_name, `non-FSM`, FSM, `Not known`)
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(FSM, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(FSM, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      select(subject_name, `non-FSM`, FSM, `Not known`)
+
+
+    coldefs <- list(
+      subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
+      `non-FSM` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`non-FSM`), 5), big.mark = ",", scientific = FALSE)),
+      FSM = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$FSM), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdowns by sex ============================
+  if (countinput == "sex") {
+    crosstabs_data <- tables_data %>%
+      filter( # filters relevant data for table
+        SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(sex, subject_name) %>% # groups by sex and subject name
+      summarise(n = sum(count), .groups = "drop") %>% # sums values by sex and subject, and then drops the group structure
+      spread(sex, n) %>% # changes to wide format using sex values as column headings
+      colorders(countinput) %>% # puts sex columns of output table in order
+      arrange(-`F+M`) %>%
+      # Next bit tidies up values in table
+      # Cathie changed mutate_at and mutate_if to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      #      mutate(across(-c(group_cols()), ~ ifelse(. <= 2, 0, .))) %>%   ### it won't recognise the group_cols
+      #      mutate(across(-c("sex", "subject_name"), ~ ifelse(. <= 2, 0, .))) %>%  ### it won't do this because this is in wide format and sex isn't a column name
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      #      mutate_at(
+      #       c("F", "M", "F+M"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>% ## this seems redundant (Cathie)
+      select(subject_name, `F`, `M`, `F+M`)
+
+    names(crosstabs_data) <- c("subject_name", "Female", "Male", "Female & Male") # gives columns accessible names
+
+
+    # Cathie - equivalent code for earnings as opposed to proportions - still within breakdown by sex
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(sex, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(sex, n) %>%
+      colorders(countinput) %>%
+      arrange(-`F+M`) %>%
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(
+      #       c("F", "M", "F+M"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("F", "M", "F+M"), ~ as.numeric(.))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      #      mutate(across(c(-group_cols()), ~ ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%   ### wouldn't work because it didn't recognise group_cols()
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+      select(subject_name, `F`, `M`, `F+M`)
+
+    names(crosstabs_earnings_data) <- c("subject_name", "Female", "Male", "Female & Male")
+
+    # Cathie - this prepares the earnings table
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+    names(crosstabs_earnings_data2) <- c("subject_name", "Female", "Male", "Female & Male")
+
+    # Cathie - this creates the proportions and earnings tables
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    # Cathie - creates the final row with numbers of graduates in each column (N)
+    footer_data <- footerdata %>%
+      filter(
+        SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", current_region == "All", FSM == "All",
+        prior_attainment == "All", qualification_TR == qualinput, subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(sex, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(sex, n) %>%
+      colorders(countinput) %>%
+      arrange(-`F+M`) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      select(subject_name, `F`, `M`, `F+M`)
+
+    names(footer_data) <- c("subject_name", "Female", "Male", "Female & Male")
+
+    coldefs <- list(
+      subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
+      Female = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Female), 5), big.mark = ",", scientific = FALSE)),
+      Male = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$Male), 5), big.mark = ",", scientific = FALSE)),
+      `Female & Male` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Female & Male`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdown by prior attainment ================
+  if (countinput == "prior_attainment") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(prior_attainment, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed muate_at and mutate_if to mutate(across())
+      #     mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      #        is.numeric,
+      #        funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      #      ) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))) %>%
+      #      mutate_at(
+      #       c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"), ~ as.numeric(.))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(prior_attainment, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(
+      #       c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+      #      funs(as.numeric(.))
+      #   ) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"), ~ as.numeric(.))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", qualification_TR == "First degree", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(prior_attainment, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(prior_attainment, n) %>%
+      colorders(countinput) %>%
+      arrange(-All) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+
+    coldefs <- list(
+      subject_name = colDef(
+        name = "Subject area", width = 600, footer = "TOTAL (N)",
+        style = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
+      ),
+      `All` = colDef(na = "x", name = "All", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`All`), 5), big.mark = ",", scientific = FALSE)),
+      `1` = colDef(na = "x", name = "4 As or more", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`1`), 5), big.mark = ",", scientific = FALSE)),
+      `2` = colDef(na = "x", name = "360 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`2`), 5), big.mark = ",", scientific = FALSE)),
+      `3` = colDef(na = "x", name = "300-359 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`3`), 5), big.mark = ",", scientific = FALSE)),
+      `4` = colDef(na = "x", name = "240-299 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`4`), 5), big.mark = ",", scientific = FALSE)),
+      `5` = colDef(na = "x", name = "180-239 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`5`), 5), big.mark = ",", scientific = FALSE)),
+      `6` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`6`), 5), big.mark = ",", scientific = FALSE)),
+      `7` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`7`), 5), big.mark = ",", scientific = FALSE)),
+      `8` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`8`), 5), big.mark = ",", scientific = FALSE)),
+      `9` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`9`), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", name = "Not known", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdown by industry =========================
+  # Cathie - THIS SECTION IS NO LONGER RELEVANT AS THE DROPDOWN DOESN'T INCLUDE INDUSTRY ANYMORE
+  if (countinput == "SECTIONNAME") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All", prior_attainment == "All",
+        qualification_TR == qualinput, threshold == "All", subject_name != "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(SECTIONNAME, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(SECTIONNAME, n) %>%
+      colorders(countinput) %>%
+      # Cathie changed mutate_at and mutate_if to mutate(across()) as this is the more up to date version to use
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      #       is.numeric,
+      #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      #   )
+      mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
+
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All", subject_name != "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(SECTIONNAME, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(SECTIONNAME, n) %>%
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .)))
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .)))
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", YAG == YAGinput, ethnicity == "All", FSM == "All", current_region == "All",
+        prior_attainment == "All", qualification_TR == qualinput, threshold == "All", subject_name != "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(SECTIONNAME, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(SECTIONNAME, n) %>%
+      colorders(countinput) %>%
+      # Cathie changed mutate_at to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .)))
+
+    coldefs <- list(
+      subject_name = colDef(
+        name = "Subject area", width = 600, footer = "TOTAL (N)",
+        style = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        headerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1),
+        footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
+      ),
+      `Accommodation and food service activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Accommodation and food service activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Activities of extraterritorial organisations and bodies` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Activities of extraterritorial organisations and bodies`), 5), big.mark = ",", scientific = FALSE)),
+      `Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Activities of households as employers - undifferentiated goods-and services-producing activities of households for own use`), 5), big.mark = ",", scientific = FALSE)),
+      `Administrative and support service activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Administrative and support service activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Agriculture, forestry and fishing` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Agriculture, forestry and fishing`), 5), big.mark = ",", scientific = FALSE)),
+      `Arts, entertainment and recreation` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Arts, entertainment and recreation`), 5), big.mark = ",", scientific = FALSE)),
+      `Construction` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Construction`), 5), big.mark = ",", scientific = FALSE)),
+      `Education` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Education`), 5), big.mark = ",", scientific = FALSE)),
+      `Electricity, gas, steam and air conditioning supply` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Electricity, gas, steam and air conditioning supply`), 5), big.mark = ",", scientific = FALSE)),
+      `Financial and insurance activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Financial and insurance activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Human health and social work activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Human health and social work activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Information and communication` = colDef(na = "x", name = "4 As or more", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Information and communication`), 5), big.mark = ",", scientific = FALSE)),
+      `Manufacturing` = colDef(na = "x", name = "360 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Manufacturing`), 5), big.mark = ",", scientific = FALSE)),
+      `Mining and quarrying` = colDef(na = "x", name = "300-359 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Mining and quarrying`), 5), big.mark = ",", scientific = FALSE)),
+      `Not known` = colDef(na = "x", name = "240-299 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE)),
+      `Other service activities` = colDef(na = "x", name = "180-239 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Other service activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Professional, scientific and technical activities` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Professional, scientific and technical activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Public administration and defence - compulsory social security` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Public administration and defence - compulsory social security`), 5), big.mark = ",", scientific = FALSE)),
+      `Real estate activities` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Real estate activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Transportation and storage` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Transportation and storage`), 5), big.mark = ",", scientific = FALSE)),
+      `Water supply - sewerage, waste management and remediation activities` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Water supply - sewerage, waste management and remediation activities`), 5), big.mark = ",", scientific = FALSE)),
+      `Wholesale and retail trade - repair of motor vehicles and motorcycles` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Wholesale and retail trade - repair of motor vehicles and motorcycles`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - code for breakdown by qualification level ==============
+  if (countinput == "qualification_TR") {
+    crosstabs_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(qualification_TR, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
+      arrange(-`First degree`) %>%
+      # Cathie changed mutate_at and mutate_if to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
+      #      mutate_if(
+      #       is.numeric,
+      #      funs(ifelse(. == 0, 0, . / sum(., na.rm = TRUE)))
+      #   )
+      mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
+
+    crosstabs_earnings_data <- tables_data %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(qualification_TR, subject_name) %>%
+      summarise(n = earnings_median, .groups = "drop") %>%
+      spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
+      arrange(-`First degree`) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .)))
+      mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .)))
+
+    order <- subset(crosstabs_data, select = subject_name)
+    crosstabs_earnings_data2 <- order %>%
+      left_join(crosstabs_earnings_data)
+
+
+    if (buttoninput == "Proportions") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0(format(round(value * 100, 1), nsmall = 1), "%")
+      }
+      crosstabs_data <- crosstabs_data
+    } else if (buttoninput == "Median earnings") {
+      footerdata <- tables_data
+      cellformat <- function(value) {
+        paste0("£", format(value, big.mark = ","))
+      }
+      crosstabs_data <- crosstabs_earnings_data2
+    }
+
+    footer_data <- footerdata %>%
+      filter(
+        sex == "F+M", SECTIONNAME == sectioninput, YAG == YAGinput, ethnicity == "All", FSM == "All",
+        current_region == "All", prior_attainment == "All", subject_name != "All", threshold == "All",
+        group_name %in% c(groupinput)
+      ) %>%
+      group_by(qualification_TR, subject_name) %>%
+      summarise(n = sum(count), .groups = "drop") %>%
+      spread(qualification_TR, n) %>%
+      colorders(countinput) %>%
+      arrange(-`First degree`) %>%
+      # Cathie changed mutate_at() to mutate(across())
+      #      mutate_at(vars(-group_cols()), funs(ifelse(is.na(.), 0, .))) %>%
+      mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
+      #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .)))
+      mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .)))
+
+
+    coldefs <- list(
+      subject_name = colDef(na = "x", name = "Subject area", width = 600, footer = "TOTAL (N)"),
+      `First degree` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`First degree`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 7 (taught)` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 7 (taught)`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 7 (research)` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 7 (research)`), 5), big.mark = ",", scientific = FALSE)),
+      `Level 8` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Level 8`), 5), big.mark = ",", scientific = FALSE))
+    )
+  }
+
+  # Cathie - rounds proportions to three figures ====================
+  if (buttoninput == "Proportions") {
+    crosstabs_data <- crosstabs_data %>%
+      # Cathie changed mutate_if to mutate(across()) as this is more up to date
+      #      mutate_if(is.numeric, funs(round(., digits = 3)))
+      mutate(across(where(is.numeric), ~ round(., digits = 3)))
+  }
+
+  # Cathie - this is what the backwards_crosstabs function returns
+  return(list(
+    data = crosstabs_data,
+    footer = footer_data,
+    coldefs = coldefs
+  ))
+}
+
+
+indsubj_reactable <- function(data, coldefs) {
+  crosstab <- reactable(data,
+    defaultPageSize = 37, showSortable = TRUE, columns = coldefs,
+    defaultColDef = colDef(footerStyle = list(fontWeight = "bold")), height = 800
+  )
+
+
+  return(crosstab)
+}

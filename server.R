@@ -3,17 +3,15 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp) # commenting out to test using lighthouse
 
+  # Cookies ====================================================
 
-  output$cookie_status <- cookie_banner_server(
-    "cookie-banner",
+  output$cookies_status <- cookies_banner_server(
     input_cookies = shiny::reactive(input$cookies),
     parent_session = session,
-    google_analytics_key = google_analytics_key,
-    cookie_link_panel = "cookies_panel_ui"
+    google_analytics_key = google_analytics_key
   )
 
   cookies_panel_server(
-    id = "cookies_panel",
     input_cookies = shiny::reactive(input$cookies),
     google_analytics_key = google_analytics_key # # nolint: [object_usage_linter]
   )
@@ -21,22 +19,78 @@ server <- function(input, output, session) {
   # Links to tabs --------------------------------------------
 
   observeEvent(input$link_to_industryFlow_tab, {
-    updateTabsetPanel(session, "navbar", selected = "industryFlow")
+    #    updateTabsetPanel(session, "navbar", selected = "industryFlow")
+    #    Cathie changed navbar to navlistPanel for the four links
+    updateTabsetPanel(session, "navlistPanel", selected = "industryFlow")
   })
 
   observeEvent(input$link_to_regional_tab, {
-    updateTabsetPanel(session, "navbar", selected = "regional")
+    #    updateTabsetPanel(session, "navbar", selected = "regional")
+    updateTabsetPanel(session, "navlistPanel", selected = "regional")
   })
 
   observeEvent(input$link_to_subjectByIndustry_tab, {
-    updateTabsetPanel(session, "navbar", selected = "subjectByIndustry")
+    #    updateTabsetPanel(session, "navbar", selected = "subjectByIndustry")
+    updateTabsetPanel(session, "navlistPanel", selected = "subjectByIndustry")
   })
 
   observeEvent(input$link_to_industryBySubject_tab, {
-    updateTabsetPanel(session, "navbar", selected = "industryBySubject")
+    #    updateTabsetPanel(session, "navbar", selected = "industryBySubject")
+    updateTabsetPanel(session, "navlistPanel", selected = "industryBySubject")
   })
 
-  # Sankey functions --------------------------------------------------------
+  # Added by Cathie - makes the drop down in industry flow page have a reactive title
+  #  observe({
+  #   if(input$navlistPanel == "industryFlow") {
+  #    change_window_title(
+  #     session,
+  #    paste0(
+  #     site_title, " - ",
+  #    input$qualinput, ", ",
+  #   input$indflow.subjectinput, ", ",
+  #  input$sexinput))
+  #      }
+  #   else{
+  #    change_window_title(
+  #     session,
+  #    paste0(
+  #     site_title, " - ",
+  #    input$navlistPanel
+  # )
+  #      )
+  #   }})
+
+
+  # p2: Industry flow page -----------------------------
+
+  ### Label for filters selected --------------------------------
+
+  # First, create an object for male and female, as the values of input$sexinput are M,F,F&M
+
+  sexselection <- reactive(ifelse(input$sexinput == "F", "Females",
+    ifelse(input$sexinput == "M", "Males",
+      "Females and Males"
+    )
+  ))
+
+  #    sexselection <- reactive(list(
+  #    "Female & male" = "F+M",
+  #  "Female" = "F",
+  # "Male" = "M"))
+
+  output$dropdown_label <- renderText({
+    paste0(
+      "Current selections: Qualification is ", input$qualinput,
+      ", Subject area is ", input$indflow.subjectinput,
+      ", Graduates incuded are ", sexselection()
+    )
+  })
+
+
+
+
+
+  ### Sankey functions --------------------------------------------------------
 
   # Update the select input box in the Industry Flow analysis based on the
   # selected qualification.
@@ -118,15 +172,82 @@ server <- function(input, output, session) {
   # })
 
 
+  # p3: Regional page =================================
+
+  ### Dropdown filters ===============================
+
+  output$regional_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Qualification is ", input$regional_input_qual,
+      ", Years after graduation: ", input$regional_input_YAG,
+      ", Industry is ", input$regional_input_industry,
+      ", Subject area studied is ", input$regional_input_subject
+    )
+  })
+
+
+  # p4: Subject by industry page (Industry by subject on the updated dashboard) =======================
+
+  ### Cathie, August/Sept 2024.
+  ### The names of subject by industry and industry by subject are potentially very confusing.
+  ### The original code presented page 4 as Subject by industry, and page 5 as Industry by subject.
+  ### All the code is written this way.
+  ### However, the breakdowns in the dashboard are actually the other way around and so
+  ### on the dashboard, the names of these pages have been switched. The code remains as it was.
+
+  ### Dropdown filters ------------------------
+
+  output$subject_by_industry_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Output is ", input$earningsbutton,
+      ", Qualification is ", input$qualinput3,
+      ", Years after graduation  is ", input$YAGinput2,
+      ", Subject area studied is ", input$crosstabs.subjectinput,
+      ", Breakdown is by ",
+      ifelse(input$countinput2 == "current_region", "region of residence 2021-22 tax year",
+        ifelse(input$countinput2 == "FSM", "free school meals status",
+          ifelse(input$countinput2 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput2 == "subject_name", "subject area studied",
+              ifelse(input$countinput2 == "qualification_TR", "qualification level", input$countinput2)
+            )
+          )
+        )
+      )
+    )
+  })
+
+
+  # p5: Industry by subject page =======================
+
+  ### Dropdown filters ------------------------
+
+  output$industry_by_subject_dropdown_label <- renderText({
+    paste0(
+      "Current selections: Output is ", input$earningsbutton2,
+      ", Qualification is ", input$qualinput4,
+      ", Years after graduation  is ", input$YAGinput3,
+      ", Industry is ", input$sectionnameinput2, ", ", input$groupinput,
+      ", Breakdown is by ",
+      ifelse(input$countinput3 == "current_region", "region of residence 2021-22 tax year",
+        ifelse(input$countinput3 == "FSM", "free school meals status",
+          ifelse(input$countinput3 == "prior_attainment", "prior attainment",
+            ifelse(input$countinput3 == "qualification_TR", "qualification level", input$countinput3)
+          )
+        )
+      )
+    )
+  })
+
+
   # Map functions -----------------------------------------------------------
 
   observe({
     data_filtered <- regional_movement_data %>%
       filter(
-        qualification_TR == input$qualinput2,
-        SECTIONNAME == input$sectionnameinput,
+        qualification_TR == input$regional_input_qual,
+        SECTIONNAME == input$regional_input_industry,
         count >= 3,
-        YAG == input$YAGinput
+        YAG == input$regional_input_YAG
       ) %>%
       distinct()
     updateSelectizeInput(
@@ -138,8 +259,8 @@ server <- function(input, output, session) {
   reactiveRegionTable <- reactive({
     create_maptabledata(
       data, regional_movement_data,
-      input$sectionnameinput, input$regions.subjectinput, input$YAGinput,
-      input$qualinput2
+      input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG,
+      input$regional_input_qual
     )
   })
 
@@ -153,22 +274,22 @@ server <- function(input, output, session) {
 
   output$map_title <- renderText({
     map_title(
-      input$sectionnameinput, input$regions.subjectinput,
-      input$countinput, input$YAGinput, input$qualinput2
+      input$regional_input_industry, input$regional_input_subject,
+      input$countinput, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
   output$maptext <- renderText({
     map_text(
-      reactiveRegionTable(), input$sectionnameinput,
-      input$regions.subjectinput, input$YAGinput, input$qualinput2
+      reactiveRegionTable(), input$regional_input_industry,
+      input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
   output$maptext2 <- renderText({
     map_text2(
-      reactiveRegionTable(), input$sectionnameinput,
-      input$regions.subjectinput, input$YAGinput, input$qualinput2
+      reactiveRegionTable(), input$regional_input_industry,
+      input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual
     )
   })
 
@@ -178,7 +299,7 @@ server <- function(input, output, session) {
 
   # Putting the regional sankey in a reactive as well as it's a bit intensive.
   reactiveRegionalSankey <- reactive({
-    data <- create_regionalsankeyframe(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    data <- create_regionalsankeyframe(input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual)
     validate(
       need(nrow(data$nodes) >= 1, "
            There is no data available.")
@@ -191,7 +312,7 @@ server <- function(input, output, session) {
   })
 
   output$regional_sankey_title <- renderText({
-    regional_sankey_title(input$sectionnameinput, input$regions.subjectinput, input$YAGinput, input$qualinput2)
+    regional_sankey_title(input$regional_input_industry, input$regional_input_subject, input$regional_input_YAG, input$regional_input_qual)
   })
 
 
@@ -235,11 +356,14 @@ server <- function(input, output, session) {
     )
   })
 
-  # Download current Subject by Industry view
-  output$downloadData <- downloadHandler(
+  # Downloads of data from p4 and p5 ----------------------------
+
+  # Cathie work on this bit
+  # Download p4 data with current selections from the dropdown menu
+  output$downloadData_p4 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "SubjectbyIndustry.csv"
+      suffix <- "IndustryBySubject.csv"
       if (input$countinput2 == "subject_name") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton),
@@ -286,27 +410,37 @@ server <- function(input, output, session) {
       )
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
-          mutate_if(is.numeric, list(~ (100.0 * .)))
+          #  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+          #          mutate_if(is.numeric, list(~ (100.0 * .)))
+          mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
       }
       dfDownload <- dfDownload %>%
-        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
-        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        #  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
+        #        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+        mutate(across(where(is.numeric), list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
+        #        mutate_all(list(~ gsub("-10000", "c", .))) %>%
+        #        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+        mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
         arrange(SECTIONNAME, group_name) %>%
+        # added by Cathie
+        select(out_columns) %>%
+        # end of addition by Cathie
         rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )
 
-  ### IndSubj panel server code
-  #############################
+  # p5: IndSubj panel server code ============================
 
-  # Create the reactive Industry by Subject data in a data frame
+  ### Create the reactive Industry by Subject data in a data frame ===================
   reactiveIndSubjTable <- reactive({
     backwards_crosstabs(input$sectionnameinput2, input$YAGinput3, input$countinput3, input$qualinput4, input$earningsbutton2, input$groupinput)
   })
 
   # Render the reactive industry by subject data frame into a ReacTable element.
+  # Cathie adding this clause that gives warning message if low numbers instead of table
+
   output$crosstab_backwards <- renderReactable({
     table_data <- reactiveIndSubjTable()
     indsubj_reactable(
@@ -315,11 +449,12 @@ server <- function(input, output, session) {
     )
   })
 
-  # Download the reactive industry by subject data.
-  output$IndSubjDownload <- downloadHandler(
+  ### Download the reactive industry by subject data.=========================
+  #  output$IndSubjDownload <- downloadHandler(
+  output$downloadData_p5 <- downloadHandler(
     filename = function() {
       prefix <- "DfE_LEO-SIC"
-      suffix <- "IndustrybySubject.csv"
+      suffix <- "SubjectByIndustry.csv"
       if (input$countinput3 == "SECTIONNAME") {
         paste(prefix,
           gsub(" ", "-", input$earningsbutton2),
@@ -361,25 +496,36 @@ server <- function(input, output, session) {
         summarise_all(sum) %>%
         mutate(subject_name = "TOTAL (N)") %>%
         select(out_columns)
+
       dfDownload <- table_data$data
-      if (input$earningsbutton2 == "Proportions") {
+      if (as.character(input$earningsbutton2) == "Proportions") { ## Cathie added as.character()
         dfDownload <- dfDownload %>%
           mutate_if(is.numeric, list(~ (100.0 * .)))
+        #          mutate(across(where(is.numeric), ~ list(~ (100.0 * .))))
+      } else {
+        dfDownload <- dfDownload %>%
+          mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
+          #                mutate_all(list(~ gsub("-10000", "c", .))) %>%
+          #               mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
+          #        mutate(across(where(is.numeric), ~ list(~ gsub(" ", "", format(., scientific = FALSE))))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("-10000"), "c", .)))) %>%
+          mutate(across(everything(~ ifelse(. %in% c("NA", "NaN"), "x", .)))) %>%
+          arrange(subject_name) %>%
+          rbind(footsum)
       }
-      dfDownload <- dfDownload %>%
-        mutate_if(is.numeric, list(~ gsub(" ", "", format(., scientific = FALSE)))) %>%
-        mutate_all(list(~ gsub("-10000", "c", .))) %>%
-        mutate_all(list(~ ifelse(. %in% c("NA", "NaN"), "x", .))) %>%
-        arrange(subject_name) %>%
-        rbind(footsum)
       write.csv(dfDownload, file, row.names = FALSE)
     }
   )
 
 
-  output$crosstab_title <- renderText({
-    crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
-  })
+  #  output$crosstab_title <- renderText({
+  #   crosstab_title(input$crosstabs.subjectinput, input$YAGinput2, input$countinput2, input$qualinput3)
+  # })
+
+  # output$crosstab_title <- renderText(
+  # paste("<h2>Industries that graduates work in by the subject area they studied, ",
+  #        tax_year_slash, " tax year.</h2>")
+  # )
 
 
   output$backwards_crosstab_title <- renderText({
@@ -505,7 +651,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "sectionnameinput2",
-        label = "Choose an industry area",
+        label = "Select industry section",
         choices = list(
           "Education"
         ),
@@ -515,7 +661,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "sectionnameinput2",
-        label = "Choose an industry area",
+        label = "Select industry section",
         choices = list(
           "Accommodation and food service activities",
           "Activities of extraterritorial organisations and bodies",
@@ -567,7 +713,7 @@ server <- function(input, output, session) {
       updateSelectInput(
         session,
         "groupinput",
-        label = "View 3 digit SIC groups within the selected industry",
+        label = "Select group within industry",
         choices = list(
           "All"
         ),
@@ -583,11 +729,14 @@ server <- function(input, output, session) {
       }
       updateSelectizeInput(
         session, "groupinput",
-        label = "View 3 digit SIC groups within the selected industry",
+        label = "Select group within industry",
         choices = na.exclude(unique(c("All", data_filtered$group_name)))
       )
     }
   })
+
+
+
 
   # output$subjecttable <- renderReactable({
   #   subjecttable(input$sectionnameinput2, input$YAGinput3, input$countinput3)
