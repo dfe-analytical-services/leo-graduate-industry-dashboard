@@ -78,10 +78,6 @@ fluidPage(
     subject_by_industry_page(),
     industry_by_subject_page(),
     tabPanel(
-      "Accessibility",
-      a11y_panel()
-    ),
-    tabPanel(
       "Support and feedback",
       support_panel(
         team_email = "he.leo@education.gov.uk",
@@ -104,7 +100,17 @@ fluidPage(
         date_reviewed = "8th October 2024",
         issues_contact = public_repo_link,
         publication_slug = ees_pub_slug,
-        publication_name = ees_pub_name
+        publication_name = ees_pub_name,
+        non_accessible_components = c(
+          "Keyboard navigation through the interactive charts is currently limited, and some features are unavailable for keyboard only users",
+          "Alternative text in interactive charts is limited to titles and could be more descriptive (although this data is available in csv format)"
+        ),
+        specific_issues = c(
+          "Charts have non-accessible components that are inaccessible for keyboard users.",
+          "Chart tooltips are not compativle with screen reader use.",
+          "Some decorative images are not labelled appropriately as yet.",
+          "Some links are not appropriately labelled."
+        )
       )
     ),
     tabPanel(

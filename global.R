@@ -51,7 +51,6 @@ fiveyag_cohort_year <- "2015/16"
 # lapply(list.files("R/ui_panels/", full.names = TRUE), source)
 
 source("R/read_data_functions.R")
-source("R/accessibility_statement_function.R")
 source("R/caveats_functions.R")
 source("R/dashboard_text_functions.R")
 source("R/general_functions.R")

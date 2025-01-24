@@ -2,7 +2,7 @@
   "input": {
     "YAGinput2": "5",
     "countinput2": "subject_name",
-    "crosstabs.subjectinput": "All",
+    "crosstabs.subjectinput": "Celtic studies",
     "earningsbutton": "Median earnings",
     "navlistPanel": "subjectByIndustry",
     "qualinput3": "First degree"
