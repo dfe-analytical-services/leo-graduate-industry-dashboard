@@ -51,7 +51,6 @@ fiveyag_cohort_year <- "2015/16"
 # lapply(list.files("R/ui_panels/", full.names = TRUE), source)
 
 source("R/read_data_functions.R")
-source("R/accessibility_statement_function.R")
 source("R/caveats_functions.R")
 source("R/dashboard_text_functions.R")
 source("R/general_functions.R")
@@ -68,7 +67,7 @@ source("R/ui_panels/page5_industry_subject.R")
 # tidy_code_function -------------------------------------------------------------------------------
 
 google_analytics_key <- "Q08W0Y4G5C"
-dashboard_title <- "LEO Graduate Industry dashboard"
+dashboard_title <- "Longitudinal Education Outcomes - Graduate Industry dashboard"
 dashboard_link <- paste0(
   "https://department-for-education.shinyapps.io/",
   "leo-graduate-industry-dashboard/"
