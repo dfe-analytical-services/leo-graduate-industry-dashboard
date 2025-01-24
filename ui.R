@@ -37,6 +37,7 @@ fluidPage(
 
   # 2. Cookie banner ==================================================
   #    copied over from template
+  tags$head(includeHTML(("google-analytics.html"))),
   dfeshiny::dfe_cookies_script(),
   dfeshiny::cookies_banner_ui(
     name = dashboard_title

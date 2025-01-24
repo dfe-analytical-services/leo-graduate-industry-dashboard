@@ -1,7 +1,8 @@
 # Homepage tab ============================================================
 homepage <- function() {
   tabPanel(
-    value = "homepage", title = "Homepage",
+    value = "homepage",
+    title = "Homepage",
     # noti_banner(
     #   "notId",
     #   title_txt = "Known issue",
