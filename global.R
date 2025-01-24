@@ -68,7 +68,7 @@ source("R/ui_panels/page5_industry_subject.R")
 # tidy_code_function -------------------------------------------------------------------------------
 
 google_analytics_key <- "Q08W0Y4G5C"
-dashboard_title <- "LEO Graduate Industry dashboard"
+dashboard_title <- "Longitudinal Education Outcomes - Graduate Industry dashboard"
 dashboard_link <- paste0(
   "https://department-for-education.shinyapps.io/",
   "leo-graduate-industry-dashboard/"

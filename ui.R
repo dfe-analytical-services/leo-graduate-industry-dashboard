@@ -39,19 +39,12 @@ fluidPage(
   #    copied over from template
   dfeshiny::dfe_cookies_script(),
   dfeshiny::cookies_banner_ui(
-    name = "Longitudinal Education Outcomes - Graduate Industry dashboard"
+    name = dashboard_title
   ),
 
 
   # 3. Header =========================================================
-  shinyGovstyle::header(
-    main_text = "",
-    main_link = "https://www.gov.uk/government/organisations/department-for-education",
-    secondary_text = "Longitudinal Education Outcomes - Graduate Industry dashboard",
-    logo = "images/DfE_logo.png",
-    logo_width = 85,
-    logo_height = 80
-  ),
+  dfeshiny::header(dashboard_title),
 
 
   # 4. Beta banner=====================================================
@@ -98,6 +91,19 @@ fluidPage(
         ),
         publication_name = ees_pub_name,
         publication_slug = ees_pub_slug
+      )
+    ),
+    tabPanel(
+      "Accessibility",
+      dfeshiny::a11y_panel(
+        dashboard_title = dashboard_title,
+        dashboard_url = dashboard_link,
+        date_tested = "8th October 2024",
+        date_prepared = "1st July 2024",
+        date_reviewed = "8th October 2024",
+        issues_contact = public_repo_link,
+        publication_slug = ees_pub_slug,
+        publication_name = ees_pub_name
       )
     ),
     tabPanel(
