@@ -81,12 +81,12 @@ public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-ind
 # cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
 # cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
 # cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
-# 
+#
 # tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
-# 
+#
 # data <- read.csv("data/regional_data_FD_PG.csv")
 # regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
-# 
+#
 
 cohort1 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_sankey_1to3yag.csv")
 cohort2 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_sankey_3to5yag.csv")
