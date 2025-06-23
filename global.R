@@ -94,9 +94,9 @@ regional_movement_data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SF
 # cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
 # cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
 # cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
-# 
+#
 # tables_data <- read_tables_data("data/industry_3digitSIC_dashboard_data.csv")
-# 
+#
 # data <- read.csv("data/industry_regional_map.csv")
 # regional_movement_data <- read.csv("data/industry_regional_movement.csv")
 
