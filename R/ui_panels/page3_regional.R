@@ -15,7 +15,7 @@ regional_page <- function() {
           width = 12,
           h1("Regions in which graduates studied and lived after graduating."),
           br(),
-          tags$b("Coverage is graduates who were in sustained employment during the 2021-22 tax year.")
+          tags$b("Coverage is graduates who were in sustained employment during the 2022-23 tax year.")
         )
       )
     ),
@@ -216,7 +216,7 @@ regional_page <- function() {
                 label = "Select statistic to view in the map below",
                 choices = list(
                   "Studied in region" = "trained_in_region",
-                  "Lived in region during 2021-22 tax year" = "living_in_region",
+                  "Lived in region during 2022-23 tax year" = "living_in_region",
                   "Difference (n)" = "difference",
                   "Difference (%)" = "difference_prop"
                 ),
@@ -260,7 +260,7 @@ regional_page <- function() {
               label = "How to read this sankey",
               help_text = "The coloured bars represent the numbers of graduates in each
                 region. The grey flow lines show the movement of graduates from the regions where they studied
-                (on the left) to the regions where lived during the 2021-22 tax year (on the right).
+                (on the left) to the regions where lived during the 2022-23 tax year (on the right).
                 You can hover your mouse over a bar or flow line to see the number of
                 graduates it represents."
             ),
@@ -269,7 +269,7 @@ regional_page <- function() {
               "Region of study"
             ),
             column(6, div(
-              "Region during 2021-22 tax year",
+              "Region during 2022-23 tax year",
               style = "text-align: right"
             )),
             withSpinner(sankeyNetworkOutput("regional_sankey")),
@@ -317,7 +317,7 @@ regional_page <- function() {
           br(),
           withSpinner(reactableOutput("maptable")),
           br(),
-          strong("Median earnings refer to the earnings of graduates who lived in the region during the 2021-22 tax year.
+          strong("Median earnings refer to the earnings of graduates who lived in the region during the 2022-23 tax year.
                   All values in the table are for graduates from the selected
                  level of qualification in the selected subject area, working in the
                  selected industry the selected number of years after graduation."),

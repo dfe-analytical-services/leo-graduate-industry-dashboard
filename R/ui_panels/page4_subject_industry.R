@@ -14,8 +14,8 @@ subject_by_industry_page <- function() {
       gov_row(
         column(
           width = 12,
-          h1("Industries that graduates worked in during the 2021-22 tax year by subject area studied in HE"),
-          tags$b("Coverage is all graduates from HE providers in England who were in sustained employment during the 2021-22 tax year.")
+          h1("Industries that graduates worked in during the 2022-23 tax year by subject area studied in HE"),
+          tags$b("Coverage is all graduates from HE providers in England who were in sustained employment during the 2022-23 tax year.")
         )
       )
     ),
@@ -47,7 +47,7 @@ subject_by_industry_page <- function() {
                   choices = list(
                     "Sex" = "sex",
                     "Ethnicity" = "ethnicity",
-                    "Region of residence 2021-22 tax year" = "current_region",
+                    "Region of residence 2022-23 tax year" = "current_region",
                     "Free school meals (FSM)" = "FSM",
                     "Prior attainment" = "prior_attainment",
                     "Subject" = "subject_name",

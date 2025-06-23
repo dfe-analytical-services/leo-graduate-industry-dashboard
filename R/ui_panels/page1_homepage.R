@@ -16,7 +16,7 @@ homepage <- function() {
       fluidRow(
         column(
           12,
-          h1("Longitudinal Education Outcomes: Graduate Industry dashboard, Tax year 2021-22"),
+          h1("Longitudinal Education Outcomes: Graduate Industry dashboard, Tax year 2022-23"),
           welcome_text(), # defined in R/dashboard_text.R
           br(),
           br()
