@@ -24,7 +24,7 @@ welcome_text <- function() {
     # ),
     # Cathie: Revamped the external link
     external_link(
-      href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2021-22",
+      href = "https://explore-education-statistics.service.gov.uk/find-statistics/leo-graduate-and-postgraduate-outcomes/2022-23",
       link_text = "official statistics publication on LEO Graduate and Postgraduate Outcomes",
       add_warning = TRUE
     ),
@@ -52,7 +52,7 @@ welcome_text <- function() {
 industry_flow_text <- function() {
   div(paste(
     "This page provides information about which industries graduates worked in one, three and five years
-    after graduation. It tracks individuals who graduated during the academic year of 2015-16. You can
+    after graduation. It tracks individuals who graduated during the academic year of 2016-17. You can
     filter to select graduates who studied in a particular subject area, at a particular qualification
     level, and by graduate sex.",
     sep = ""
@@ -69,7 +69,7 @@ regional_text <- function() {
     You can filter for graduates who studied a particular subject area, at a particular qualification
     level, who subsequently worked in a particular industry, and for specific numbers of years after graduation.
     Information applies to different cohorts of graduates depending upon the number of years after graduation
-    selected, as we use the most recent tax year, 2021-22, to ascertain the region where graduates
+    selected, as we use the most recent tax year, 2022-23, to ascertain the region where graduates
     'currently' live."
   )
 }
@@ -80,7 +80,7 @@ sub_by_ind_text <- function() {
   div(
     "This page presents tables with information about the industries that graduates worked in up to ten years
     after graduation. The information applies to different cohorts of graduates depending upon the number of years after graduation
-    selected, as we use the most recent tax year, 2021-22, to ascertain the industry in which graduates
+    selected, as we use the most recent tax year, 2022-23, to ascertain the industry in which graduates
     are 'currently' working. You can expand the industry sections in these tables to view a more detailed breakdown
     of the 272 (3 digit) SIC groups within that industry, and can filter the results by:",
     br(),
@@ -88,7 +88,7 @@ sub_by_ind_text <- function() {
       tags$li("Sex"),
       tags$li("Ethnicity"),
       tags$li("Free School Meal (FSM) status"),
-      tags$li("Region of residence during 2021-22 tax year"),
+      tags$li("Region of residence during 2022-23 tax year"),
       tags$li("Prior attainment"),
       tags$li("Subject"),
       tags$li("Qualification level")
@@ -101,14 +101,14 @@ sub_by_ind_text <- function() {
 ind_by_sub_text <- function() {
   div(
     "This page presents tables with information about the subject areas studied by graduates who were working
-    in each broad industry section during the 2021-22 tax year. Information is available for cohorts that graduated
-    one, three, five and ten years earlier, in 2020, 2018, 2016, and 2011, respectively. You can filter the results by:",
+    in each broad industry section during the 2022-23 tax year. Information is available for cohorts that graduated
+    one, three, five and ten years earlier, in 2021, 2019, 2017, and 2012, respectively. You can filter the results by:",
     br(),
     tags$ul(
       tags$li("Sex"),
       tags$li("Ethnicity"),
       tags$li("Free School Meal (FSM) status"),
-      tags$li("Region of residence during 2021-22 tax year"),
+      tags$li("Region of residence during 2022-22 tax year"),
       tags$li("Prior attainment"),
       tags$li("Industry section"),
       tags$li("Qualification level")
