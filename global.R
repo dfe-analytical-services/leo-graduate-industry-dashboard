@@ -77,17 +77,9 @@ ees_pub_slug <- "leo-graduate-and-postgraduate-outcomes"
 public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard"
 
 
-## source("R/read_data.R")
-# cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
-# cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
-# cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
-#
-# tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
-#
-# data <- read.csv("data/regional_data_FD_PG.csv")
-# regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
-#
 
+# Read data:
+# Use this when running locally pre-publication:
 cohort1 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_sankey_1to3yag.csv")
 cohort2 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_sankey_3to5yag.csv")
 cohort3 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_sankey_1to5yag.csv")
@@ -96,6 +88,19 @@ tables_data <- read_tables_data("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/2
 
 data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_regional_map.csv")
 regional_movement_data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/SFR/24 - preparations for publication 2025/Industry dashboard data/industry_regional_movement.csv")
+
+
+# Change to this once data can be added to project data folder on morning of publication:
+# cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
+# cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
+# cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
+# 
+# tables_data <- read_tables_data("data/industry_3digitSIC_dashboard_data.csv")
+# 
+# data <- read.csv("data/industry_regional_map.csv")
+# regional_movement_data <- read.csv("data/industry_regional_movement.csv")
+
+
 
 
 qual_subjects <- tables_data %>%
