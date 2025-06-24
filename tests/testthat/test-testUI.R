@@ -213,72 +213,72 @@ test_that("Migrated shinytest test: testUI.R", {
   app$set_inputs(qualinput4 = "Level 8", timeout_ = 40000)
   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
   # 46.
-#   app$set_inputs(qualinput4 = "Level 7 (research)", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-#   # 47.
-#   app$set_inputs(qualinput4 = "Level 7 (taught)", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-#   # 48.
-#   app$set_inputs(qualinput4 = "First degree", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-#   # 49.
-#   app$set_inputs(earningsbutton2 = "Proportions", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-#   # 50.
-#   app$set_inputs(qualinput4 = "Level 8", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-#   # 51.
-#   app$set_inputs(qualinput4 = "Level 7 (research)", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(qualinput4 = "Level 7 (taught)", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(qualinput4 = "First degree", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(sectionnameinput2 = "Construction", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(earningsbutton2 = "Median earnings", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(groupinput = "Construction of residential and non-residential buildings", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(sectionnameinput2 = "Real estate activities", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(YAGinput3 = "1", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(YAGinput3 = "3", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(YAGinput3 = "10", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(countinput3 = "ethnicity", YAGinput3 = "5", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(countinput3 = "current_region", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(countinput3 = "FSM", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(countinput3 = "prior_attainment", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(countinput3 = "qualification_TR", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(earningsbutton2 = "Proportions", timeout_ = 40000)
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
-# 
-#   app$set_inputs(
-#     sectionname2 = "Arts, entertainment and recreation",
-#     timeout_ = 40000
-#   )
-#   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   app$set_inputs(qualinput4 = "Level 7 (research)", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   # 47.
+  #   app$set_inputs(qualinput4 = "Level 7 (taught)", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   # 48.
+  #   app$set_inputs(qualinput4 = "First degree", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   # 49.
+  #   app$set_inputs(earningsbutton2 = "Proportions", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   # 50.
+  #   app$set_inputs(qualinput4 = "Level 8", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #   # 51.
+  #   app$set_inputs(qualinput4 = "Level 7 (research)", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(qualinput4 = "Level 7 (taught)", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(qualinput4 = "First degree", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(sectionnameinput2 = "Construction", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(earningsbutton2 = "Median earnings", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(groupinput = "Construction of residential and non-residential buildings", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(sectionnameinput2 = "Real estate activities", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(YAGinput3 = "1", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(YAGinput3 = "3", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(YAGinput3 = "10", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(countinput3 = "ethnicity", YAGinput3 = "5", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(countinput3 = "current_region", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(countinput3 = "FSM", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(countinput3 = "prior_attainment", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(countinput3 = "qualification_TR", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(earningsbutton2 = "Proportions", timeout_ = 40000)
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
+  #
+  #   app$set_inputs(
+  #     sectionname2 = "Arts, entertainment and recreation",
+  #     timeout_ = 40000
+  #   )
+  #   app$expect_values(input = industryBySubject_input, output = industryBySubject_output)
 })
