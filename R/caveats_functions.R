@@ -27,7 +27,7 @@ caveats_box <- function() {
     text = paste0(
       strong("Caveats"),
       br(),
-      "\U2022 Coverage is graduates who were in sustained employment during the 2021-22 tax year.",
+      "\U2022 Coverage is graduates who were in sustained employment during the 2022-23 tax year.",
       br(),
       "\U2022 Each graduate's recorded industry is the industry in which they earned the most during the tax year.",
       br(),

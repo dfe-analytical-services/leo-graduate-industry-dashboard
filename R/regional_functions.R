@@ -145,7 +145,7 @@ map_chart <- function(mapdata, countinput) {
   p_popup <- paste(
     "<B>", leafletmapdata$region, "</B>", br(), br(),
     "Number who studied in region:        ", prettyNum(leafletmapdata$trained_in_region2, big.mark = ",", scientific = FALSE), br(),
-    "Number who lived in region in 2021-22 tax year: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
+    "Number who lived in region in 2022-23 tax year: ", prettyNum(leafletmapdata$living_in_region2, big.mark = ",", scientific = FALSE), br(),
     "Difference in graduate numbers:      ", prettyNum(leafletmapdata$difference2, big.mark = ",", scientific = FALSE), br(),
     "Difference in proportion:            ", round(leafletmapdata$difference_prop2, digits = 1), "%", br(),
     "Number of providers in region:       ", leafletmapdata$number_of_providers, br(),
@@ -190,11 +190,11 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
   if (countinput == "trained_in_region") {
     counttext <- paste("number of graduates who studied in each region:")
   } else if (countinput == "living_in_region") {
-    counttext <- paste("number of graduates who lived in each region during the 2021-22 tax year:")
+    counttext <- paste("number of graduates who lived in each region during the 2022-23 tax year:")
   } else if (countinput == "difference") {
-    counttext <- paste("difference between the numbers of graduates who lived in each region during the 2021-22 tax year and the numbers who studied there:")
+    counttext <- paste("difference between the numbers of graduates who lived in each region during the 2022-23 tax year and the numbers who studied there:")
   } else if (countinput == "difference_prop") {
-    counttext <- paste("percentage difference between the numbers of graduates who lived in each region during the 2021-22 tax year and the numbers who studied there:")
+    counttext <- paste("percentage difference between the numbers of graduates who lived in each region during the 2022-23 tax year and the numbers who studied there:")
   }
   map_title <- paste(
     "Map showing the ",
@@ -205,7 +205,7 @@ map_title <- function(sectionnameinput, subjectinput, countinput, YAGinput, qual
     subjecttext,
     " and worked in ",
     sectionnameinput,
-    " during the 2021-22 tax year, ",
+    " during the 2022-23 tax year, ",
     YAGtext,
     " after graduation."
     #    after graduation during the ",
@@ -323,7 +323,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     if (first(clean_map_data$difference_prop2) > 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the highest proportionate increase in the number of graduates living in the region during the 2021-22 tax year ",
+        " with the highest proportionate increase in the number of graduates living in the region during the 2022-23 tax year ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
         regions(clean_map_data_highest),
         ", </b> where the number of graduates increased by <b>",
@@ -333,7 +333,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
     } else if (first(clean_map_data$difference_prop2) < 0) {
       max_text <- paste0(
         "the ", pluralregion(clean_map_data_highest),
-        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the 2021-22 tax year ",
+        " with the smallest proportionate <b>decrease</b> in the number of graduates living in the region during the 2022-23 tax year ",
         #        tax_year_slash,
         #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
@@ -344,7 +344,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
       )
     } else {
       max_text <- paste0(
-        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the 2021-22 tax year ",
+        "the ", pluralregion(clean_map_data_highest), " with the most graduates living there during the 2022-23 tax year ",
         #        tax_year_slash,
         #       ") ",
         YAGtext, " after graduation compared to the number who graduated from HE providers in the same region <b>",
@@ -370,7 +370,7 @@ map_text2 <- function(mapdata, sectionnameinput, subjectinput,
         "The ", pluralregion(clean_map_data_lowest), " with the fewest graduates living there ",
         YAGtext, " after graduation, compared to the number having studied there ",
         regions(clean_map_data_highest),
-        ", where the number of graduates living in the region during the 2021-22 tax year was the same as the number who graduated from HE providers in the same region."
+        ", where the number of graduates living in the region during the 2022-23 tax year was the same as the number who graduated from HE providers in the same region."
       )
     }
 
@@ -505,7 +505,7 @@ regional_sankey_title <- function(sectionnameinput, subjectinput, YAGinput, qual
   }
 
   regional_sankey_title <- paste("Number of graduates working in the", sectionnameinput, " industry who
-                      studied in each region, and where they lived during the 2021-22 tax year, ", YAGtext, " after graduation.")
+                      studied in each region, and where they lived during the 2022-23 tax year, ", YAGtext, " after graduation.")
 
   return(regional_sankey_title)
 }
