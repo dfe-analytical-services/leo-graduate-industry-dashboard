@@ -80,7 +80,7 @@ public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-ind
 
 # Read data:
 
-#Change to this once data can be added to project data folder on morning of publication:
+# Change to this once data can be added to project data folder on morning of publication:
 cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
 cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
 cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
