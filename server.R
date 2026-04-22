@@ -411,8 +411,8 @@ server <- function(input, output, session) {
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
           #  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
-          #          mutate_if(is.numeric, list(~ (100.0 * .)))
-          mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
+                    mutate_if(is.numeric, list(~ (100.0 * .)))
+          # mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
       }
       dfDownload <- dfDownload %>%
         #  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
