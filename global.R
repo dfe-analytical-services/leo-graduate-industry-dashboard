@@ -39,9 +39,9 @@ shhh(library(dfeshiny))
 
 # update years for text -------------------------------------------------
 
-tax_year_dash <- "2022-23"
-tax_year_slash <- "2022/23"
-fiveyag_cohort_year <- "2016/17"
+tax_year_dash <- "2023-24"
+tax_year_slash <- "2023/24"
+fiveyag_cohort_year <- "2017/18"
 
 
 # read the scripts in the correct order ---------------------------------
@@ -80,16 +80,24 @@ public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-ind
 
 # Read data:
 
-# Change to this once data can be added to project data folder on morning of publication:
-cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
-cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
-cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
+# # Change to this once data can be added to project data folder on morning of publication:
+# cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
+# cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
+# cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
+# 
+# tables_data <- read_tables_data("data/industry_3digitSIC_dashboard_data.csv")
+# 
+# data <- read.csv("data/industry_regional_map.csv")
+# regional_movement_data <- read.csv("data/industry_regional_movement.csv")
 
-tables_data <- read_tables_data("data/industry_3digitSIC_dashboard_data.csv")
+cohort1 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_sankey_1to3yag.csv")
+cohort2 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_sankey_3to5yag.csv")
+cohort3 <- read_cohort("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_sankey_1to5yag.csv")
 
-data <- read.csv("data/industry_regional_map.csv")
-regional_movement_data <- read.csv("data/industry_regional_movement.csv")
+tables_data <- read_tables_data("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_3digitSIC_dashboard_data.csv")
 
+data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_regional_map.csv")
+regional_movement_data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_regional_movement.csv")
 
 
 

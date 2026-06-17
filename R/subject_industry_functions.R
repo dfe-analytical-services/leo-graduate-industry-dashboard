@@ -513,7 +513,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         tolower(qualinput),
         " courses in ",
         subjecttext,
-        " and who were working during the 2022-23 tax year, ",
+        " and who were working during the 2023-24 tax year, ",
         sectiontext,
         prop_preamble,
         sex_prop_text(crosstabs_data),
@@ -663,7 +663,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
           YAGtext,
           " previously from first degree courses in ",
           subjecttext,
-          " and who were working during the 2022-23 tax year, ",
+          " and who were working during the 2023-24 tax year, ",
           sectiontext, br(), br(),
           FSMtext,
           textWidestEarnings,
@@ -1102,7 +1102,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         YAGtext,
         " previously from first degree courses in ",
         subjecttext,
-        " and who were working during the 2022-23 tax year, ",
+        " and who were working during the 2023-24 tax year, ",
         regiontext,
         br(),
         # Cathie put in a second br()
@@ -1140,11 +1140,11 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         #        funs(as.numeric(.))
         #     ) %>%
         mutate(across(
-          c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+          c("All", "1", "2", "3", "4", "5", "Not known"),
           ~ as.numeric(.)
         )) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
       crosstabs_earnings_data <- tables_data_grouped %>%
         select(-count, n = earnings_median) %>%
@@ -1160,13 +1160,13 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         #        funs(as.numeric(.))
         #     ) %>%
         mutate(across(
-          c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+          c("All", "1", "2", "3", "4", "5", "Not known"),
           ~ as.numeric(.)
         )) %>%
         #        mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
         mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
       footer_data <- tables_data_grouped %>%
         select(-earnings_median, n = count) %>%
@@ -1178,20 +1178,24 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>%
         mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
         # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+        select(SECTIONNAME, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
       grad_numbers <- c(
         sum(footer_data$`1`), sum(footer_data$`2`), sum(footer_data$`3`), sum(footer_data$`4`),
-        sum(footer_data$`5`), sum(footer_data$`6`), sum(footer_data$`7`), sum(footer_data$`8`),
-        sum(footer_data$`9`)
+        sum(footer_data$`5`)
+        #, sum(footer_data$`6`), sum(footer_data$`7`), sum(footer_data$`8`),
+        #sum(footer_data$`9`)
       )
 
       grad_numbers <- data.frame(grad_numbers)
       grad_numbers$prior_attainment <- c(
-        "4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
-        "BTEC", "Other"
+        #"4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
+        #"BTEC", "Other"
+        "1st quintile", "2nd quintile", "3rd quintile", "4th quintile", "5th quintile"
       )
-      grad_numbers$band <- c("1", "2", "3", "4", "5", "6", "7", "8", "9")
+      grad_numbers$band <- c("1", "2", "3", "4", "5" 
+                             #, "6", "7", "8", "9"
+                             )
 
       topindustry <- crosstabs_data %>%
         select(SECTIONNAME, first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
@@ -1230,8 +1234,9 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       result <- which(crosstabs_earnings_data3 == max(crosstabs_earnings_data3), arr.ind = TRUE)
       names(crosstabs_earnings_data3) <- c(
-        "4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
-        "BTEC", "Other", "Not known"
+        #"4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
+        #"BTEC", "Other", "Not known"
+        "1st quintile", "2nd quintile", "3rd quintile", "4th quintile", "5th quintile"
       )
 
       if (is.na(first(topindustry_highest$prop)) == FALSE) {
@@ -1243,7 +1248,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
             YAGtext,
             " previously from first degree courses in ",
             subjecttext,
-            " and who were working during the 2022-23 tax year, the prior attainment band
+            " and who were working during the 2023-24 tax year, the prior attainment band
                                           with the highest number of graduates was `",
             first(grad_numbers$prior_attainment, order_by = -grad_numbers$grad_numbers),
             "`. Within this prior attainment band, ",
@@ -1265,15 +1270,15 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         funcHighestEarnings(
           tables_data_grouped %>%
             mutate(filter = case_when(
-              prior_attainment == "1" ~ "4 As or more",
-              prior_attainment == "2" ~ "360 points",
-              prior_attainment == "3" ~ "300-359 points",
-              prior_attainment == "4" ~ "240-299 points",
-              prior_attainment == "5" ~ "180-239 points",
-              prior_attainment == "6" ~ "Below 180 points",
-              prior_attainment == "7" ~ "1 or 2 A level passes",
-              prior_attainment == "8" ~ "BTEC",
-              prior_attainment == "9" ~ "Other",
+              prior_attainment == "1" ~ "1st quintile",
+              prior_attainment == "2" ~ "2nd quintile",
+              prior_attainment == "3" ~ "3rd quintile",
+              prior_attainment == "4" ~ "4th quintile",
+              prior_attainment == "5" ~ "5th quintile",
+              #prior_attainment == "6" ~ "Below 180 points",
+              #prior_attainment == "7" ~ "1 or 2 A level passes",
+              #prior_attainment == "8" ~ "BTEC",
+              #prior_attainment == "9" ~ "Other",
               TRUE ~ "Not known"
             )),
           prefix = "graduates in the ",
@@ -1439,7 +1444,7 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
         YAGtext,
         " previously from courses in ",
         subjecttext,
-        " and who were working during the 2022-23 tax year, ",
+        " and who were working during the 2023-24 tax year, ",
         qualtext,
         br(), br(),
         funcHighestEarnings(tables_data_grouped %>% mutate(filter = qualification_TR)),
@@ -2051,15 +2056,20 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       #      funs(as.numeric(.))
       #   ) %>%
       mutate(across(
-        c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+        c("All", "1", "2", "3", "4", "5", "Not known"),
         ~ as.numeric(.)
       )) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        "Other" = "9"
+        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        #"Other" = "9"
+        "1st quintile" = "1",
+        "2nd quintile" = "2",
+        "3rd quintile" = "3",
+        "4th quintile" = "4",
+        "5th quintile" = "5"
       )
 
     # Ensure Not known is always at the bottom
@@ -2079,17 +2089,22 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       #     funs(as.numeric(.))
       #  ) %>%
       mutate(across(
-        c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
+        c("All", "1", "2", "3", "4", "5", "Not known"),
         ~ as.numeric(.)
       )) %>%
       #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        "Other" = "9"
+        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        #"Other" = "9"
+        "1st quintile" = "1", 
+        "2nd quintile" = "2", 
+        "3rd quintile" = "3", 
+        "4th quintile" = "4", 
+        "5th quintile" = "5"
       )
 
     if (buttoninput == "Proportions") {
@@ -2115,11 +2130,16 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       #     mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate(across(where(is.numeric), ~ ifelse(is.na(.) | . <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        "Other" = "9"
+        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        #"Other" = "9"
+        "1st quintile" = "1", 
+        "2nd quintile" = "2", 
+        "3rd quintile" = "3", 
+        "4th quintile" = "4", 
+        "5th quintile" = "5"
       )
 
     column_defs <- col_formats(crosstabs_data, footer_data, cellfunc)
@@ -2163,11 +2183,16 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     }
 
     nested <- nested %>%
-      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known") %>%
+      select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        "Other" = "9"
+        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        #"Other" = "9"
+        "1st quintile" = "1", 
+        "2nd quintile" = "2", 
+        "3rd quintile" = "3", 
+        "4th quintile" = "4", 
+        "5th quintile" = "5"
       )
   }
 
