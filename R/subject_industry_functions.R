@@ -1183,19 +1183,20 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
       grad_numbers <- c(
         sum(footer_data$`1`), sum(footer_data$`2`), sum(footer_data$`3`), sum(footer_data$`4`),
         sum(footer_data$`5`)
-        #, sum(footer_data$`6`), sum(footer_data$`7`), sum(footer_data$`8`),
-        #sum(footer_data$`9`)
+        # , sum(footer_data$`6`), sum(footer_data$`7`), sum(footer_data$`8`),
+        # sum(footer_data$`9`)
       )
 
       grad_numbers <- data.frame(grad_numbers)
       grad_numbers$prior_attainment <- c(
-        #"4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
-        #"BTEC", "Other"
+        # "4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
+        # "BTEC", "Other"
         "1st quintile", "2nd quintile", "3rd quintile", "4th quintile", "5th quintile"
       )
-      grad_numbers$band <- c("1", "2", "3", "4", "5" 
-                             #, "6", "7", "8", "9"
-                             )
+      grad_numbers$band <- c(
+        "1", "2", "3", "4", "5"
+        # , "6", "7", "8", "9"
+      )
 
       topindustry <- crosstabs_data %>%
         select(SECTIONNAME, first(grad_numbers$band, order_by = -grad_numbers$grad_numbers))
@@ -1234,8 +1235,8 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
 
       result <- which(crosstabs_earnings_data3 == max(crosstabs_earnings_data3), arr.ind = TRUE)
       names(crosstabs_earnings_data3) <- c(
-        #"4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
-        #"BTEC", "Other", "Not known"
+        # "4 As or more", "360 points", "300-359 points", "240-299 points", "180-239 points", "Below 180 points", "1 or 2 A level passes",
+        # "BTEC", "Other", "Not known"
         "1st quintile", "2nd quintile", "3rd quintile", "4th quintile", "5th quintile"
       )
 
@@ -1275,10 +1276,10 @@ crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinpu
               prior_attainment == "3" ~ "3rd quintile",
               prior_attainment == "4" ~ "4th quintile",
               prior_attainment == "5" ~ "5th quintile",
-              #prior_attainment == "6" ~ "Below 180 points",
-              #prior_attainment == "7" ~ "1 or 2 A level passes",
-              #prior_attainment == "8" ~ "BTEC",
-              #prior_attainment == "9" ~ "Other",
+              # prior_attainment == "6" ~ "Below 180 points",
+              # prior_attainment == "7" ~ "1 or 2 A level passes",
+              # prior_attainment == "8" ~ "BTEC",
+              # prior_attainment == "9" ~ "Other",
               TRUE ~ "Not known"
             )),
           prefix = "graduates in the ",
@@ -2062,9 +2063,9 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        #"Other" = "9"
+        # "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        # "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        # "Other" = "9"
         "1st quintile" = "1",
         "2nd quintile" = "2",
         "3rd quintile" = "3",
@@ -2097,13 +2098,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        #"Other" = "9"
-        "1st quintile" = "1", 
-        "2nd quintile" = "2", 
-        "3rd quintile" = "3", 
-        "4th quintile" = "4", 
+        # "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        # "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        # "Other" = "9"
+        "1st quintile" = "1",
+        "2nd quintile" = "2",
+        "3rd quintile" = "3",
+        "4th quintile" = "4",
         "5th quintile" = "5"
       )
 
@@ -2132,13 +2133,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        #"Other" = "9"
-        "1st quintile" = "1", 
-        "2nd quintile" = "2", 
-        "3rd quintile" = "3", 
-        "4th quintile" = "4", 
+        # "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        # "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        # "Other" = "9"
+        "1st quintile" = "1",
+        "2nd quintile" = "2",
+        "3rd quintile" = "3",
+        "4th quintile" = "4",
         "5th quintile" = "5"
       )
 
@@ -2185,13 +2186,13 @@ crosstabs <- function(tables_data_grouped, subjectinput, YAGinput, countinput, q
     nested <- nested %>%
       select(SECTIONNAME, group_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known") %>%
       rename(
-        #"4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
-        #"180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
-        #"Other" = "9"
-        "1st quintile" = "1", 
-        "2nd quintile" = "2", 
-        "3rd quintile" = "3", 
-        "4th quintile" = "4", 
+        # "4 As or more" = "1", "360 points" = "2", "300-359 points" = "3", "240-299 points" = "4",
+        # "180-239 points" = "5", "Below 180 points" = "6", "1 or 2 A level passes" = "7", "BTEC" = "8",
+        # "Other" = "9"
+        "1st quintile" = "1",
+        "2nd quintile" = "2",
+        "3rd quintile" = "3",
+        "4th quintile" = "4",
         "5th quintile" = "5"
       )
   }
