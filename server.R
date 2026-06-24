@@ -87,9 +87,6 @@ server <- function(input, output, session) {
   })
 
 
-
-
-
   ### Sankey functions --------------------------------------------------------
 
   # Update the select input box in the Industry Flow analysis based on the
@@ -734,8 +731,6 @@ server <- function(input, output, session) {
       )
     }
   })
-
-
 
 
   # output$subjecttable <- renderReactable({

@@ -147,7 +147,6 @@ funcRangeEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffi
 }
 
 
-
 funcHighestEarnings <- function(dfGroupedData, allcat = "All", prefix = " ", suffix = " graduates",
                                 exclNK = TRUE, fs = TRUE) {
   ifelse(exclNK, strNK <- "Not known", strNK <- "")
@@ -247,7 +246,6 @@ subjbyind_grouped_summary <- function(subjectinput, YAGinput, countinput, qualin
 
   return(tables_data_grouped %>% as.data.frame())
 }
-
 
 
 crosstab_text <- function(tables_data_grouped, subjectinput, YAGinput, countinput, qualinput) {
@@ -2458,7 +2456,6 @@ crosstabs_reactable <- function(crosstabs_data, nested, numeric_cols_def, numeri
 
   return(crosstab)
 }
-
 
 
 # crosstab_title <- function(subjectinput, YAGinput, countinput, qualinput) {

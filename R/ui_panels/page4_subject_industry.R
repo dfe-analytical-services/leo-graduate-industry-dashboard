@@ -113,14 +113,11 @@ subject_by_industry_page <- function() {
     ),
 
 
-
-
     ## Main panel =========================================================
 
     #  mainPanel(
     #   width = 10,
     #  style = "height: 90vh; overflow-y: auto; overflow-x: auto;",
-
 
 
     #     htmlOutput("crosstab_title"),   ### this is defined in the server.R script

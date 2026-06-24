@@ -141,13 +141,6 @@ industry_by_subject_page <- function() {
     ),
 
 
-
-
-
-
-
-
-
     ## Side bar =============================================================
 
     #    sidebarLayout(

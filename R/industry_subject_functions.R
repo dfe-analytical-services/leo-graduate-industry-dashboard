@@ -64,7 +64,6 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
 }
 
 
-
 backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput, groupinput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
 

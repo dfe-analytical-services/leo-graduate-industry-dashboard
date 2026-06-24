@@ -133,7 +133,6 @@ industry_flow_page <- function() {
           ### Tabs ------------------------------------------------------------
 
           tabsetPanel(
-
             #### Sankey plot --------------------------------------------------
             tabPanel(
               "Industry flow sankey plot",
