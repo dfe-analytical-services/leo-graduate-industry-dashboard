@@ -33,6 +33,7 @@ shhh(library(styler))
 shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
 shhh(library(dfeshiny))
+shhh(library(shinytitle))
 # shhh(library(shinya11y))
 # shhh(library(chromote)) Cathie tried adding this when getting an error for running local tests, but it didn't help
 
@@ -77,7 +78,6 @@ ees_pub_slug <- "leo-graduate-and-postgraduate-outcomes"
 public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard"
 
 
-
 # Read data:
 
 # # Change to this once data can be added to project data folder on morning of publication:
@@ -98,7 +98,6 @@ tables_data <- read_tables_data("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO P
 
 data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_regional_map.csv")
 regional_movement_data <- read.csv("//vmt1pr-dhfs01/Working/EDUDEST-WKG-HE-FS/LEO Publication Production/25 - Preparations for publication 2026/Industry dashboard data/industry_regional_movement.csv")
-
 
 
 qual_subjects <- tables_data %>%

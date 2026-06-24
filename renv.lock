@@ -2048,6 +2048,16 @@
       ],
       "Hash": "32bbf4be0ccb8b11cdb7f7602318b2c5"
     },
+    "shinytitle": {
+      "Package": "shinytitle",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "shiny"
+      ],
+      "Hash": "12a2972d88910692c1a125d6e1e95d51"
+    },
     "sourcetools": {
       "Package": "sourcetools",
       "Version": "0.1.7-2",
