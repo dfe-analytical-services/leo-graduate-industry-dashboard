@@ -3,19 +3,24 @@ fluidPage(
   # tags$head(HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year ", tax_year_dash, "</title>")),
   # use_shiny_title(),
   # tags$html(lang = "en"),
-  tags$head(includeHTML(("google-analytics.html"))),
-  shinyGovstyle::skip_to_main(),
-  title = tags$head(
-    tags$link(
-      rel = "shortcut icon",
-      href = "dfefavicon.png"
-    ),
-    # Add title for browser tabs
-    tags$title("Longitudinal Educational Outcomes - Graduate Industry dashboard")
+
+  shinyjs::useShinyjs(),
+  includeCSS("www/dfe_shiny_gov_style.css"),
+  title = dashboard_title,
+  # shinya11y::use_tota11y(), # accessibility layer for local testing
+
+  dfeshiny::custom_disconnect_message(
+    links = "https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/",
+    publication_name = ees_pub_name,
+    publication_link = paste0(
+      "https://explore-education-statistics.service.gov.uk/find-statistics/",
+      ees_pub_slug
+    )
   ),
-  use_shiny_title(),
-  tags$html(lang = "en"),
+
   # 1. Set metadata for browser ==================================================
+
+  tags$html(lang = "en"),
   meta() %>%
     meta_general(
       application_name = "LEO Graduate Industry dashboard",
@@ -26,38 +31,22 @@ fluidPage(
       rating = "General",
       referrer = "no-referrer"
     ),
-  shinyjs::useShinyjs(),
-  dfeshiny::custom_disconnect_message(
-    links = "https://department-for-education.shinyapps.io/leo-graduate-industry-dashboard/",
-    publication_name = ees_pub_name,
-    publication_link = paste0(
-      "https://explore-education-statistics.service.gov.uk/find-statistics/",
-      ees_pub_slug
-    )
-  ),
-  # Setting up cookie consent based on a cookie recording the consent:
-  # https://book.javascript-for-r.com/shiny-cookies.html
-  tags$head(
-    tags$link(
-      rel = "stylesheet",
-      type = "text/css",
-      href = "dfe_shiny_gov_style.css"
-    ),
-    tags$link(
-      rel = "stylesheet",
-      type = "text/css",
-      href = "additional_style.css"
-    )
-  ),
+  # Set title for search engines
+  HTML("<title>Longitudinal Education Outcomes (LEO): Graduate Industry, Tax year ", tax_year_dash, "</title>"),
+
+
   # 2. Cookie banner ==================================================
   #    copied over from template
+  tags$head(includeHTML(("google-analytics.html"))),
   dfeshiny::dfe_cookies_script(),
   dfeshiny::cookies_banner_ui(
     name = dashboard_title
   ),
 
+
   # 3. Header =========================================================
   dfeshiny::header(dashboard_title),
+
 
   # 4. Beta banner=====================================================
   #  copied from template
@@ -67,29 +56,28 @@ fluidPage(
     paste0(
       "This dashboard is a new service that we are developing. If you have any feedback or
     suggestions for improvements, please submit them using our ",
-      shinyGovstyle::external_link(
+      external_link(
         href = "https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-c6JT6ONG3lJtlg-5hU4A6xURUpQME1OUVZIMEFMUUdNMEVONkhEN0g1VSQlQCN0PWcu",
         link_text = "feedback form",
         add_warning = TRUE
-      )
-      # ),
-      # ".</b><br>"
+      ),
+      ".</b><br>"
     )
   ),
+
 
   # 5. Navbar ====================================================================
 
   shiny::navlistPanel(
     id = "navlistPanel",
-    # widths = c(2, 8),
-    shinyGovstyle::full_width_overrides(),
+    widths = c(2, 8),
     well = FALSE,
-    shiny::tabPanel("Home", homepage()),
-    shiny::tabPanel("Industry flow", industry_flow_page()),
-    shiny::tabPanel("Regional", regional_page()),
-    shiny::tabPanel("Subject by industry", subject_by_industry_page()),
-    shiny::tabPanel("Industry by subject", industry_by_subject_page()),
-    shiny::tabPanel(
+    homepage(),
+    industry_flow_page(),
+    regional_page(),
+    subject_by_industry_page(),
+    industry_by_subject_page(),
+    tabPanel(
       "Support and feedback",
       support_panel(
         team_email = "he.leo@education.gov.uk",
@@ -102,7 +90,7 @@ fluidPage(
         publication_slug = ees_pub_slug
       )
     ),
-    shiny::tabPanel(
+    tabPanel(
       "Accessibility",
       dfeshiny::a11y_panel(
         dashboard_title = dashboard_title,
@@ -125,7 +113,7 @@ fluidPage(
         )
       )
     ),
-    shiny::tabPanel(
+    tabPanel(
       value = "cookies_panel_ui",
       "Cookies",
       dfeshiny::cookies_panel_ui(
@@ -133,9 +121,7 @@ fluidPage(
       )
     )
   ),
-  tags$script(
-    src = "script.js"
-  ),
+
 
   # 6. Footer ====================================================================
 
