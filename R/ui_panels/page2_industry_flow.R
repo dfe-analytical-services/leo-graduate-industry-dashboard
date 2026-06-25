@@ -5,27 +5,35 @@ industry_flow_page <- function() {
 
   tabPanel(
     value = "industryFlow",
-    tags$div(title = "This page provides information about the industries that graduates work in one, three and five years after graduation.", "Industry flow"),
+    tags$div(
+      title = "This page provides information about the industries that graduates work in one, three and five years after graduation.",
+      "Industry flow"
+    ),
 
     ## Heading ==================================================================
     gov_main_layout(
       gov_row(
         column(
           width = 12,
-          h1("Industries in which graduates are employed one, three and five years after graduation"),
+          h1(
+            "Industries in which graduates are employed one, three and five years after graduation"
+          ),
           #          h3("... by qualification, subject area studied, and sex."),
-          tags$b("Coverage is graduates from the 2017-18 academic year
-             who were in sustained employment one and three, and/or three and five years after graduation."),
+          tags$b(
+            "Coverage is graduates from the 2017-18 academic year
+             who were in sustained employment one and three, and/or three and five years after graduation."
+          ),
         )
       ),
 
       ## Expandable section ===================================================
-      column(
-        width = 12,
-        expandable(
-          input_id = "details", label = textOutput("dropdown_label"),
-          contents =
-            div(
+      gov_row(
+        column(
+          width = 12,
+          expandable(
+            input_id = "details",
+            label = textOutput("dropdown_label"),
+            contents = div(
               id = "div_a",
               ### User selection dropdowns ========================================
               gov_row(
@@ -46,7 +54,10 @@ industry_flow_page <- function() {
                   selectizeInput(
                     "indflow.subjectinput",
                     label = "Select a subject area studied",
-                    choices = unique(c("All", sort(qual_subjects$subject_name))),
+                    choices = unique(c(
+                      "All",
+                      sort(qual_subjects$subject_name)
+                    )),
                     selected = "All"
                   )
                 ),
@@ -65,8 +76,8 @@ industry_flow_page <- function() {
                 ),
               )
             )
+          )
         ),
-
 
         ## Side bar =============================================================
 
@@ -114,11 +125,7 @@ industry_flow_page <- function() {
 
         ## Main panel =========================================================
 
-        mainPanel(
-          #          width = 10,
-          width = 25,
-          style = "height: 90vh; overflow-y: auto;",
-
+        gov_row(
           ### Title  ----------------------------------------------------------
 
           #          htmlOutput("sankey_title"),
@@ -154,10 +161,13 @@ industry_flow_page <- function() {
                 4,
                 "1 year after graduation"
               ),
-              column(4, div(
-                "3 years after graduation",
-                style = "text-align: center"
-              )),
+              column(
+                4,
+                div(
+                  "3 years after graduation",
+                  style = "text-align: center"
+                )
+              ),
               column(
                 4,
                 div("5 years after graduation", style = "text-align: right")
@@ -172,10 +182,13 @@ industry_flow_page <- function() {
               #  condition = "is.null(output$sankey_flag)",
               withSpinner(
                 sankeyNetworkOutput(outputId = "sankey", height = 800)
-              ), br(),
+              ),
+              br(),
               strong("Footnotes"),
               br(),
-              paste("1. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals. This reflects the level of precision in our data. It is also easier to read.")
+              paste(
+                "1. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals. This reflects the level of precision in our data. It is also easier to read."
+              )
               # )
             ),
 
@@ -187,10 +200,14 @@ industry_flow_page <- function() {
               br(),
               strong("Footnotes"),
               br(),
-              paste("1. Outcome percentages are rounded to the nearest 0.1%.
-                    Rounding reflects the level of precision of our data, and makes it easier to read the information."),
+              paste(
+                "1. Outcome percentages are rounded to the nearest 0.1%.
+                    Rounding reflects the level of precision of our data, and makes it easier to read the information."
+              ),
               br(),
-              paste("2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."),
+              paste(
+                "2. All populations are rounded to the nearest 5 full-person equivalent (FPE) individuals."
+              ),
               br(),
               paste("3. c = data have been supressed due to small numbers."),
               br(),
@@ -199,11 +216,10 @@ industry_flow_page <- function() {
             )
           ),
 
-
           ### Caveats ---------------------------------------------------------
           caveats_box_flow() # defined in R/caveats.R
-        ),
-      ),
-    ),
+        )
+      )
+    )
   )
 }
