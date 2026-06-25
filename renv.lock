@@ -1988,10 +1988,17 @@
     "shinyGovstyle": {
       "Package": "shinyGovstyle",
       "Version": "0.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
+      "Source": "GitHub",
+      "Title": "Custom Gov Style Inputs for Shiny",
+      "Authors@R": "c( person(\"Ross\", \"Wyatt\", , \"ross.wyatt@justice.gov.uk\", role = \"aut\"), person(\"Cam\", \"Race\", , \"camrace8@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Sarah\", \"Wong\", role = \"aut\"), person(\"Richard\", \"Bielby\", , \"richard.bielby@education.gov.uk\", role = \"ctb\"), person(\"Charlotte\", \"Foster\", , \"charlotte.foster@education.gov.uk\", role = \"ctb\"), person(\"Jeni\", \"Martin\", role = \"ctb\"), person(\"Andrew\", \"Baker\", , \"andrew.baker1@dhsc.gov.uk\", role = \"ctb\") )",
+      "Description": "Collection of 'shiny' application styling that are based on the GOV.UK Design System. See <https://design-system.service.gov.uk/components/> for details.",
+      "License": "GPL (>= 3)",
+      "URL": "https://github.com/dfe-analytical-services/shinyGovstyle",
+      "BugReports": "https://github.com/dfe-analytical-services/shinyGovstyle/issues",
+      "Depends": [
+        "R (>= 4.1.0)"
+      ],
+      "Imports": [
         "htmltools",
         "jsonlite",
         "lifecycle",
@@ -1999,12 +2006,31 @@
         "reactable",
         "readODS",
         "readr",
-        "shiny",
+        "shiny (>= 0.14)",
         "shinyjs",
         "stringr",
         "writexl"
       ],
-      "Hash": "ee6b9cf01e9cbb77b0b25e1c7c7a8a7b"
+      "Suggests": [
+        "bslib",
+        "knitr",
+        "rlang",
+        "rmarkdown",
+        "shinytest2",
+        "testthat"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "Roxygen": "list(markdown = TRUE)",
+      "RoxygenNote": "7.3.3",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "dfe-analytical-services",
+      "RemoteRepo": "shinyGovstyle",
+      "RemoteRef": "v0.2.0",
+      "RemoteSha": "610b597a742c372c376b97afbea1864cd0882430"
     },
     "shinyWidgets": {
       "Package": "shinyWidgets",
