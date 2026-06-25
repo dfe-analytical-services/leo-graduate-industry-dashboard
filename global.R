@@ -33,15 +33,16 @@ shhh(library(styler))
 shhh(library(shinyGovstyle))
 shhh(library(shinyjs))
 shhh(library(dfeshiny))
+shhh(library(shinytitle))
 # shhh(library(shinya11y))
 # shhh(library(chromote)) Cathie tried adding this when getting an error for running local tests, but it didn't help
 
 
 # update years for text -------------------------------------------------
 
-tax_year_dash <- "2021-22"
-tax_year_slash <- "2021/22"
-fiveyag_cohort_year <- "2015/16"
+tax_year_dash <- "2023-24"
+tax_year_slash <- "2023/24"
+fiveyag_cohort_year <- "2017/18"
 
 
 # read the scripts in the correct order ---------------------------------
@@ -51,7 +52,6 @@ fiveyag_cohort_year <- "2015/16"
 # lapply(list.files("R/ui_panels/", full.names = TRUE), source)
 
 source("R/read_data_functions.R")
-source("R/accessibility_statement_function.R")
 source("R/caveats_functions.R")
 source("R/dashboard_text_functions.R")
 source("R/general_functions.R")
@@ -68,7 +68,7 @@ source("R/ui_panels/page5_industry_subject.R")
 # tidy_code_function -------------------------------------------------------------------------------
 
 google_analytics_key <- "Q08W0Y4G5C"
-dashboard_title <- "LEO Graduate Industry dashboard"
+dashboard_title <- "Longitudinal Education Outcomes - Graduate Industry dashboard"
 dashboard_link <- paste0(
   "https://department-for-education.shinyapps.io/",
   "leo-graduate-industry-dashboard/"
@@ -78,15 +78,17 @@ ees_pub_slug <- "leo-graduate-and-postgraduate-outcomes"
 public_repo_link <- "https://github.com/dfe-analytical-services/leo-graduate-industry-dashboard"
 
 
-# source("R/read_data.R")
-cohort1 <- read_cohort("data/sankey data 1-3YAG_FD_PG.csv")
-cohort2 <- read_cohort("data/sankey data 3-5YAG_FD_PG.csv")
-cohort3 <- read_cohort("data/sankey data 1-5YAG_FD_PG.csv")
+# Read data:
 
-tables_data <- read_tables_data("data/tables_data_3digit_FD_PG.csv")
+# # Change to this once data can be added to project data folder on morning of publication:
+cohort1 <- read_cohort("data/industry_sankey_1to3yag.csv")
+cohort2 <- read_cohort("data/industry_sankey_3to5yag.csv")
+cohort3 <- read_cohort("data/industry_sankey_1to5yag.csv")
 
-data <- read.csv("data/regional_data_FD_PG.csv")
-regional_movement_data <- read.csv("data/regional_movement_FD_PG.csv")
+tables_data <- read_tables_data("data/industry_3digitSIC_dashboard_data.csv")
+
+data <- read.csv("data/industry_regional_map.csv")
+regional_movement_data <- read.csv("data/industry_regional_movement.csv")
 
 
 qual_subjects <- tables_data %>%

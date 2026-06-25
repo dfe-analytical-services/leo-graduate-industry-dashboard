@@ -14,7 +14,7 @@ industry_flow_page <- function() {
           width = 12,
           h1("Industries in which graduates are employed one, three and five years after graduation"),
           #          h3("... by qualification, subject area studied, and sex."),
-          tags$b("Coverage is graduates from the 2015-16 academic year
+          tags$b("Coverage is graduates from the 2017-18 academic year
              who were in sustained employment one and three, and/or three and five years after graduation."),
         )
       ),
@@ -133,7 +133,6 @@ industry_flow_page <- function() {
           ### Tabs ------------------------------------------------------------
 
           tabsetPanel(
-
             #### Sankey plot --------------------------------------------------
             tabPanel(
               "Industry flow sankey plot",

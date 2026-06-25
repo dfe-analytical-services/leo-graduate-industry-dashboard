@@ -64,7 +64,6 @@ backwards_crosstab_title <- function(sectioninput, YAGinput, countinput, qualinp
 }
 
 
-
 backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, buttoninput, groupinput) {
   tables_data$SECTIONNAME[is.na(tables_data$SECTIONNAME) == TRUE] <- "NOT KNOWN"
 
@@ -595,9 +594,9 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       #       c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
       #      funs(as.numeric(.))
       #   ) %>%
-      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"), ~ as.numeric(.))) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "Not known"), ~ as.numeric(.))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
 
     crosstabs_earnings_data <- tables_data %>%
@@ -616,11 +615,11 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       #       c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"),
       #      funs(as.numeric(.))
       #   ) %>%
-      mutate(across(c("All", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Not known"), ~ as.numeric(.))) %>%
+      mutate(across(c("All", "1", "2", "3", "4", "5", "Not known"), ~ as.numeric(.))) %>%
       #      mutate_at(vars(-group_cols()), funs(ifelse(!is.na(as.numeric(.)), round(as.numeric(.), -2), .))) %>%
       mutate(across(where(is.numeric), ~ ifelse(!is.na(.), round(., -2), .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
     order <- subset(crosstabs_data, select = subject_name)
     crosstabs_earnings_data2 <- order %>%
@@ -657,7 +656,7 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       #      mutate_at(vars(-group_cols()), funs(ifelse(. <= 2, 0, .))) %>%
       mutate(across(where(is.numeric), ~ ifelse(. <= 2, 0, .))) %>%
       # We can show all regions (including Abroad, Scotland, Wales and Northern Ireland) if we want too.
-      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, "Not known")
+      select(subject_name, "All", `1`, `2`, `3`, `4`, `5`, "Not known")
 
     coldefs <- list(
       subject_name = colDef(
@@ -667,15 +666,15 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
         footerStyle = list(position = "sticky", left = 0, background = "#fff", zIndex = 1, fontWeight = "bold")
       ),
       `All` = colDef(na = "x", name = "All", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`All`), 5), big.mark = ",", scientific = FALSE)),
-      `1` = colDef(na = "x", name = "4 As or more", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`1`), 5), big.mark = ",", scientific = FALSE)),
-      `2` = colDef(na = "x", name = "360 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`2`), 5), big.mark = ",", scientific = FALSE)),
-      `3` = colDef(na = "x", name = "300-359 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`3`), 5), big.mark = ",", scientific = FALSE)),
-      `4` = colDef(na = "x", name = "240-299 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`4`), 5), big.mark = ",", scientific = FALSE)),
-      `5` = colDef(na = "x", name = "180-239 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`5`), 5), big.mark = ",", scientific = FALSE)),
-      `6` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`6`), 5), big.mark = ",", scientific = FALSE)),
-      `7` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`7`), 5), big.mark = ",", scientific = FALSE)),
-      `8` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`8`), 5), big.mark = ",", scientific = FALSE)),
-      `9` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`9`), 5), big.mark = ",", scientific = FALSE)),
+      `1` = colDef(na = "x", name = "1st quintile", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`1`), 5), big.mark = ",", scientific = FALSE)),
+      `2` = colDef(na = "x", name = "2nd quintile", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`2`), 5), big.mark = ",", scientific = FALSE)),
+      `3` = colDef(na = "x", name = "3rd quintile", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`3`), 5), big.mark = ",", scientific = FALSE)),
+      `4` = colDef(na = "x", name = "4th quintile", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`4`), 5), big.mark = ",", scientific = FALSE)),
+      `5` = colDef(na = "x", name = "5th quintile", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`5`), 5), big.mark = ",", scientific = FALSE)),
+      # `6` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`6`), 5), big.mark = ",", scientific = FALSE)),
+      # `7` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`7`), 5), big.mark = ",", scientific = FALSE)),
+      # `8` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`8`), 5), big.mark = ",", scientific = FALSE)),
+      # `9` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`9`), 5), big.mark = ",", scientific = FALSE)),
       `Not known` = colDef(na = "x", name = "Not known", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE))
     )
   }
@@ -769,19 +768,64 @@ backwards_crosstabs <- function(sectioninput, YAGinput, countinput, qualinput, b
       `Electricity, gas, steam and air conditioning supply` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Electricity, gas, steam and air conditioning supply`), 5), big.mark = ",", scientific = FALSE)),
       `Financial and insurance activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Financial and insurance activities`), 5), big.mark = ",", scientific = FALSE)),
       `Human health and social work activities` = colDef(na = "x", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Human health and social work activities`), 5), big.mark = ",", scientific = FALSE)),
-      `Information and communication` = colDef(na = "x", name = "4 As or more", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Information and communication`), 5), big.mark = ",", scientific = FALSE)),
-      `Manufacturing` = colDef(na = "x", name = "360 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Manufacturing`), 5), big.mark = ",", scientific = FALSE)),
-      `Mining and quarrying` = colDef(na = "x", name = "300-359 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Mining and quarrying`), 5), big.mark = ",", scientific = FALSE)),
-      `Not known` = colDef(na = "x", name = "240-299 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE)),
-      `Other service activities` = colDef(na = "x", name = "180-239 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Other service activities`), 5), big.mark = ",", scientific = FALSE)),
-      `Professional, scientific and technical activities` = colDef(na = "x", name = "Below 180 points", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Professional, scientific and technical activities`), 5), big.mark = ",", scientific = FALSE)),
-      `Public administration and defence - compulsory social security` = colDef(na = "x", name = "1 or 2 A level passes", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Public administration and defence - compulsory social security`), 5), big.mark = ",", scientific = FALSE)),
-      `Real estate activities` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Real estate activities`), 5), big.mark = ",", scientific = FALSE)),
-      `Transportation and storage` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Transportation and storage`), 5), big.mark = ",", scientific = FALSE)),
-      `Water supply - sewerage, waste management and remediation activities` = colDef(na = "x", name = "BTEC", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Water supply - sewerage, waste management and remediation activities`), 5), big.mark = ",", scientific = FALSE)),
-      `Wholesale and retail trade - repair of motor vehicles and motorcycles` = colDef(na = "x", name = "Other", style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Wholesale and retail trade - repair of motor vehicles and motorcycles`), 5), big.mark = ",", scientific = FALSE))
+      `Information and communication` = colDef(
+        na = "x",
+        # name = "4 As or more",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Information and communication`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Manufacturing` = colDef(
+        na = "x",
+        # name = "360 points",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Manufacturing`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Mining and quarrying` = colDef(
+        na = "x",
+        # name = "300-359 points",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Mining and quarrying`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Not known` = colDef(
+        na = "x",
+        # name = "240-299 points",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Not known`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Other service activities` = colDef(
+        na = "x",
+        # name = "180-239 points",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Other service activities`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Professional, scientific and technical activities` = colDef(
+        na = "x",
+        # name = "Below 180 points",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Professional, scientific and technical activities`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Public administration and defence - compulsory social security` = colDef(
+        na = "x",
+        # name = "1 or 2 A level passes",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Public administration and defence - compulsory social security`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Real estate activities` = colDef(
+        na = "x",
+        # name = "BTEC",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Real estate activities`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Transportation and storage` = colDef(
+        na = "x",
+        # name = "Other",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Transportation and storage`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Water supply - sewerage, waste management and remediation activities` = colDef(
+        na = "x",
+        # name = "BTEC",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Water supply - sewerage, waste management and remediation activities`), 5), big.mark = ",", scientific = FALSE)
+      ),
+      `Wholesale and retail trade - repair of motor vehicles and motorcycles` = colDef(
+        na = "x",
+        # name = "Other",
+        style = stylefunc, cell = cellfunc, footer = format(round_any(sum(footer_data$`Wholesale and retail trade - repair of motor vehicles and motorcycles`), 5), big.mark = ",", scientific = FALSE)
+      )
     )
   }
+
 
   # Cathie - code for breakdown by qualification level ==============
   if (countinput == "qualification_TR") {

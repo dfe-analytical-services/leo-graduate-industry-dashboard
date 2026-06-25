@@ -1,7 +1,8 @@
 # Homepage tab ============================================================
 homepage <- function() {
   tabPanel(
-    value = "homepage", title = "Homepage",
+    value = "homepage",
+    title = "Homepage",
     # noti_banner(
     #   "notId",
     #   title_txt = "Known issue",
@@ -15,7 +16,7 @@ homepage <- function() {
       fluidRow(
         column(
           12,
-          h1("Longitudinal Education Outcomes: Graduate Industry dashboard, Tax year 2021-22"),
+          h1("Longitudinal Education Outcomes: Graduate Industry dashboard, Tax year 2023-24"),
           welcome_text(), # defined in R/dashboard_text.R
           br(),
           br()

@@ -87,9 +87,6 @@ server <- function(input, output, session) {
   })
 
 
-
-
-
   ### Sankey functions --------------------------------------------------------
 
   # Update the select input box in the Industry Flow analysis based on the
@@ -204,7 +201,7 @@ server <- function(input, output, session) {
       ", Years after graduation  is ", input$YAGinput2,
       ", Subject area studied is ", input$crosstabs.subjectinput,
       ", Breakdown is by ",
-      ifelse(input$countinput2 == "current_region", "region of residence 2021-22 tax year",
+      ifelse(input$countinput2 == "current_region", "region of residence 2023-24 tax year",
         ifelse(input$countinput2 == "FSM", "free school meals status",
           ifelse(input$countinput2 == "prior_attainment", "prior attainment",
             ifelse(input$countinput2 == "subject_name", "subject area studied",
@@ -228,7 +225,7 @@ server <- function(input, output, session) {
       ", Years after graduation  is ", input$YAGinput3,
       ", Industry is ", input$sectionnameinput2, ", ", input$groupinput,
       ", Breakdown is by ",
-      ifelse(input$countinput3 == "current_region", "region of residence 2021-22 tax year",
+      ifelse(input$countinput3 == "current_region", "region of residence 2023-24 tax year",
         ifelse(input$countinput3 == "FSM", "free school meals status",
           ifelse(input$countinput3 == "prior_attainment", "prior attainment",
             ifelse(input$countinput3 == "qualification_TR", "qualification level", input$countinput3)
@@ -411,8 +408,8 @@ server <- function(input, output, session) {
       if (input$earningsbutton == "Proportions") {
         dfDownload <- dfDownload %>%
           #  Cathie changes mutate_if() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
-          #          mutate_if(is.numeric, list(~ (100.0 * .)))
-          mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
+          mutate_if(is.numeric, list(~ (100.0 * .)))
+        # mutate(across(where(is.numeric), ~ if_else(. == 0, 0, . / sum(., na.rm = TRUE))))
       }
       dfDownload <- dfDownload %>%
         #  Cathie changes mutate_if() and mutate_all() to mutate(across()) as mutate_if isn't supported by more recent version of dplyr
@@ -734,8 +731,6 @@ server <- function(input, output, session) {
       )
     }
   })
-
-
 
 
   # output$subjecttable <- renderReactable({
