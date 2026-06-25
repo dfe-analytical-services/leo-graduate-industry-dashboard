@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 cat("Running commit hooks...", fill = TRUE)
 shhh <- suppressPackageStartupMessages # It's a library, so shhh!
+renv::restore()
 shhh(library(dplyr))
 shhh(library(xfun))
 shhh(library(dfeshiny))

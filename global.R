@@ -37,6 +37,10 @@ shhh(library(shinytitle))
 # shhh(library(shinya11y))
 # shhh(library(chromote)) Cathie tried adding this when getting an error for running local tests, but it didn't help
 
+if (FALSE) {
+  library(rsconnect)
+}
+
 
 # update years for text -------------------------------------------------
 
