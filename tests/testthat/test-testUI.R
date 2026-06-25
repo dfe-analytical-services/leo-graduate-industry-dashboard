@@ -191,8 +191,6 @@ test_that("Migrated shinytest test: testUI.R", {
   app$expect_values(input = regional_input, output = regional_output)
 
 
-
-
   # Industry by subject tab =====================================================
 
   industryBySubject_input <- c(

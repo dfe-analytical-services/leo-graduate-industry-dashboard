@@ -3,7 +3,6 @@
 ### This code defines lots of region related functions
 
 
-
 # ukRegions <- st_read("data/boundaries/RGN_DEC_2023_EN_BFE.shp", quiet = TRUE)
 #
 # ukRegions <- ukRegions[order(ukRegions$RGN23NM), ]
