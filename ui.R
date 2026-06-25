@@ -73,8 +73,7 @@ ui <- function(input, output, session) {
 
     shiny::navlistPanel(
       id = "navlistPanel",
-      # widths = c(2, 8),
-      shinyGovstyle::full_width_overrides(),
+      widths = c(2, 10),
       well = FALSE,
       shiny::tabPanel("Home", homepage()),
       shiny::tabPanel("Industry flow", industry_flow_page()),
